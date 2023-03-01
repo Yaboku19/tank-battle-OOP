@@ -11,4 +11,9 @@ public abstract class Graphics extends JFrame{
     abstract public void drawBullet(P2d position);
 
     abstract public void drawMap();
+
+    abstract public void tutorial();
+
+    abstract public void menu();
+    
 }
