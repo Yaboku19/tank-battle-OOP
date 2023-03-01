@@ -1,14 +1,14 @@
 package it.unibo.tankBattle;
 
-import it.unibo.tankBattle.controller.api.GameLoop;
+import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 
 /**
  * 
  */
 public class TankBattle {
-    GameLoop application;
-    public void main () {
-        //application = new BasicGameLoop();
-        application.loop();
+    public static void main (String[] args) {
+        GameEngine application = new BasicGameEngine();
+        application.play();
     }
 }

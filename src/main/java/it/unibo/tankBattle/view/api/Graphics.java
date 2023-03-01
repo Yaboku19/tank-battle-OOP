@@ -1,10 +1,14 @@
 package it.unibo.tankBattle.view.api;
 
-public interface Graphics {
+import javax.swing.JFrame;
+
+import it.unibo.tankBattle.common.P2d;
+
+public abstract class Graphics extends JFrame{
     
-    public void drawTank();
+    abstract public void drawTank(P2d position);
 
-    public void drawBullet();
+    abstract public void drawBullet(P2d position);
 
-    public void drawMap();
+    abstract public void drawMap();
 }
