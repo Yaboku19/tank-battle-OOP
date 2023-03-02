@@ -15,5 +15,7 @@ public abstract class Graphics extends JFrame{
     abstract public void tutorial();
 
     abstract public void menu();
+
+    abstract public void chooseMenu();
     
 }

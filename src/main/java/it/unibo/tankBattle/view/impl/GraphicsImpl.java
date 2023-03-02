@@ -2,36 +2,36 @@ package it.unibo.tankBattle.view.impl;
 
 
 import javax.swing.JPanel;
-import javax.swing.text.View;
-
 import java.awt.Toolkit;
-import java.awt.Dimension;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.view.api.Graphics;
 
 public class GraphicsImpl extends Graphics {
     private final FactoryGameScenes factory;
     private final JPanel mainPanel;
-    private final JPanel menu;
-    private final JPanel tutorial;
-    private JPanel gameScene = new JPanel();
+    private final JPanel menuPanel;
+    private final JPanel tutorialPanel;
+    private final JPanel gameChoosePanel;
+    private JPanel gameScenePanel = new JPanel();
     private JPanel courrentPanel = new JPanel();
 
     public GraphicsImpl() {
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.factory = new FactoryGameScenes(this);
-        menu = factory.menu();
-        tutorial = factory.tutorial();
+        menuPanel = factory.menu();
+        tutorialPanel = factory.tutorial();
+        gameChoosePanel = factory.gameChoose();
         mainPanel = new JPanel();
         mainPanel.setPreferredSize(this.getSize());
 
         this.setContentPane(mainPanel);
-        mainPanel.add(menu);
-        mainPanel.add(tutorial);
-        courrentPanel = menu;
+        mainPanel.add(menuPanel);
+        mainPanel.add(tutorialPanel);
+        mainPanel.add(gameChoosePanel);
+        courrentPanel = menuPanel;
 
-        menu.setVisible(true);
-        tutorial.setVisible(false);
+        menuPanel.setVisible(true);
+        tutorialPanel.setVisible(false);
 
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,7 +59,7 @@ public class GraphicsImpl extends Graphics {
     @Override
     public void tutorial() {
         courrentPanel.setVisible(false);
-        courrentPanel = tutorial;
+        courrentPanel = tutorialPanel;
         courrentPanel.setVisible(true);
         this.repaint();
     }
@@ -67,7 +67,14 @@ public class GraphicsImpl extends Graphics {
     @Override
     public void menu() {
         courrentPanel.setVisible(false);
-        courrentPanel = menu;
+        courrentPanel = menuPanel;
+        courrentPanel.setVisible(true);
+        this.repaint();
+    }
+
+    public void chooseMenu() {
+        courrentPanel.setVisible(false);
+        courrentPanel = gameChoosePanel;
         courrentPanel.setVisible(true);
         this.repaint();
     }
