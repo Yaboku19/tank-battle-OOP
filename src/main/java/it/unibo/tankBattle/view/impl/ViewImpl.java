@@ -1,9 +1,7 @@
 package it.unibo.tankBattle.view.impl;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.awt.Image;
 
 import it.unibo.tankBattle.common.P2d;

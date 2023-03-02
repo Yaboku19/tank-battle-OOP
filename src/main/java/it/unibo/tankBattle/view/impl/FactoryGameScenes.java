@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import it.unibo.tankBattle.view.api.View;
 import java.awt.Color;
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
