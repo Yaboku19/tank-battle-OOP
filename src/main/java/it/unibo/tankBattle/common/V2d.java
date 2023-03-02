@@ -5,12 +5,20 @@ package it.unibo.tankBattle.common;
  */
 public class V2d {
     
-    private int x
+    private int x;
     private int y;
     
     public V2d(final int x, final int y){
         this.x = x;
         this.y = y;
+    }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
     }
 
     public V2d(final P2d to, final P2d from){
