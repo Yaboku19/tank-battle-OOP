@@ -19,6 +19,7 @@ public class ViewImpl extends View {
     private final JPanel gameChoosePanel;
     private JPanel gameScenePanel = new JPanel();
     private JPanel courrentPanel = new JPanel();
+    private Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
 
     public ViewImpl(){
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -30,12 +31,11 @@ public class ViewImpl extends View {
         mainPanel = new JPanel();
         mainPanel.setPreferredSize(this.getSize());
         mainPanel.setBackground(new Color(0,0,0,0));
-        Image img = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
         this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                super.paintComponent(g);
-               g.drawImage(img, 0, 0, null);
+               g.drawImage(imgBackGround, 0, 0, getWidth(), getHeight(), null);
             }
          });
 
@@ -43,8 +43,7 @@ public class ViewImpl extends View {
         mainPanel.add(tutorialPanel);
         mainPanel.add(gameChoosePanel);
         courrentPanel = menuPanel;
-        this.repaint();
-        menuPanel.setVisible(true);
+        menuPanel.setVisible(false);
         tutorialPanel.setVisible(false);
         gameScenePanel.setVisible(false);
 
@@ -94,6 +93,11 @@ public class ViewImpl extends View {
         courrentPanel = gameChoosePanel;
         courrentPanel.setVisible(true);
         this.repaint();
+    }
+
+    public void bugSolve() {
+        courrentPanel.setVisible(true);
+        repaint();
     }
     
 }

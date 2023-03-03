@@ -14,6 +14,7 @@ public class BasicGameEngine implements GameEngine {
     @Override
     public void play() {
         view.setVisible(true);
+        view.bugSolve();
     }
 
     private void loop() {
