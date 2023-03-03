@@ -1,9 +1,23 @@
-package it.unibo.tankBattle.model.impl;
+package it.unibo.tankBattle.model.World;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import it.unibo.tankBattle.model.api.GameObject;
 import it.unibo.tankBattle.model.api.World;
 
 public class WorldImpl implements World {
+    private final Set<GameObject> wallSet;
+    private final Set<GameObject> BulletSet;
+    private final GameObject tankPlayerOne;
+    private final GameObject tankPlayerTwo;
 
+    protected WorldImpl(final Set<GameObject> wallSet, final GameObject tankOne, final GameObject tankTwo) {
+        this.wallSet = new HashSet<>(wallSet);
+        this.BulletSet = new HashSet<>();
+        tankPlayerOne = tankOne;
+        tankPlayerTwo = tankTwo;
+    }
     @Override
     public void update() {
         // TODO Auto-generated method stub
