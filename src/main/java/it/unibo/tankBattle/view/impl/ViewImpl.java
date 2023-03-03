@@ -21,7 +21,7 @@ public class ViewImpl extends View {
     private final JPanel gameChoosePanel;
     private JPanel gameScenePanel = new JPanel();
     private JPanel courrentPanel = new JPanel();
-    private final Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
+    //private final Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
     private final GameEngine controller;
 
     public ViewImpl(final GameEngine controller){
@@ -34,14 +34,14 @@ public class ViewImpl extends View {
         gameChoosePanel = factory.gameChoose();
         mainPanel = new JPanel();
         mainPanel.setPreferredSize(this.getSize());
-        mainPanel.setBackground(new Color(0,0,0,0));
-        this.setContentPane(new JPanel() {
+        mainPanel.setBackground(Color.BLACK);
+        /*this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                super.paintComponent(g);
                g.drawImage(imgBackGround, 0, 0, getWidth(), getHeight(), null);
             }
-         });
+         });*/
 
         mainPanel.add(menuPanel);
         mainPanel.add(tutorialPanel);
