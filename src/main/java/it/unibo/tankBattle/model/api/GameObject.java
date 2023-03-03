@@ -51,6 +51,10 @@ public abstract class GameObject {
         this.direction = dir;
     }
 
+    public void hit(int damageReceive) {
+        this.lifePoints = this.lifePoints - damageReceive; 
+    }
+
     public void move() {
         this.speed = maxSpeed;
     }

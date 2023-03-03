@@ -13,8 +13,7 @@ public class FactoryGameObject {
 
             @Override
             public boolean isAlive(GameObject obj) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
+                return this.getLifePoints() > 0;
             }
 
             @Override
@@ -31,8 +30,24 @@ public class FactoryGameObject {
 
             @Override
             public boolean isAlive(GameObject obj) {
+                return this.getLifePoints() > 0;
+            }
+
+            @Override
+            public void update() {
                 // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
+                throw new UnsupportedOperationException("Unimplemented method 'update'");
+            }
+            
+        };
+    }
+
+    public GameObject simpleWall(Point2D startPos) {
+        return new GameObject(null, startPos, 1, 0) {
+
+            @Override
+            public boolean isAlive(GameObject obj) {
+                return true;
             }
 
             @Override
