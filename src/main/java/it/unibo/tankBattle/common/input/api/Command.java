@@ -5,5 +5,5 @@ package it.unibo.tankBattle.common.input.api;
  */
 public interface Command {
     
-    void execute(/* */);
+    void execute(int keyCode);
 }
