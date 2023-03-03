@@ -19,5 +19,7 @@ public abstract class View extends JFrame{
     abstract public void chooseMenu();
 
     abstract public void bugSolve();
+
+    abstract public void startGame();
     
 }
