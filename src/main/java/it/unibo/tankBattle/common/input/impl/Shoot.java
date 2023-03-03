@@ -7,7 +7,7 @@ import it.unibo.tankBattle.common.input.api.Command;
 public class Shoot implements Command{
 
     @Override
-    public void execute() {
+    public void execute(int keyCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'execute'");
     }

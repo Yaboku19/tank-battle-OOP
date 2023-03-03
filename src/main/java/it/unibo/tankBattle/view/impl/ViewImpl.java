@@ -3,7 +3,8 @@ package it.unibo.tankBattle.view.impl;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
 import java.awt.Image;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
@@ -13,7 +14,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class ViewImpl extends View {
+public class ViewImpl extends View implements KeyListener{
     private final FactoryGameScenes factory;
     private final JPanel mainPanel;
     private final JPanel menuPanel;
@@ -55,6 +56,8 @@ public class ViewImpl extends View {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("TankBattle");
         this.add(mainPanel);
+        addKeyListener(this);
+        setFocusable(true);
         
     }
 
@@ -106,6 +109,38 @@ public class ViewImpl extends View {
 
     public void startGame(){
         controller.startGame();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("keypressed");
+        if(e.getKeyCode() == KeyEvent.VK_W){
+            //controller.notifyCommand(e.getKeyCode());
+            System.out.println("move up");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_A){
+            //controller.notifyCommand(e.getKeyCode());
+            System.out.println("move left");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D){
+            //controller.notifyCommand(e.getKeyCode());
+            System.out.println("move right");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S){
+            //controller.notifyCommand(e.getKeyCode());
+            System.out.println("move down");
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("F5 released");
+        //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
     }
     
 }
