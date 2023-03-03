@@ -17,7 +17,7 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                this.setPosition(new P2d(0,0));
+                this.setPosition();
             }
             
         };
@@ -33,8 +33,7 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
+                this.setPosition();
             }
             
         };
@@ -50,8 +49,7 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
+                
             }
             
         };

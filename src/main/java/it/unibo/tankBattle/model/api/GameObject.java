@@ -50,8 +50,8 @@ public abstract class GameObject {
         this.direction = dir;
     }
 
-    public void setPosition(P2d newPos) {
-        this.position = newPos; 
+    protected void setPosition() {
+        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
     }
 
     public void hit(int damageReceive) {
