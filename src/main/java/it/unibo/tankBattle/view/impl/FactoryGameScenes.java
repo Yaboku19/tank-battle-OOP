@@ -129,6 +129,10 @@ public class FactoryGameScenes {
         backButton.addActionListener(e -> {
             view.menu();
         });
+        
+        startButton.addActionListener(e -> {
+            view.startGame();
+        });
         playerOnePanel.add(leftPlayerOne, BorderLayout.WEST);
         playerOnePanel.add(RightPlayerOne, BorderLayout.EAST);
 

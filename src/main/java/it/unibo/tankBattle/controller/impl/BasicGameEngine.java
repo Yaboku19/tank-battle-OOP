@@ -8,7 +8,7 @@ public class BasicGameEngine implements GameEngine {
     private View view;
 
     public BasicGameEngine() {
-        view = new ViewImpl();
+        view = new ViewImpl(this);
     }
 
     @Override
@@ -19,6 +19,11 @@ public class BasicGameEngine implements GameEngine {
 
     private void loop() {
         
+    }
+
+    @Override
+    public void startGame() {
+        System.out.println("game started");
     }
     
 }

@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 import java.awt.Image;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 
 import java.awt.Color;
@@ -19,9 +21,11 @@ public class ViewImpl extends View {
     private final JPanel gameChoosePanel;
     private JPanel gameScenePanel = new JPanel();
     private JPanel courrentPanel = new JPanel();
-    private Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
+    private final Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
+    private final GameEngine controller;
 
-    public ViewImpl(){
+    public ViewImpl(final GameEngine controller){
+        this.controller = controller;
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.factory = new FactoryGameScenes(this);
 
@@ -98,6 +102,10 @@ public class ViewImpl extends View {
     public void bugSolve() {
         courrentPanel.setVisible(true);
         repaint();
+    }
+
+    public void startGame(){
+        controller.startGame();
     }
     
 }
