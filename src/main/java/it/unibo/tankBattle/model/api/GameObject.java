@@ -1,21 +1,20 @@
 package it.unibo.tankBattle.model.api;
 
-import it.unibo.tankBattle.common.V2d;
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import javafx.geometry.BoundingBox;
-import javafx.geometry.Point2D;
 
 public abstract class GameObject {
 
-    private final V2d maxSpeed;
-    private Point2D position;
-    private V2d speed;
+    private final int maxSpeed;
+    private P2d position;
+    private int currentSpeed;
     private Directions direction;
     private BoundingBox hitBox;
-    private int damage;
+    private final int damage;
     private int lifePoints;
 
-    public GameObject(V2d speed, Point2D startPos, int lifePoints, int damage) {
+    public GameObject(int speed, P2d startPos, int lifePoints, int damage) {
         this.maxSpeed = speed;
         this.position = startPos;
         this.lifePoints = lifePoints;
@@ -23,12 +22,12 @@ public abstract class GameObject {
         this.direction = Directions.UP;
     }
 
-    public Point2D getPosition() {
+    public P2d getPosition() {
         return position;
     }
 
-    public V2d getSpeed() {
-        return speed;
+    public int getCurrentSpeed() {
+        return currentSpeed;
     }
 
     public Directions getDirection() {
@@ -51,16 +50,20 @@ public abstract class GameObject {
         this.direction = dir;
     }
 
+    protected void setPosition() {
+        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+    }
+
     public void hit(int damageReceive) {
         this.lifePoints = this.lifePoints - damageReceive; 
     }
 
     public void move() {
-        this.speed = maxSpeed;
+        this.currentSpeed = maxSpeed;
     }
 
     public void stop() {
-        this.speed = new V2d(0,0);
+        this.currentSpeed = 0;
     }
     
     public abstract boolean isAlive(GameObject obj);

@@ -1,14 +1,13 @@
 package it.unibo.tankBattle.model.impl;
 
-import it.unibo.tankBattle.common.V2d;
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.api.GameObject;
-import javafx.geometry.Point2D;
 
 public class FactoryGameObject {
     
     private static final int DAMAGE_MULTIPLIER = 10;
 
-    public GameObject simpleTank(V2d speed, Point2D startPos, int lifePoints, int damage) {
+    public GameObject simpleTank(int speed, P2d startPos, int lifePoints, int damage) {
         return new GameObject(speed , startPos, lifePoints, damage) {
 
             @Override
@@ -18,14 +17,13 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
+                this.setPosition();
             }
             
         };
     }
 
-    public GameObject simpleBullet(V2d speed, Point2D startPos, GameObject tank) {
+    public GameObject simpleBullet(int speed, P2d startPos, GameObject tank) {
         return new GameObject(speed, startPos, 1, tank.getDamage()*DAMAGE_MULTIPLIER) {
 
             @Override
@@ -35,15 +33,14 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
+                this.setPosition();
             }
             
         };
     }
 
-    public GameObject simpleWall(Point2D startPos) {
-        return new GameObject(null, startPos, 1, 0) {
+    public GameObject simpleWall(P2d startPos) {
+        return new GameObject(0, startPos, 1, 0) {
 
             @Override
             public boolean isAlive(GameObject obj) {
@@ -52,8 +49,7 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'update'");
+                
             }
             
         };
