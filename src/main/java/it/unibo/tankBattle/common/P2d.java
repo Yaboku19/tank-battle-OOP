@@ -8,7 +8,7 @@ public class P2d {
     private int x;
     private int y;
 
-    P2d(final int x, final int y){
+    public P2d(final int x, final int y){
         this.x = x;
         this.y = y;
     }
