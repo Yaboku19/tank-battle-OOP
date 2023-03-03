@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import it.unibo.tankBattle.common.P2d;
 
-public abstract class Graphics extends JFrame{
+public abstract class View extends JFrame{
     
     abstract public void drawTank(P2d position);
 
@@ -15,5 +15,11 @@ public abstract class Graphics extends JFrame{
     abstract public void tutorial();
 
     abstract public void menu();
+
+    abstract public void chooseMenu();
+
+    abstract public void bugSolve();
+
+    abstract public void startGame();
     
 }
