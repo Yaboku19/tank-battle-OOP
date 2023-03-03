@@ -1,13 +1,13 @@
 package it.unibo.tankBattle.model.impl;
 
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.api.GameObject;
-import javafx.geometry.Point2D;
 
 public class FactoryGameObject {
     
     private static final int DAMAGE_MULTIPLIER = 10;
 
-    public GameObject simpleTank(int speed, Point2D startPos, int lifePoints, int damage) {
+    public GameObject simpleTank(int speed, P2d startPos, int lifePoints, int damage) {
         return new GameObject(speed , startPos, lifePoints, damage) {
 
             @Override
@@ -17,13 +17,13 @@ public class FactoryGameObject {
 
             @Override
             public void update() {
-                this.setPosition(new Point2D(0,0));
+                this.setPosition(new P2d(0,0));
             }
             
         };
     }
 
-    public GameObject simpleBullet(int speed, Point2D startPos, GameObject tank) {
+    public GameObject simpleBullet(int speed, P2d startPos, GameObject tank) {
         return new GameObject(speed, startPos, 1, tank.getDamage()*DAMAGE_MULTIPLIER) {
 
             @Override
@@ -40,7 +40,7 @@ public class FactoryGameObject {
         };
     }
 
-    public GameObject simpleWall(Point2D startPos) {
+    public GameObject simpleWall(P2d startPos) {
         return new GameObject(0, startPos, 1, 0) {
 
             @Override
