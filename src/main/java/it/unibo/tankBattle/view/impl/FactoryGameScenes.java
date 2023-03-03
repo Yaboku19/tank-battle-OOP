@@ -2,24 +2,24 @@ package it.unibo.tankBattle.view.impl;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import it.unibo.tankBattle.view.api.Graphics;
+import it.unibo.tankBattle.view.api.View;
 import java.awt.Color;
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 public class FactoryGameScenes {
-    private final Graphics view;
+    private final View view;
     private final Dimension screenSize;
 
-    protected FactoryGameScenes(Graphics view) {
+    protected FactoryGameScenes(View view) {
         this.view = view;
         screenSize = view.getSize();
     }
 
     protected JPanel menu () {
         final JPanel menuPanel = new JPanel(new BorderLayout());
-        menuPanel.setBackground(Color.BLACK);
+        setTrasparent(menuPanel);
     
         final JPanel centerPanel = new JPanel(new BorderLayout());
         setSize(centerPanel, screenSize.width/3, screenSize.height/2);
@@ -48,6 +48,10 @@ public class FactoryGameScenes {
         tutorialButton.addActionListener(e ->{
             view.tutorial();
         });
+
+        playButton.addActionListener(e ->{
+            view.chooseMenu();
+        });
         tutorialButton.setPreferredSize(new Dimension(view.getSize().width/3, view.getSize().height/6));
 
         centerPanel.add(playButton, BorderLayout.NORTH);
@@ -64,15 +68,98 @@ public class FactoryGameScenes {
 
     protected JPanel tutorial () {
         final JPanel tutorialPanel = new JPanel();
+        tutorialPanel.setPreferredSize(screenSize);
+        setTrasparent(tutorialPanel);
+
         final JButton backButton = new JButton("Back");
-        tutorialPanel.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-        backButton.setPreferredSize(new Dimension(100,100));
         backButton.addActionListener(e ->{
             view.menu();
         });
         
         tutorialPanel.add(backButton);
         return tutorialPanel;
+    }
+
+    protected JPanel gameChoose () {
+        final JPanel gameChoosePanel = new JPanel(new GridLayout(3,1));
+        gameChoosePanel.setPreferredSize(screenSize);
+        setTrasparent(gameChoosePanel);
+
+        final JPanel topPanel = new JPanel(new GridLayout(1,3));
+        setTrasparent(topPanel);
+
+        final JPanel middlePanel = new JPanel(new GridLayout(1,3));
+        setTrasparent(middlePanel);
+
+        final JPanel bottomPanel = new JPanel(new GridLayout(1,3));
+        setTrasparent(bottomPanel);
+
+        final JPanel playerOnePanel = new JPanel(new BorderLayout());
+        setTrasparent(playerOnePanel);
+
+        final JPanel emptyPanel1 = new JPanel(new BorderLayout());
+        setTrasparent(emptyPanel1);
+
+        final JPanel emptyPanel2 = new JPanel(new BorderLayout());
+        setTrasparent(emptyPanel2);
+
+        final JPanel emptyPanel3 = new JPanel(new BorderLayout());
+        setTrasparent(emptyPanel3);
+
+        final JPanel emptyPanel4 = new JPanel(new BorderLayout());
+        setTrasparent(emptyPanel4);
+
+        final JPanel playerTwoPanel = new JPanel(new BorderLayout());
+        setTrasparent(playerTwoPanel);
+
+        final JPanel mapPanel = new JPanel(new BorderLayout());
+        setTrasparent(mapPanel);
+
+        final JButton leftPlayerOne = new JButton("Left");
+        final JButton RightPlayerOne = new JButton("Right");
+
+        final JButton leftPlayerTwo = new JButton("Left");
+        final JButton RightPlayerTwo = new JButton("Right");
+
+        final JButton leftMap = new JButton("left");
+        final JButton rightMap = new JButton("Right");
+
+        final JButton backButton = new JButton("Back");
+        final JButton startButton = new JButton("Start");
+        backButton.addActionListener(e -> {
+            view.menu();
+        });
+        
+        startButton.addActionListener(e -> {
+            view.startGame();
+        });
+        playerOnePanel.add(leftPlayerOne, BorderLayout.WEST);
+        playerOnePanel.add(RightPlayerOne, BorderLayout.EAST);
+
+        playerTwoPanel.add(leftPlayerTwo, BorderLayout.WEST);
+        playerTwoPanel.add(RightPlayerTwo, BorderLayout.EAST);
+
+        topPanel.add(playerOnePanel);
+        topPanel.add(emptyPanel1);
+        topPanel.add(playerTwoPanel);
+
+        mapPanel.add(leftMap, BorderLayout.WEST);
+        mapPanel.add(rightMap, BorderLayout.EAST);
+
+        middlePanel.add(emptyPanel2);
+        middlePanel.add(mapPanel);
+        middlePanel.add(emptyPanel3);
+
+        bottomPanel.add(backButton);
+        bottomPanel.add(emptyPanel4);
+        bottomPanel.add(startButton);
+
+        gameChoosePanel.add(topPanel);
+        gameChoosePanel.add(middlePanel);
+        gameChoosePanel.add(bottomPanel);
+        gameChoosePanel.setVisible(false);
+
+        return gameChoosePanel;
     }
 
     protected JPanel gameScene () {
@@ -84,6 +171,6 @@ public class FactoryGameScenes {
     }
 
     private void setTrasparent(JPanel panel) {
-        panel.setBackground(new Color(0,0,0,125));
+        panel.setBackground(new Color(0,0,0,0));
     }
 }
