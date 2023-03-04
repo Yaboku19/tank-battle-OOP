@@ -21,6 +21,8 @@ public abstract class GameObjectImpl implements GameObject{
         this.lifePoints = lifePoints;
         this.damage = damage;
         this.direction = Directions.UP;
+        currentSpeed = 0;
+        direction = Directions.UP;
     }
 
     @Override

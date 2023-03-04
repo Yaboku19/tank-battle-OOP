@@ -31,7 +31,10 @@ public class WorldImpl implements World {
 
     @Override
     public void update() {
-        getEntities().stream().forEach(g -> g.update());
+        getEntities().stream().forEach(g -> {
+            g.update();
+            removeDeadGameObject(g);
+        });
     }
 
     @Override
@@ -41,12 +44,9 @@ public class WorldImpl implements World {
 
         secondGameObject.hit(firstGameObject.getDamage());
         secondGameObject.resolveCollision();
-
-        removeDeathGameObject(firstGameObject);
-        removeDeathGameObject(secondGameObject);
     }
 
-    private void removeDeathGameObject(GameObject gameObject) {
+    private void removeDeadGameObject(GameObject gameObject) {
 
         if (!gameObject.isAlive()) {
             if (bulletSet.contains(gameObject)){
@@ -106,7 +106,7 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void buttonPressed(Directions direction, int player) {
+    public void buttonPressed(Directions direction, int player) throws IllegalStateException{
         if(player == 1) {
             changeDirection(tankPlayerOne, direction);
         } else if (player == 2) {
@@ -122,7 +122,7 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void buttonRelased(int player) {
+    public void buttonRelased(int player) throws IllegalStateException{
         if(player == 1) {
             resetSpeed(tankPlayerOne);
         } else if (player == 2) {
