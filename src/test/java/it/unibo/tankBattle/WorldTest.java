@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
@@ -22,7 +23,7 @@ public class WorldTest {
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
-		factory = new FactoryWorld();
+		factory = new FactoryWorld(new GameStateImpl());
 		factory2 = new FactoryGameObject();
     }
 

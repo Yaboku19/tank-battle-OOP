@@ -27,4 +27,6 @@ public interface GameObject {
     public void move();
 
     public void stop();
+
+    public void update();
 }

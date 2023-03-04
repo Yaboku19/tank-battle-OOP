@@ -11,7 +11,7 @@ public class GameStateImpl implements GameState{
     private final FactoryWorld factory;
 
     public GameStateImpl() {
-        factory = new FactoryWorld();
+        factory = new FactoryWorld(this);
         this.world = factory.simpleWorld();
     }
 
