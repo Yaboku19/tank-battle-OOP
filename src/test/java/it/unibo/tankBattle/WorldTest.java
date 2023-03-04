@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.api.GameObject;
 import it.unibo.tankBattle.model.impl.FactoryGameObject;
-import it.unibo.tankBattle.model.world.Impl.FactoryWorld;
+import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
 	private FactoryWorld factory;
