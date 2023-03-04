@@ -47,6 +47,7 @@ public class WorldImpl implements World {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'bulletHitOther'");
     }
+
     @Override
     public Set<GameObject> getEntities() {
         var entities = new HashSet<>(wallSet);
