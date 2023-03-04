@@ -1,6 +1,7 @@
-package it.unibo.tankBattle.model.impl;
+package it.unibo.tankBattle.model.gameObject.impl;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.model.gameObject.api.GameObject;
 
 public class FactoryGameObject {
     
@@ -22,7 +23,7 @@ public class FactoryGameObject {
         };
     }
 
-    public GameObjectImpl simpleBullet(int speed, P2d startPos, GameObjectImpl tank) {
+    public GameObjectImpl simpleBullet(int speed, P2d startPos, GameObject tank) {
         return new GameObjectImpl(speed, startPos, 1, tank.getDamage()*DAMAGE_MULTIPLIER) {
 
             @Override

@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.model.api.GameObject;
 import it.unibo.tankBattle.model.api.World;
-import it.unibo.tankBattle.model.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 
 
 public class FactoryWorld {

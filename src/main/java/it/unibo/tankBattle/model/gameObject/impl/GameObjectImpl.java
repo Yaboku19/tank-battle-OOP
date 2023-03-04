@@ -1,8 +1,8 @@
-package it.unibo.tankBattle.model.impl;
+package it.unibo.tankBattle.model.gameObject.impl;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.api.GameObject;
+import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import javafx.geometry.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject{
