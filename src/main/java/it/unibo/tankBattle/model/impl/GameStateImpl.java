@@ -1,8 +1,8 @@
 package it.unibo.tankBattle.model.impl;
 
 import it.unibo.tankBattle.model.api.GameState;
-import it.unibo.tankBattle.model.world.Api.World;
-import it.unibo.tankBattle.model.world.Impl.FactoryWorld;
+import it.unibo.tankBattle.model.world.api.World;
+import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 
 public class GameStateImpl implements GameState{

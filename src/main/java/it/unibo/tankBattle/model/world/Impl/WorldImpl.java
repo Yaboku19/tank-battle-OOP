@@ -1,10 +1,10 @@
-package it.unibo.tankBattle.model.world.Impl;
+package it.unibo.tankBattle.model.world.impl;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.tankBattle.model.api.GameObject;
-import it.unibo.tankBattle.model.world.Api.World;
+import it.unibo.tankBattle.model.world.api.World;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;
