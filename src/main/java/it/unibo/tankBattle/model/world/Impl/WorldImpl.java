@@ -1,9 +1,9 @@
-package it.unibo.tankBattle.model.world;
+package it.unibo.tankBattle.model.world.impl;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import it.unibo.tankBattle.model.api.World;
+import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 
 public class WorldImpl implements World {

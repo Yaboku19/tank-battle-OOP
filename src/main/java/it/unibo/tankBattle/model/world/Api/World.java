@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.api;
+package it.unibo.tankBattle.model.world.api;
 
 import java.util.Set;
 
