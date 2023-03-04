@@ -16,8 +16,11 @@ public class WorldImpl implements World {
     private final GameObject tankPlayerTwo;
     private final FactoryGameObject factoryGameObject;
     private final GameState gameState;
+    private static final int MULTIPLIER_SPEED_SIMPLE_TANK = 2;
 
-    protected WorldImpl(final Set<GameObject> wallSet, final GameObject tankOne, final GameObject tankTwo, final GameState gameState) {
+    protected WorldImpl(final Set<GameObject> wallSet, final GameObject tankOne,
+            final GameObject tankTwo, final GameState gameState) {
+
         this.wallSet = new HashSet<>(wallSet);
         this.bulletSet = new HashSet<>();
         tankPlayerOne = tankOne;
@@ -28,24 +31,34 @@ public class WorldImpl implements World {
 
     @Override
     public void update() {
-        wallSet.stream().forEach(g -> g.update());
-        bulletSet.stream().forEach(g -> g.update());
-        tankPlayerOne.update();
-        tankPlayerTwo.update();
+        getEntities().stream().forEach(g -> g.update());
     }
 
     @Override
-    public void collision(GameObject firsGameObject, GameObject secondGameObject) {
-        /*
-         * 
-         * firstGameOBject.hitted(secondGameObject.damage);
-         * firstGameObject.collision(secondGameObject.GetPosition());
-         * if (!first.gameobject.isAlive()){
-         *      if (bulletSet.contain(firstGameObject)) bulletSet.remove(firstGameObject);
-         *      if (bulletSet.contain(firstGameObject)) bulletSet.remove(firstGameObject);
-         *      if (tankPlayerOne == firstGameObject || tankPlayerOne == secondGameObject)   gameState.isOver();
-         * }
-         */
+    public void collision(GameObject firstGameObject, GameObject secondGameObject) {
+        firstGameObject.hit(secondGameObject.getDamage());
+        firstGameObject.resolveCollision();
+
+        secondGameObject.hit(firstGameObject.getDamage());
+        secondGameObject.resolveCollision();
+
+        removeDeathGameObject(firstGameObject);
+        removeDeathGameObject(secondGameObject);
+    }
+
+    private void removeDeathGameObject(GameObject gameObject) {
+
+        if (!gameObject.isAlive()) {
+            if (bulletSet.contains(gameObject)){
+                bulletSet.remove(gameObject);
+            } else if (bulletSet.contains(gameObject)) {
+                bulletSet.remove(gameObject);
+            } else if (tankPlayerOne == gameObject || tankPlayerOne == gameObject){
+                gameState.isOver();
+            } else {
+                throw new IllegalStateException();
+            }
+        }
     }
     
     @Override
@@ -79,7 +92,7 @@ public class WorldImpl implements World {
 
     @Override
     public void addBullet(GameObject tank) {
-        bulletSet.add(factoryGameObject.simpleBullet(10, tank.getPosition(), tank));
+        bulletSet.add(factoryGameObject.simpleBullet(tank.getMaxSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override
