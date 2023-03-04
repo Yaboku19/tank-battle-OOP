@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.api;
+package it.unibo.tankBattle.model.gameObject.api;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
