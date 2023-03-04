@@ -1,6 +1,8 @@
-package it.unibo.tankBattle.model.api;
+package it.unibo.tankBattle.model.world;
 
 import java.util.Set;
+
+import it.unibo.tankBattle.model.api.GameObject;
 
 public interface World {
     // getter tank, obstacles and bullet

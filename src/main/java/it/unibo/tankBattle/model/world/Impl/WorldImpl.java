@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.tankBattle.model.api.GameObject;
-import it.unibo.tankBattle.model.api.World;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;

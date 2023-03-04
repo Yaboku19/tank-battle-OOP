@@ -1,14 +1,17 @@
 package it.unibo.tankBattle.model.impl;
 
 import it.unibo.tankBattle.model.api.GameState;
-import it.unibo.tankBattle.model.api.World;
-import it.unibo.tankBattle.model.world.WorldImpl;
+import it.unibo.tankBattle.model.world.FactoryWorld;
+import it.unibo.tankBattle.model.world.World;
+
 
 public class GameStateImpl implements GameState{
-    //private final World world;
+    private final World world;
+    private final FactoryWorld factory;
 
     public GameStateImpl() {
-        //this.world = new WorldImpl();
+        factory = new FactoryWorld();
+        this.world = factory.simpleWorld();
     }
 
     @Override
