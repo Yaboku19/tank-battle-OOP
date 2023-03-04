@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.api.GameObject;
 import it.unibo.tankBattle.model.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.world.FactoryWorld;
-import javafx.geometry.Point2D;
+
 public class WorldTest {
 	private FactoryWorld factory;
 	private FactoryGameObject factory2;
@@ -30,17 +31,17 @@ public class WorldTest {
 		var world = factory.simpleWorld();
 		Set<GameObject> entities = new HashSet<>();
         for (int i = 0; i < ROW ; i++) {
-            entities.add(factory2.simpleWall(new Point2D(0, i * SIZE + 1)));
-            entities.add(factory2.simpleWall(new Point2D(COLUMN * SIZE + 1, i * SIZE + 1)));
+            entities.add(factory2.simpleWall(new P2d(0, i * SIZE + 1)));
+            entities.add(factory2.simpleWall(new P2d(COLUMN * SIZE + 1, i * SIZE + 1)));
         }
         for (int i = 0; i < COLUMN ; i++) {
-            entities.add(factory2.simpleWall(new Point2D(i * SIZE + 1, 0)));
-            entities.add(factory2.simpleWall(new Point2D(i * SIZE + 1, ROW * SIZE + 1)));
+            entities.add(factory2.simpleWall(new P2d(i * SIZE + 1, 0)));
+            entities.add(factory2.simpleWall(new P2d(i * SIZE + 1, ROW * SIZE + 1)));
         }
 		entities.add(factory2
-		.simpleTank(STDSPEED, new Point2D(4, 4), STDHEALTH, STDDAMAGE));
+		.simpleTank(STDSPEED, new P2d(4, 4), STDHEALTH, STDDAMAGE));
 		entities.add(factory2
-		.simpleTank(STDSPEED, new Point2D((ROW - 1)* 3 + 1,(COLUMN - 1)*3 + 1), STDHEALTH, STDDAMAGE));
+		.simpleTank(STDSPEED, new P2d((ROW - 1)* 3 + 1,(COLUMN - 1)*3 + 1), STDHEALTH, STDDAMAGE));
 		assertEquals(entities.stream().map(g -> g.getPosition()).collect(Collectors.toSet()),
 			world.getEntities().stream().map(g -> g.getPosition()).collect(Collectors.toSet()));
 	}
