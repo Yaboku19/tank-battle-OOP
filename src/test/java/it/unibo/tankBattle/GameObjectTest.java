@@ -21,7 +21,7 @@ public class GameObjectTest {
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(1,1), 100, 10);
+	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10);
 	bullet = this.factory.simpleBullet(20, tank);
 	obstacle = this.factory.simpleWall(new P2d(10, 20));
 	}
@@ -32,6 +32,18 @@ public class GameObjectTest {
 		assertTrue(tank.isAlive(), str);
 		tank.hit(90);
 		assertFalse(tank.isAlive(), str);
+
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testCollision() {
+		/*assertEquals(tank.possibleCollision(new P2d(11, 0)), Directions.DOWN);
+		assertEquals(tank.possibleCollision(new P2d(11, 20)), Directions.UP);
+		assertEquals(tank.possibleCollision(new P2d(30, 11)), Directions.LEFT);
+		assertEquals(tank.possibleCollision(new P2d(0, 11)), Directions.RIGHT);
+		assertEquals(tank.possibleCollision(new P2d(0, 10)), Directions.RIGHT);*/
+		
+		
 
 	}
 
