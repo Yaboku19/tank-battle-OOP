@@ -1,8 +1,8 @@
-package it.unibo.tankBattle.model.impl;
+package it.unibo.tankBattle.model.gameObject.impl;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.api.GameObject;
+import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import javafx.geometry.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject{
@@ -15,7 +15,7 @@ public abstract class GameObjectImpl implements GameObject{
     private final int damage;
     private int lifePoints;
 
-    public GameObjectImpl(int speed, P2d startPos, int lifePoints, int damage) {
+    protected GameObjectImpl(int speed, P2d startPos, int lifePoints, int damage) {
         this.maxSpeed = speed;
         this.position = startPos;
         this.lifePoints = lifePoints;
@@ -31,6 +31,11 @@ public abstract class GameObjectImpl implements GameObject{
     @Override
     public int getCurrentSpeed() {
         return currentSpeed;
+    }
+
+    @Override
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
     @Override
@@ -59,11 +64,6 @@ public abstract class GameObjectImpl implements GameObject{
     }
 
     @Override
-    public void setPosition() {
-        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
-    }
-
-    @Override
     public void hit(int damageReceive) {
         this.lifePoints = this.lifePoints - damageReceive; 
     }
@@ -78,8 +78,13 @@ public abstract class GameObjectImpl implements GameObject{
         this.currentSpeed = 0;
     }
     
-    public abstract boolean isAlive(GameObjectImpl obj);
+    protected void updatePosition() {
+        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+    }
 
-    public abstract void update();
-    
+    protected void setPosition(final P2d position) {
+        this.position = position;
+    }
+
+
 }
