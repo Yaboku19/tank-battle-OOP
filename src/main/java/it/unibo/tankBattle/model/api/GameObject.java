@@ -1,21 +1,20 @@
 package it.unibo.tankBattle.model.api;
 
-import it.unibo.tankBattle.common.V2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 
 public abstract class GameObject {
 
-    private final V2d maxSpeed;
+    private final int maxSpeed;
     private Point2D position;
-    private V2d speed;
+    private int speed;
     private Directions direction;
     private BoundingBox hitBox;
     private int damage;
     private int lifePoints;
 
-    public GameObject(V2d speed, Point2D startPos, int lifePoints, int damage) {
+    public GameObject(int speed, Point2D startPos, int lifePoints, int damage) {
         this.maxSpeed = speed;
         this.position = startPos;
         this.lifePoints = lifePoints;
@@ -27,7 +26,7 @@ public abstract class GameObject {
         return position;
     }
 
-    public V2d getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
@@ -60,7 +59,7 @@ public abstract class GameObject {
     }
 
     public void stop() {
-        this.speed = new V2d(0,0);
+        this.speed = 0;
     }
     
     public abstract boolean isAlive(GameObject obj);

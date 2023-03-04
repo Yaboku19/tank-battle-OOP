@@ -1,6 +1,6 @@
 package it.unibo.tankBattle;
 
-import static org.junit.jupiter.api.Assertions.*; //importantissimo per generare test
+//import static org.junit.jupiter.api.Assertions.*; //importantissimo per generare test
 
 public class Test {
 

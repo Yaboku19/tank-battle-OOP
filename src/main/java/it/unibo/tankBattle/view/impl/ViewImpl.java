@@ -6,7 +6,6 @@ import java.awt.Image;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 
 import java.awt.Color;

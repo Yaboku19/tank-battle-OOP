@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.World;
+package it.unibo.tankBattle.model.world;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -46,6 +46,14 @@ public class WorldImpl implements World {
     public void bulletHitOther() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'bulletHitOther'");
+    }
+    @Override
+    public Set<GameObject> getEntities() {
+        var entities = new HashSet<>(wallSet);
+        entities.addAll(BulletSet);
+        entities.add(tankPlayerOne);
+        entities.add(tankPlayerTwo);
+        return entities;
     }
     
 }

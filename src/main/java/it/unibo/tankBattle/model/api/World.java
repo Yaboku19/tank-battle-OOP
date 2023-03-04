@@ -1,5 +1,7 @@
 package it.unibo.tankBattle.model.api;
 
+import java.util.Set;
+
 public interface World {
     // getter tank, obstacles and bullet
 
@@ -12,4 +14,6 @@ public interface World {
     public void bulletHitTank(/*Tank tank, Bullet bullet */); // wall-bullet
 
     public void bulletHitOther(/*Bullet bullet */); // bullet-bullet, bullet-wall
+
+    public Set<GameObject> getEntities();
 }
