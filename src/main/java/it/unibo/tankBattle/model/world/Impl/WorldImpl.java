@@ -81,30 +81,58 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public GameObject firstTank() {
+    public GameObject getFirstTank() {
         return tankPlayerOne;
     }
 
     @Override
-    public GameObject secondTank() {
+    public GameObject getSecondTank() {
         return tankPlayerTwo;
     }
 
     @Override
-    public void addBullet(GameObject tank) {
+    public void shot(int player) {
+        if(player == 1) {
+            addBullet(tankPlayerOne);
+        } else if (player == 2) {
+            addBullet(tankPlayerTwo);
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void addBullet(GameObject tank) {
         bulletSet.add(factoryGameObject.simpleBullet(tank.getMaxSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override
-    public void changeDirection(Directions direction, int player) {
+    public void buttonPressed(Directions direction, int player) {
         if(player == 1) {
-            tankPlayerOne.setDirection(direction);
-            tankPlayerOne.move();
+            changeDirection(tankPlayerOne, direction);
         } else if (player == 2) {
-            tankPlayerTwo.setDirection(direction);
-            tankPlayerTwo.move();
+            changeDirection(tankPlayerTwo, direction);
         } else {
             throw new IllegalStateException();
         }
+    }
+
+    private void changeDirection(GameObject gameObject, Directions direction) {
+        gameObject.setDirection(direction);
+        gameObject.move();
+    }
+
+    @Override
+    public void buttonRelased(int player) {
+        if(player == 1) {
+            resetSpeed(tankPlayerOne);
+        } else if (player == 2) {
+            resetSpeed(tankPlayerTwo);
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void resetSpeed(GameObject gameObject) {
+        gameObject.stop();
     }
 }

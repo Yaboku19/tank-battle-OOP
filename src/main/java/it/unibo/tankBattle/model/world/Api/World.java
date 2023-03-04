@@ -9,7 +9,7 @@ public interface World {
 
     public void update();
 
-    public void addBullet(GameObject tank);
+    public void shot(int player);
 
     public void collision(GameObject firsGameObject, GameObject secondGameObject);
 
@@ -19,9 +19,11 @@ public interface World {
 
     public Set<GameObject> getBullets();
 
-    public GameObject firstTank();
+    public GameObject getFirstTank();
 
-    public GameObject secondTank();
+    public GameObject getSecondTank();
 
-    public void changeDirection(Directions direction, int player);
+    public void buttonPressed(Directions direction, int player);
+
+    public void buttonRelased(int player);
 }
