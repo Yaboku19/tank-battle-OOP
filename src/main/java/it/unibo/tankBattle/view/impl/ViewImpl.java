@@ -134,7 +134,7 @@ public class ViewImpl extends View implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("F5 released");
+        System.out.println("key released");
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 

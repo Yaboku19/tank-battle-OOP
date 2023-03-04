@@ -12,5 +12,5 @@ public interface InputController {
      * 
      * @return the commands queue
      */
-    Queue<Command> getCommands();
+    //Queue<Command> getCommands();
 }

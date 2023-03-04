@@ -5,6 +5,8 @@ public interface GameEngine {
     public void play();
 
     public void processInput();
+
+    public void initGame();
     
     public void startGame();
 
