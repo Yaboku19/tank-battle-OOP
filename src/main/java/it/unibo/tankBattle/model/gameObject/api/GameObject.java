@@ -18,13 +18,19 @@ public interface GameObject {
 
     public int getLifePoints();
 
-    public void setDirection(Directions dir);
+    public int getMaxSpeed();
 
-    public void setPosition();
+    public void setDirection(Directions dir);
 
     public void hit(int damageReceive);
 
     public void move();
 
     public void stop();
+
+    public abstract boolean isAlive();
+
+    public abstract void update();
+
+    public abstract void resolveCollision();
 }
