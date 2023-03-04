@@ -24,6 +24,7 @@ public class ViewImpl extends View implements KeyListener{
     private JPanel courrentPanel = new JPanel();
     //private final Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
     private final GameEngine controller;
+    private P2d position = new P2d(50, 50);
 
     public ViewImpl(final GameEngine controller){
         this.controller = controller;
@@ -36,18 +37,24 @@ public class ViewImpl extends View implements KeyListener{
         mainPanel = new JPanel();
         mainPanel.setPreferredSize(this.getSize());
         mainPanel.setBackground(Color.BLACK);
-        /*this.setContentPane(new JPanel() {
+        /*************************************************** */
+        this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                super.paintComponent(g);
-               g.drawImage(imgBackGround, 0, 0, getWidth(), getHeight(), null);
+               /*g.drawImage(imgBackGround, 0, 0, getWidth(), getHeight(), null);*/
+                g.drawRect(position.getX(), position.getY(), 50, 50);
+                g.fillRect(position.getX(), position.getY(), 50, 50);
+                g.setColor(Color.BLACK);
             }
-         });*/
-
+         });
+         this.setVisible(true);
+         /***************************************************/
         mainPanel.add(menuPanel);
         mainPanel.add(tutorialPanel);
         mainPanel.add(gameChoosePanel);
         courrentPanel = menuPanel;
+        mainPanel.setVisible(false);/*********************/
         menuPanel.setVisible(false);
         tutorialPanel.setVisible(false);
         gameScenePanel.setVisible(false);
@@ -109,6 +116,7 @@ public class ViewImpl extends View implements KeyListener{
 
     public void startGame(){
         controller.startGame();
+        /*gameScenePanel.add(gameScenePanel);*/
     }
 
     @Override
@@ -116,25 +124,33 @@ public class ViewImpl extends View implements KeyListener{
         System.out.println("keypressed");
         if(e.getKeyCode() == KeyEvent.VK_W){
             //controller.notifyCommand(e.getKeyCode());
+            position = new P2d(position.getX(), position.getY()-1);
+            this.repaint();
             System.out.println("move up");
         }
         if(e.getKeyCode() == KeyEvent.VK_A){
             //controller.notifyCommand(e.getKeyCode());
+            position = new P2d(position.getX()-1, position.getY());
+            this.repaint();
             System.out.println("move left");
         }
         if(e.getKeyCode() == KeyEvent.VK_D){
             //controller.notifyCommand(e.getKeyCode());
+            position = new P2d(position.getX()+1, position.getY());
+            this.repaint();
             System.out.println("move right");
         }
         if(e.getKeyCode() == KeyEvent.VK_S){
             //controller.notifyCommand(e.getKeyCode());
+            position = new P2d(position.getX(), position.getY()+1);
+            this.repaint();
             System.out.println("move down");
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("F5 released");
+        System.out.println("key released");
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
