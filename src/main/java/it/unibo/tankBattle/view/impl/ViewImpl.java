@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 
 import java.awt.Color;
