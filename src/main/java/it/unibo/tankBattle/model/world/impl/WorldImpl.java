@@ -113,8 +113,8 @@ public class WorldImpl implements World {
         }
     }
 
-    private void addBullet(final GameObject tank) {
-        bulletSet.add(factoryGameObject.simpleBullet(tank.getMaxSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
+    private void addBullet(GameObject tank) {
+        bulletSet.add(factoryGameObject.simpleBullet(tank.getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override

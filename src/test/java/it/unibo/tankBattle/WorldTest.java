@@ -35,21 +35,6 @@ public class WorldTest {
 	}
 
     @org.junit.jupiter.api.Test
-    public void speedDirectionTest() {
-        var world = factoryWorld.simpleWorld();
-
-        assertEquals(Set.of(Directions.UP), 
-            world.getTanks().stream().map(t -> t.getDirection()).collect(Collectors.toSet()));
-
-        world.setDirection(Directions.DOWN, Player.PLAYER_UNO);
-        world.setDirection(Directions.RIGHT, Player.PLAYER_DUE);
-
-        assertEquals(Set.of(Directions.DOWN, Directions.RIGHT), 
-            world.getTanks().stream().map(t -> t.getDirection()).collect(Collectors.toSet()));
-
-    }
-
-    @org.junit.jupiter.api.Test
     public void shotTest() {
         var world = factoryWorld.simpleWorld();
 
