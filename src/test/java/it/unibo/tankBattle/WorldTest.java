@@ -126,8 +126,7 @@ public class WorldTest {
         world.buttonPressed(Directions.RIGHT, 1);
         world.shot(2);
         world.update();
-        world.update();
-        //assertEquals(new P2d(5, 4), world.getFirstTank().getPosition());
+        assertEquals(new P2d(5, 4), world.getFirstTank().getPosition());
         var bullet = world.getBullets()
             .stream()
             .toList()
@@ -135,8 +134,8 @@ public class WorldTest {
         int life = world.getFirstTank().getLifePoints();
         world.collision(world.getFirstTank().getPosition(), bullet.getPosition());
         world.update();
-        //assertEquals(0, world.getBullets().size());
-        //assertEquals(life - bullet.getDamage(), world.getFirstTank().getLifePoints());
+        assertEquals(0, world.getBullets().size());
+        assertEquals(life - bullet.getDamage(), world.getFirstTank().getLifePoints());
     }
 }
 
