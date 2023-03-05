@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.impl.GameStateImpl;
@@ -75,5 +76,16 @@ public class WorldTest {
 
         assertThrows(IllegalStateException.class, () ->
                 world.shot(3));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void UpdateTest() {
+        var world = factoryWorld.simpleWorld();
+        assertEquals(new P2d(4, 4), world.getFirstTank().getPosition());
+        world.buttonPressed(Directions.RIGHT, 1);
+        world.update();
+        assertEquals(new P2d(4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getX(),
+        4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getY()), world.getFirstTank().getPosition());
+
     }
 }

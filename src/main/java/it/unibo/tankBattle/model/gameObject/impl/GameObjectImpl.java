@@ -82,7 +82,7 @@ public abstract class GameObjectImpl implements GameObject{
     }
     
     protected void updatePosition() {
-        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+        position = this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
     }
 
     protected void knockBack(final Directions dir) {

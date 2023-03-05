@@ -108,15 +108,15 @@ public class WorldImpl implements World {
     @Override
     public void buttonPressed(Directions direction, int player) throws IllegalStateException{
         if(player == 1) {
-            changeDirection(tankPlayerOne, direction);
+            changeDirectionAndMove(tankPlayerOne, direction);
         } else if (player == 2) {
-            changeDirection(tankPlayerTwo, direction);
+            changeDirectionAndMove(tankPlayerTwo, direction);
         } else {
             throw new IllegalStateException();
         }
     }
 
-    private void changeDirection(GameObject gameObject, Directions direction) {
+    private void changeDirectionAndMove(GameObject gameObject, Directions direction) {
         gameObject.setDirection(direction);
         gameObject.move();
     }
