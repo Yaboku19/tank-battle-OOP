@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.tankBattle.model.world.api.World;
+import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
@@ -38,12 +40,24 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void collision(GameObject firstGameObject, GameObject secondGameObject) {
+    public void collision(P2d firstPosition, P2d secondPosition) {
+
+        final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
+        final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
+
         firstGameObject.hit(secondGameObject.getDamage());
         firstGameObject.resolveCollision(secondGameObject);
 
         secondGameObject.hit(firstGameObject.getDamage());
         secondGameObject.resolveCollision(firstGameObject);
+    }
+
+    private GameObject getGameObjectFromPosition (P2d position) {
+        return getEntities()
+            .stream()
+            .filter(g -> g.getPosition().equals(position))
+            .toList()
+            .get(0);
     }
 
     private void removeDeadGameObject(GameObject gameObject) {
@@ -63,10 +77,10 @@ public class WorldImpl implements World {
     
     @Override
     public Set<GameObject> getEntities() {
-        var entities = new HashSet<>(wallSet);
+        var entities = new HashSet<GameObject>();
+        entities.addAll(wallSet);
         entities.addAll(bulletSet);
-        entities.add(tankPlayerOne);
-        entities.add(tankPlayerTwo);
+        entities.addAll(getTanks());
         return entities;
     }
 
@@ -81,58 +95,33 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public GameObject getFirstTank() {
-        return tankPlayerOne;
+    public Set<GameObject> getTanks() {
+        return Set.of(tankPlayerOne, tankPlayerTwo);
     }
 
     @Override
-    public GameObject getSecondTank() {
-        return tankPlayerTwo;
-    }
-
-    @Override
-    public void shot(int player) {
-        if(player == 1) {
+    public void shot(Player player) {
+        if(player == Player.PLAYER_UNO) {
             addBullet(tankPlayerOne);
-        } else if (player == 2) {
+        } else if (player == Player.PLAYER_DUE) {
             addBullet(tankPlayerTwo);
-        } else {
-            throw new IllegalStateException();
         }
     }
 
     private void addBullet(GameObject tank) {
-        bulletSet.add(factoryGameObject.simpleBullet(tank.getMaxSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
+        bulletSet.add(factoryGameObject.simpleBullet(tank.getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override
-    public void buttonPressed(Directions direction, int player) throws IllegalStateException{
-        if(player == 1) {
-            changeDirectionAndMove(tankPlayerOne, direction);
-        } else if (player == 2) {
-            changeDirectionAndMove(tankPlayerTwo, direction);
+    public void setDirection(Directions direction, Player player) {
+        if (player == Player.PLAYER_UNO) {
+            changeDirection(tankPlayerOne, direction);
         } else {
-            throw new IllegalStateException();
+            changeDirection(tankPlayerTwo, direction);
         }
     }
 
-    private void changeDirectionAndMove(GameObject gameObject, Directions direction) {
+    private void changeDirection(GameObject gameObject, Directions direction) {
         gameObject.setDirection(direction);
-        gameObject.move();
-    }
-
-    @Override
-    public void buttonRelased(int player) throws IllegalStateException{
-        if(player == 1) {
-            resetSpeed(tankPlayerOne);
-        } else if (player == 2) {
-            resetSpeed(tankPlayerTwo);
-        } else {
-            throw new IllegalStateException();
-        }
-    }
-
-    private void resetSpeed(GameObject gameObject) {
-        gameObject.stop();
     }
 }

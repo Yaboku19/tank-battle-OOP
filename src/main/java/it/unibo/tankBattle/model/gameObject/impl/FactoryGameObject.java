@@ -13,17 +13,12 @@ public class FactoryGameObject {
     private static final int WALL_LENGTH = 10;
     
 
-    public GameObject simpleTank(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final Directions dir) {
-        return new GameObjectImpl(speed , startPos, lifePoints, damage, TANK_LENGTH, dir) {
+    public GameObject simpleTank(final int speed,final  P2d startPos,final  int lifePoints,final  int damage) {
+        return new GameObjectImpl(speed , startPos, lifePoints, damage, TANK_LENGTH, Directions.NONE) {
 
             @Override
             public boolean isAlive() {
                 return this.getLifePoints() > 0;
-            }
-
-            @Override
-            public void update() {
-                this.updatePosition();
             }
 
             @Override
@@ -38,17 +33,12 @@ public class FactoryGameObject {
         return new GameObjectImpl(speed, 
             tank.getPosition().sum(new P2d(tank.getDirection().getX()*tank.getLength(), tank.getDirection().getY()*tank.getLength())), 
             BULLET_LIFEPOINTS, 
-            tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH
-            , tank.getDirection()) {
+            tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH, 
+            tank.getDirection()) {
 
                 @Override
                 public boolean isAlive() {
                     return this.getLifePoints() > 0;
-                }
-
-                @Override
-                public void update() {
-                    this.updatePosition();
                 }
 
                 @Override
@@ -65,11 +55,6 @@ public class FactoryGameObject {
             @Override
             public boolean isAlive() {
                 return true;
-            }
-
-            @Override
-            public void update() {
-                
             }
 
             @Override

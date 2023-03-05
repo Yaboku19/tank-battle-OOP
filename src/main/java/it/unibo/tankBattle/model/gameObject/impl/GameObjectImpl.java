@@ -64,7 +64,8 @@ public abstract class GameObjectImpl implements GameObject{
         this.lifePoints = this.lifePoints - damageReceive; 
     }
 
-    protected void updatePosition() {
+    @Override
+    public void update() {
         this.position = this.position.sum(new P2d(speed*direction.getX(), speed*direction.getY())); 
     }
 

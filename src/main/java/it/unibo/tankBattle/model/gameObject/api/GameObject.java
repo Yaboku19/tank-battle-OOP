@@ -69,7 +69,7 @@ public interface GameObject {
     /**
      * Update it's current position each frame
      */
-    public abstract void update();
+    public void update();
 
     /**
      * 

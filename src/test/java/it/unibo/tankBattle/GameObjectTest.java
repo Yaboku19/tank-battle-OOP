@@ -14,15 +14,13 @@ public class GameObjectTest {
 	GameObject bullet;
 	GameObject obstacle;
 
-	
-	//private GameObject bullet = this.factory.simpleBullet(20,new P2d(1, 1), tank);
-	//private GameObject obstacle = this.factory.simpleWall(new P2d(10, 20));
+
 	private String str = "nice";
 
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10, Directions.UP);
+	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10);
 	bullet = this.factory.simpleBullet(20, tank);
 	obstacle = this.factory.simpleWall(new P2d(10, 20));
 	}
@@ -38,7 +36,7 @@ public class GameObjectTest {
 
 	@org.junit.jupiter.api.Test
 	public void testCollision() {
-		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10, Directions.UP);
+		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10);
 		var obstacle1 = this.factory.simpleWall(new P2d(15, 20));
 		tank.resolveCollision(tank2);
 		assertEquals(new P2d(9,10), tank.getPosition());
