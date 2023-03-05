@@ -5,7 +5,6 @@ import java.util.Set;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 
 public interface World {
-    // getter tank, obstacles and bullet
 
     public void update();
 
