@@ -14,9 +14,7 @@ public class GameObjectTest {
 	GameObject bullet;
 	GameObject obstacle;
 
-	
-	//private GameObject bullet = this.factory.simpleBullet(20,new P2d(1, 1), tank);
-	//private GameObject obstacle = this.factory.simpleWall(new P2d(10, 20));
+
 	private String str = "nice";
 
     @org.junit.jupiter.api.BeforeEach
@@ -52,7 +50,6 @@ public class GameObjectTest {
 	public void testUpdate() {
 		assertEquals(new P2d(10,10), tank.getPosition());
 		tank.setDirection(Directions.RIGHT);
-		tank.move();
 		tank.update();
 		assertEquals(new P2d(11,10), tank.getPosition());
 	}
