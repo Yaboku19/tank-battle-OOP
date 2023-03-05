@@ -15,7 +15,14 @@ public interface GameState {
 
     public void isOver(); 
 
-    public Set<Pair<P2d, Integer>> getPositionsAndLenght();
+    /**
+     * 
+     * This method get each object's and return it's position and length in order to share
+     * less information to manage collision
+     * 
+     * @return a set of pair of each object's position and length
+     */
+    public Set<Pair<P2d, Integer>> getPositionsAndLength();
 
     public void input();
 }
