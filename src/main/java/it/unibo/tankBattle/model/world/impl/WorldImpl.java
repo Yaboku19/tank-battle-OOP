@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import it.unibo.tankBattle.model.world.api.World;
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
@@ -38,12 +39,24 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void collision(GameObject firstGameObject, GameObject secondGameObject) {
+    public void collision(P2d firstPosition, P2d secondPosition) {
+
+        final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
+        final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
+
         firstGameObject.hit(secondGameObject.getDamage());
         firstGameObject.resolveCollision(secondGameObject);
 
         secondGameObject.hit(firstGameObject.getDamage());
         secondGameObject.resolveCollision(firstGameObject);
+    }
+
+    private GameObject getGameObjectFromPosition (P2d position) {
+        return getEntities()
+            .stream()
+            .filter(g -> g.getPosition().equals(position))
+            .toList()
+            .get(0);
     }
 
     private void removeDeadGameObject(GameObject gameObject) {
@@ -63,7 +76,8 @@ public class WorldImpl implements World {
     
     @Override
     public Set<GameObject> getEntities() {
-        var entities = new HashSet<>(wallSet);
+        var entities = new HashSet<GameObject>();
+        entities.addAll(wallSet);
         entities.addAll(bulletSet);
         entities.add(tankPlayerOne);
         entities.add(tankPlayerTwo);
