@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
@@ -15,29 +16,29 @@ public class GameStateImpl implements GameState {
 
     private final World world;
     private final FactoryWorld factory;
+    private final GameEngine controller;
+    private Pair<Integer, Integer> score;
 
-    public GameStateImpl() {
-        factory = new FactoryWorld(this);
+    public GameStateImpl(GameEngine controller) {
+        this.factory = new FactoryWorld(this);
         this.world = factory.simpleWorld();
-
+        this.controller = controller;
+        this.score = new Pair<>(0, 0);
     }
 
     @Override
     public Pair<Integer, Integer> getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+        return score;
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        this.world.update();
     }
 
     @Override
     public void resolveEvents(Set<Pair<P2d, P2d>> events) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resolveEvents'");
+        events.forEach(p -> world.collision(p.getX(), p.getY()));
     }
 
     @Override
@@ -60,7 +61,4 @@ public class GameStateImpl implements GameState {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'input'");
     }
-
-
-    
 }

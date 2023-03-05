@@ -16,7 +16,7 @@ public class WorldTest {
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
-		factoryWorld = new FactoryWorld(new GameStateImpl());
+		factoryWorld = new FactoryWorld(new GameStateImpl(null));
 
     }
 

@@ -55,7 +55,7 @@ public class BasicGameEngine implements GameEngine {
     @Override
     public void startGame() {
         System.out.println("game started");
-        model = new GameStateImpl();
+        model = new GameStateImpl(this);
         /*
          * new instance of model
          */
