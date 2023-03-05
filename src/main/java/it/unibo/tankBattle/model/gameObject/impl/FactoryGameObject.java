@@ -44,8 +44,7 @@ public class FactoryGameObject {
 
             @Override
             public void resolveCollision(GameObject obj) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
+                
             }
             
         };
@@ -66,8 +65,7 @@ public class FactoryGameObject {
 
             @Override
             public void resolveCollision(GameObject obj) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
+                
             }
             
         };

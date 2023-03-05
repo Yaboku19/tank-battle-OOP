@@ -87,5 +87,37 @@ public class WorldTest {
         assertEquals(new P2d(4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getX(),
         4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getY()), world.getFirstTank().getPosition());
 
+        assertEquals(new P2d(13 * 3 + 1, 8 * 3 + 1), world.getSecondTank().getPosition());
+
+        world.buttonRelased(1);
+
+        world.update();
+
+        assertEquals(new P2d(4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getX(),
+        4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getY()), world.getFirstTank().getPosition());
+
+        assertEquals(new P2d(13 * 3 + 1, 8 * 3 + 1), world.getSecondTank().getPosition());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void collisionTest() {
+        var world = factoryWorld.simpleWorld();
+
+        world.buttonPressed(Directions.LEFT, 1);
+
+        world.update();
+        assertEquals(new P2d(3, 4), world.getFirstTank().getPosition());
+        var wall = world.getWalls()
+            .stream()
+            .filter(w -> w.getPosition().equals(new P2d(1, 4)))
+            .toList()
+            .get(0);
+
+        world.collision(wall, world.getFirstTank());
+
+        assertEquals(new P2d(4, 4), world.getFirstTank().getPosition());
+
+
     }
 }
