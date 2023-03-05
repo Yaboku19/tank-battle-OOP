@@ -84,7 +84,7 @@ public abstract class GameObjectImpl implements GameObject{
     }
 
     protected void knockBack(final Directions dir) {
-        this.position.sum(new P2d(currentSpeed*dir.getX(), currentSpeed*dir.getY()));
+        position = this.position.sum(new P2d(maxSpeed*dir.getX(), maxSpeed*dir.getY()));
     }
 
     protected Directions manageCollision(final P2d collidingObjPos) {        
