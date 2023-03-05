@@ -117,7 +117,25 @@ public class WorldTest {
         world.collision(wall, world.getFirstTank());
 
         assertEquals(new P2d(4, 4), world.getFirstTank().getPosition());
+    }
 
+    @org.junit.jupiter.api.Test
+    public void removeTest() {
+        var world = factoryWorld.simpleWorld();
 
+        world.buttonPressed(Directions.RIGHT, 1);
+        world.shot(2);
+        world.update();
+        assertEquals(new P2d(5, 4), world.getFirstTank().getPosition());
+        var bullet = world.getBullets()
+            .stream()
+            .toList()
+            .get(0);
+        int life = world.getFirstTank().getLifePoints();
+        world.collision(world.getFirstTank(), bullet);
+        world.update();
+        assertEquals(0, world.getBullets().size());
+        assertEquals(life - bullet.getDamage(), world.getFirstTank().getLifePoints());
     }
 }
+
