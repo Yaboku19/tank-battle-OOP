@@ -1,5 +1,9 @@
 package it.unibo.tankBattle.model.gameState.impl;
 
+import java.util.Set;
+
+import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
@@ -17,15 +21,9 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public void getScore() {
+    public Pair<Integer, Integer> getScore() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getScore'");
-    }
-
-    @Override
-    public boolean isOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isOver'");
     }
 
     @Override
@@ -35,9 +33,29 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public void increaseScore() {
+    public void resolveEvents(Set<Pair<P2d, P2d>> events) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'increaseScore'");
+        throw new UnsupportedOperationException("Unimplemented method 'resolveEvents'");
     }
+
+    @Override
+    public void isOver() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isOver'");
+    }
+
+    @Override
+    public Set<Pair<P2d, Integer>> getPositionsAndLenght() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPositionsAndLenght'");
+    }
+
+    @Override
+    public void input() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'input'");
+    }
+
+
     
 }
