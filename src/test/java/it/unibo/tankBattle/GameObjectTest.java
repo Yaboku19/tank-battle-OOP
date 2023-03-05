@@ -3,6 +3,7 @@ package it.unibo.tankBattle;
 import static org.junit.jupiter.api.Assertions.*;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 
@@ -42,12 +43,18 @@ public class GameObjectTest {
 		tank.resolveCollision(tank2);
 		assertEquals(new P2d(9,10), tank.getPosition());
 		tank.resolveCollision(obstacle1);
+		obstacle1.resolveCollision(tank);
 		assertEquals(new P2d(9,9), tank.getPosition());
-		/*assertEquals(tank.possibleCollision(new P2d(11, 0)), Directions.DOWN);
-		assertEquals(tank.possibleCollision(new P2d(11, 20)), Directions.UP);
-		assertEquals(tank.possibleCollision(new P2d(30, 11)), Directions.LEFT);
-		assertEquals(tank.possibleCollision(new P2d(0, 11)), Directions.RIGHT);
-		assertEquals(tank.possibleCollision(new P2d(0, 10)), Directions.RIGHT);*/
+		assertEquals(new P2d(15,20), obstacle1.getPosition());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testUpdate() {
+		assertEquals(new P2d(10,10), tank.getPosition());
+		tank.setDirection(Directions.RIGHT);
+		tank.move();
+		tank.update();
+		assertEquals(new P2d(11,10), tank.getPosition());
 	}
 
 }

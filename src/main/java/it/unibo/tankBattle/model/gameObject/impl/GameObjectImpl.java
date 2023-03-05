@@ -3,24 +3,25 @@ package it.unibo.tankBattle.model.gameObject.impl;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import javafx.geometry.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject{
 
-    private final int maxSpeed;
+    
     private P2d position;
     private int currentSpeed;
     private Directions direction;
-    private BoundingBox hitBox;
-    private final int damage;
     private int lifePoints;
+    private final int length;
+    private final int damage;
+    private final int maxSpeed;
 
-    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage) {
+    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final int length) {
         this.maxSpeed = speed;
         this.position = startPos;
         this.lifePoints = lifePoints;
         this.damage = damage;
         this.currentSpeed = 0;
+        this.length = length;
         this.direction = Directions.UP;
     }
 
@@ -45,11 +46,6 @@ public abstract class GameObjectImpl implements GameObject{
     }
 
     @Override
-    public BoundingBox getBoundingBox() {
-        return hitBox;
-    }
-
-    @Override
     public int getDamage() {
         return damage;
     }
@@ -57,6 +53,11 @@ public abstract class GameObjectImpl implements GameObject{
     @Override
     public int getLifePoints() {
         return lifePoints;
+    }
+
+    @Override
+    public int getLength() {
+        return length;
     }
 
     @Override
@@ -80,7 +81,7 @@ public abstract class GameObjectImpl implements GameObject{
     }
     
     protected void updatePosition() {
-        this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+        position = this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
     }
 
     protected void knockBack(final Directions dir) {
@@ -90,20 +91,13 @@ public abstract class GameObjectImpl implements GameObject{
     protected Directions manageCollision(final P2d collidingObjPos) {        
         final int differenceX = collidingObjPos.getX() - this.position.getX(); //maggiore di 0 se è piu a destra di me
         final int differenceY = collidingObjPos.getY() - this.position.getY(); //maggiore di 0 se è piu in giu di me
-        if (Math.abs(differenceX) >= Math.abs(differenceY)) {
-            if (position.getX() > collidingObjPos.getX()) {
-                return Directions.RIGHT;
-            } else {
-                return Directions.LEFT;
-            }
-        } else { 
-                if(position.getY() > collidingObjPos.getY()) {
-                    return Directions.DOWN;
-                } else {
-                    return Directions.UP;
-                }
-            }
-        }
-    //}
+        return Math.abs(differenceX) >= Math.abs(differenceY) 
+            ? differenceX >= 0 
+                ? Directions.LEFT
+                : Directions.RIGHT
+            : differenceY >=0
+                ? Directions.UP
+                : Directions.DOWN;
+    }
 
 }

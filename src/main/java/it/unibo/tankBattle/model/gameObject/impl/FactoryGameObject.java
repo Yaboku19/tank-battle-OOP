@@ -7,9 +7,13 @@ public class FactoryGameObject {
     
     private static final int DAMAGE_MULTIPLIER = 10;
     private static final int BULLET_LIFEPOINTS = 1;
+    private static final int TANK_LENGTH = 10;
+    private static final int BULLET_LENGTH = 1;
+    private static final int WALL_LENGTH = 10;
+    
 
-    public GameObject simpleTank(int speed, P2d startPos, int lifePoints, int damage) {
-        return new GameObjectImpl(speed , startPos, lifePoints, damage) {
+    public GameObject simpleTank(final int speed,final  P2d startPos,final  int lifePoints,final  int damage) {
+        return new GameObjectImpl(speed , startPos, lifePoints, damage, TANK_LENGTH) {
 
             @Override
             public boolean isAlive() {
@@ -30,7 +34,7 @@ public class FactoryGameObject {
     }
 
     public GameObject simpleBullet(int speed, GameObject tank) {
-        return new GameObjectImpl(speed, tank.getPosition(), BULLET_LIFEPOINTS, tank.getDamage()*DAMAGE_MULTIPLIER) {
+        return new GameObjectImpl(speed, tank.getPosition(), BULLET_LIFEPOINTS, tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH) {
 
             @Override
             public boolean isAlive() {
@@ -44,15 +48,14 @@ public class FactoryGameObject {
 
             @Override
             public void resolveCollision(GameObject obj) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
+                
             }
             
         };
     }
 
     public GameObject simpleWall(P2d startPos) {
-        return new GameObjectImpl(0, startPos, 1, 0) {
+        return new GameObjectImpl(0, startPos, 1, 0, WALL_LENGTH) {
 
             @Override
             public boolean isAlive() {
@@ -66,8 +69,7 @@ public class FactoryGameObject {
 
             @Override
             public void resolveCollision(GameObject obj) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
+                
             }
             
         };
