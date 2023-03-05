@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.model.gameState.impl;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
@@ -10,7 +11,8 @@ import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 
 
-public class GameStateImpl implements GameState{
+public class GameStateImpl implements GameState {
+
     private final World world;
     private final FactoryWorld factory;
 
@@ -45,9 +47,12 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public Set<Pair<P2d, Integer>> getPositionsAndLenght() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPositionsAndLenght'");
+    public Set<Pair<P2d, Integer>> getPositionsAndLength() {
+        return world
+                .getEntities()
+                .stream()
+                .map(obj -> new Pair<>(obj.getPosition(), obj.getLength()))
+                .collect(Collectors.toSet());
     }
 
     @Override
