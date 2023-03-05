@@ -22,7 +22,7 @@ public abstract class GameObjectImpl implements GameObject{
         this.damage = damage;
         this.currentSpeed = 0;
         this.length = length;
-        this.direction = Directions.UP;
+        this.direction = Directions.NONE;
     }
 
     @Override
@@ -81,7 +81,7 @@ public abstract class GameObjectImpl implements GameObject{
     }
     
     protected void updatePosition() {
-        position = this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+        position = this.position.sum(new P2d(maxSpeed*direction.getX(), maxSpeed*direction.getY())); 
     }
 
     protected void knockBack(final Directions dir) {
