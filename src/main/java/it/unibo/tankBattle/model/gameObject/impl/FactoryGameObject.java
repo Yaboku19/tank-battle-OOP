@@ -22,9 +22,8 @@ public class FactoryGameObject {
             }
 
             @Override
-            public void resolveCollision() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
+            public void resolveCollision(GameObject obj) {
+                this.knockBack(this.manageCollision(obj.getPosition()));
             }
             
         };
@@ -44,7 +43,7 @@ public class FactoryGameObject {
             }
 
             @Override
-            public void resolveCollision() {
+            public void resolveCollision(GameObject obj) {
                 // TODO Auto-generated method stub
                 throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
             }
@@ -66,7 +65,7 @@ public class FactoryGameObject {
             }
 
             @Override
-            public void resolveCollision() {
+            public void resolveCollision(GameObject obj) {
                 // TODO Auto-generated method stub
                 throw new UnsupportedOperationException("Unimplemented method 'resolveCollision'");
             }

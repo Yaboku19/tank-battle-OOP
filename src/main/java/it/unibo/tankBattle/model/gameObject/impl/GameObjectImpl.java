@@ -15,11 +15,12 @@ public abstract class GameObjectImpl implements GameObject{
     private final int damage;
     private int lifePoints;
 
-    protected GameObjectImpl(int speed, P2d startPos, int lifePoints, int damage) {
+    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage) {
         this.maxSpeed = speed;
         this.position = startPos;
         this.lifePoints = lifePoints;
         this.damage = damage;
+        this.currentSpeed = 0;
         this.direction = Directions.UP;
         currentSpeed = 0;
         direction = Directions.UP;
@@ -61,12 +62,12 @@ public abstract class GameObjectImpl implements GameObject{
     }
 
     @Override
-    public void setDirection(Directions dir) {
+    public void setDirection(final Directions dir) {
         this.direction = dir;
     }
 
     @Override
-    public void hit(int damageReceive) {
+    public void hit(final int damageReceive) {
         this.lifePoints = this.lifePoints - damageReceive; 
     }
 
@@ -84,9 +85,27 @@ public abstract class GameObjectImpl implements GameObject{
         this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
     }
 
-    protected void setPosition(final P2d position) {
-        this.position = position;
+    protected void knockBack(final Directions dir) {
+        position = this.position.sum(new P2d(maxSpeed*dir.getX(), maxSpeed*dir.getY()));
     }
 
+    protected Directions manageCollision(final P2d collidingObjPos) {        
+        final int differenceX = collidingObjPos.getX() - this.position.getX(); //maggiore di 0 se è piu a destra di me
+        final int differenceY = collidingObjPos.getY() - this.position.getY(); //maggiore di 0 se è piu in giu di me
+        if (Math.abs(differenceX) >= Math.abs(differenceY)) {
+            if (position.getX() > collidingObjPos.getX()) {
+                return Directions.RIGHT;
+            } else {
+                return Directions.LEFT;
+            }
+        } else { 
+                if(position.getY() > collidingObjPos.getY()) {
+                    return Directions.DOWN;
+                } else {
+                    return Directions.UP;
+                }
+            }
+        }
+    //}
 
 }
