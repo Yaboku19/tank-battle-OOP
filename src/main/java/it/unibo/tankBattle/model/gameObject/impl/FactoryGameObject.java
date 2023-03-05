@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.model.gameObject.impl;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 
 public class FactoryGameObject {
@@ -12,8 +13,8 @@ public class FactoryGameObject {
     private static final int WALL_LENGTH = 10;
     
 
-    public GameObject simpleTank(final int speed,final  P2d startPos,final  int lifePoints,final  int damage) {
-        return new GameObjectImpl(speed , startPos, lifePoints, damage, TANK_LENGTH) {
+    public GameObject simpleTank(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final Directions dir) {
+        return new GameObjectImpl(speed , startPos, lifePoints, damage, TANK_LENGTH, dir) {
 
             @Override
             public boolean isAlive() {
@@ -37,7 +38,8 @@ public class FactoryGameObject {
         return new GameObjectImpl(speed, 
             tank.getPosition().sum(new P2d(tank.getDirection().getX()*tank.getLength(), tank.getDirection().getY()*tank.getLength())), 
             BULLET_LIFEPOINTS, 
-            tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH) {
+            tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH
+            , tank.getDirection()) {
 
                 @Override
                 public boolean isAlive() {
@@ -58,7 +60,7 @@ public class FactoryGameObject {
     }
 
     public GameObject simpleWall(P2d startPos) {
-        return new GameObjectImpl(0, startPos, 1, 0, WALL_LENGTH) {
+        return new GameObjectImpl(0, startPos, 1, 0, WALL_LENGTH, Directions.NONE) {
 
             @Override
             public boolean isAlive() {

@@ -37,16 +37,16 @@ public class WorldTest {
     public void speedDirectionTest() {
         var world = factoryWorld.simpleWorld();
 
-        assertEquals(0, world.getFirstTank().getCurrentSpeed());
-        assertEquals(0, world.getSecondTank().getCurrentSpeed());
+        assertEquals(0, world.getFirstTank().getSpeed());
+        assertEquals(0, world.getSecondTank().getSpeed());
         assertEquals(Directions.UP, world.getFirstTank().getDirection());
         assertEquals(Directions.UP, world.getSecondTank().getDirection());
 
         world.buttonPressed(Directions.DOWN, 1);
         world.buttonPressed(Directions.RIGHT, 2);
 
-        assertEquals(world.getFirstTank().getMaxSpeed(), world.getFirstTank().getCurrentSpeed());
-        assertEquals(world.getSecondTank().getMaxSpeed(), world.getSecondTank().getCurrentSpeed());
+        assertEquals(world.getFirstTank().getMaxSpeed(), world.getFirstTank().getSpeed());
+        assertEquals(world.getSecondTank().getMaxSpeed(), world.getSecondTank().getSpeed());
         assertEquals(Directions.DOWN, world.getFirstTank().getDirection());
         assertEquals(Directions.RIGHT, world.getSecondTank().getDirection());
 
@@ -56,8 +56,8 @@ public class WorldTest {
         world.buttonRelased(1);
         world.buttonRelased(2);
 
-        assertEquals(0, world.getFirstTank().getCurrentSpeed());
-        assertEquals(0, world.getSecondTank().getCurrentSpeed());
+        assertEquals(0, world.getFirstTank().getSpeed());
+        assertEquals(0, world.getSecondTank().getSpeed());
         assertEquals(Directions.DOWN, world.getFirstTank().getDirection());
         assertEquals(Directions.RIGHT, world.getSecondTank().getDirection());
 

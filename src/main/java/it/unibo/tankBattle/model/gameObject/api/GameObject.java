@@ -16,13 +16,13 @@ public interface GameObject {
 
     /**
      * 
-     * @return the current speed, 0 if is not moving
+     * @return the speed
      */
-    public int getCurrentSpeed();
+    public int getSpeed();
 
     /**
      * 
-     * @return  Directions of where the tank want to shoot or move
+     * @return  Directions of where the object want to move
      */
     public Directions getDirection();
 
@@ -37,12 +37,6 @@ public interface GameObject {
      * @return current lifePoints
      */
     public int getLifePoints();
-
-    /**
-     * 
-     * @return speed when it's moving
-     */
-    public int getMaxSpeed();
 
     /**
      * 
@@ -65,18 +59,6 @@ public interface GameObject {
      * @param damageReceive damage it receive when collide
      */
     public void hit(int damageReceive);
-
-    /**
-     * 
-     * Sets the current speed to maxSpeed
-     */
-    public void move();
-
-    /**
-     * 
-     * Sets the current speed to 0
-     */
-    public void stop();
 
     /**
      * 

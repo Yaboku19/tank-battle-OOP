@@ -22,7 +22,7 @@ public class GameObjectTest {
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10);
+	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10, Directions.UP);
 	bullet = this.factory.simpleBullet(20, tank);
 	obstacle = this.factory.simpleWall(new P2d(10, 20));
 	}
@@ -38,7 +38,7 @@ public class GameObjectTest {
 
 	@org.junit.jupiter.api.Test
 	public void testCollision() {
-		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10);
+		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10, Directions.UP);
 		var obstacle1 = this.factory.simpleWall(new P2d(15, 20));
 		tank.resolveCollision(tank2);
 		assertEquals(new P2d(9,10), tank.getPosition());
@@ -52,7 +52,6 @@ public class GameObjectTest {
 	public void testUpdate() {
 		assertEquals(new P2d(10,10), tank.getPosition());
 		tank.setDirection(Directions.RIGHT);
-		tank.move();
 		tank.update();
 		assertEquals(new P2d(11,10), tank.getPosition());
 	}
