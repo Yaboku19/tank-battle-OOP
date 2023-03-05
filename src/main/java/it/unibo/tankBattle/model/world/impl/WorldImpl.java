@@ -40,7 +40,7 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void collision(P2d firstPosition, P2d secondPosition) {
+    public void collision(final P2d firstPosition, final P2d secondPosition) {
 
         final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
         final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
@@ -52,7 +52,7 @@ public class WorldImpl implements World {
         secondGameObject.resolveCollision(firstGameObject);
     }
 
-    private GameObject getGameObjectFromPosition (P2d position) {
+    private GameObject getGameObjectFromPosition (final P2d position) {
         return getEntities()
             .stream()
             .filter(g -> g.getPosition().equals(position))
@@ -77,7 +77,7 @@ public class WorldImpl implements World {
     
     @Override
     public Set<GameObject> getEntities() {
-        var entities = new HashSet<GameObject>();
+        final var entities = new HashSet<GameObject>();
         entities.addAll(wallSet);
         entities.addAll(bulletSet);
         entities.addAll(getTanks());
@@ -100,28 +100,38 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void shot(Player player) {
-        if(player == Player.PLAYER_UNO) {
-            addBullet(tankPlayerOne);
-        } else if (player == Player.PLAYER_DUE) {
-            addBullet(tankPlayerTwo);
+    public void shot(final Player player) {
+        switch(player) {
+            case PLAYER_UNO:
+                addBullet(tankPlayerOne);
+                break;
+            case PLAYER_DUE:
+                addBullet(tankPlayerTwo);
+                break;
+            default:
+                throw new IllegalStateException();
         }
     }
 
-    private void addBullet(GameObject tank) {
+    private void addBullet(final GameObject tank) {
         bulletSet.add(factoryGameObject.simpleBullet(tank.getMaxSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override
-    public void setDirection(Directions direction, Player player) {
-        if (player == Player.PLAYER_UNO) {
-            changeDirection(tankPlayerOne, direction);
-        } else {
-            changeDirection(tankPlayerTwo, direction);
+    public void setDirection(final Directions direction, final Player player) {
+        switch(player) {
+            case PLAYER_UNO:
+                changeDirection(tankPlayerOne, direction);
+                break;
+            case PLAYER_DUE:
+                changeDirection(tankPlayerTwo, direction);
+                break;
+            default:
+                throw new IllegalStateException();
         }
     }
 
-    private void changeDirection(GameObject gameObject, Directions direction) {
+    private void changeDirection(final GameObject gameObject, final Directions direction) {
         gameObject.setDirection(direction);
     }
 }
