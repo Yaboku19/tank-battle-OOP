@@ -23,8 +23,6 @@ public abstract class GameObjectImpl implements GameObject{
         this.currentSpeed = 0;
         this.length = length;
         this.direction = Directions.UP;
-        currentSpeed = 0;
-        direction = Directions.UP;
     }
 
     @Override

@@ -34,22 +34,25 @@ public class FactoryGameObject {
     }
 
     public GameObject simpleBullet(int speed, GameObject tank) {
-        return new GameObjectImpl(speed, tank.getPosition(), BULLET_LIFEPOINTS, tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH) {
+        return new GameObjectImpl(speed, 
+            tank.getPosition().sum(new P2d(tank.getDirection().getX()*tank.getLength(), tank.getDirection().getY()*tank.getLength())), 
+            BULLET_LIFEPOINTS, 
+            tank.getDamage()*DAMAGE_MULTIPLIER, BULLET_LENGTH) {
 
-            @Override
-            public boolean isAlive() {
-                return this.getLifePoints() > 0;
-            }
+                @Override
+                public boolean isAlive() {
+                    return this.getLifePoints() > 0;
+                }
 
-            @Override
-            public void update() {
-                this.updatePosition();
-            }
+                @Override
+                public void update() {
+                    this.updatePosition();
+                }
 
-            @Override
-            public void resolveCollision(GameObject obj) {
-                
-            }
+                @Override
+                public void resolveCollision(GameObject obj) {
+                    
+                }
             
         };
     }
