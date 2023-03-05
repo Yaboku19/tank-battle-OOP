@@ -5,9 +5,9 @@ import java.util.Set;
 
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.api.GameState;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.gameState.api.GameState;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;

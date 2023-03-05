@@ -1,6 +1,6 @@
-package it.unibo.tankBattle.model.impl;
+package it.unibo.tankBattle.model.gameState.impl;
 
-import it.unibo.tankBattle.model.api.GameState;
+import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
