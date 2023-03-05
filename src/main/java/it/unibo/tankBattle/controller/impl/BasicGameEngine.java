@@ -48,7 +48,7 @@ public class BasicGameEngine implements GameEngine {
         controllers = new HashMap<String,InputController>();
 
         KeyboardInputController contr1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
-        KeyboardInputController contr2 = new KeyboardInputController(VK_W,VK_Z,VK_A,VK_S, VK_CONTROL);		
+        KeyboardInputController contr2 = new KeyboardInputController(VK_W,VK_Z,VK_A,VK_S, VK_CONTROL);
         controllers.put("player1", contr1);
         controllers.put("player2", contr2);
     }
