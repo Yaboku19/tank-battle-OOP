@@ -40,10 +40,10 @@ public class WorldImpl implements World {
     @Override
     public void collision(GameObject firstGameObject, GameObject secondGameObject) {
         firstGameObject.hit(secondGameObject.getDamage());
-        firstGameObject.resolveCollision();
+        firstGameObject.resolveCollision(secondGameObject);
 
         secondGameObject.hit(firstGameObject.getDamage());
-        secondGameObject.resolveCollision();
+        secondGameObject.resolveCollision(firstGameObject);
     }
 
     private void removeDeadGameObject(GameObject gameObject) {
