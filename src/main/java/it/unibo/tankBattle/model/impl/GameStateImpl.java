@@ -13,6 +13,7 @@ public class GameStateImpl implements GameState{
     public GameStateImpl() {
         factory = new FactoryWorld(this);
         this.world = factory.simpleWorld();
+
     }
 
     @Override
