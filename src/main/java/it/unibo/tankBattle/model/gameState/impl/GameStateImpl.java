@@ -20,6 +20,7 @@ public class GameStateImpl implements GameState {
     private final Player playerTwo;
     private final GameEngine controller;
 
+
     public GameStateImpl(final GameEngine controller) {
         factory = new FactoryWorld(this);
         playerOne = new Player();
