@@ -1,5 +1,7 @@
 package it.unibo.tankBattle.model.gameState.api;
-
+/**
+ * The class that identify the player.
+ */
 public interface Player {
     /**
      * Return the score of the player.

@@ -47,7 +47,7 @@ public interface World {
     public void shot(Player player);
     /**
      * Method that give the command to change their direction, used for the movement,
-     *  in particular when the direction is NONE the tank will not move.
+     * in particular when the direction is NONE the tank will not move.
      * @param direction direction that will be set in tank
      * @param player used for identify the tank
      */
