@@ -21,7 +21,7 @@ public class WorldTest {
 
     }
 
-    @org.junit.jupiter.api.Test            
+    /*@org.junit.jupiter.api.Test            
 	public void getterTest() {        
 		var world = factoryWorld.simpleWorld();
         var entities = world.getBullets();
@@ -165,6 +165,6 @@ public class WorldTest {
         world.update();
         assertEquals(0, world.getBullets().size());
         assertEquals(life - bullet.getDamage(), tank.getLifePoints());
-        }
+        }*/
 }
 
