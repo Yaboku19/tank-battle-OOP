@@ -45,10 +45,8 @@ public class WorldImpl implements World {
         final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
         final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
 
-        firstGameObject.hit(secondGameObject.getDamage());
         firstGameObject.resolveCollision(secondGameObject);
 
-        secondGameObject.hit(firstGameObject.getDamage());
         secondGameObject.resolveCollision(firstGameObject);
     }
 

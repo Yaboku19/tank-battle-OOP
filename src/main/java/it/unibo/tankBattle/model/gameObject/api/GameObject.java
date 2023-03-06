@@ -52,13 +52,7 @@ public interface GameObject {
      */
     public void setDirection(Directions dir);
 
-    /**
-     * 
-     * Decrease it's lifePoints of the given damage 
-     * 
-     * @param damageReceive damage it receive when collide
-     */
-    public void hit(int damageReceive);
+    
 
     /**
      * 

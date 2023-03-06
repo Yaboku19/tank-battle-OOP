@@ -20,18 +20,17 @@ public class GameObjectTest {
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(10,10), 100, 10);
+	tank = this.factory.simpleTank(1, new P2d(10,10), 110, 10);
 	bullet = this.factory.simpleBullet(20, tank);
 	obstacle = this.factory.simpleWall(new P2d(10, 20));
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testIsAlive() {
-		tank.hit(90);
+		tank.resolveCollision(bullet);
 		assertTrue(tank.isAlive(), str);
-		tank.hit(90);
+		tank.resolveCollision(bullet);
 		assertFalse(tank.isAlive(), str);
-
 	}
 
 	@org.junit.jupiter.api.Test
