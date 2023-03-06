@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
@@ -20,7 +21,7 @@ public class WorldTest {
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
-        gameState = new GameStateImpl();
+        gameState = new GameStateImpl(new BasicGameEngine());
 		factoryWorld = new FactoryWorld(gameState);
         world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
     }

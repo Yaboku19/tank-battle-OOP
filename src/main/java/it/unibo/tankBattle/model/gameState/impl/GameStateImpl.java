@@ -18,13 +18,14 @@ public class GameStateImpl implements GameState {
     private final FactoryWorld factory;
     private final Player playerOne;
     private final Player playerTwo;
+    private final GameEngine controller;
 
-    public GameStateImpl() {
+    public GameStateImpl(final GameEngine controller) {
         factory = new FactoryWorld(this);
         playerOne = new Player();
         playerTwo = new Player();
         this.world = factory.simpleWorld(playerOne, playerTwo);
-
+        this.controller = controller;
     }
 
     @Override
