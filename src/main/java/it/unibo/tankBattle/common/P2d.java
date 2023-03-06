@@ -25,10 +25,6 @@ public class P2d {
         return this.y;
     }
 
-    public V2d sub(final P2d v) {
-        return new V2d(x - v.x, y - v.y);
-    }
-
     public String toString() {
         return "P2d("+x+","+y+")";
     }

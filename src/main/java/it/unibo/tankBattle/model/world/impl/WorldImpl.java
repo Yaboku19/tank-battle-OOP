@@ -104,12 +104,51 @@ public class WorldImpl implements World {
 
     @Override
     public void shot(final Player player) {
-        bulletSet.add(factoryGameObject
-            .simpleBullet(tankMap.get(player).getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tankMap.get(player)));
+        /*switch(player.getCode()) {
+            case PLAYER_UNO:
+                addBullet(tankPlayerOne);
+                break;
+            case PLAYER_DUE:
+                addBullet(tankPlayerTwo);
+                break;
+            default:
+                throw new IllegalStateException();
+        }*/
+        if(player.getCode() == gameState.getPlayer1().getCode()){
+            addBullet(tankPlayerOne);
+        }else if(player.getCode() == gameState.getPlayer2().getCode()){
+            addBullet(tankPlayerTwo);
+        }else{
+            throw new IllegalStateException();
+        }
+    }
+
+    private void addBullet(GameObject tank) {
+        bulletSet.add(factoryGameObject.simpleBullet(tank.getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
     }
 
     @Override
     public void setDirection(final Directions direction, final Player player) {
-        tankMap.get(player).setDirection(direction);
+        /*switch(player) {
+            case PLAYER_UNO:
+                changeDirection(tankPlayerOne, direction);
+                break;
+            case PLAYER_DUE:
+                changeDirection(tankPlayerTwo, direction);
+                break;
+            default:
+                throw new IllegalStateException();
+        }*/
+        if(player.getCode() == gameState.getPlayer1().getCode()){
+            changeDirection(tankPlayerOne, direction);
+        }else if(player.getCode() == gameState.getPlayer2().getCode()){
+            changeDirection(tankPlayerTwo, direction);
+        }else{
+            throw new IllegalStateException();
+        }
+    }
+
+    private void changeDirection(final GameObject gameObject, final Directions direction) {
+        gameObject.setDirection(direction);
     }
 }
