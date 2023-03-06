@@ -121,6 +121,7 @@ public class ViewImpl extends View implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("keypressed");
+        
         controller.getControllers().forEach((p,k) -> {
             if(k.getKeyCodes().contains(e.getKeyCode())){
                 controller.notifyCommand(p, e.getKeyCode());

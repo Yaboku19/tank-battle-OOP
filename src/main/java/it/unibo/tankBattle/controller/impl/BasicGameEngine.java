@@ -12,6 +12,7 @@ import it.unibo.tankBattle.view.impl.ViewImpl;
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.*;
+import it.unibo.tankBattle.common.input.impl.CommandImpl;
 import it.unibo.tankBattle.common.input.impl.KeyboardInputController;
 import it.unibo.tankBattle.common.input.impl.Movement;
 
@@ -23,6 +24,7 @@ public class BasicGameEngine implements GameEngine {
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
+        model = new GameStateImpl();
     }
 
     @Override
@@ -34,6 +36,9 @@ public class BasicGameEngine implements GameEngine {
     @Override
     public void processInput() {
         var cmd = commandQueue.poll();
+        if(cmd.getX().getCode() == 1){
+            model.
+        }
         /*cmd.execute(cmd);*/
         /*for(var tank : model.getWorld().getTanks()){
             tank.updateInput();
@@ -67,8 +72,7 @@ public class BasicGameEngine implements GameEngine {
 
     @Override
     public void notifyCommand(Player player, int keyCode) {
-        commandQueue.add(new Pair<>(player, new Movement(keyCode)));
-        //throw new UnsupportedOperationException("Unimplemented method 'notifyCommand'");
+        commandQueue.add(new Pair<>(player, new CommandImpl(keyCode)));
     }
 
     @Override
