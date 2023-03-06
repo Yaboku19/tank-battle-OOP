@@ -10,8 +10,6 @@ import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
-
-
 public class GameStateImpl implements GameState {
 
     private final World world;
@@ -27,6 +25,7 @@ public class GameStateImpl implements GameState {
         playerTwo = new Player();
         this.world = factory.simpleWorld(playerOne, playerTwo);
         this.controller = controller;
+
     }
 
     @Override
