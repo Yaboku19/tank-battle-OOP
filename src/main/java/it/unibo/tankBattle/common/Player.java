@@ -17,5 +17,9 @@ public class Player {
         return score;
     }
 
+    public void incScore(){
+        this.score ++;
+    }
+
     
 }
