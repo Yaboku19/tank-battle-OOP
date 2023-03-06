@@ -23,7 +23,7 @@ public class QuadraticBoundingBox implements BoundingBox {
         return new P2d(this.center.getX() + (this.length / 2), this.center.getY() + (this.length / 2));
     }
 
-    private Stream<P2d> objectArea() {
+    private Stream<P2d> objectArea(P2d center, int length) {
         return Stream.concat(
             Stream.concat(
                 Stream
@@ -47,9 +47,13 @@ public class QuadraticBoundingBox implements BoundingBox {
     }
     
     @Override
-    public boolean isColliding(P2d center, int length) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isColliding'");
+    public boolean isColliding(P2d centerObject1, int lengthObject1, P2d centerObject2, int lengthObject2) {
+        for (P2d x : this.objectArea(centerObject2, lengthObject2).toList()) {
+            if (this.objectArea(centerObject1, lengthObject1).toList().contains(x)) {
+                return true;
+            }
+        }
+        return false;
     }
-
+    
 }
