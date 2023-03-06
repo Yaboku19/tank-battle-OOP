@@ -1,32 +1,34 @@
 package it.unibo.tankBattle.model.world.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.impl.Player;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;
     private final Set<GameObject> bulletSet;
-    private final GameObject tankPlayerOne;
-    private final GameObject tankPlayerTwo;
+    private final Map<Player, GameObject> tankMap;
     private final FactoryGameObject factoryGameObject;
     private final GameState gameState;
     private static final int MULTIPLIER_SPEED_SIMPLE_TANK = 2;
 
-    protected WorldImpl(final Set<GameObject> wallSet, final GameObject tankOne,
-            final GameObject tankTwo, final GameState gameState) {
+    protected WorldImpl(final Set<GameObject> wallSet, final GameState gameState, 
+            Map<Player, GameObject> tankMap) {
 
         this.wallSet = new HashSet<>(wallSet);
         this.bulletSet = new HashSet<>();
-        tankPlayerOne = tankOne;
-        tankPlayerTwo = tankTwo;
+        this.tankMap = new HashMap<>(tankMap);
+
         factoryGameObject = new FactoryGameObject();
         this.gameState = gameState;
     }
@@ -67,10 +69,12 @@ public class WorldImpl implements World {
                 bulletSet.remove(gameObject);
             } else if (bulletSet.contains(gameObject)) {
                 bulletSet.remove(gameObject);
-            } else if (tankPlayerOne == gameObject || tankPlayerOne == gameObject){
-                gameState.isOver();
             } else {
-                throw new IllegalStateException();
+                for (var tank : tankMap.values()) {
+                    if (tank == gameObject) {
+                        gameState.isOver();
+                    }
+                }
             }
         }
     }
@@ -96,7 +100,7 @@ public class WorldImpl implements World {
 
     @Override
     public Set<GameObject> getTanks() {
-        return Set.of(tankPlayerOne, tankPlayerTwo);
+        return tankMap.values().stream().collect(Collectors.toSet());
     }
 
     @Override

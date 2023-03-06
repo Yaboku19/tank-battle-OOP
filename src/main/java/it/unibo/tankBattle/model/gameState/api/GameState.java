@@ -30,4 +30,8 @@ public interface GameState {
     public Set<Pair<P2d, Integer>> getPositionsAndLength();
 
     public void input();
+
+    public Player getFirstPlayer();
+
+    public Player getSecondPlayer();
 }
