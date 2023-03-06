@@ -2,7 +2,6 @@ package it.unibo.tankBattle.model.gameState.impl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.controller.api.GameEngine;

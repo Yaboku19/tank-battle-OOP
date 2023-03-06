@@ -1,7 +1,6 @@
 package it.unibo.tankBattle.model.gameState.api;
 
 import java.util.Set;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.model.gameState.impl.Player;
