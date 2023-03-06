@@ -26,6 +26,7 @@ public class GameStateImpl implements GameState {
         playerTwo = new Player();
         this.world = factory.simpleWorld(playerOne, playerTwo);
         this.controller = controller;
+
     }
 
     @Override
