@@ -4,6 +4,7 @@ import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.model.gameState.impl.Player;
 
 public interface GameState {
 
@@ -25,4 +26,8 @@ public interface GameState {
     public Set<Pair<P2d, Integer>> getPositionsAndLength();
 
     public void input();
+
+    public Player getFirstPlayer();
+
+    public Player getSecondPlayer();
 }

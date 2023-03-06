@@ -15,14 +15,14 @@ public class GameStateImpl implements GameState {
 
     private final World world;
     private final FactoryWorld factory;
-    private final Player playerUno;
-    private final Player playerDue;
+    private final Player playerOne;
+    private final Player playerTwo;
 
     public GameStateImpl() {
         factory = new FactoryWorld(this);
-        playerUno = new Player();
-        playerDue = new Player();
-        this.world = factory.simpleWorld(playerUno, playerDue);
+        playerOne = new Player();
+        playerTwo = new Player();
+        this.world = factory.simpleWorld(playerOne, playerTwo);
 
     }
 
@@ -63,6 +63,16 @@ public class GameStateImpl implements GameState {
     public void input() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'input'");
+    }
+
+    @Override
+    public Player getFirstPlayer() {
+        return playerOne;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return playerTwo;
     }
 
 
