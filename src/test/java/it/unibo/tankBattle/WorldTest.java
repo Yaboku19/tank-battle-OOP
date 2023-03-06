@@ -9,11 +9,13 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
+import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
 	private FactoryWorld factoryWorld;
+    private GameState gameState;
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
@@ -39,7 +41,7 @@ public class WorldTest {
 
         assertEquals(new HashSet<GameObject>(), world.getBullets());
 
-        world.shot(Player.PLAYER_UNO);
+        world.shot(gameState.getPlayer1());
         assertEquals(1, world.getBullets().size());
 
     }
@@ -54,7 +56,7 @@ public class WorldTest {
             .collect(Collectors.toSet())
             .contains(new P2d(4, 4)));
 
-        world.setDirection(Directions.RIGHT, Player.PLAYER_UNO);
+        world.setDirection(Directions.RIGHT, gameState.getPlayer1());
         world.update();
 
         assertFalse(world
@@ -78,7 +80,7 @@ public class WorldTest {
             .collect(Collectors.toSet())
             .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
 
-        world.setDirection(Directions.NONE, Player.PLAYER_UNO);
+        world.setDirection(Directions.NONE, gameState.getPlayer1());
 
         world.update();
 
@@ -102,7 +104,7 @@ public class WorldTest {
     public void collisionTest() {
         var world = factoryWorld.simpleWorld();
 
-        world.setDirection(Directions.LEFT, Player.PLAYER_UNO);
+        world.setDirection(Directions.LEFT, gameState.getPlayer1());
 
         world.update();
 
@@ -134,8 +136,8 @@ public class WorldTest {
     public void removeTest() {
         var world = factoryWorld.simpleWorld();
 
-        world.setDirection(Directions.RIGHT, Player.PLAYER_UNO);
-        world.shot(Player.PLAYER_DUE);
+        world.setDirection(Directions.RIGHT, gameState.getPlayer1());
+        world.shot(gameState.getPlayer1());
         world.update();
         assertTrue(world
             .getTanks()
