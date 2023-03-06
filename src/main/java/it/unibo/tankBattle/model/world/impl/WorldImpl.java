@@ -70,9 +70,9 @@ public class WorldImpl implements World {
             } else if (bulletSet.contains(gameObject)) {
                 bulletSet.remove(gameObject);
             } else {
-                for (var tank : tankMap.values()) {
-                    if (tank == gameObject) {
-                        gameState.isOver();
+                for (Player player : tankMap.keySet()) {
+                    if (tankMap.get(player) == gameObject) {
+                        gameState.isOver(player);
                     }
                 }
             }
