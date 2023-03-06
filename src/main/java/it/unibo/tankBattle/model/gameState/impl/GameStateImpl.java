@@ -16,19 +16,20 @@ public class GameStateImpl implements GameState {
 
     private final World world;
     private final FactoryWorld factory;
-    private final GameEngine controller;
-    private Pair<Integer, Integer> score;
+    private final Player playerOne;
+    private final Player playerTwo;
 
-    public GameStateImpl(GameEngine controller) {
-        this.factory = new FactoryWorld(this);
-        this.world = factory.simpleWorld();
-        this.controller = controller;
-        this.score = new Pair<>(0, 0);
+    public GameStateImpl() {
+        factory = new FactoryWorld(this);
+        playerOne = new Player();
+        playerTwo = new Player();
+        this.world = factory.simpleWorld(playerOne, playerTwo);
+
     }
 
     @Override
     public Pair<Integer, Integer> getScore() {
-        return score;
+        return new Pair<>(playerOne.getScore(), playerTwo.getScore());
     }
 
     @Override
@@ -61,4 +62,17 @@ public class GameStateImpl implements GameState {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'input'");
     }
+
+    @Override
+    public Player getFirstPlayer() {
+        return playerOne;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return playerTwo;
+    }
+
+
+    
 }
