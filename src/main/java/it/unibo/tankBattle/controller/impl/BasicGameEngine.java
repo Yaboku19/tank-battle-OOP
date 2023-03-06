@@ -29,6 +29,7 @@ public class BasicGameEngine implements GameEngine {
 
     @Override
     public void play() {
+        initGame();
         view.setVisible(true);
         view.bugSolve();
     }
@@ -37,7 +38,9 @@ public class BasicGameEngine implements GameEngine {
     public void processInput() {
         var cmd = commandQueue.poll();
         if(cmd.getX().getCode() == 1){
-            model.
+            //esegui il comando per player1
+        }else{
+            //esegui il comando per player2
         }
         /*cmd.execute(cmd);*/
         /*for(var tank : model.getWorld().getTanks()){
@@ -48,16 +51,6 @@ public class BasicGameEngine implements GameEngine {
 
     private void loop() {
         
-    }
-
-    @Override
-    public void initGame(){
-        controllers = new HashMap<Player,InputController>();
-
-        KeyboardInputController contr1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
-        KeyboardInputController contr2 = new KeyboardInputController(VK_W,VK_Z,VK_A,VK_S, VK_CONTROL);
-        controllers.put(model.getPlayer1(), contr1);
-        controllers.put(model.getPlayer2(), contr2);
     }
 
     @Override
@@ -77,7 +70,17 @@ public class BasicGameEngine implements GameEngine {
 
     @Override
     public HashMap<Player, InputController> getControllers() {
-        return new HashMap<>(controllers);
+        //return new HashMap<>(controllers);
+        return this.controllers;
+    }
+
+    private void initGame(){
+        controllers = new HashMap<>();
+
+        KeyboardInputController contr1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
+        KeyboardInputController contr2 = new KeyboardInputController(VK_W,VK_Z,VK_A,VK_S, VK_CONTROL);
+        controllers.put(model.getPlayer1(), contr1);
+        controllers.put(model.getPlayer2(), contr2);
     }
     
 }

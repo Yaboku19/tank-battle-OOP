@@ -121,12 +121,14 @@ public class ViewImpl extends View implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("keypressed");
-        
-        controller.getControllers().forEach((p,k) -> {
+
+        System.out.println(controller.getControllers());
+
+        /*controller.getControllers().forEach((p,k) -> {
             if(k.getKeyCodes().contains(e.getKeyCode())){
                 controller.notifyCommand(p, e.getKeyCode());
             }
-        });
+        });*/
 
 /*
         if(e.getKeyCode() == KeyEvent.VK_W){
