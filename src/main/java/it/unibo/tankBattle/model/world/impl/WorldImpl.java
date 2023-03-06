@@ -28,7 +28,6 @@ public class WorldImpl implements World {
         this.wallSet = new HashSet<>(wallSet);
         this.bulletSet = new HashSet<>();
         this.tankMap = new HashMap<>(tankMap);
-
         factoryGameObject = new FactoryGameObject();
         this.gameState = gameState;
     }
