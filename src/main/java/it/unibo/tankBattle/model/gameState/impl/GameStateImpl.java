@@ -20,8 +20,8 @@ public class GameStateImpl implements GameState {
 
     public GameStateImpl() {
         factory = new FactoryWorld(this);
-        playerUno = Player.PLAYER_UNO;
-        playerDue = Player.PLAYER_DUE;
+        playerUno = new Player();
+        playerDue = new Player();
         this.world = factory.simpleWorld(playerUno, playerDue);
 
     }
