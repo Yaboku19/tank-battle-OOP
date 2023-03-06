@@ -12,7 +12,7 @@ public interface GameState {
 
     public void resolveEvents(Set<Pair<P2d, P2d>> events);
 
-    public void isOver(Player player); 
+    public void endGame(Player player); 
 
     /**
      * 

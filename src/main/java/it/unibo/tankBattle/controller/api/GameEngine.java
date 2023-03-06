@@ -18,4 +18,6 @@ public interface GameEngine {
     public HashMap<Player, InputController> getControllers();
 
     public void notifyCommand(Player player, int keyCode);
+
+    public void endgame();
 }

@@ -45,8 +45,9 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void isOver(Player player) {
+    public void endGame(Player player) {
         player.incScore();
+        controller.endgame();
     }
 
     @Override
@@ -60,8 +61,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void input() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'input'");
+        ;
     }
 
     @Override

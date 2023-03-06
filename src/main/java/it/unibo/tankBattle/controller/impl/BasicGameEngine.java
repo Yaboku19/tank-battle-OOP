@@ -76,5 +76,11 @@ public class BasicGameEngine implements GameEngine {
     public HashMap<Player, InputController> getControllers() {
         return new HashMap<>(controllers);
     }
+
+    @Override
+    public void endgame() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'endgame'");
+    }
     
 }
