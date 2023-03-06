@@ -1,6 +1,6 @@
 package it.unibo.tankBattle.common.input.api;
 
-import it.unibo.tankBattle.model.gameState.impl.Player;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 /**
  * This interface represent a Command that come from user. 

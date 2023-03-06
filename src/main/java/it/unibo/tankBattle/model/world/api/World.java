@@ -4,7 +4,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import java.util.Set;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameState.impl.Player;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public interface World {
 

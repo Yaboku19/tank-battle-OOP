@@ -7,7 +7,7 @@ import static java.awt.event.KeyEvent.*;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
-import it.unibo.tankBattle.model.gameState.impl.Player;
+import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.view.api.View;
 import it.unibo.tankBattle.view.impl.ViewImpl;
 import it.unibo.tankBattle.common.Pair;
@@ -75,6 +75,12 @@ public class BasicGameEngine implements GameEngine {
     @Override
     public HashMap<Player, InputController> getControllers() {
         return new HashMap<>(controllers);
+    }
+
+    @Override
+    public void endgame() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'endgame'");
     }
     
 }

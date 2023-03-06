@@ -11,7 +11,7 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
-import it.unibo.tankBattle.model.gameState.impl.Player;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;
@@ -68,7 +68,7 @@ public class WorldImpl implements World {
             } else {
                 for (Player player : tankMap.keySet()) {
                     if (tankMap.get(player) == gameObject) {
-                        gameState.isOver(player);
+                        gameState.endGame(player);
                     }
                 }
             }

@@ -6,6 +6,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
@@ -21,8 +22,8 @@ public class GameStateImpl implements GameState {
 
     public GameStateImpl(final GameEngine controller) {
         factory = new FactoryWorld(this);
-        playerOne = new Player();
-        playerTwo = new Player();
+        playerOne = new PlayerImpl();
+        playerTwo = new PlayerImpl();
         this.world = factory.simpleWorld(playerOne, playerTwo);
         this.controller = controller;
 
@@ -44,8 +45,9 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void isOver(Player player) {
+    public void endGame(Player player) {
         player.incScore();
+        controller.endgame();
     }
 
     @Override
@@ -59,8 +61,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void input() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'input'");
+        ;
     }
 
     @Override
