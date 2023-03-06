@@ -2,8 +2,9 @@ package it.unibo.tankBattle.controller.api;
 
 import java.util.HashMap;
 
-import it.unibo.tankBattle.common.Player;
+
 import it.unibo.tankBattle.common.input.api.InputController;
+import it.unibo.tankBattle.model.gameState.impl.Player;
 
 public interface GameEngine {
     public void play();

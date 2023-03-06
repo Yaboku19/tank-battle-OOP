@@ -71,5 +71,6 @@ public class GameStateImpl implements GameState {
     @Override
     public Player getSecondPlayer() {
         return playerTwo;
+        
     }
 }
