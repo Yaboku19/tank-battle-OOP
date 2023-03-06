@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.common.input.api;
 
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -13,4 +14,7 @@ public interface InputController {
      * @return the commands queue
      */
     //Queue<Command> getCommands();
+
+
+    public List<Integer> getKeyCodes();
 }

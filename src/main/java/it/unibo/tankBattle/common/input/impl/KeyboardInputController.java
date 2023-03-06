@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.common.input.impl;
 
+import java.util.List;
 import java.util.Queue;
 
 import it.unibo.tankBattle.common.input.api.Command;
@@ -13,8 +14,8 @@ public class KeyboardInputController implements InputController{
     private int keyCodeMoveRight;
     private int keyCodeShoot;
 
-    public KeyboardInputController(int keyCodeMoveUp, int keyCodeMoveDown, int keyCodeMoveLeft,
-            int keyCodeMoveRight, int keyCodeShoot){
+    public KeyboardInputController(final int keyCodeMoveUp, final int keyCodeMoveDown, final int keyCodeMoveLeft,
+        final int keyCodeMoveRight, final int keyCodeShoot){
 
                 this.keyCodeMoveUp = keyCodeMoveUp;
                 this.keyCodeMoveDown = keyCodeMoveDown;
@@ -22,6 +23,11 @@ public class KeyboardInputController implements InputController{
                 this.keyCodeMoveRight = keyCodeMoveRight;
                 this.keyCodeShoot = keyCodeShoot;
             }
+
+    @Override
+    public List<Integer> getKeyCodes() {
+        return List.of(keyCodeMoveUp,keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
+    }
 
 
     /*@Override
