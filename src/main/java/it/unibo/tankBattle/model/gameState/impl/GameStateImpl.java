@@ -54,9 +54,8 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void isOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isOver'");
+    public void isOver(Player player) {
+        player.incScore();
     }
 
     @Override
@@ -83,7 +82,4 @@ public class GameStateImpl implements GameState {
     public Player getSecondPlayer() {
         return playerTwo;
     }
-
-
-    
 }
