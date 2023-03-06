@@ -1,9 +1,11 @@
 package it.unibo.tankBattle.model.gameState.impl;
 
-public class Player {
+import it.unibo.tankBattle.model.gameState.api.Player;
+
+public class PlayerImpl implements Player {
     private int score;
 
-    protected Player() {
+    protected PlayerImpl() {
         score = 0;
     }
 

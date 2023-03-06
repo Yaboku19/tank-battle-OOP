@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 
 import it.unibo.tankBattle.common.input.api.InputController;
-import it.unibo.tankBattle.model.gameState.impl.Player;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public interface GameEngine {
     public void play();
