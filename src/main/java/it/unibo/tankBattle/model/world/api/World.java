@@ -20,7 +20,7 @@ public interface World {
 
     public Set<GameObject> getBullets();
 
-    public Set<GameObject> getTanks();
+    public GameObject getTank(Player player);
 
     public void setDirection(Directions direction, Player player);
 }
