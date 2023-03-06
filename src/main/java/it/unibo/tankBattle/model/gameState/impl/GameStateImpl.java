@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
@@ -15,11 +16,23 @@ public class GameStateImpl implements GameState {
 
     private final World world;
     private final FactoryWorld factory;
+    private Player player1 = new Player(1,0);
+    private Player player2 = new Player(2,0);
 
     public GameStateImpl() {
         factory = new FactoryWorld(this);
         this.world = factory.simpleWorld();
 
+    }
+
+    @Override
+    public Player getPlayer1(){
+        return player1;
+    }
+
+    @Override
+    public Player getPlayer2(){
+        return player2;
     }
 
     @Override

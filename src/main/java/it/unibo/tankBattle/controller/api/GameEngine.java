@@ -2,6 +2,7 @@ package it.unibo.tankBattle.controller.api;
 
 import java.util.HashMap;
 
+import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.InputController;
 
 public interface GameEngine {
@@ -13,7 +14,7 @@ public interface GameEngine {
     
     public void startGame();
 
-    public HashMap<String, InputController> getControllers();
+    public HashMap<Player, InputController> getControllers();
 
-    public void notifyCommand(int keyCode);
+    public void notifyCommand(Player player, int keyCode);
 }

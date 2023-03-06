@@ -101,7 +101,7 @@ public class WorldImpl implements World {
 
     @Override
     public void shot(final Player player) {
-        switch(player) {
+        /*switch(player.getCode()) {
             case PLAYER_UNO:
                 addBullet(tankPlayerOne);
                 break;
@@ -110,6 +110,13 @@ public class WorldImpl implements World {
                 break;
             default:
                 throw new IllegalStateException();
+        }*/
+        if(player.getCode() == gameState.getPlayer1().getCode()){
+            addBullet(tankPlayerOne);
+        }else if(player.getCode() == gameState.getPlayer2().getCode()){
+            addBullet(tankPlayerTwo);
+        }else{
+            throw new IllegalStateException();
         }
     }
 
@@ -119,7 +126,7 @@ public class WorldImpl implements World {
 
     @Override
     public void setDirection(final Directions direction, final Player player) {
-        switch(player) {
+        /*switch(player) {
             case PLAYER_UNO:
                 changeDirection(tankPlayerOne, direction);
                 break;
@@ -128,6 +135,13 @@ public class WorldImpl implements World {
                 break;
             default:
                 throw new IllegalStateException();
+        }*/
+        if(player.getCode() == gameState.getPlayer1().getCode()){
+            changeDirection(tankPlayerOne, direction);
+        }else if(player.getCode() == gameState.getPlayer2().getCode()){
+            changeDirection(tankPlayerTwo, direction);
+        }else{
+            throw new IllegalStateException();
         }
     }
 
