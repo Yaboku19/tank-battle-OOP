@@ -67,5 +67,10 @@ public class BasicGameEngine implements GameEngine {
         commandQueue.add(keyCode);
         //throw new UnsupportedOperationException("Unimplemented method 'notifyCommand'");
     }
+
+    @Override
+    public HashMap<String, InputController> getControllers() {
+        return new HashMap<>(controllers);
+    }
     
 }
