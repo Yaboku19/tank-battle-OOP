@@ -3,6 +3,7 @@ package it.unibo.tankBattle.model.gameState.api;
 import java.util.Set;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.common.input.api.Directions;
 
 public interface GameState {
 
@@ -22,6 +23,12 @@ public interface GameState {
      * @return a set of pair of each object's position and length
      */
     public Set<Pair<P2d, Integer>> getPositionsAndLength();
+
+    public Set<P2d> getWallPositions();
+
+    public Set<Pair<P2d, Directions>> getBulletPositionsAndDirection();
+
+    public Pair<P2d, Directions> getTankPositionAndDirection(Player player);
 
     public void input();
 
