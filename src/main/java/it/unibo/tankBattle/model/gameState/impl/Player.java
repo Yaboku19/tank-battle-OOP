@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.common;
+package it.unibo.tankBattle.model.gameState.impl;
 
 public enum Player {
     PLAYER_UNO,

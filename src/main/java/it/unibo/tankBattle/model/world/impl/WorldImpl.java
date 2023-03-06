@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.impl.Player;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;

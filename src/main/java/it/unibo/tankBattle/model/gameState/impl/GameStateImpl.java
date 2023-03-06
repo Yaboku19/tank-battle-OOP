@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;

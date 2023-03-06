@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankBattle.model.gameState.impl.Player;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
