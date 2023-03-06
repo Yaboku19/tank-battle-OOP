@@ -7,13 +7,13 @@ import it.unibo.tankBattle.common.input.api.Directions;
 
 public interface GameState {
 
-    public Pair<Integer, Integer> getScore(); //0-0 1-0
-
     public void update();
 
     public void resolveEvents(Set<Pair<P2d, P2d>> events);
 
-    public void endGame(Player player); 
+    public void endGame(Player player);
+
+    public void input();
 
     /**
      * 
@@ -30,9 +30,9 @@ public interface GameState {
 
     public Pair<P2d, Directions> getTankPositionAndDirection(Player player);
 
-    public void input();
-
     public Player getFirstPlayer();
 
     public Player getSecondPlayer();
+
+    public Pair<Integer, Integer> getScore(); //0-0 1-0
 }
