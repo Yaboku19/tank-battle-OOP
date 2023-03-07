@@ -80,7 +80,7 @@ public class WorldImpl implements World {
         final var entities = new HashSet<GameObject>();
         entities.addAll(wallSet);
         entities.addAll(bulletSet);
-        entities.addAll(getTanks());
+        entities.addAll(tankMap.values().stream().collect(Collectors.toSet()));
         return entities;
     }
 
@@ -95,14 +95,15 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Set<GameObject> getTanks() {
-        return tankMap.values().stream().collect(Collectors.toSet());
+    public GameObject getTank(Player player) {
+        return tankMap.get(player);
     }
 
     @Override
     public void shot(final Player player) {
         bulletSet.add(factoryGameObject
-            .simpleBullet(tankMap.get(player).getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tankMap.get(player)));
+            .simpleBullet(tankMap.get(player).getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK
+                         , tankMap.get(player)));
     }
 
     @Override

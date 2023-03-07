@@ -31,7 +31,8 @@ public class WorldTest {
         var entities = world.getBullets();
     
         entities.addAll(world.getWalls());
-        entities.addAll(world.getTanks());
+        entities.add(world.getTank(gameState.getFirstPlayer()));
+        entities.add(world.getTank(gameState.getSecondPlayer()));
 
 		assertEquals(entities.stream().map(g -> g.getPosition()).collect(Collectors.toSet()),
 			world.getEntities().stream().map(g -> g.getPosition()).collect(Collectors.toSet()));
@@ -51,69 +52,53 @@ public class WorldTest {
     public void UpdateTest() {
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(4, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(4, 4)));
 
         world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
         world.update();
 
         assertFalse(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(4, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(4, 4)));
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(5, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(5, 4)));
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
+            .getTank(gameState.getSecondPlayer())
+            .getPosition()
+            .equals(new P2d(13 * 3 + 1, 8 * 3 + 1)));
 
         world.setDirection(Directions.NONE, gameState.getFirstPlayer());
 
         world.update();
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(5, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(5, 4)));
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
+            .getTank(gameState.getSecondPlayer())
+            .getPosition()
+            .equals(new P2d(13 * 3 + 1, 8 * 3 + 1)));
 
     }
 
     @org.junit.jupiter.api.Test
     public void collisionTest() {
-
         world.setDirection(Directions.LEFT, gameState.getFirstPlayer());
-
         world.update();
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(3, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(3, 4)));
 
         var wall = world.getWalls()
             .stream()
@@ -124,48 +109,35 @@ public class WorldTest {
         world.collision(wall.getPosition(), new P2d(3, 4));
 
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(4, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(4, 4)));
 
     }
 
     @org.junit.jupiter.api.Test
     public void removeTest() {
-
         world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
         world.shot(gameState.getFirstPlayer());
         world.update();
+
         assertTrue(world
-            .getTanks()
-            .stream()
-            .map(t -> t.getPosition())
-            .collect(Collectors.toSet())
-            .contains(new P2d(5, 4)));
+            .getTank(gameState.getFirstPlayer())
+            .getPosition()
+            .equals(new P2d(5, 4)));
 
         var bullet = world.getBullets()
             .stream()
             .toList()
             .get(0);
 
-        int life = world.getTanks()
-            .stream()
-            .filter(t -> t.getPosition().equals(new P2d(5, 4)))
-            .toList()
-            .get(0)
+        int life = world.getTank(gameState.getFirstPlayer())
             .getLifePoints();
 
-        var tank = world.getTanks()
-            .stream()
-            .filter(t -> t.getPosition().equals(new P2d(5, 4)))
-            .toList()
-            .get(0);
         world.collision(new P2d(5, 4), bullet.getPosition());
         world.update();
         assertEquals(0, world.getBullets().size());
-        assertEquals(life - bullet.getDamage(), tank.getLifePoints());
+        assertEquals(life - bullet.getDamage(), world.getTank(gameState.getFirstPlayer()).getLifePoints());
         }
 }
 

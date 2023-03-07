@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.api.Player;
@@ -51,17 +52,8 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public Set<Pair<P2d, Integer>> getPositionsAndLength() {
-        return world
-                .getEntities()
-                .stream()
-                .map(obj -> new Pair<>(obj.getPosition(), obj.getLength()))
-                .collect(Collectors.toSet());
-    }
-
-    @Override
     public void input() {
-        ;
+        // TODO Auto-generated method stub
     }
 
     @Override
@@ -73,5 +65,37 @@ public class GameStateImpl implements GameState {
     public Player getSecondPlayer() {
         return playerTwo;
         
+    }
+
+    @Override
+    public Set<Pair<P2d, Integer>> getPositionsAndLength() {
+        return world
+            .getEntities()
+            .stream()
+            .map(obj -> new Pair<>(obj.getPosition(), obj.getLength()))
+            .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<P2d> getWallPositions() {
+        return world
+            .getWalls()
+            .stream()
+            .map(wall -> wall.getPosition())
+            .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Pair<P2d, Directions>> getBulletPositionsAndDirection() {
+        return world
+            .getBullets()
+            .stream()
+            .map(bullet -> new Pair<>(bullet.getPosition(), bullet.getDirection()))
+            .collect(Collectors.toSet());
+}
+
+    @Override
+    public Pair<P2d, Directions> getTankPositionAndDirection(Player player) {
+        return new Pair<>(world.getTank(player).getPosition(), world.getTank(player).getDirection());
     }
 }
