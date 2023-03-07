@@ -14,9 +14,6 @@ public class GameObjectTest {
 	GameObject bullet;
 	GameObject obstacle;
 
-
-	private String str = "nice";
-
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
@@ -28,9 +25,9 @@ public class GameObjectTest {
 	@org.junit.jupiter.api.Test
 	public void testIsAlive() {
 		tank.resolveCollision(bullet);
-		assertTrue(tank.isAlive(), str);
+		assertTrue(tank.isAlive());
 		tank.resolveCollision(bullet);
-		assertFalse(tank.isAlive(), str);
+		assertFalse(tank.isAlive());
 	}
 
 	@org.junit.jupiter.api.Test
@@ -51,6 +48,10 @@ public class GameObjectTest {
 		tank.setDirection(Directions.RIGHT);
 		tank.update();
 		assertEquals(new P2d(11,10), tank.getPosition());
+		tank.setDirection(Directions.NONE);
+		tank.update();
+		assertEquals(new P2d(11,10), tank.getPosition());
+		assertEquals(Directions.RIGHT, tank.getDirection());
 	}
 
 	@org.junit.jupiter.api.Test
@@ -67,6 +68,39 @@ public class GameObjectTest {
 		tank.setDirection(Directions.DOWN);
 		var bullet4 = factory.simpleBullet(10, tank);
 		assertEquals(new P2d(10, 20), bullet4.getPosition());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testAll() {
+		tank.setDirection(Directions.RIGHT);
+		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 5);
+		tank.resolveCollision(tank2);
+		tank2.resolveCollision(tank);
+		assertEquals(105, tank.getLifePoints());
+		assertEquals(90, tank2.getLifePoints());
+		
+		var bullet2 = this.factory.simpleBullet(20, tank2);
+		tank.resolveCollision(bullet2);
+		bullet2.resolveCollision(tank);
+		assertTrue(tank.isAlive());
+		assertFalse(bullet2.isAlive());
+		assertEquals(55, tank.getLifePoints());
+
+		tank.resolveCollision(obstacle);
+		assertEquals(55, tank.getLifePoints());
+		assertTrue(obstacle.isAlive());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testDirection() {
+		assertEquals(Directions.UP, tank.getDirection());
+
+		tank.setDirection(Directions.DOWN);
+		assertEquals(Directions.DOWN, tank.getDirection());
+
+
+		tank.setDirection(Directions.NONE);
+		assertEquals(Directions.DOWN, tank.getDirection());
 	}
 
 }

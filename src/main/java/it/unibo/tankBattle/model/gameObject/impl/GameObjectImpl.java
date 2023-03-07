@@ -64,22 +64,42 @@ public abstract class GameObjectImpl implements GameObject{
         }
     }
 
-    protected void hit(final int damageReceive) {
-        this.lifePoints = this.lifePoints - damageReceive; 
-    }
-
     @Override
     public void update() {
         this.position = this.position.sum(new P2d(speed*direction.getX(), speed*direction.getY())); 
     }
 
+    /**
+     * 
+     * It decrease Lifepoints of damageReceive.
+     * 
+     * @param damageReceive the gameObject.getDamage() of the object that has collide with it
+     */
+    protected void hit(final int damageReceive) {
+        this.lifePoints = this.lifePoints - damageReceive; 
+    }
+
+    /**
+     * 
+     * It will knockback a gameObject in the opposite direction of where it has collide.
+     * 
+     * @param dir the direction passed by manageCollision of where the object has to be knock back
+     */
     protected void knockBack(final Directions dir) {
         position = this.position.sum(new P2d(speed*dir.getX(), speed*dir.getY()));
     }
 
+    /**
+     * 
+     * This method is called in case of the GamoObject collide with another object, this will return
+     * the direction of where it has to be knockback
+     * 
+     * @param collidingObjPos the GameObject that has collide with it 
+     * @return Direction of where it has to be knock back
+     */
     protected Directions manageCollision(final P2d collidingObjPos) {        
-        final int differenceX = collidingObjPos.getX() - this.position.getX(); //maggiore di 0 se è piu a destra di me
-        final int differenceY = collidingObjPos.getY() - this.position.getY(); //maggiore di 0 se è piu in giu di me
+        final int differenceX = collidingObjPos.getX() - this.position.getX();
+        final int differenceY = collidingObjPos.getY() - this.position.getY();
         return Math.abs(differenceX) >= Math.abs(differenceY) 
             ? differenceX >= 0 
                 ? Directions.LEFT
