@@ -6,25 +6,28 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
 	private FactoryWorld factoryWorld;
+    private World world;
     private GameState gameState;
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
-		factoryWorld = new FactoryWorld(new GameStateImpl());
+        gameState = new GameStateImpl(new BasicGameEngine());
+		factoryWorld = new FactoryWorld(gameState);
+        world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
     }
 
     @org.junit.jupiter.api.Test            
 	public void getterTest() {        
-		var world = factoryWorld.simpleWorld();
         var entities = world.getBullets();
     
         entities.addAll(world.getWalls());
@@ -36,18 +39,17 @@ public class WorldTest {
 
     @org.junit.jupiter.api.Test
     public void shotTest() {
-        var world = factoryWorld.simpleWorld();
 
         assertEquals(new HashSet<GameObject>(), world.getBullets());
 
-        world.shot(gameState.getPlayer1());
+        world.shot(gameState.getFirstPlayer());
         assertEquals(1, world.getBullets().size());
 
     }
 
     @org.junit.jupiter.api.Test
     public void UpdateTest() {
-        var world = factoryWorld.simpleWorld();
+
         assertTrue(world
             .getTanks()
             .stream()
@@ -55,7 +57,7 @@ public class WorldTest {
             .collect(Collectors.toSet())
             .contains(new P2d(4, 4)));
 
-        world.setDirection(Directions.RIGHT, gameState.getPlayer1());
+        world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
         world.update();
 
         assertFalse(world
@@ -79,7 +81,7 @@ public class WorldTest {
             .collect(Collectors.toSet())
             .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
 
-        world.setDirection(Directions.NONE, gameState.getPlayer1());
+        world.setDirection(Directions.NONE, gameState.getFirstPlayer());
 
         world.update();
 
@@ -101,9 +103,8 @@ public class WorldTest {
 
     @org.junit.jupiter.api.Test
     public void collisionTest() {
-        var world = factoryWorld.simpleWorld();
 
-        world.setDirection(Directions.LEFT, gameState.getPlayer1());
+        world.setDirection(Directions.LEFT, gameState.getFirstPlayer());
 
         world.update();
 
@@ -133,10 +134,9 @@ public class WorldTest {
 
     @org.junit.jupiter.api.Test
     public void removeTest() {
-        var world = factoryWorld.simpleWorld();
 
-        world.setDirection(Directions.RIGHT, gameState.getPlayer1());
-        world.shot(gameState.getPlayer1());
+        world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
+        world.shot(gameState.getFirstPlayer());
         world.update();
         assertTrue(world
             .getTanks()

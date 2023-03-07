@@ -1,10 +1,8 @@
 package it.unibo.tankBattle.model.gameState.api;
 
 import java.util.Set;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
-import it.unibo.tankBattle.common.Player;
 
 public interface GameState {
 
@@ -14,11 +12,7 @@ public interface GameState {
 
     public void resolveEvents(Set<Pair<P2d, P2d>> events);
 
-    public void isOver(); 
-
-    public Player getPlayer1();
-
-    public Player getPlayer2();
+    public void endGame(Player player); 
 
     /**
      * 
@@ -30,4 +24,8 @@ public interface GameState {
     public Set<Pair<P2d, Integer>> getPositionsAndLength();
 
     public void input();
+
+    public Player getFirstPlayer();
+
+    public Player getSecondPlayer();
 }
