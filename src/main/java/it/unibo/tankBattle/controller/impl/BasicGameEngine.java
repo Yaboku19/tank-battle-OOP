@@ -31,8 +31,7 @@ public class BasicGameEngine implements GameEngine {
         view.bugSolve();
     }
 
-    @Override
-    public void processInput() {
+    private void processInput() {
         var cmd = commandQueue.poll();
         if(cmd.getX() == model.getFirstPlayer()){
             cmd.getY().execute(model.getFirstPlayer());
@@ -47,7 +46,7 @@ public class BasicGameEngine implements GameEngine {
     }
 
     private void loop() {
-        
+        processInput();
     }
 
     private void initGame(){
