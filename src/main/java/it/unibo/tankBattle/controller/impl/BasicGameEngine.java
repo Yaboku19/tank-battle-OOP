@@ -32,8 +32,7 @@ public class BasicGameEngine implements GameEngine {
         view.bugSolve();
     }
 
-    @Override
-    public void processInput() {
+    private void processInput() {
         var cmd = commandQueue.poll();
         /*cmd.execute(cmd);*/
         /*for(var tank : model.getWorld().getTanks()){
@@ -46,8 +45,7 @@ public class BasicGameEngine implements GameEngine {
         
     }
 
-    @Override
-    public void initGame(){
+    private void initGame(){
         controllers = new HashMap<Player,InputController>();
 
         KeyboardInputController contr1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
