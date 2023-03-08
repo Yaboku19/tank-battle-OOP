@@ -9,6 +9,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.World;
@@ -18,12 +19,16 @@ public class WorldTest {
 	private FactoryWorld factoryWorld;
     private World world;
     private GameState gameState;
+    private int size;
+    private FactoryGameObject factoryGameObject;
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         gameState = new GameStateImpl(new BasicGameEngine());
 		factoryWorld = new FactoryWorld(gameState);
         world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
+        factoryGameObject = new FactoryGameObject();
+        size = factoryGameObject.simpleWall(new P2d(0, 0)).getLength();
     }
 
     @org.junit.jupiter.api.Test            
@@ -54,7 +59,7 @@ public class WorldTest {
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(4, 4)));
+            .equals(new P2d(size + size /2, size + size / 2)));
 
         world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
         world.update();
@@ -62,17 +67,17 @@ public class WorldTest {
         assertFalse(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(4, 4)));
+            .equals(new P2d(size + size /2, size + size / 2)));
 
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(5, 4)));
+            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
 
         assertTrue(world
             .getTank(gameState.getSecondPlayer())
             .getPosition()
-            .equals(new P2d(13 * 3 + 1, 8 * 3 + 1)));
+            .equals(new P2d(13 * size + size /2, 8 * size + size / 2)));
 
         world.setDirection(Directions.NONE, gameState.getFirstPlayer());
 
@@ -81,13 +86,12 @@ public class WorldTest {
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(5, 4)));
+            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
 
         assertTrue(world
             .getTank(gameState.getSecondPlayer())
             .getPosition()
-            .equals(new P2d(13 * 3 + 1, 8 * 3 + 1)));
-
+            .equals(new P2d(13 * size + size /2, 8 * size + size / 2)));
     }
 
     @org.junit.jupiter.api.Test
@@ -98,20 +102,20 @@ public class WorldTest {
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(3, 4)));
+            .equals(new P2d(size + size / 2 - 1, size + size / 2)));
 
         var wall = world.getWalls()
             .stream()
-            .filter(w -> w.getPosition().equals(new P2d(1, 4)))
+            .filter(w -> w.getPosition().equals(new P2d(size / 2, size + size / 2)))
             .toList()
             .get(0);
 
-        world.collision(wall.getPosition(), new P2d(3, 4));
+        world.collision(wall.getPosition(), new P2d(size + size / 2 - 1, size + size / 2));
 
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(4, 4)));
+            .equals(new P2d(size + size / 2, size + size / 2)));
 
     }
 
@@ -124,7 +128,7 @@ public class WorldTest {
         assertTrue(world
             .getTank(gameState.getFirstPlayer())
             .getPosition()
-            .equals(new P2d(5, 4)));
+            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
 
         var bullet = world.getBullets()
             .stream()
@@ -134,7 +138,7 @@ public class WorldTest {
         int life = world.getTank(gameState.getFirstPlayer())
             .getLifePoints();
 
-        world.collision(new P2d(5, 4), bullet.getPosition());
+        world.collision(new P2d(size + size / 2 + 1, size + size / 2), bullet.getPosition());
         world.update();
         assertEquals(0, world.getBullets().size());
         assertEquals(life - bullet.getDamage(), world.getTank(gameState.getFirstPlayer()).getLifePoints());

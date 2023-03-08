@@ -19,31 +19,38 @@ public class FactoryWorld {
     private final FactoryGameObject factory;
     private final static int ROW = 9;
     private final static int COLUMN = 14;
-    private final static int SIZE = 3;
+    private final int size;
     private final GameState gameState;
 
     public FactoryWorld(final GameState gameState) {
         this.gameState = gameState;
         factory = new FactoryGameObject();
         border = new HashSet<>();
+        size = factory.simpleWall(new P2d(0, 0)).getLength();
         for (int i = 0; i < ROW ; i++) {
-            border.add(factory.simpleWall(new P2d(1, i * SIZE + 1)));   //EMA
-            border.add(factory.simpleWall(new P2d(COLUMN * SIZE + 1, i * SIZE + 1))); //EMA
+            border.add(factory.simpleWall(new P2d(getPosition(0), getPosition(i))));
+            border.add(factory.simpleWall(new P2d(getPosition(COLUMN), getPosition(i))));
         }
         for (int i = 0; i < COLUMN ; i++) {
-            border.add(factory.simpleWall(new P2d(i * SIZE + 1, 1)));
-            border.add(factory.simpleWall(new P2d(i * SIZE + 1, ROW * SIZE + 1)));
+            border.add(factory.simpleWall(new P2d(getPosition(i) , getPosition(0))));
+            border.add(factory.simpleWall(new P2d(getPosition(i), getPosition(ROW))));
         }
     }
 
     public World simpleWorld(Player playerUno, Player playerDue) {
         GameObject tankOne = factory
-            .standardTank(new P2d(4, 4)); // toDo
+            .standardTank(new P2d(getPosition(1), getPosition(1))); // toDo
+
         GameObject tankTwo = factory
-            .standardTank(new P2d((COLUMN - 1)* 3 + 1,(ROW - 1)* 3 + 1));
+            .standardTank(new P2d(getPosition(COLUMN - 1), getPosition(ROW - 1)));
+
         Map<Player, GameObject> tankMap = new HashMap<>();
         tankMap.put(playerUno, tankOne);
         tankMap.put(playerDue, tankTwo);
         return new WorldImpl(border, gameState, tankMap);
+    }
+
+    private int getPosition(int i) {
+        return size * i + size / 2;
     }
 }
