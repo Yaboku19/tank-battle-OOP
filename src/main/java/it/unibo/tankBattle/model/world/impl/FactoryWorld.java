@@ -26,7 +26,7 @@ public class FactoryWorld {
         this.gameState = gameState;
         factory = new FactoryGameObject();
         border = new HashSet<>();
-        size = factory.simpleWall(new P2d(0, 0)).getLength();
+        size = factory.simpleWall(new P2d(0, 0)).getLength(); // toDo
         for (int i = 0; i < ROW ; i++) {
             border.add(factory.simpleWall(new P2d(getPosition(0), getPosition(i))));
             border.add(factory.simpleWall(new P2d(getPosition(COLUMN), getPosition(i))));
@@ -37,20 +37,20 @@ public class FactoryWorld {
         }
     }
 
-    public World simpleWorld(Player playerUno, Player playerDue) {
-        GameObject tankOne = factory
-            .standardTank(new P2d(getPosition(1), getPosition(1))); // toDo
+    public World simpleWorld(final Player playerUno, final Player playerDue) {
+        final GameObject tankOne = factory
+            .standardTank(new P2d(getPosition(1), getPosition(1)));
 
-        GameObject tankTwo = factory
+        final GameObject tankTwo = factory
             .standardTank(new P2d(getPosition(COLUMN - 1), getPosition(ROW - 1)));
 
-        Map<Player, GameObject> tankMap = new HashMap<>();
+        final Map<Player, GameObject> tankMap = new HashMap<>();
         tankMap.put(playerUno, tankOne);
         tankMap.put(playerDue, tankTwo);
         return new WorldImpl(border, gameState, tankMap);
     }
 
-    private int getPosition(int i) {
+    private int getPosition(final int i) {
         return size * i + size / 2;
     }
 }

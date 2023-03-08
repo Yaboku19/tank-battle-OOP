@@ -57,7 +57,7 @@ public class WorldImpl implements World {
             .get(0);
     }
 
-    private void removeDeadGameObject(GameObject gameObject) {
+    private void removeDeadGameObject(final GameObject gameObject) {
 
         if (!gameObject.isAlive()) {
             if (bulletSet.contains(gameObject)){
@@ -94,7 +94,7 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public GameObject getTank(Player player) {
+    public GameObject getTank(final Player player) {
         return tankMap.get(player);
     }
 
