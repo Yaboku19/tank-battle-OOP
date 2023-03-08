@@ -16,13 +16,13 @@ public interface GameObject {
 
     /**
      * 
-     * @return the current speed, 0 if is not moving
+     * @return the speed
      */
-    public int getCurrentSpeed();
+    public int getSpeed();
 
     /**
      * 
-     * @return  Directions of where the tank want to shoot or move
+     * @return  Directions of where the object want to move
      */
     public Directions getDirection();
 
@@ -37,12 +37,6 @@ public interface GameObject {
      * @return current lifePoints
      */
     public int getLifePoints();
-
-    /**
-     * 
-     * @return speed when it's moving
-     */
-    public int getMaxSpeed();
 
     /**
      * 
@@ -68,18 +62,6 @@ public interface GameObject {
 
     /**
      * 
-     * Sets the current speed to maxSpeed
-     */
-    public void move();
-
-    /**
-     * 
-     * Sets the current speed to 0
-     */
-    public void stop();
-
-    /**
-     * 
      * @return true if LifePoints are more than 0, false otherwise
      */
     public abstract boolean isAlive();
@@ -87,7 +69,7 @@ public interface GameObject {
     /**
      * Update it's current position each frame
      */
-    public abstract void update();
+    public void update();
 
     /**
      * 

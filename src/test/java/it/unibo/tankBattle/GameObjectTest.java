@@ -14,9 +14,7 @@ public class GameObjectTest {
 	GameObject bullet;
 	GameObject obstacle;
 
-	
-	//private GameObject bullet = this.factory.simpleBullet(20,new P2d(1, 1), tank);
-	//private GameObject obstacle = this.factory.simpleWall(new P2d(10, 20));
+
 	private String str = "nice";
 
     @org.junit.jupiter.api.BeforeEach
@@ -52,9 +50,24 @@ public class GameObjectTest {
 	public void testUpdate() {
 		assertEquals(new P2d(10,10), tank.getPosition());
 		tank.setDirection(Directions.RIGHT);
-		tank.move();
 		tank.update();
 		assertEquals(new P2d(11,10), tank.getPosition());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testBulletCreation() {
+		tank.setDirection(Directions.RIGHT);
+		var bullet1 = factory.simpleBullet(10, tank);
+		assertEquals(new P2d(20, 10), bullet1.getPosition());
+		tank.setDirection(Directions.LEFT);
+		var bullet2 = factory.simpleBullet(10, tank);
+		assertEquals(new P2d(0, 10), bullet2.getPosition());
+		tank.setDirection(Directions.UP);
+		var bullet3 = factory.simpleBullet(10, tank);
+		assertEquals(new P2d(10, 0), bullet3.getPosition());
+		tank.setDirection(Directions.DOWN);
+		var bullet4 = factory.simpleBullet(10, tank);
+		assertEquals(new P2d(10, 20), bullet4.getPosition());
 	}
 
 }

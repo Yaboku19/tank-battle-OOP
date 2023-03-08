@@ -6,9 +6,10 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.impl.GameStateImpl;
+import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
 public class WorldTest {
@@ -26,44 +27,11 @@ public class WorldTest {
         var entities = world.getBullets();
     
         entities.addAll(world.getWalls());
-        entities.add(world.getFirstTank());
-        entities.add(world.getSecondTank());
+        entities.addAll(world.getTanks());
 
 		assertEquals(entities.stream().map(g -> g.getPosition()).collect(Collectors.toSet()),
 			world.getEntities().stream().map(g -> g.getPosition()).collect(Collectors.toSet()));
 	}
-
-    @org.junit.jupiter.api.Test
-    public void speedDirectionTest() {
-        var world = factoryWorld.simpleWorld();
-
-        assertEquals(0, world.getFirstTank().getCurrentSpeed());
-        assertEquals(0, world.getSecondTank().getCurrentSpeed());
-        assertEquals(Directions.UP, world.getFirstTank().getDirection());
-        assertEquals(Directions.UP, world.getSecondTank().getDirection());
-
-        world.buttonPressed(Directions.DOWN, 1);
-        world.buttonPressed(Directions.RIGHT, 2);
-
-        assertEquals(world.getFirstTank().getMaxSpeed(), world.getFirstTank().getCurrentSpeed());
-        assertEquals(world.getSecondTank().getMaxSpeed(), world.getSecondTank().getCurrentSpeed());
-        assertEquals(Directions.DOWN, world.getFirstTank().getDirection());
-        assertEquals(Directions.RIGHT, world.getSecondTank().getDirection());
-
-        assertThrows(IllegalStateException.class, () ->
-                world.buttonPressed(Directions.DOWN, 3));
-
-        world.buttonRelased(1);
-        world.buttonRelased(2);
-
-        assertEquals(0, world.getFirstTank().getCurrentSpeed());
-        assertEquals(0, world.getSecondTank().getCurrentSpeed());
-        assertEquals(Directions.DOWN, world.getFirstTank().getDirection());
-        assertEquals(Directions.RIGHT, world.getSecondTank().getDirection());
-
-        assertThrows(IllegalStateException.class, () ->
-                world.buttonRelased(-1));
-    }
 
     @org.junit.jupiter.api.Test
     public void shotTest() {
@@ -71,32 +39,62 @@ public class WorldTest {
 
         assertEquals(new HashSet<GameObject>(), world.getBullets());
 
-        world.shot(1);
+        world.shot(Player.PLAYER_UNO);
         assertEquals(1, world.getBullets().size());
 
-        assertThrows(IllegalStateException.class, () ->
-                world.shot(3));
     }
 
     @org.junit.jupiter.api.Test
     public void UpdateTest() {
         var world = factoryWorld.simpleWorld();
-        assertEquals(new P2d(4, 4), world.getFirstTank().getPosition());
-        world.buttonPressed(Directions.RIGHT, 1);
-        world.update();
-        assertEquals(new P2d(4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getX(),
-        4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getY()), world.getFirstTank().getPosition());
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(4, 4)));
 
-        assertEquals(new P2d(13 * 3 + 1, 8 * 3 + 1), world.getSecondTank().getPosition());
-
-        world.buttonRelased(1);
-
+        world.setDirection(Directions.RIGHT, Player.PLAYER_UNO);
         world.update();
 
-        assertEquals(new P2d(4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getX(),
-        4 + world.getFirstTank().getMaxSpeed() * Directions.RIGHT.getY()), world.getFirstTank().getPosition());
+        assertFalse(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(4, 4)));
 
-        assertEquals(new P2d(13 * 3 + 1, 8 * 3 + 1), world.getSecondTank().getPosition());
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(5, 4)));
+
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
+
+        world.setDirection(Directions.NONE, Player.PLAYER_UNO);
+
+        world.update();
+
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(5, 4)));
+
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(13 * 3 + 1, 8 * 3 + 1)));
 
     }
 
@@ -104,38 +102,69 @@ public class WorldTest {
     public void collisionTest() {
         var world = factoryWorld.simpleWorld();
 
-        world.buttonPressed(Directions.LEFT, 1);
+        world.setDirection(Directions.LEFT, Player.PLAYER_UNO);
 
         world.update();
-        assertEquals(new P2d(3, 4), world.getFirstTank().getPosition());
+
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(3, 4)));
+
         var wall = world.getWalls()
             .stream()
             .filter(w -> w.getPosition().equals(new P2d(1, 4)))
             .toList()
             .get(0);
 
-        world.collision(wall, world.getFirstTank());
+        world.collision(wall.getPosition(), new P2d(3, 4));
 
-        assertEquals(new P2d(4, 4), world.getFirstTank().getPosition());
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(4, 4)));
+
     }
 
     @org.junit.jupiter.api.Test
     public void removeTest() {
         var world = factoryWorld.simpleWorld();
 
-        world.buttonPressed(Directions.RIGHT, 1);
-        world.shot(2);
+        world.setDirection(Directions.RIGHT, Player.PLAYER_UNO);
+        world.shot(Player.PLAYER_DUE);
         world.update();
-        assertEquals(new P2d(5, 4), world.getFirstTank().getPosition());
+        assertTrue(world
+            .getTanks()
+            .stream()
+            .map(t -> t.getPosition())
+            .collect(Collectors.toSet())
+            .contains(new P2d(5, 4)));
+
         var bullet = world.getBullets()
             .stream()
             .toList()
             .get(0);
-        int life = world.getFirstTank().getLifePoints();
-        world.collision(world.getFirstTank(), bullet);
+
+        int life = world.getTanks()
+            .stream()
+            .filter(t -> t.getPosition().equals(new P2d(5, 4)))
+            .toList()
+            .get(0)
+            .getLifePoints();
+
+        var tank = world.getTanks()
+            .stream()
+            .filter(t -> t.getPosition().equals(new P2d(5, 4)))
+            .toList()
+            .get(0);
+        world.collision(new P2d(5, 4), bullet.getPosition());
         world.update();
         assertEquals(0, world.getBullets().size());
-        assertEquals(life - bullet.getDamage(), world.getFirstTank().getLifePoints());
-    }
+        assertEquals(life - bullet.getDamage(), tank.getLifePoints());
+        }
 }
 

@@ -8,58 +8,50 @@ public abstract class GameObjectImpl implements GameObject{
 
     
     private P2d position;
-    private int currentSpeed;
     private Directions direction;
     private int lifePoints;
     private final int length;
     private final int damage;
-    private final int maxSpeed;
+    private final int speed;
 
-    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final int length) {
-        this.maxSpeed = speed;
+
+    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final int length, final Directions dir) {
         this.position = startPos;
         this.lifePoints = lifePoints;
         this.damage = damage;
-        this.currentSpeed = 0;
+        this.speed = speed;
         this.length = length;
-        this.direction = Directions.UP;
-        currentSpeed = 0;
-        direction = Directions.UP;
+        this.direction = dir;
     }
 
     @Override
     public P2d getPosition() {
-        return position;
+        return this.position;
     }
 
     @Override
-    public int getCurrentSpeed() {
-        return currentSpeed;
-    }
-
-    @Override
-    public int getMaxSpeed() {
-        return maxSpeed;
+    public int getSpeed() {
+        return this.speed;
     }
 
     @Override
     public Directions getDirection() {
-        return direction;
+        return this.direction;
     }
 
     @Override
     public int getDamage() {
-        return damage;
+        return this.damage;
     }
 
     @Override
     public int getLifePoints() {
-        return lifePoints;
+        return this.lifePoints;
     }
 
     @Override
     public int getLength() {
-        return length;
+        return this.length;
     }
 
     @Override
@@ -73,21 +65,12 @@ public abstract class GameObjectImpl implements GameObject{
     }
 
     @Override
-    public void move() {
-        this.currentSpeed = maxSpeed;
-    }
-
-    @Override
-    public void stop() {
-        this.currentSpeed = 0;
-    }
-    
-    protected void updatePosition() {
-        position = this.position.sum(new P2d(currentSpeed*direction.getX(), currentSpeed*direction.getY())); 
+    public void update() {
+        this.position = this.position.sum(new P2d(speed*direction.getX(), speed*direction.getY())); 
     }
 
     protected void knockBack(final Directions dir) {
-        position = this.position.sum(new P2d(maxSpeed*dir.getX(), maxSpeed*dir.getY()));
+        position = this.position.sum(new P2d(speed*dir.getX(), speed*dir.getY()));
     }
 
     protected Directions manageCollision(final P2d collidingObjPos) {        

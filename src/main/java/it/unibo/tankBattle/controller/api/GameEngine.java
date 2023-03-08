@@ -1,5 +1,4 @@
 package it.unibo.tankBattle.controller.api;
-import it.unibo.tankBattle.common.input.api.Command;
 
 public interface GameEngine {
     public void play();
