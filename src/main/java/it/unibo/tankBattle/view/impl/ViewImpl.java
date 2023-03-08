@@ -121,6 +121,13 @@ public class ViewImpl extends View implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("keypressed");
+        controller.getControllers().forEach((p,k) -> {
+            if(k.getKeyCodes().contains(e.getKeyCode())){
+                controller.notifyCommand(p, e.getKeyCode());
+            }
+        });
+
+/*
         if(e.getKeyCode() == KeyEvent.VK_W){
             //controller.notifyCommand(e.getKeyCode());
             position = new P2d(position.getX(), position.getY()-1);
@@ -144,7 +151,7 @@ public class ViewImpl extends View implements KeyListener{
             position = new P2d(position.getX(), position.getY()+1);
             this.repaint();
             System.out.println("move down");
-        }
+        }*/
     }
 
     @Override

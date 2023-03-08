@@ -24,6 +24,7 @@ public class FactoryGameObject {
             @Override
             public void resolveCollision(GameObject obj) {
                 this.knockBack(this.manageCollision(obj.getPosition()));
+                this.hit(obj.getDamage());
             }
             
         };
@@ -43,7 +44,7 @@ public class FactoryGameObject {
 
                 @Override
                 public void resolveCollision(GameObject obj) {
-                    
+                    this.hit(BULLET_LIFEPOINTS);
                 }
             
         };

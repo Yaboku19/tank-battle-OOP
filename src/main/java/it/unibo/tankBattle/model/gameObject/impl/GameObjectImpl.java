@@ -9,6 +9,7 @@ public abstract class GameObjectImpl implements GameObject{
     
     private P2d position;
     private Directions direction;
+    private Directions lastDirection;
     private int lifePoints;
     private final int length;
     private final int damage;
@@ -22,6 +23,7 @@ public abstract class GameObjectImpl implements GameObject{
         this.speed = speed;
         this.length = length;
         this.direction = dir;
+        this.lastDirection = Directions.UP;
     }
 
     @Override
@@ -36,7 +38,7 @@ public abstract class GameObjectImpl implements GameObject{
 
     @Override
     public Directions getDirection() {
-        return this.direction;
+        return this.lastDirection;
     }
 
     @Override
@@ -57,10 +59,12 @@ public abstract class GameObjectImpl implements GameObject{
     @Override
     public void setDirection(final Directions dir) {
         this.direction = dir;
+        if(!dir.equals(Directions.NONE)) {
+            this.lastDirection = dir;
+        }
     }
 
-    @Override
-    public void hit(final int damageReceive) {
+    protected void hit(final int damageReceive) {
         this.lifePoints = this.lifePoints - damageReceive; 
     }
 

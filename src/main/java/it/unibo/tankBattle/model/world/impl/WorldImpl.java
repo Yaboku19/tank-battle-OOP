@@ -1,32 +1,32 @@
 package it.unibo.tankBattle.model.world.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Player;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public class WorldImpl implements World {
     private final Set<GameObject> wallSet;
     private final Set<GameObject> bulletSet;
-    private final GameObject tankPlayerOne;
-    private final GameObject tankPlayerTwo;
+    private final Map<Player, GameObject> tankMap;
     private final FactoryGameObject factoryGameObject;
     private final GameState gameState;
     private static final int MULTIPLIER_SPEED_SIMPLE_TANK = 2;
 
-    protected WorldImpl(final Set<GameObject> wallSet, final GameObject tankOne,
-            final GameObject tankTwo, final GameState gameState) {
+    protected WorldImpl(final Set<GameObject> wallSet, final GameState gameState, 
+            Map<Player, GameObject> tankMap) {
 
         this.wallSet = new HashSet<>(wallSet);
         this.bulletSet = new HashSet<>();
-        tankPlayerOne = tankOne;
-        tankPlayerTwo = tankTwo;
+        this.tankMap = new HashMap<>(tankMap);
         factoryGameObject = new FactoryGameObject();
         this.gameState = gameState;
     }
@@ -45,10 +45,8 @@ public class WorldImpl implements World {
         final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
         final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
 
-        firstGameObject.hit(secondGameObject.getDamage());
         firstGameObject.resolveCollision(secondGameObject);
 
-        secondGameObject.hit(firstGameObject.getDamage());
         secondGameObject.resolveCollision(firstGameObject);
     }
 
@@ -67,10 +65,12 @@ public class WorldImpl implements World {
                 bulletSet.remove(gameObject);
             } else if (bulletSet.contains(gameObject)) {
                 bulletSet.remove(gameObject);
-            } else if (tankPlayerOne == gameObject || tankPlayerOne == gameObject){
-                gameState.isOver();
             } else {
-                throw new IllegalStateException();
+                for (Player player : tankMap.keySet()) {
+                    if (tankMap.get(player) == gameObject) {
+                        gameState.endGame(player);
+                    }
+                }
             }
         }
     }
@@ -96,42 +96,17 @@ public class WorldImpl implements World {
 
     @Override
     public Set<GameObject> getTanks() {
-        return Set.of(tankPlayerOne, tankPlayerTwo);
+        return tankMap.values().stream().collect(Collectors.toSet());
     }
 
     @Override
     public void shot(final Player player) {
-        switch(player) {
-            case PLAYER_UNO:
-                addBullet(tankPlayerOne);
-                break;
-            case PLAYER_DUE:
-                addBullet(tankPlayerTwo);
-                break;
-            default:
-                throw new IllegalStateException();
-        }
-    }
-
-    private void addBullet(GameObject tank) {
-        bulletSet.add(factoryGameObject.simpleBullet(tank.getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tank));
+        bulletSet.add(factoryGameObject
+            .simpleBullet(tankMap.get(player).getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK, tankMap.get(player)));
     }
 
     @Override
     public void setDirection(final Directions direction, final Player player) {
-        switch(player) {
-            case PLAYER_UNO:
-                changeDirection(tankPlayerOne, direction);
-                break;
-            case PLAYER_DUE:
-                changeDirection(tankPlayerTwo, direction);
-                break;
-            default:
-                throw new IllegalStateException();
-        }
-    }
-
-    private void changeDirection(final GameObject gameObject, final Directions direction) {
-        gameObject.setDirection(direction);
+        tankMap.get(player).setDirection(direction);
     }
 }

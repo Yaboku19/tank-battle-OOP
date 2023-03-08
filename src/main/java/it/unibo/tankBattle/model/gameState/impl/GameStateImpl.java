@@ -2,10 +2,11 @@ package it.unibo.tankBattle.model.gameState.impl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Pair;
+import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorld;
 
@@ -15,35 +16,38 @@ public class GameStateImpl implements GameState {
 
     private final World world;
     private final FactoryWorld factory;
+    private final Player playerOne;
+    private final Player playerTwo;
+    private final GameEngine controller;
 
-    public GameStateImpl() {
+    public GameStateImpl(final GameEngine controller) {
         factory = new FactoryWorld(this);
-        this.world = factory.simpleWorld();
+        playerOne = new PlayerImpl();
+        playerTwo = new PlayerImpl();
+        this.world = factory.simpleWorld(playerOne, playerTwo);
+        this.controller = controller;
 
     }
 
     @Override
     public Pair<Integer, Integer> getScore() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getScore'");
+        return new Pair<>(playerOne.getScore(), playerTwo.getScore());
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        this.world.update();
     }
 
     @Override
     public void resolveEvents(Set<Pair<P2d, P2d>> events) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resolveEvents'");
+        events.forEach(p -> world.collision(p.getX(), p.getY()));
     }
 
     @Override
-    public void isOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isOver'");
+    public void endGame(Player player) {
+        player.incScore();
+        controller.endgame();
     }
 
     @Override
@@ -57,10 +61,17 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void input() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'input'");
+        ;
     }
 
+    @Override
+    public Player getFirstPlayer() {
+        return playerOne;
+    }
 
-    
+    @Override
+    public Player getSecondPlayer() {
+        return playerTwo;
+        
+    }
 }
