@@ -1,4 +1,4 @@
-package it.unibo.samplejavafx.mvcexample;
+package it.unibo.tankBattle.view.samplejavafx.mvcexample;
 
 /**
  * This class models a draw number game.

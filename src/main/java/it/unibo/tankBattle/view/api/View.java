@@ -3,6 +3,7 @@ package it.unibo.tankBattle.view.api;
 import javax.swing.JFrame;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.InputController;
 
 public abstract class View extends JFrame{
     
@@ -21,5 +22,9 @@ public abstract class View extends JFrame{
     abstract public void bugSolve();
 
     abstract public void startGame();
+
+    abstract public InputController getInputControllerPlayer1();
+
+    abstract public InputController getInputControllerPlayer2();
     
 }

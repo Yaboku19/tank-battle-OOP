@@ -2,6 +2,7 @@ package it.unibo.tankBattle.common.input.impl;
 
 
 import it.unibo.tankBattle.common.input.api.Command;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameState.api.Player;
 
 /**
@@ -9,16 +10,15 @@ import it.unibo.tankBattle.model.gameState.api.Player;
  */
 public class Movement implements Command{
 
-    private int keyCode;
+    private Directions dir;
 
-    public Movement(final int keyCode){
-        this.keyCode = keyCode;
+    public Movement(final Directions dir){
+        this.dir = dir;
     }
 
     @Override
-    public void execute(Player player, int keyCode) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    public void execute(Player player) {
+        
     }
     
 }

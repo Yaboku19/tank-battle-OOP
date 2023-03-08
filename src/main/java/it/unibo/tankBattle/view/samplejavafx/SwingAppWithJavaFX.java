@@ -1,4 +1,4 @@
-package it.unibo.samplejavafx;
+package it.unibo.tankBattle.view.samplejavafx;
 
 import java.awt.FlowLayout;
 
