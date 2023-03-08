@@ -17,8 +17,8 @@ public class GameObjectTest {
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(10,10), 110, 10);
-	bullet = this.factory.simpleBullet(20, tank);
+	tank = this.factory.standardTank(new P2d(10,10));
+	bullet = this.factory.simpleBullet(tank);
 	obstacle = this.factory.simpleWall(new P2d(10, 20));
 	}
 
@@ -32,7 +32,7 @@ public class GameObjectTest {
 
 	@org.junit.jupiter.api.Test
 	public void testCollision() {
-		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10);
+		var tank2 = this.factory.standardTank(new P2d(20,12));
 		var obstacle1 = this.factory.simpleWall(new P2d(15, 20));
 		tank.resolveCollision(tank2);
 		assertEquals(new P2d(9,10), tank.getPosition());
@@ -57,37 +57,37 @@ public class GameObjectTest {
 	@org.junit.jupiter.api.Test
 	public void testBulletCreation() {
 		tank.setDirection(Directions.RIGHT);
-		var bullet1 = factory.simpleBullet(10, tank);
+		var bullet1 = factory.simpleBullet(tank);
 		assertEquals(new P2d(20, 10), bullet1.getPosition());
 		tank.setDirection(Directions.LEFT);
-		var bullet2 = factory.simpleBullet(10, tank);
+		var bullet2 = factory.simpleBullet(tank);
 		assertEquals(new P2d(0, 10), bullet2.getPosition());
 		tank.setDirection(Directions.UP);
-		var bullet3 = factory.simpleBullet(10, tank);
+		var bullet3 = factory.simpleBullet(tank);
 		assertEquals(new P2d(10, 0), bullet3.getPosition());
 		tank.setDirection(Directions.DOWN);
-		var bullet4 = factory.simpleBullet(10, tank);
+		var bullet4 = factory.simpleBullet(tank);
 		assertEquals(new P2d(10, 20), bullet4.getPosition());
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testAll() {
 		tank.setDirection(Directions.RIGHT);
-		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 5);
+		var tank2 = this.factory.standardTank(new P2d(20,12));
 		tank.resolveCollision(tank2);
 		tank2.resolveCollision(tank);
-		assertEquals(105, tank.getLifePoints());
-		assertEquals(90, tank2.getLifePoints());
+		assertEquals(95, tank.getLifePoints());
+		assertEquals(95, tank2.getLifePoints());
 		
-		var bullet2 = this.factory.simpleBullet(20, tank2);
+		var bullet2 = this.factory.simpleBullet(tank2);
 		tank.resolveCollision(bullet2);
 		bullet2.resolveCollision(tank);
 		assertTrue(tank.isAlive());
 		assertFalse(bullet2.isAlive());
-		assertEquals(55, tank.getLifePoints());
+		assertEquals(45, tank.getLifePoints());
 
 		tank.resolveCollision(obstacle);
-		assertEquals(55, tank.getLifePoints());
+		assertEquals(45, tank.getLifePoints());
 		assertTrue(obstacle.isAlive());
 	}
 

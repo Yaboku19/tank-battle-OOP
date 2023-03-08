@@ -19,7 +19,6 @@ public class WorldImpl implements World {
     private final Map<Player, GameObject> tankMap;
     private final FactoryGameObject factoryGameObject;
     private final GameState gameState;
-    private static final int MULTIPLIER_SPEED_SIMPLE_TANK = 2;
 
     protected WorldImpl(final Set<GameObject> wallSet, final GameState gameState, 
             Map<Player, GameObject> tankMap) {
@@ -102,8 +101,7 @@ public class WorldImpl implements World {
     @Override
     public void shot(final Player player) {
         bulletSet.add(factoryGameObject
-            .simpleBullet(tankMap.get(player).getSpeed() * MULTIPLIER_SPEED_SIMPLE_TANK
-                         , tankMap.get(player)));
+            .simpleBullet(tankMap.get(player)));
     }
 
     @Override

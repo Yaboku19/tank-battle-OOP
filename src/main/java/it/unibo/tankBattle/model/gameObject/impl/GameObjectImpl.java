@@ -4,7 +4,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.GameObject;
 
-public abstract class GameObjectImpl implements GameObject{
+public abstract class GameObjectImpl implements GameObject {
 
     
     private P2d position;
@@ -16,7 +16,7 @@ public abstract class GameObjectImpl implements GameObject{
     private final int speed;
 
 
-    protected GameObjectImpl(final int speed,final  P2d startPos,final  int lifePoints,final  int damage, final int length, final Directions dir) {
+    protected GameObjectImpl(final int speed, final  P2d startPos, final  int lifePoints, final  int damage, final int length, final Directions dir) {
         this.position = startPos;
         this.lifePoints = lifePoints;
         this.damage = damage;
