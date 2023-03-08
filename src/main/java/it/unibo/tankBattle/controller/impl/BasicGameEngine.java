@@ -18,9 +18,9 @@ import it.unibo.tankBattle.common.input.impl.KeyboardInputController;
 import it.unibo.tankBattle.common.input.impl.Movement;
 
 public class BasicGameEngine implements GameEngine {
-    private View view;
-    private GameState model;
-    private Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
+    private final View view;
+    private GameState model = null;
+    private final Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
     private HashMap<Player,InputController> controllers;
     private Boolean isOver = false;
 
@@ -87,7 +87,7 @@ public class BasicGameEngine implements GameEngine {
     }
 
     @Override
-    public void notifyCommand(Player player, int keyCode) {
+    public void notifyCommand(final Player player, final int keyCode) {
         commandQueue.add(new Pair<>(player, new Movement(keyCode)));
         //throw new UnsupportedOperationException("Unimplemented method 'notifyCommand'");
     }
