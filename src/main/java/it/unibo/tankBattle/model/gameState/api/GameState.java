@@ -16,12 +16,12 @@ public interface GameState {
      * Choose how the method of world have to be called for all the events. 
      * @param events A set of events
      */
-    public void resolveEvents(Set<Pair<P2d, P2d>> events);
+    public void resolveEvents(final Set<Pair<P2d, P2d>> events);
     /**
      * It is called by the world when a tank is dead.
      * @param player the Player that own the tank
      */
-    public void endGame(Player player);
+    public void endGame(final Player player);
     /**
      * Used by the controller to send the inputCommand.
      */
@@ -50,7 +50,7 @@ public interface GameState {
      * @param player the player
      * @return the position and the direction
      */
-    public Pair<P2d, Directions> getTankPositionAndDirection(Player player);
+    public Pair<P2d, Directions> getTankPositionAndDirection(final Player player);
     /**
      * Return the first Player.
      * @return the Player

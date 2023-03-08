@@ -9,10 +9,12 @@ public class PlayerImpl implements Player {
         score = 0;
     }
 
+    @Override
     public int getScore() {
         return score;
     }
 
+    @Override
     public void incScore() {
         score++;
     }
