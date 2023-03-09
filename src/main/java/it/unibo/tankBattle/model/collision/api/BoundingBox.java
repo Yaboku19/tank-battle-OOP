@@ -2,8 +2,22 @@ package it.unibo.tankBattle.model.collision.api;
 
 import it.unibo.tankBattle.common.P2d;
 
-public interface BoundingBox {
+public class BoundingBox {
+
+    private final P2d center;
+    private final int length;
     
-    boolean isColliding(P2d centerObject1, int lengthObject1, P2d centerObject2, int lengthObject2);
+    public BoundingBox(P2d center, int length) {
+        this.center = center;
+        this.length = length;
+    }
+
+    public P2d getCenter() {
+        return this.center;
+    }
+
+    public int getLength() {
+        return this.length;
+    }
 
 }

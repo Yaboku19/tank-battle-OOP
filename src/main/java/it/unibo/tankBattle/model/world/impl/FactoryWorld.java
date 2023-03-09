@@ -12,6 +12,7 @@ import it.unibo.tankBattle.model.gameObject.api.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.api.Player;
+import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 
 
 public class FactoryWorld {
@@ -25,8 +26,8 @@ public class FactoryWorld {
     private final static int STDDAMAGE = 1;
     private final GameState gameState;
 
-    public FactoryWorld(final GameState gameState) {
-        this.gameState = gameState;
+    public FactoryWorld(final GameStateImpl gameStateImpl) {
+        this.gameState = gameStateImpl;
         factory = new FactoryGameObject();
         border = new HashSet<>();
         for (int i = 0; i < ROW ; i++) {
