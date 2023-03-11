@@ -6,6 +6,9 @@ import it.unibo.tankBattle.common.input.api.InputController;
 import it.unibo.tankBattle.model.gameState.api.Player;
 
 public interface GameEngine {
+    /**
+     * It is called at the beginin by TankBattle.
+     */
     public void play();
     
     public void startGame();

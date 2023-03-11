@@ -39,12 +39,12 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void resolveEvents(Set<Pair<P2d, P2d>> events) {
+    public void resolveEvents(final Set<Pair<P2d, P2d>> events) {
         events.forEach(p -> world.collision(p.getX(), p.getY()));
     }
 
     @Override
-    public void endGame(Player player) {
+    public void endGame(final Player player) {
         player.incScore();
         controller.endgame();
     }
@@ -90,10 +90,10 @@ public class GameStateImpl implements GameState {
             .stream()
             .map(bullet -> new Pair<>(bullet.getPosition(), bullet.getDirection()))
             .collect(Collectors.toSet());
-}
+    }
 
     @Override
-    public Pair<P2d, Directions> getTankPositionAndDirection(Player player) {
+    public Pair<P2d, Directions> getTankPositionAndDirection(final Player player) {
         return new Pair<>(world.getTank(player).getPosition(), world.getTank(player).getDirection());
     }
 }

@@ -98,8 +98,8 @@ public abstract class GameObjectImpl implements GameObject {
      * @return Direction of where it has to be knock back
      */
     protected Directions manageCollision(final P2d collidingObjPos) {        
-        final int differenceX = collidingObjPos.getX() - this.position.getX();
-        final int differenceY = collidingObjPos.getY() - this.position.getY();
+        final double differenceX = collidingObjPos.getX() - this.position.getX();
+        final double differenceY = collidingObjPos.getY() - this.position.getY();
         return Math.abs(differenceX) >= Math.abs(differenceY) 
             ? differenceX >= 0 
                 ? Directions.LEFT
