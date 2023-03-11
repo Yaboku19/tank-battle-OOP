@@ -1,6 +1,6 @@
 package it.unibo.tankBattle.model.gameObject.api.component;
 
-public interface HealthComponent extends Component{
+public interface Health extends Component{
 
     public boolean isAlive();
     

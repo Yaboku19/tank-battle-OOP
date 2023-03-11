@@ -1,13 +1,13 @@
 package it.unibo.tankBattle.model.gameObject.impl.component;
 
-import it.unibo.tankBattle.model.gameObject.api.component.MovableComponent;
+import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 
-public class SimpleMovableComponent extends AbstractComponent implements MovableComponent {
+public class SimpleMovable extends AbstractComponent implements Movable {
 
     private int speed;
     
 
-    public SimpleMovableComponent(int speed) {
+    public SimpleMovable(int speed) {
         this.speed = speed;
     }
 

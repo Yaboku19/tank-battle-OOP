@@ -29,13 +29,5 @@ public class Transform {
     public double getWidth() {
         return this.width;
     }
-
-    public void setPosition(P2d position) {
-        this.position = position;
-    }
-
-    public void setDirection(Directions direction) {
-        this.direction = direction;
-    }
     
 }

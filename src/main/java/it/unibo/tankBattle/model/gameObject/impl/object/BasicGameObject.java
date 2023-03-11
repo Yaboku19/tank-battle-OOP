@@ -52,19 +52,13 @@ public class BasicGameObject implements GameObject{
     public Transform getTransform() {
         return this.transform;
     }
-
-    /*@Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;    
-    }*/
     
     @Override
     public void setPosition(P2d pos) {
-        this.transform.setPosition(pos);
-    }
+        this.transform = new Transform(pos,transform.getDirection(), transform.getLength(), transform.getLength());    }
 
     @Override
     public void setDirection(Directions dir) {
-        this.transform.setDirection(dir);
+        this.transform = new Transform(transform.getPosition(),dir, transform.getLength(), transform.getLength());
     }
 }

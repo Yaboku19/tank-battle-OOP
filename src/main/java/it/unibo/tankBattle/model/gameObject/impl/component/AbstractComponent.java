@@ -7,7 +7,7 @@ public abstract class AbstractComponent implements Component{
 
     private GameObject attached;
 
-    public void attachGameObject(GameObject obj) {
+    public void attachGameObject(final GameObject obj) {
         this.attached = obj; 
     }
 
