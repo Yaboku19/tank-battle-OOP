@@ -3,10 +3,12 @@ package it.unibo.tankBattle.model.gameObject.api.object;
 import java.util.Optional;
 import java.util.Set;
 
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 
-interface GameObject {
+public interface GameObject {
     
     public void update(double time);
 
@@ -18,6 +20,9 @@ interface GameObject {
 
     public Transform getTransform();
 
-    public void setTransform(Transform transform);
+    //public void setTransform(Transform transform);
+    
+    public void setPosition(P2d pos);
 
+    public void setDirection(Directions pos);
 }

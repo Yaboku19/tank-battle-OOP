@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.api.Player;
 
@@ -26,7 +27,7 @@ public class WorldImpl implements World {
         this.wallSet = new HashSet<>(wallSet);
         this.bulletSet = new HashSet<>();
         this.tankMap = new HashMap<>(tankMap);
-        factoryGameObject = new FactoryGameObject();
+        factoryGameObject = new FactoryGameObjectImpl();
         this.gameState = gameState;
     }
 
@@ -44,15 +45,15 @@ public class WorldImpl implements World {
         final GameObject firstGameObject = getGameObjectFromPosition(firstPosition);
         final GameObject secondGameObject = getGameObjectFromPosition(secondPosition);
 
-        firstGameObject.resolveCollision(secondGameObject);
+        //firstGameObject.resolveCollision(secondGameObject);
 
-        secondGameObject.resolveCollision(firstGameObject);
+        //secondGameObject.resolveCollision(firstGameObject);
     }
 
     private GameObject getGameObjectFromPosition (final P2d position) {
         return getEntities()
             .stream()
-            .filter(g -> g.getPosition().equals(position))
+            .filter(g -> g.getTransform().getPosition().equals(position))
             .toList()
             .get(0);
     }
@@ -101,7 +102,7 @@ public class WorldImpl implements World {
     @Override
     public void shot(final Player player) {
         bulletSet.add(factoryGameObject
-            .simpleBullet(tankMap.get(player)));
+            .createSimpleBullet(tankMap.get(player)));
     }
 
     @Override

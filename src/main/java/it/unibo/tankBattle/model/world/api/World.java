@@ -3,7 +3,8 @@ package it.unibo.tankBattle.model.world.api;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import java.util.Set;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
+
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameState.api.Player;
 /**
  * The classe where are saved all the GameObject of the Map.

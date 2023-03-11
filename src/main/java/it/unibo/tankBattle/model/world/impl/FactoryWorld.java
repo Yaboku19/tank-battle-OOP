@@ -8,8 +8,9 @@ import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.model.world.api.World;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.api.Player;
 
@@ -19,30 +20,30 @@ public class FactoryWorld {
     private final FactoryGameObject factory;
     private final static int ROW = 9;
     private final static int COLUMN = 14;
-    private final int size;
+    //private final int size;
     private final GameState gameState;
 
     public FactoryWorld(final GameState gameState) {
         this.gameState = gameState;
-        factory = new FactoryGameObject();
+        factory = new FactoryGameObjectImpl();
         border = new HashSet<>();
-        size = factory.simpleWall(new P2d(0, 0)).getLength(); // toDo
+        //size = factory.createSimpleWall(new P2d(0, 0)).getLength(); // toDo
         for (int i = 0; i < ROW ; i++) {
-            border.add(factory.simpleWall(new P2d(getPosition(0), getPosition(i))));
-            border.add(factory.simpleWall(new P2d(getPosition(COLUMN), getPosition(i))));
+            border.add(factory.createSimpleWall(new P2d(getPosition(0), getPosition(i))));
+            border.add(factory.createSimpleWall(new P2d(getPosition(COLUMN), getPosition(i))));
         }
         for (int i = 0; i < COLUMN ; i++) {
-            border.add(factory.simpleWall(new P2d(getPosition(i) , getPosition(0))));
-            border.add(factory.simpleWall(new P2d(getPosition(i), getPosition(ROW))));
+            border.add(factory.createSimpleWall(new P2d(getPosition(i) , getPosition(0))));
+            border.add(factory.createSimpleWall(new P2d(getPosition(i), getPosition(ROW))));
         }
     }
 
     public World simpleWorld(final Player playerUno, final Player playerDue) {
         final GameObject tankOne = factory
-            .standardTank(new P2d(getPosition(1), getPosition(1)));
+            .createSimpleTank(new P2d(getPosition(1), getPosition(1)));
 
         final GameObject tankTwo = factory
-            .standardTank(new P2d(getPosition(COLUMN - 1), getPosition(ROW - 1)));
+            .createSimpleTank(new P2d(getPosition(COLUMN - 1), getPosition(ROW - 1)));
 
         final Map<Player, GameObject> tankMap = new HashMap<>();
         tankMap.put(playerUno, tankOne);
@@ -51,6 +52,6 @@ public class FactoryWorld {
     }
 
     private int getPosition(final int i) {
-        return size * i + size / 2;
+        return i; //size * i + size / 2;
     }
 }
