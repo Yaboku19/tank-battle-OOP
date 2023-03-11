@@ -13,8 +13,6 @@ import it.unibo.tankBattle.view.impl.ViewImpl;
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.common.input.api.InputController;
-import it.unibo.tankBattle.common.input.impl.KeyboardInputController;
-import it.unibo.tankBattle.common.input.impl.Movement;
 
 public class BasicGameEngine implements GameEngine {
     private final View view;
@@ -64,7 +62,7 @@ public class BasicGameEngine implements GameEngine {
     }
 
     private void processInput() {
-        var cmd = commandQueue.poll();
+        //var cmd = commandQueue.poll();
         /*cmd.execute(cmd);*/
         /*for(var tank : model.getWorld().getTanks()){
             tank.updateInput();

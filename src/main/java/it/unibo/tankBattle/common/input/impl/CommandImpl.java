@@ -2,7 +2,6 @@ package it.unibo.tankBattle.common.input.impl;
 
 import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.common.input.api.Command;
-import it.unibo.tankBattle.common.input.api.Directions;
 
 public class CommandImpl implements Command{
 

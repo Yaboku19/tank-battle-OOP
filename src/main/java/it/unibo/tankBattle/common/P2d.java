@@ -5,10 +5,10 @@ package it.unibo.tankBattle.common;
  */
 public class P2d {
     
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public P2d(final int x, final int y) {
+    public P2d(final double x, final double y) {
         this.x = x;
         this.y = y;
     }
@@ -17,11 +17,11 @@ public class P2d {
         return new P2d(x + v.getX(), y + v.getY());
     }
 
-    public int getX() {
+    public double getX() {
         return this.x;
     }
 
-    public int getY() {
+    public double getY() {
         return this.y;
     }
 
@@ -29,16 +29,6 @@ public class P2d {
         return "P2d("+x+","+y+")";
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
-        return result;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
