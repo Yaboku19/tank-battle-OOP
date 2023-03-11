@@ -7,5 +7,5 @@ import it.unibo.tankBattle.model.gameState.api.Player;
  */
 public interface Command {
     
-    void execute(Player player, int keyCode);
+    void execute(Player player);
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import static java.awt.event.KeyEvent.*;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
@@ -26,21 +25,20 @@ public class BasicGameEngine implements GameEngine {
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
+        model = new GameStateImpl(this);
     }
 
     @Override
     public void play() {
+        initGame();
         view.setVisible(true);
         view.bugSolve();
     }
 
     private void initGame(){
         controllers = new HashMap<Player,InputController>();
-
-        KeyboardInputController contr1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
-        KeyboardInputController contr2 = new KeyboardInputController(VK_W,VK_Z,VK_A,VK_S, VK_CONTROL);
-        controllers.put(model.getFirstPlayer(), contr1);
-        controllers.put(model.getSecondPlayer(), contr2);
+        controllers.put(model.getFirstPlayer(), view.getInputControllerPlayer1());
+        controllers.put(model.getSecondPlayer(), view.getInputControllerPlayer2());
     }
 
     @Override
@@ -87,14 +85,14 @@ public class BasicGameEngine implements GameEngine {
     }
 
     @Override
-    public void notifyCommand(final Player player, final int keyCode) {
-        commandQueue.add(new Pair<>(player, new Movement(keyCode)));
-        //throw new UnsupportedOperationException("Unimplemented method 'notifyCommand'");
+    public void notifyCommand(Player player, Command command) {
+        commandQueue.add(new Pair<>(player, command));
     }
 
     @Override
     public HashMap<Player, InputController> getControllers() {
-        return new HashMap<>(controllers);
+        //return new HashMap<>(controllers);
+        return this.controllers;
     }
 
     @Override
