@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankBattle.model.gameObject.api.component.Health;
+import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 
 public class GameObjectTest {
     
@@ -16,18 +19,18 @@ public class GameObjectTest {
 
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
-	this.factory = new FactoryGameObject();
-	tank = this.factory.standardTank(new P2d(10,10));
-	bullet = this.factory.simpleBullet(tank);
-	obstacle = this.factory.simpleWall(new P2d(10, 20));
+	this.factory = new FactoryGameObjectImpl();
+	tank = this.factory.createSimpleTank(new P2d(10,10));
+	bullet = this.factory.createSimpleBullet(tank);
+	obstacle = this.factory.createSimpleWall(new P2d(10, 20));
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testIsAlive() {
-		tank.resolveCollision(bullet);
-		assertTrue(tank.isAlive());
-		tank.resolveCollision(bullet);
-		assertFalse(tank.isAlive());
+		tank.getComponent(Collidable.class).get().resolveCollision(bullet);
+		assertTrue(tank.getComponent(Health.class).get().isAlive());
+		tank.getComponent(Collidable.class).get().resolveCollision(bullet);
+		assertFalse(tank.getComponent(Health.class).get().isAlive());
 	}
 
 	@org.junit.jupiter.api.Test
