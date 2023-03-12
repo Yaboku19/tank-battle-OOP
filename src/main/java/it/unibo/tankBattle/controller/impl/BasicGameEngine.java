@@ -16,7 +16,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
-        model = new GameStateImpl(/*this*/);
+        model = new GameStateImpl(this);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void startGame() {
         System.out.println("game started");
-        model = new GameStateImpl(/*this*/);
+        model = new GameStateImpl(this);
         //initGame();
         /*
          * new instance of model

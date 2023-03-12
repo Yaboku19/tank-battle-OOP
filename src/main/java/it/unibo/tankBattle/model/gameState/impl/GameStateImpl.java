@@ -15,8 +15,9 @@ public class GameStateImpl implements GameState {
     private World world = null;
     private WorldEventListener listener = null;
 
-    public GameStateImpl() {
+    public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
+        this.listener = listener;
     }
 
     @Override
@@ -57,10 +58,5 @@ public class GameStateImpl implements GameState {
     public Stream<GameObject> getWalls() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getWalls'");
-    }
-
-    @Override
-    public void addGameStateListener(final WorldEventListener listener) {
-        this.listener = listener;
-    }   
+    } 
 }

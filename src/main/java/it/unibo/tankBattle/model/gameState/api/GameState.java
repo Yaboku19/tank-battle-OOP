@@ -21,6 +21,4 @@ public interface GameState {
     public Stream<GameObject> getBullets();
 
     public Stream<GameObject> getWalls();
-
-    public void addGameStateListener(WorldEventListener listener);
 }
