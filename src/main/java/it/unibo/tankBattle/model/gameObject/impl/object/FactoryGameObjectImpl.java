@@ -12,6 +12,7 @@ import it.unibo.tankBattle.model.gameObject.impl.component.SimpleMovable;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameObject.impl.component.TankHealth;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public class FactoryGameObjectImpl implements FactoryGameObject {
 
@@ -23,9 +24,9 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     private final int SIMPLE_WALL_DIM = 10;
 
     @Override
-    public GameObject createSimpleTank(final P2d pos) {
+    public GameObject createSimpleTank(final P2d pos, final Player player) {
         return new BasicGameObject(new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM))
-                .addComponent(new Tank())
+                .addComponent(new Tank(player))
                 .addComponent(new TankHealth(100))
                 .addComponent(new CollidableTank())
                 .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED));
