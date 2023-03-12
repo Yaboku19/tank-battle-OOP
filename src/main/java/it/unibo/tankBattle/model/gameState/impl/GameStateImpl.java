@@ -31,18 +31,18 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void update(Double time) {
+    public void update(final Double time) {
         world.getEntities().forEach(g -> g.update(time));
     }
 
     @Override
-    public void shot(int player) {
+    public void shot(Player player) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'shot'");
     }
 
     @Override
-    public void setDirection(Directions direction, int player) {
+    public void setDirection(Directions direction, Player player) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
     }
