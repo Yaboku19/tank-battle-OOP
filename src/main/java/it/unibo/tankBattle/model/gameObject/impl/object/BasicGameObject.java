@@ -8,6 +8,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
+import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.AbstractComponent;
 
@@ -55,10 +56,16 @@ public class BasicGameObject implements GameObject{
     
     @Override
     public void setPosition(P2d pos) {
-        this.transform = new Transform(pos,transform.getDirection(), transform.getLength(), transform.getLength());    }
+        this.transform = new Transform(pos,transform.getDirection(), transform.getLength(), transform.getLength());
+    }
 
     @Override
     public void setDirection(Directions dir) {
-        this.transform = new Transform(transform.getPosition(),dir, transform.getLength(), transform.getLength());
+        if(!dir.equals(Directions.NONE)) {
+            this.transform = new Transform(transform.getPosition(),dir, transform.getLength(), transform.getLength());
+        }
+        if(this.getComponent(Movable.class).isPresent()) {
+            this.getComponent(Movable.class).get().setMovingDirection(dir);
+        }
     }
 }

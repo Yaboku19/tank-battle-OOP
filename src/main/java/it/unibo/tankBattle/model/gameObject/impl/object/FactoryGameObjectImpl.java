@@ -8,6 +8,7 @@ import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
 import it.unibo.tankBattle.model.gameObject.impl.component.CollidableTank;
 import it.unibo.tankBattle.model.gameObject.impl.component.SimpleDamageDealer;
+import it.unibo.tankBattle.model.gameObject.impl.component.SimpleMovable;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameObject.impl.component.TankHealth;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
@@ -15,16 +16,19 @@ import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
 public class FactoryGameObjectImpl implements FactoryGameObject {
 
     private final int SIMPLE_TANK_DIM = 10;
+    private final int SIMPLE_TANK_SPEED = 1;
     private final int SIMPLE_BULLET_DIM = 1;
-    private final int SIMPLE_WALL_DIM = 10;
     private final int SIMPLE_BULLET_DAMAGE = 50;
+    private final int SIMPLE_BULLET_SPEED = 2;
+    private final int SIMPLE_WALL_DIM = 10;
 
     @Override
     public GameObject createSimpleTank(P2d pos) {
         return new BasicGameObject(new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM))
                 .addComponent(new Tank())
                 .addComponent(new TankHealth(100))
-                .addComponent(new CollidableTank());
+                .addComponent(new CollidableTank())
+                .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED));
     }
 
     @Override
@@ -35,7 +39,8 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
                         + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()),
                         tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM))
                 .addComponent(new Bullet())
-                .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE));
+                .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE))
+                .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED));
     }
 
     @Override
