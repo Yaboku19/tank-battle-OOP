@@ -13,7 +13,7 @@ import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 public class GameStateImpl implements GameState {
     private final FactoryWorld factoryWorld;
     private World world = null;
-    private WorldEventListener listener = null;
+    private final WorldEventListener listener;
 
     public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
