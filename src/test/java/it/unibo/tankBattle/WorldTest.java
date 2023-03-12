@@ -13,10 +13,10 @@ import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.World;
-import it.unibo.tankBattle.model.world.impl.FactoryWorld;
+import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 public class WorldTest {
-	private FactoryWorld factoryWorld;
+	private FactoryWorldImpl factoryWorld;
     private World world;
     private GameState gameState;
     private int size;
@@ -25,7 +25,7 @@ public class WorldTest {
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         gameState = new GameStateImpl(new BasicGameEngine());
-		factoryWorld = new FactoryWorld(gameState);
+		factoryWorld = new FactoryWorldImpl(gameState);
         world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
         factoryGameObject = new FactoryGameObject();
         size = factoryGameObject.simpleWall(new P2d(0, 0)).getLength();

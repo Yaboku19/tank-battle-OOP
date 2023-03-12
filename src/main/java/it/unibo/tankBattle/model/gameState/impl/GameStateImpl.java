@@ -9,18 +9,18 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.model.world.api.World;
-import it.unibo.tankBattle.model.world.impl.FactoryWorld;
+import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 public class GameStateImpl implements GameState {
 
     private final World world;
-    private final FactoryWorld factory;
+    private final FactoryWorldImpl factory;
     private final Player playerOne;
     private final Player playerTwo;
     private final GameEngine controller;
 
     public GameStateImpl(final GameEngine controller) {
-        factory = new FactoryWorld(this);
+        factory = new FactoryWorldImpl(this);
         playerOne = new PlayerImpl();
         playerTwo = new PlayerImpl();
         this.world = factory.simpleWorld(playerOne, playerTwo);
