@@ -24,8 +24,8 @@ public class FactoryWorldImpl implements FactoryWorld{
     @Override
     public World simpleWorld(final Player firstPlayer, final Player secondPlayer) {
         Set<GameObject> entities = getBorder();
-        entities.add(factoryGO.createSimpleTank(position(1, 1)));
-        entities.add(factoryGO.createSimpleTank(position(COLUMN - 1, ROW - 1)));
+        entities.add(factoryGO.createSimpleTank(position(1, 1), firstPlayer));
+        entities.add(factoryGO.createSimpleTank(position(COLUMN - 1, ROW - 1), secondPlayer));
         return new WorldImpl(entities.stream());
     }
 
