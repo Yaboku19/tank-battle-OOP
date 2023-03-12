@@ -9,20 +9,20 @@ import it.unibo.tankBattle.model.gameObject.api.component.Health;
 import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankBattle.model.gameState.api.Player;
 
 public class GameObjectTest {
     
     private FactoryGameObject factory;
-	GameObject tank;
-	GameObject bullet;
-	GameObject obstacle;
+	private GameObject tank;
+	private GameObject bullet;
+	private Player player1;
 
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
 	this.factory = new FactoryGameObjectImpl();
-	tank = this.factory.createSimpleTank(new P2d(10,10));
+	tank = this.factory.createSimpleTank(new P2d(10,10), player1);
 	bullet = this.factory.createSimpleBullet(tank);
-	obstacle = this.factory.createSimpleWall(new P2d(10, 20));
 	}
 
 	@org.junit.jupiter.api.Test
@@ -35,7 +35,7 @@ public class GameObjectTest {
 
 	@org.junit.jupiter.api.Test
 	public void testCollision() {
-		var tank2 = this.factory.createSimpleTank(new P2d(20,12));
+		var tank2 = this.factory.createSimpleTank(new P2d(20,12), player1);
 		var obstacle1 = this.factory.createSimpleWall(new P2d(15, 20));
 		tank.getComponent(Collidable.class).get().resolveCollision(tank2);
 		assertEquals(new P2d(9,10), tank.getTransform().getPosition());
