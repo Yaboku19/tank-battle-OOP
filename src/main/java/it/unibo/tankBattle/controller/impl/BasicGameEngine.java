@@ -33,7 +33,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        System.out.println("game started");
         model = new GameStateImpl(this);
         //initGame();
         /*
