@@ -12,6 +12,4 @@ public interface GameEngine {
     //public Map<Player, InputController> getControllers();
 
     //public void notifyCommand(Player player, Command command);
-
-    public void endgame();
 }

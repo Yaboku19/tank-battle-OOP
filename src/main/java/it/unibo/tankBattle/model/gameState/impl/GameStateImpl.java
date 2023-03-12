@@ -3,6 +3,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
@@ -12,7 +13,7 @@ import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 public class GameStateImpl implements GameState {
     private final FactoryWorld factoryWorld;
     private World world = null;
-    //private WorldEventListener listener = null;
+    private WorldEventListener listener = null;
 
     public GameStateImpl() {
         factoryWorld = new FactoryWorldImpl();
@@ -59,7 +60,7 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void addGameStateListener(/*final WorldEventListener listener*/) {
-        //this.listener = listener;
+    public void addGameStateListener(final WorldEventListener listener) {
+        this.listener = listener;
     }   
 }
