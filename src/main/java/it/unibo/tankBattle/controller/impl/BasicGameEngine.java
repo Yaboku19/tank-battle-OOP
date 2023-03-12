@@ -16,7 +16,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
-        model = new GameStateImpl(this);
     }
 
     @Override
