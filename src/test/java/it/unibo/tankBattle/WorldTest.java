@@ -2,10 +2,6 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
-import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
 import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
@@ -29,16 +25,11 @@ public class WorldTest {
         factoryGameObject = new FactoryGameObjectImpl();
     }
 
-    /*@org.junit.jupiter.api.Test            
-	public void getterTest() {        
-        var entities = world.getBullets();
-    
-        entities.addAll(world.getWalls());
-        entities.add(world.getTank(gameState.getFirstPlayer()));
-        entities.add(world.getTank(gameState.getSecondPlayer()));
-
-		assertEquals(entities.stream().map(g -> g.getPosition()).collect(Collectors.toSet()),
-			world.getEntities().stream().map(g -> g.getPosition()).collect(Collectors.toSet()));
+    @org.junit.jupiter.api.Test            
+	public void getTest() {        
+        var entities = world.getEntities();
+        assertEquals(entities.toList().size(),
+            factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer()).getEntities().toList().size());
 	}
 
     /*@org.junit.jupiter.api.Test

@@ -146,7 +146,7 @@ public class ViewImpl extends View implements KeyListener{
     public void keyPressed(KeyEvent e) {
         System.out.println("keypressed");
 
-        controller.getControllers().forEach((p,k) -> {
+        /*controller.getControllers().forEach((p,k) -> {
             if(k.getKeyCodes().contains(e.getKeyCode())){
                 switch(e.getKeyCode()){
                     case VK_UP, VK_W: 
@@ -166,7 +166,7 @@ public class ViewImpl extends View implements KeyListener{
                         break;
                 }
             }
-        });
+        });*/
 
 /*
         if(e.getKeyCode() == KeyEvent.VK_W){
