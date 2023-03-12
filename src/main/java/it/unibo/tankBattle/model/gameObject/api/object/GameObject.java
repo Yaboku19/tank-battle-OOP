@@ -14,7 +14,7 @@ public interface GameObject {
 
     public Set<Component> getComponents();
 
-    public <T extends Component> Optional<T> getComponent(Class<T> component);
+    public <T extends Component> Optional<T> getComponent(final Class<T> component);
 
     public GameObject addComponent(final Component component);
 
@@ -22,7 +22,7 @@ public interface GameObject {
 
     //public void setTransform(Transform transform);
     
-    public void setPosition(P2d pos);
+    public void setPosition(final P2d pos);
 
-    public void setDirection(Directions pos);
+    public void setDirection(final Directions pos);
 }

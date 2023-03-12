@@ -5,11 +5,11 @@ import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 
 public class SimpleMovable extends AbstractComponent implements Movable {
 
-    private int speed;
+    private final int speed;
     private Directions movingDirection;
     
 
-    public SimpleMovable(int speed) {
+    public SimpleMovable(final int speed) {
         this.speed = speed;
         this.movingDirection = Directions.UP;
     }
@@ -31,7 +31,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     }
 
     @Override
-    public void setMovingDirection(Directions dir) {
+    public void setMovingDirection(final Directions dir) {
         this.movingDirection = dir;
     }
     

@@ -6,7 +6,7 @@ public class SimpleDamageDealer extends AbstractComponent implements DamageDeale
 
     private final int damage;
 
-    public SimpleDamageDealer(int damage) {
+    public SimpleDamageDealer(final int damage) {
         this.damage = damage;
     }
 

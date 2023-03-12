@@ -4,6 +4,6 @@ import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public interface Collidable extends Component {
     
-    public void resolveCollision(GameObject collidingObject);
+    public void resolveCollision(final GameObject collidingObject);
 
 }

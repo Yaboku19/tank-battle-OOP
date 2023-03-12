@@ -16,7 +16,7 @@ public class CollidableTank extends AbstractComponent implements Collidable {
     }
 
     @Override
-    public void resolveCollision(GameObject collidingObject) {
+    public void resolveCollision(final GameObject collidingObject) {
         knockBack(getKnockBackDirection(collidingObject.getTransform().getPosition()));
         reduceLp(collidingObject);
     }
@@ -33,7 +33,7 @@ public class CollidableTank extends AbstractComponent implements Collidable {
                 : Directions.DOWN;
     }
 
-    private void knockBack(Directions knockBackDir) {
+    private void knockBack(final Directions knockBackDir) {
         if(this.getGameObject().getComponent(Movable.class).isPresent()) {
             int speed = this.getGameObject().getComponent(Movable.class).get().getSpeed();
             P2d actualPos = this.getGameObject().getTransform().getPosition();
@@ -42,7 +42,7 @@ public class CollidableTank extends AbstractComponent implements Collidable {
         }
     }
 
-    private void reduceLp(GameObject collidingObject) {
+    private void reduceLp(final GameObject collidingObject) {
         if(this.getGameObject().getComponent(TankHealth.class).isPresent() &&
                     collidingObject.getComponent(DamageDealer.class).isPresent()) {
             int damage = collidingObject.getComponent(DamageDealer.class).get().getDamage();

@@ -14,12 +14,18 @@ import it.unibo.tankBattle.model.gameObject.impl.component.AbstractComponent;
 
 public class BasicGameObject implements GameObject{
 
-    private Transform transform;
+    private P2d position;
+    private Directions direction;
+    private final double length;
+    private final double width;
     private Set<Component> components = new HashSet<>();
 
 
-    public BasicGameObject(Transform transform) {
-        this.transform = transform;
+    public BasicGameObject(final Transform transform) {
+        this.position = transform.getPosition();
+        this.direction = transform.getDirection();
+        this.length = transform.getLength();
+        this.width = transform.getWidth();
     }
 
     @Override
@@ -34,7 +40,7 @@ public class BasicGameObject implements GameObject{
     }
 
     @Override
-    public <T extends Component> Optional<T> getComponent(Class<T> component) {
+    public <T extends Component> Optional<T> getComponent(final Class<T> component) {
         return this.components.stream()
                 .filter(comp -> component.isInstance(comp))
                 .map(comp -> component.cast(comp))
@@ -42,7 +48,7 @@ public class BasicGameObject implements GameObject{
     }
 
     @Override
-    public GameObject addComponent(Component component) {
+    public GameObject addComponent(final Component component) {
         this.components.add(component);
         if(component instanceof AbstractComponent)
             ((AbstractComponent) component).attachGameObject(this);
@@ -51,18 +57,18 @@ public class BasicGameObject implements GameObject{
 
     @Override
     public Transform getTransform() {
-        return this.transform;
+        return new Transform(position, direction, length, width);
     }
     
     @Override
-    public void setPosition(P2d pos) {
-        this.transform = new Transform(pos,transform.getDirection(), transform.getLength(), transform.getLength());
+    public void setPosition(final P2d pos) {
+        this.position = pos;
     }
 
     @Override
-    public void setDirection(Directions dir) {
+    public void setDirection(final Directions dir) {
         if(!dir.equals(Directions.NONE)) {
-            this.transform = new Transform(transform.getPosition(),dir, transform.getLength(), transform.getLength());
+            this.direction = dir;
         }
         if(this.getComponent(Movable.class).isPresent()) {
             this.getComponent(Movable.class).get().setMovingDirection(dir);

@@ -23,7 +23,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     private final int SIMPLE_WALL_DIM = 10;
 
     @Override
-    public GameObject createSimpleTank(P2d pos) {
+    public GameObject createSimpleTank(final P2d pos) {
         return new BasicGameObject(new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM))
                 .addComponent(new Tank())
                 .addComponent(new TankHealth(100))
@@ -32,7 +32,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     }
 
     @Override
-    public GameObject createSimpleBullet(GameObject tank) {
+    public GameObject createSimpleBullet(final GameObject tank) {
         return new BasicGameObject(new Transform(new P2d( tank.getTransform().getPosition().getX() 
                         + tank.getTransform().getDirection().getX()*tank.getTransform().getLength(), 
                         tank.getTransform().getPosition().getY() 
@@ -44,7 +44,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     }
 
     @Override
-    public GameObject createSimpleWall(P2d pos) {
+    public GameObject createSimpleWall(final P2d pos) {
         return new BasicGameObject(new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM))
                 .addComponent(new Wall());
     }

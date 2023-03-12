@@ -20,5 +20,5 @@ public interface Movable extends Component {
      * 
      * @param dir the next direction
      */
-    public void setMovingDirection(Directions dir);
+    public void setMovingDirection(final Directions dir);
 }

@@ -4,10 +4,10 @@ import it.unibo.tankBattle.common.P2d;
 
 public interface FactoryGameObject {
     
-    public GameObject createSimpleTank(P2d pos);
+    public GameObject createSimpleTank(final P2d pos);
 
-    public GameObject createSimpleBullet(GameObject tank);
+    public GameObject createSimpleBullet(final GameObject tank);
 
-    public GameObject createSimpleWall(P2d pos);
+    public GameObject createSimpleWall(final P2d pos);
 
 }
