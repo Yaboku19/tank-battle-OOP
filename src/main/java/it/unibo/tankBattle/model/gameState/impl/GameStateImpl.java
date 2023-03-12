@@ -4,11 +4,13 @@ import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameState.api.GameState;
-import it.unibo.tankBattle.model.gameState.api.Player;
-import it.unibo.tankBattle.model.world.api.FactoryWorld;
-import it.unibo.tankBattle.model.world.api.World;
+import it.unibo.tankBattle.model.gameObject.api.object.*;
+import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
+import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
+import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankBattle.model.gameState.api.*;
+import it.unibo.tankBattle.model.world.api.*;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 public class GameStateImpl implements GameState {
@@ -17,10 +19,12 @@ public class GameStateImpl implements GameState {
     private final WorldEventListener listener;
     private Player firstPlayer = null;
     private Player secondPlayer = null;
+    private final FactoryGameObject factoryGameObject;
 
     public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
         this.listener = listener;
+        factoryGameObject = new FactoryGameObjectImpl();
     }
 
     @Override
@@ -37,32 +41,39 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void shot(Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'shot'");
+        world.addGameObject(factoryGameObject
+            .createSimpleBullet(getTankFromPlayer(player)));
     }
 
     @Override
     public void setDirection(Directions direction, Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
+        getTankFromPlayer(player).setDirection(direction);
+    }
+
+    private GameObject getTankFromPlayer(final Player player) {
+        if (!player.equals(firstPlayer) && !player.equals(secondPlayer)) {
+            throw new IllegalStateException();
+        }
+        return getTanks()
+            .filter(t -> t.getComponent(Tank.class).get().getPlayer().equals(player))
+            .findFirst()
+            .get();
     }
 
     @Override
     public Stream<GameObject> getTanks() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTanks'");
+        return world.getEntities().filter(g -> g.getComponent(Tank.class).isPresent());
     }
 
     @Override
     public Stream<GameObject> getBullets() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBullets'");
+        return world.getEntities().filter(g -> g.getComponent(Bullet.class).isPresent());
     }
+    
 
     @Override
     public Stream<GameObject> getWalls() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWalls'");
+        return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());
     }
 
     @Override
