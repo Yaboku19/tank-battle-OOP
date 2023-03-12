@@ -25,9 +25,9 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void createWorld() {
-        world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
         firstPlayer = new PlayerImpl();
         secondPlayer = new PlayerImpl();
+        world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
     }
 
     @Override
