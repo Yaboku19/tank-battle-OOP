@@ -10,13 +10,17 @@ public interface GameState {
 
     public void update(Double time);
 
-    public void shot(int player);
+    public void shot(Player player);
 
-    public void setDirection(Directions direction, int player);
+    public void setDirection(Directions direction, Player player);
 
     public Stream<GameObject> getTanks();
 
     public Stream<GameObject> getBullets();
 
     public Stream<GameObject> getWalls();
+
+    public Player getFirstPlayer();
+
+    public Player getSecondPlayer();
 }

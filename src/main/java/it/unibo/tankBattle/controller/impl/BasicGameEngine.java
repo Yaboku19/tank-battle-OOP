@@ -82,7 +82,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }*/
 
     @Override
-    public void endgame() {
+    public void endGame() {
         this.isOver = true;
     }
     

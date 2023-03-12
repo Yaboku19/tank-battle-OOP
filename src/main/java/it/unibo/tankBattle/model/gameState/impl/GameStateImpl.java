@@ -6,6 +6,7 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
+import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
@@ -13,7 +14,9 @@ import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 public class GameStateImpl implements GameState {
     private final FactoryWorld factoryWorld;
     private World world = null;
-    private WorldEventListener listener = null;
+    private final WorldEventListener listener;
+    private Player firstPlayer = null;
+    private Player secondPlayer = null;
 
     public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
@@ -22,22 +25,24 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void createWorld() {
-        world = factoryWorld.simpleWorld();
+        firstPlayer = new PlayerImpl();
+        secondPlayer = new PlayerImpl();
+        world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
     }
 
     @Override
-    public void update(Double time) {
+    public void update(final Double time) {
         world.getEntities().forEach(g -> g.update(time));
     }
 
     @Override
-    public void shot(int player) {
+    public void shot(Player player) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'shot'");
     }
 
     @Override
-    public void setDirection(Directions direction, int player) {
+    public void setDirection(Directions direction, Player player) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
     }
@@ -58,5 +63,15 @@ public class GameStateImpl implements GameState {
     public Stream<GameObject> getWalls() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getWalls'");
+    }
+
+    @Override
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return secondPlayer;
     } 
 }
