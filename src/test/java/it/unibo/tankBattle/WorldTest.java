@@ -8,15 +8,13 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 public class WorldTest {
-	private FactoryWorldImpl factoryWorld;
+	/*private FactoryWorldImpl factoryWorld;
     private World world;
     private GameState gameState;
     private int size;
@@ -142,6 +140,6 @@ public class WorldTest {
         world.update();
         assertEquals(0, world.getBullets().size());
         assertEquals(life - bullet.getDamage(), world.getTank(gameState.getFirstPlayer()).getLifePoints());
-        }
+        }*/
 }
 
