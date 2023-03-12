@@ -6,15 +6,16 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
+import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.World;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 public class WorldTest {
-	/*private FactoryWorldImpl factoryWorld;
+	private FactoryWorldImpl factoryWorld;
     private World world;
     private GameState gameState;
     private int size;
@@ -23,13 +24,12 @@ public class WorldTest {
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         gameState = new GameStateImpl(new BasicGameEngine());
-		factoryWorld = new FactoryWorldImpl(gameState);
+		factoryWorld = new FactoryWorldImpl();
         world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
-        factoryGameObject = new FactoryGameObject();
-        size = factoryGameObject.simpleWall(new P2d(0, 0)).getLength();
+        factoryGameObject = new FactoryGameObjectImpl();
     }
 
-    @org.junit.jupiter.api.Test            
+    /*@org.junit.jupiter.api.Test            
 	public void getterTest() {        
         var entities = world.getBullets();
     
@@ -41,7 +41,7 @@ public class WorldTest {
 			world.getEntities().stream().map(g -> g.getPosition()).collect(Collectors.toSet()));
 	}
 
-    @org.junit.jupiter.api.Test
+    /*@org.junit.jupiter.api.Test
     public void shotTest() {
 
         assertEquals(new HashSet<GameObject>(), world.getBullets());
