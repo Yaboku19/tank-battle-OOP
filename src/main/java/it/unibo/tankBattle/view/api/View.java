@@ -1,9 +1,5 @@
 package it.unibo.tankBattle.view.api;
 
-import javafx.application.Application;
-
-import java.awt.Dimension;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.InputController;
 
@@ -21,14 +17,14 @@ public interface View {//extends JFrame{
 
     abstract public void chooseMenu();
 
-    abstract public void bugSolve();*/
+    abstract public void bugSolve();
 
     public void startGame();
-/*
+*/
     public InputController getInputControllerPlayer1();
 
     public InputController getInputControllerPlayer2();
-
+/*
     public Dimension getSize();
   */  
 }

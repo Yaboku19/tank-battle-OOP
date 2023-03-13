@@ -17,7 +17,7 @@ public class GameController implements EventHandler<KeyEvent>{
 
     @FXML
     void initialize() {
-
+        
     }
 
     @Override
