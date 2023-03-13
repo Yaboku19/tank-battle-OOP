@@ -15,10 +15,10 @@ public class JavaFXAppWithFXML extends Application {
 
     @Override
     public final void start(final Stage primaryStage) throws Exception {
-        final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/SimpleGui.fxml"));
+        final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/mainScene.fxml"));
         final Scene scene = new Scene(root, 1000, 800);
-        final Label lbl = (Label) scene.lookup("#myLabel");
-        lbl.setText(".........................");
+        /*final Label lbl = (Label) scene.lookup("#myLabel");
+        lbl.setText(".........................");*/
         primaryStage.setTitle("App FXML");
         primaryStage.setScene(scene);
         primaryStage.show();

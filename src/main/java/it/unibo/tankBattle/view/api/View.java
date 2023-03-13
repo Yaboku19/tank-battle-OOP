@@ -1,11 +1,13 @@
 package it.unibo.tankBattle.view.api;
 
-import javax.swing.JFrame;
+import javafx.application.Application;
+
+import java.awt.Dimension;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.InputController;
 
-public abstract class View extends JFrame{
+public abstract class View extends Application {//extends JFrame{
     
     abstract public void drawTank(P2d position);
 
@@ -26,5 +28,7 @@ public abstract class View extends JFrame{
     abstract public InputController getInputControllerPlayer1();
 
     abstract public InputController getInputControllerPlayer2();
+
+    abstract public Dimension getSize();
     
 }

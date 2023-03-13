@@ -27,8 +27,8 @@ public class BasicGameEngine implements GameEngine {
     @Override
     public void play() {
         initGame();
-        view.setVisible(true);
-        view.bugSolve();
+        /*view.setVisible(true);
+        view.bugSolve();*/
     }
 
     private void processInput() {

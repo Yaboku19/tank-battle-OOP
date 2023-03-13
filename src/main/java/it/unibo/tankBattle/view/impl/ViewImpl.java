@@ -16,26 +16,32 @@ import it.unibo.tankBattle.common.input.impl.Shoot;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.View;
 import static java.awt.event.KeyEvent.*;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class ViewImpl extends View implements KeyListener{
-    private final FactoryGameScenes factory;
+
+public class ViewImpl extends View implements EventHandler{
+    /*private final FactoryGameScenes factory;
     private final JPanel mainPanel;
     private final JPanel menuPanel;
     private final JPanel tutorialPanel;
     private final JPanel gameChoosePanel;
     private JPanel gameScenePanel = new JPanel();
-    private JPanel courrentPanel = new JPanel();
+    private JPanel courrentPanel = new JPanel();*/
     private InputController playerController1;
     private InputController playerController2;
     //private final Image imgBackGround = Toolkit.getDefaultToolkit().getImage("C:\\Users\\marte\\OneDrive\\Desktop\\OOP-Project\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\download.jpg");
     //private final Image tankImage = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tomas\\Documents\\Università\\2anno\\1\\OOP\\Progetto\\tank-battle-OOP\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\Resources\\tank1.gif");
-    Icon icon = new ImageIcon("C:\\Users\\Tomas\\Documents\\Università\\2anno\\1\\OOP\\Progetto\\tank-battle-OOP\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\Resources\\tank1.gif");
-    JLabel label = new JLabel(icon);
+    //Icon icon = new ImageIcon("C:\\Users\\Tomas\\Documents\\Università\\2anno\\1\\OOP\\Progetto\\tank-battle-OOP\\src\\main\\java\\it\\unibo\\tankBattle\\view\\impl\\Resources\\tank1.gif");
+    //JLabel label = new JLabel(icon);
     
 
     private final GameEngine controller;
@@ -43,20 +49,21 @@ public class ViewImpl extends View implements KeyListener{
 
     public ViewImpl(final GameEngine controller){
         this.controller = controller;
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        this.factory = new FactoryGameScenes(this);
+        //this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        //this.factory = new FactoryGameScenes(this);
 
         this.playerController1 = new KeyboardInputController(VK_UP,VK_DOWN,VK_LEFT,VK_RIGHT, VK_SPACE);
         this.playerController2 = new KeyboardInputController(VK_W,VK_S,VK_A,VK_D, VK_CONTROL);
+    }
 
 
-        menuPanel = factory.menu();
+       /*menuPanel = factory.menu();
         tutorialPanel = factory.tutorial();
         gameChoosePanel = factory.gameChoose();
         mainPanel = new JPanel();
         mainPanel.setPreferredSize(this.getSize());
         mainPanel.setBackground(Color.BLACK);
-        /***************************************************/ 
+         
         this.setContentPane(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -65,15 +72,14 @@ public class ViewImpl extends View implements KeyListener{
                 /*g.drawImage(imgBackGround, 0, 0, getWidth(), getHeight(), null);*/
                 /*g.drawRect(position.getX(), position.getY(), 50, 50);
                 g.fillRect(position.getX(), position.getY(), 50, 50);
-                g.setColor(Color.BLACK);*/
+                g.setColor(Color.BLACK);
             }
          });
-         /***************************************************/
         mainPanel.add(menuPanel);
         mainPanel.add(tutorialPanel);
         mainPanel.add(gameChoosePanel);
         courrentPanel = menuPanel;
-        //mainPanel.setVisible(false);/*********************/
+        //mainPanel.setVisible(false);
         menuPanel.setVisible(false);
         tutorialPanel.setVisible(false);
         gameScenePanel.setVisible(false);
@@ -85,7 +91,7 @@ public class ViewImpl extends View implements KeyListener{
         addKeyListener(this);
         setFocusable(true);
         
-    }
+    }*/
 
     @Override
     public void drawMap() {
@@ -107,34 +113,34 @@ public class ViewImpl extends View implements KeyListener{
 
     @Override
     public void tutorial() {
-        courrentPanel.setVisible(false);
+        /*courrentPanel.setVisible(false);
         courrentPanel = tutorialPanel;
         courrentPanel.setVisible(true);
-        this.repaint();
+        this.repaint();*/
     }
 
     @Override
     public void menu() {
-        courrentPanel.setVisible(false);
+        /*courrentPanel.setVisible(false);
         courrentPanel = menuPanel;
         courrentPanel.setVisible(true);
-        this.repaint();
+        this.repaint();*/
     }
 
     public void chooseMenu() {
-        courrentPanel.setVisible(false);
+        /*courrentPanel.setVisible(false);
         courrentPanel = gameChoosePanel;
         this.setVisible(true);
-        //label.setPreferredSize(new Dimension(icon.getIconHeight(), icon.getIconWidth()));
-        this.add(label);
+        label.setPreferredSize(new Dimension(icon.getIconHeight(), icon.getIconWidth()));
+        his.add(label);
         mainPanel.setVisible(false);
-        //courrentPanel.setVisible(true);
-        this.repaint();
+        courrentPanel.setVisible(true);
+        this.repaint();*/
     }
 
     public void bugSolve() {
-        courrentPanel.setVisible(true);
-        repaint();
+        /*courrentPanel.setVisible(true);
+        repaint();*/
     }
 
     public void startGame(){
@@ -142,7 +148,7 @@ public class ViewImpl extends View implements KeyListener{
         /*gameScenePanel.add(gameScenePanel);*/
     }
 
-    @Override
+    /*@Override
     public void keyPressed(KeyEvent e) {
         System.out.println("keypressed");
 
@@ -192,7 +198,7 @@ public class ViewImpl extends View implements KeyListener{
             position = new P2d(position.getX(), position.getY()+1);
             this.repaint();
             System.out.println("move down");
-        }*/
+        }
     }
 
     @Override
@@ -204,7 +210,7 @@ public class ViewImpl extends View implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
-    }
+    }*/
 
     @Override
     public InputController getInputControllerPlayer1() {
@@ -214,6 +220,30 @@ public class ViewImpl extends View implements KeyListener{
     @Override
     public InputController getInputControllerPlayer2() {
         return playerController2;
+    }
+
+    @Override
+    public void handle(Event event) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'handle'");
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("src\\main\\resources\\layouts\\primaSchermata.fxml"));
+    
+        Scene scene = new Scene(root, 300, 275);
+    
+        stage.setTitle("FXML Welcome");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public Dimension getSize() {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'getSize'");
+        return new Dimension();
     }
 
 }
