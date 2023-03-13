@@ -44,7 +44,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         /*
          * new instance of model
          */
-        loop();
+        //loop();
     }
 
     private void loop() {
