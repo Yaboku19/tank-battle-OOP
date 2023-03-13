@@ -18,8 +18,6 @@ public class GameStateImpl implements GameState {
     private final FactoryWorld factoryWorld;
     private World world = null;
     private final WorldEventListener listener;
-    private Player firstPlayer = null;
-    private Player secondPlayer = null;
     private final FactoryGameObject factoryGameObject;
 
     public GameStateImpl(final WorldEventListener listener) {
@@ -50,9 +48,6 @@ public class GameStateImpl implements GameState {
     }
 
     private GameObject getTankFromPlayer(final Player player) {
-        if (!player.equals(firstPlayer) && !player.equals(secondPlayer)) {
-            throw new IllegalStateException();
-        }
         return getTanks()
             .filter(t -> t.getComponent(Tank.class).get().getPlayer().equals(player))
             .findFirst()
@@ -74,14 +69,4 @@ public class GameStateImpl implements GameState {
     public Stream<GameObject> getWalls() {
         return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());
     }
-
-    @Override
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    @Override
-    public Player getSecondPlayer() {
-        return secondPlayer;
-    } 
 }

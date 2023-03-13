@@ -9,13 +9,14 @@ import it.unibo.tankBattle.view.impl.ViewImpl;
 
 public class BasicGameEngine implements GameEngine, WorldEventListener {
     private final View view;
-    private GameState model = null;
+    private final GameState model;
     //private final Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
     //private HashMap<Player,InputController> controllers;
     private Boolean isOver = false;
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
+        model = new GameStateImpl(this);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        model = new GameStateImpl(this);
+        
         //initGame();
         /*
          * new instance of model
