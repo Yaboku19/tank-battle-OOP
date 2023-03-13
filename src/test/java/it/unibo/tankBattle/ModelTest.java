@@ -2,7 +2,11 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Map;
+
 import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.controller.impl.HumanPlayer;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 
@@ -18,13 +22,22 @@ public class ModelTest {
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         model = new GameStateImpl(null);
+        firstPlayer = new HumanPlayer();
+        secondPlayer = new HumanPlayer();
+        model.createWorld(firstPlayer, secondPlayer);
     }
 
-    /*@org.junit.jupiter.api.Test            
+    @org.junit.jupiter.api.Test            
 	public void getTest() {        
-        var entities = world.getEntities();
-        assertEquals(entities.toList().size(),
-            factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer()).getEntities().toList().size());
+        System.out.println(model.getWalls().sorted((g,h) -> {
+            var pos1 = g.getTransform().getPosition();
+            var pos2 = h.getTransform().getPosition();
+            if (pos1.getX() == pos2.getX()) {
+                return (int)(pos1.getY() - pos2.getY());
+            }
+            return (int)(pos1.getX() - pos2.getX());
+        }).map(g -> g.getTransform().getPosition()).toList());
+        System.out.println(model.getWalls().count());
 	}
 
     /*@org.junit.jupiter.api.Test
