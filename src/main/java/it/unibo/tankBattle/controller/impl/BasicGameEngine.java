@@ -89,5 +89,15 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void endGame() {
         this.isOver = true;
     }
+
+    @Override
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return secondPlayer;
+    }
     
 }
