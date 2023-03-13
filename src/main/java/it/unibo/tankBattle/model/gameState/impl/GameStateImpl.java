@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
+import it.unibo.tankBattle.model.gameObject.api.component.Health;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
@@ -42,7 +43,11 @@ public class GameStateImpl implements GameState {
     }
 
     private boolean isdead(final GameObject gameObject) {
-        return true;
+        if (gameObject.getComponent(Health.class).isPresent()) {
+            return !gameObject.getComponent(Health.class).get().isAlive();
+        } else {
+            return false;
+        }
     }
 
     private void removeDeadGameObject(final GameObject gameObject) {
