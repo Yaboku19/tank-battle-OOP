@@ -3,6 +3,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
@@ -28,9 +29,7 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void createWorld() {
-        firstPlayer = new PlayerImpl();
-        secondPlayer = new PlayerImpl();
+    public void createWorld(final Player firstPlayer, final Player secondPlayer) {
         world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
     }
 

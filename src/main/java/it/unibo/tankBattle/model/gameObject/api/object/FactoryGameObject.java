@@ -1,7 +1,7 @@
 package it.unibo.tankBattle.model.gameObject.api.object;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.model.gameState.api.Player;
+import it.unibo.tankBattle.controller.api.Player;
 
 public interface FactoryGameObject {
     
