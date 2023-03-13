@@ -24,7 +24,7 @@ public class KeyboardInputController implements InputController{
 
     @Override
     public List<Integer> getKeyCodes() {
-        return List.of(keyCodeMoveUp,keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
+        return List.of(keyCodeMoveUp, keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
     }
 
 
