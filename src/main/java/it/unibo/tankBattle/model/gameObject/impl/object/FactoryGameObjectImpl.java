@@ -3,6 +3,7 @@ package it.unibo.tankBattle.model.gameObject.impl.object;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
@@ -12,7 +13,6 @@ import it.unibo.tankBattle.model.gameObject.impl.component.SimpleMovable;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameObject.impl.component.TankHealth;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
-import it.unibo.tankBattle.model.gameState.api.Player;
 
 public class FactoryGameObjectImpl implements FactoryGameObject {
 

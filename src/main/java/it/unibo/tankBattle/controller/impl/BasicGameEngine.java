@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.controller.impl;
 
 import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
@@ -9,13 +10,16 @@ import it.unibo.tankBattle.view.impl.ViewImpl;
 
 public class BasicGameEngine implements GameEngine, WorldEventListener {
     private final View view;
-    private GameState model = null;
+    private final GameState model;
     //private final Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
     //private HashMap<Player,InputController> controllers;
     private Boolean isOver = false;
+    private Player firstPlayer = null;
+    private Player secondPlayer = null;
 
     public BasicGameEngine() {
         view = new ViewImpl(this);
+        model = new GameStateImpl(this);
     }
 
     @Override
@@ -33,7 +37,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        model = new GameStateImpl(this);
+        firstPlayer = new PlayerImpl();
+        secondPlayer = new PlayerImpl();
+        model.createWorld(firstPlayer, secondPlayer);
         //initGame();
         /*
          * new instance of model
@@ -82,6 +88,16 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void endGame() {
         this.isOver = true;
+    }
+
+    @Override
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return secondPlayer;
     }
     
 }

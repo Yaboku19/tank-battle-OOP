@@ -3,6 +3,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
@@ -17,8 +18,6 @@ public class GameStateImpl implements GameState {
     private final FactoryWorld factoryWorld;
     private World world = null;
     private final WorldEventListener listener;
-    private Player firstPlayer = null;
-    private Player secondPlayer = null;
     private final FactoryGameObject factoryGameObject;
 
     public GameStateImpl(final WorldEventListener listener) {
@@ -28,32 +27,46 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void createWorld() {
-        firstPlayer = new PlayerImpl();
-        secondPlayer = new PlayerImpl();
+    public void createWorld(final Player firstPlayer, final Player secondPlayer) {
         world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
     }
 
     @Override
     public void update(final Double time) {
-        world.getEntities().forEach(g -> g.update(time));
+        world.getEntities().forEach(g -> {
+            g.update(time);
+            if(isdead(g)) {
+                removeDeadGameObject(g);
+            }
+        });
+    }
+
+    private boolean isdead(final GameObject gameObject) {
+        return true;
+    }
+
+    private void removeDeadGameObject(final GameObject gameObject) {
+        if(getBullets().toList().contains(gameObject) || getWalls().toList().contains(gameObject)) {
+            world.removeGameObject(gameObject);
+        } else if (getTanks().toList().contains(gameObject)){
+            listener.endGame();
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
     @Override
-    public void shot(Player player) {
+    public void shot(final Player player) {
         world.addGameObject(factoryGameObject
             .createSimpleBullet(getTankFromPlayer(player)));
     }
 
     @Override
-    public void setDirection(Directions direction, Player player) {
+    public void setDirection(final Directions direction, final Player player) {
         getTankFromPlayer(player).setDirection(direction);
     }
 
     private GameObject getTankFromPlayer(final Player player) {
-        if (!player.equals(firstPlayer) && !player.equals(secondPlayer)) {
-            throw new IllegalStateException();
-        }
         return getTanks()
             .filter(t -> t.getComponent(Tank.class).get().getPlayer().equals(player))
             .findFirst()
@@ -75,14 +88,4 @@ public class GameStateImpl implements GameState {
     public Stream<GameObject> getWalls() {
         return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());
     }
-
-    @Override
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    @Override
-    public Player getSecondPlayer() {
-        return secondPlayer;
-    } 
 }

@@ -1,6 +1,6 @@
 package it.unibo.tankBattle.model.gameObject.impl.component;
 
-import it.unibo.tankBattle.model.gameState.api.Player;
+import it.unibo.tankBattle.controller.api.Player;
 
 public class Tank extends AbstractComponent {
 

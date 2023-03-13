@@ -1,6 +1,6 @@
 package it.unibo.tankBattle.model.world.api;
 
-import it.unibo.tankBattle.model.gameState.api.Player;
+import it.unibo.tankBattle.controller.api.Player;
 
 public interface FactoryWorld {
     

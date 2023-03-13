@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.gameState.api;
+package it.unibo.tankBattle.controller.api;
 
 public interface Player {
     public int getScore();
