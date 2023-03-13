@@ -3,14 +3,14 @@ package it.unibo.tankBattle;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.impl.HumanPlayer;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
@@ -59,58 +59,27 @@ public class ModelTest {
             .toList();
     }
 
-    /*@org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.Test
     public void shotTest() {
-
-        assertEquals(new HashSet<GameObject>(), world.getBullets());
-
-        world.shot(gameState.getFirstPlayer());
-        assertEquals(1, world.getBullets().size());
-
+        assertEquals(0, model.getBullets().count());
+        model.shot(firstPlayer);
+        assertEquals(1, model.getBullets().count());
+        model.shot(secondPlayer);
+        assertEquals(2, model.getBullets().count());
     }
 
     @org.junit.jupiter.api.Test
-    public void UpdateTest() {
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size /2, size + size / 2)));
-
-        world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
-        world.update();
-
-        assertFalse(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size /2, size + size / 2)));
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
-
-        assertTrue(world
-            .getTank(gameState.getSecondPlayer())
-            .getPosition()
-            .equals(new P2d(13 * size + size /2, 8 * size + size / 2)));
-
-        world.setDirection(Directions.NONE, gameState.getFirstPlayer());
-
-        world.update();
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
-
-        assertTrue(world
-            .getTank(gameState.getSecondPlayer())
-            .getPosition()
-            .equals(new P2d(13 * size + size /2, 8 * size + size / 2)));
+    public void ChangeDirectionTest() {
+        var tank = model.getTanks()
+            .filter(g -> g.getComponent(Tank.class).get().getPlayer().equals(firstPlayer))
+            .findFirst()
+            .get();
+        //assertEquals(Directions.NONE, tank.getTransform().getDirection());
+        model.setDirection(Directions.DOWN, firstPlayer);
+        assertEquals(Directions.DOWN, tank.getTransform().getDirection());
     }
 
-    @org.junit.jupiter.api.Test
+   /* @org.junit.jupiter.api.Test
     public void collisionTest() {
         world.setDirection(Directions.LEFT, gameState.getFirstPlayer());
         world.update();
