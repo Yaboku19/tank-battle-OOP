@@ -87,7 +87,6 @@ public class GameStateImpl implements GameState {
     public Stream<GameObject> getBullets() {
         return world.getEntities().filter(g -> g.getComponent(Bullet.class).isPresent());
     }
-    
 
     @Override
     public Stream<GameObject> getWalls() {

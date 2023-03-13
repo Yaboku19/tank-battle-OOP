@@ -2,13 +2,19 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.impl.HumanPlayer;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankBattle.model.world.api.FactoryWorld;
+import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 
 
@@ -18,6 +24,7 @@ public class ModelTest {
     private GameState model;
     private Player firstPlayer;
     private Player secondPlayer;
+    private FactoryWorld factoryWorld;
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
@@ -25,20 +32,32 @@ public class ModelTest {
         firstPlayer = new HumanPlayer();
         secondPlayer = new HumanPlayer();
         model.createWorld(firstPlayer, secondPlayer);
+        factoryWorld = new FactoryWorldImpl();
     }
 
     @org.junit.jupiter.api.Test            
 	public void getTest() {        
-        System.out.println(model.getWalls().sorted((g,h) -> {
-            var pos1 = g.getTransform().getPosition();
-            var pos2 = h.getTransform().getPosition();
-            if (pos1.getX() == pos2.getX()) {
-                return (int)(pos1.getY() - pos2.getY());
-            }
-            return (int)(pos1.getX() - pos2.getX());
-        }).map(g -> g.getTransform().getPosition()).toList());
-        System.out.println(model.getWalls().count());
+        var allEntities = model.getTanks().collect(Collectors.toSet());
+        allEntities.addAll(model.getWalls().collect(Collectors.toSet()));
+        allEntities.addAll(model.getBullets().collect(Collectors.toSet()));
+        var entitiesSorted = sortEntities(allEntities.stream());
+        var worldSortedEntities = sortEntities(factoryWorld.simpleWorld(firstPlayer, secondPlayer)
+                                    .getEntities());
+        assertEquals(worldSortedEntities, entitiesSorted);
 	}
+
+    private List<P2d> sortEntities(Stream<GameObject> entities) {
+        return entities
+            .map(g -> g.getTransform().getPosition())
+            .sorted((a, b) -> {
+                if(a.getX() == b.getX()) {
+                    return (int)(a.getY() - b.getY());
+                } else {
+                    return (int)(a.getX() - b.getX());
+                }
+            })
+            .toList();
+    }
 
     /*@org.junit.jupiter.api.Test
     public void shotTest() {
