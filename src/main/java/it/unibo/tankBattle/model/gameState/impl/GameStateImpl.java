@@ -37,13 +37,13 @@ public class GameStateImpl implements GameState {
     }
 
     @Override
-    public void shot(Player player) {
+    public void shot(final Player player) {
         world.addGameObject(factoryGameObject
             .createSimpleBullet(getTankFromPlayer(player)));
     }
 
     @Override
-    public void setDirection(Directions direction, Player player) {
+    public void setDirection(final Directions direction, final Player player) {
         getTankFromPlayer(player).setDirection(direction);
     }
 
