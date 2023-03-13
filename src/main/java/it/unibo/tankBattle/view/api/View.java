@@ -24,11 +24,11 @@ public interface View {//extends JFrame{
     abstract public void bugSolve();*/
 
     public void startGame();
-
+/*
     public InputController getInputControllerPlayer1();
 
     public InputController getInputControllerPlayer2();
 
     public Dimension getSize();
-    
+  */  
 }

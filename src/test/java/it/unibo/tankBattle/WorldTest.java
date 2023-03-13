@@ -19,10 +19,10 @@ public class WorldTest {
 
     
 	public void initFactory() {
-        gameState = new GameStateImpl(new BasicGameEngine());
+       /*  gameState = new GameStateImpl(new BasicGameEngine());
 		factoryWorld = new FactoryWorldImpl();
-       // world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
-        factoryGameObject = new FactoryGameObjectImpl();
+        world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
+        factoryGameObject = new FactoryGameObjectImpl();*/
     }
 
     @org.junit.jupiter.api.Test            

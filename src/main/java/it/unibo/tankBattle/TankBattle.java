@@ -1,6 +1,5 @@
 package it.unibo.tankBattle;
 
-import it.unibo.tankBattle.view.api.View;
 import it.unibo.tankBattle.view.impl.ViewImpl;
 import javafx.application.Application;
 
