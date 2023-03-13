@@ -5,7 +5,7 @@ import it.unibo.tankBattle.controller.api.Player;
 public class HumanPlayer implements Player {
     private int score;
 
-    HumanPlayer() {
+    public HumanPlayer() {
         this.score = 0;
     }
 

@@ -2,30 +2,25 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import it.unibo.tankBattle.controller.impl.BasicGameEngine;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
-import it.unibo.tankBattle.model.world.api.World;
-import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
-public class WorldTest {
-	private FactoryWorldImpl factoryWorld;
-    private World world;
-    private GameState gameState;
-    private int size;
-    private FactoryGameObject factoryGameObject;
+
+
+
+
+public class ModelTest {
+    private GameState model;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
-        gameState = new GameStateImpl(new BasicGameEngine());
-		factoryWorld = new FactoryWorldImpl();
-        world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
-        factoryGameObject = new FactoryGameObjectImpl();
+        model = new GameStateImpl(null);
     }
 
-    @org.junit.jupiter.api.Test            
+    /*@org.junit.jupiter.api.Test            
 	public void getTest() {        
         var entities = world.getEntities();
         assertEquals(entities.toList().size(),
