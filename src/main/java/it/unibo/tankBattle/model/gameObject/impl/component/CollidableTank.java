@@ -11,8 +11,7 @@ public class CollidableTank extends AbstractComponent implements Collidable {
 
     @Override
     public void update(double time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+
     }
 
     @Override

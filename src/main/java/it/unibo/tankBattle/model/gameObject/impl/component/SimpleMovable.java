@@ -16,8 +16,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
 
     @Override
     public void update(double time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        //toDo
     }
 
     @Override

@@ -14,8 +14,7 @@ public class TankHealth extends AbstractComponent implements Health {
 
     @Override
     public void update(double time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+
     }
 
     @Override
@@ -25,6 +24,10 @@ public class TankHealth extends AbstractComponent implements Health {
 
     public void decreaseLifePoints(int damageReceive) {
         this.lifePoints = this.lifePoints - damageReceive;
+    }
+
+    public int getLifePoints() {
+        return this.lifePoints;
     }
 
     

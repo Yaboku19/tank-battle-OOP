@@ -4,9 +4,10 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
+import it.unibo.tankBattle.model.gameObject.impl.component.BulletHealth;
+import it.unibo.tankBattle.model.gameObject.impl.component.CollidableBullet;
 import it.unibo.tankBattle.model.gameObject.impl.component.CollidableTank;
 import it.unibo.tankBattle.model.gameObject.impl.component.SimpleDamageDealer;
 import it.unibo.tankBattle.model.gameObject.impl.component.SimpleMovable;
@@ -41,7 +42,9 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
                         tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM))
                 .addComponent(new Bullet())
                 .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE))
-                .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED));
+                .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED))
+                .addComponent(new BulletHealth())
+                .addComponent(new CollidableBullet());
     }
 
     @Override
