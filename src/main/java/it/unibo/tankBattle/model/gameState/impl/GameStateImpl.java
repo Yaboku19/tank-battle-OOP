@@ -49,7 +49,7 @@ public class GameStateImpl implements GameState {
         if(getBullets().toList().contains(gameObject) || getWalls().toList().contains(gameObject)) {
             world.removeGameObject(gameObject);
         } else if (getTanks().toList().contains(gameObject)){
-            listener.endGame();
+            listener.endGame(gameObject.getComponent(Tank.class).get().getPlayer());
         } else {
             throw new IllegalStateException();
         }

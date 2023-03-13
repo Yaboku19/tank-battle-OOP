@@ -37,8 +37,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        firstPlayer = new PlayerImpl();
-        secondPlayer = new PlayerImpl();
+        firstPlayer = new HumanPlayer();
+        secondPlayer = new HumanPlayer();
         model.createWorld(firstPlayer, secondPlayer);
         //initGame();
         /*
@@ -86,7 +86,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }*/
 
     @Override
-    public void endGame() {
+    public void endGame(final Player player) {
+        player.incScore();
         this.isOver = true;
     }
 
