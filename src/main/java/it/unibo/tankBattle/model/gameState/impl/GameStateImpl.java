@@ -33,7 +33,26 @@ public class GameStateImpl implements GameState {
 
     @Override
     public void update(final Double time) {
-        world.getEntities().forEach(g -> g.update(time));
+        world.getEntities().forEach(g -> {
+            g.update(time);
+            if(isdead(g)) {
+                removeDeadGameObject(g);
+            }
+        });
+    }
+
+    private boolean isdead(final GameObject gameObject) {
+        return true;
+    }
+
+    private void removeDeadGameObject(final GameObject gameObject) {
+        if(getBullets().toList().contains(gameObject) || getWalls().toList().contains(gameObject)) {
+            world.removeGameObject(gameObject);
+        } else if (getTanks().toList().contains(gameObject)){
+            listener.endGame();
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
     @Override
