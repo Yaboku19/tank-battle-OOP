@@ -9,6 +9,6 @@ import javafx.application.Application;
 public class TankBattle {
 
     public static void main (String[] args) {
-        Application.launch(ViewImpl.class, args);
+        //Application.launch(ViewImpl.class, args);
     }
 }

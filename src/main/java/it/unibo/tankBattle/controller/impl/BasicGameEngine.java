@@ -18,7 +18,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private Player secondPlayer = null;
 
     public BasicGameEngine(ViewImpl view) {
-        //view = new ViewImpl(this);
         this.view = view;
         model = new GameStateImpl(this);
     }
