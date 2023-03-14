@@ -35,14 +35,10 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
     @FXML
     private Button tutorialButton;
 
-    public MainSceneController(View view){
-        this.view = view;
-    }
-
     @FXML
     void play(ActionEvent event) {
         EventHandler<KeyEvent> keyPressListener = e -> {
-            if(inputControllerPlayer1.getKeyCodes().contains(e.getCode().getCode())){
+            /*if(inputControllerPlayer1.getKeyCodes().contains(e.getCode().getCode())){
                 switch(e.getCode().getCode()){
                     //notifyCommand(new Shoot);
                     //notifyCommand(new Movement);
@@ -52,7 +48,7 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
                     //notifyCommand(new Shoot(Player1));
                     //notifyCommand(new Movement);
                 }
-            }
+            }*/
         };
 
         try{

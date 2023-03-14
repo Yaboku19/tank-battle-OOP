@@ -24,7 +24,6 @@ public class TutorialController {
             Scene tutorial = new Scene(fxmlLoader.load(), 600, 400);
             stage.setScene(tutorial);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
