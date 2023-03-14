@@ -31,12 +31,11 @@ public class FactoryWorldImpl implements FactoryWorld{
 
     private Set<GameObject> getBorder() {
         Set<GameObject> border = new HashSet<>();
-        for(int i = 0; i < ROW; i++) {
+        for(int i = 0; i <= ROW; i++) {
             border.add(factoryGO.createSimpleWall(position(0, i)));
             border.add(factoryGO.createSimpleWall(position(COLUMN, i)));
         }
-
-        for(int i = 0; i < ROW; i++) {
+        for(int i = 1; i < COLUMN; i++) {
             border.add(factoryGO.createSimpleWall(position(i, 0)));
             border.add(factoryGO.createSimpleWall(position(i, ROW)));
         }
