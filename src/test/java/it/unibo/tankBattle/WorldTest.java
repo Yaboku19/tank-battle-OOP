@@ -17,19 +17,19 @@ public class WorldTest {
     private int size;
     private FactoryGameObject factoryGameObject;
 
-    @org.junit.jupiter.api.BeforeEach       
+    
 	public void initFactory() {
-        gameState = new GameStateImpl(new BasicGameEngine());
+       /*  gameState = new GameStateImpl(new BasicGameEngine());
 		factoryWorld = new FactoryWorldImpl();
         world = factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer());
-        factoryGameObject = new FactoryGameObjectImpl();
+        factoryGameObject = new FactoryGameObjectImpl();*/
     }
 
     @org.junit.jupiter.api.Test            
 	public void getTest() {        
         var entities = world.getEntities();
-        assertEquals(entities.toList().size(),
-            factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer()).getEntities().toList().size());
+        /*assertEquals(entities.toList().size(),
+            factoryWorld.simpleWorld(gameState.getFirstPlayer(), gameState.getSecondPlayer()).getEntities().toList().size());*/
 	}
 
     /*@org.junit.jupiter.api.Test

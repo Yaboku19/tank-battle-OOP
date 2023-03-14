@@ -17,16 +17,16 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private Player firstPlayer = null;
     private Player secondPlayer = null;
 
-    public BasicGameEngine() {
-        view = new ViewImpl(this);
+    public BasicGameEngine(ViewImpl view) {
+        this.view = view;
         model = new GameStateImpl(this);
     }
 
     @Override
     public void play() {
-        //initGame();
+        /*initGame();
         view.setVisible(true);
-        view.bugSolve();
+        view.bugSolve();*/
     }
 
     /*private void initGame(){
@@ -71,7 +71,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     private void render() {
-        view.repaint();
+        //view.repaint();
     }
 
     /*@Override

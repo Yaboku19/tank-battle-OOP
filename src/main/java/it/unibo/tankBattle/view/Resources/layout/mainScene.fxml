@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="it.unibo.tankBattle.view.resources.layoutControllers.MainSceneController">
+   <children>
+      <Button fx:id="playButton" layoutX="191.0" layoutY="82.0" mnemonicParsing="false" onAction="#play" prefHeight="87.0" prefWidth="218.0" text="PLAY">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="tutorialButton" layoutX="197.0" layoutY="218.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="95.0" prefWidth="218.0" text="TUTORIAL">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

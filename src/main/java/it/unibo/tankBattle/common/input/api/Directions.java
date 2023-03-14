@@ -10,8 +10,8 @@ public enum Directions {
     LEFT(-1, 0),
     NONE(0, 0);
 
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     public double getX() {
         return x;
