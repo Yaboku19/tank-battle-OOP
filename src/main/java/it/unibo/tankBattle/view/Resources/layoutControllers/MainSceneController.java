@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unibo.tankBattle.common.input.api.InputController;
-import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import static java.awt.event.KeyEvent.*;
+
+import java.io.IOException;
 
 public class MainSceneController {//implements EventHandler<KeyEvent>{
 
@@ -37,7 +38,26 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
 
     @FXML
     void play(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         EventHandler<KeyEvent> keyPressListener = e -> {
+            System.out.println("keyPressed");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/gameOver.fxml"));
+            try {
+                Scene game = new Scene(fxmlLoader.load());
+                //game.setRoot(fxmlLoader.load());
+                //stage = (Stage) node.getScene().getWindow();
+                stage.setScene(game);
+            stage.setMaximized(false);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/game.fxml"));
+            Scene game = new Scene(fxmlLoader.load());//, 600, 400);
+            game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
+            stage.setScene(game); 
+            stage.setMaximized(true);
+            stage.setResizable(true);*/
             /*if(inputControllerPlayer1.getKeyCodes().contains(e.getCode().getCode())){
                 switch(e.getCode().getCode()){
                     //notifyCommand(new Shoot);
@@ -52,15 +72,14 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
         };
 
         try{
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
+            /*node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();*/
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/game.fxml"));
-            Scene game = new Scene(fxmlLoader.load(), 600, 400);
+            Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
-            stage.setScene(game); 
-            stage.setFullScreen(true);
-            stage.setResizable(true);
-            //setInputController();
+            stage.setScene(game);
+            stage.setMaximized(true);
+            stage.setResizable(false);
         }catch(Exception e){
             System.out.println(e.toString());
         } 
@@ -85,6 +104,10 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
         assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
 
     }
+
+    /*public MainSceneController(){
+        System.out.println("aaa");
+    }*/
 
     private void setInputController(){
         this.inputControllerPlayer1 = view.getInputControllerPlayer1();

@@ -52,6 +52,7 @@ public class ViewImpl extends Application implements View{
     }
 
     */
+
     public InputController getInputControllerPlayer1() {
         return this.playerController1;
     }
