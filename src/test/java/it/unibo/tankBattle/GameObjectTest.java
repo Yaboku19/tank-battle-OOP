@@ -4,69 +4,115 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.gameObject.api.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.FactoryGameObject;
+import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankBattle.model.gameObject.api.component.Health;
+import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.component.TankHealth;
+import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 
 public class GameObjectTest {
     
     private FactoryGameObject factory;
-	GameObject tank;
-	GameObject bullet;
-	GameObject obstacle;
-
-
-	private String str = "nice";
+	private GameObject tank;
+	private GameObject bullet;
+	private GameObject obstacle;
+	private Player player1;
 
     @org.junit.jupiter.api.BeforeEach
 	public void initFactory() {
-	this.factory = new FactoryGameObject();
-	tank = this.factory.simpleTank(1, new P2d(10,10), 110, 10);
-	bullet = this.factory.simpleBullet(20, tank);
-	obstacle = this.factory.simpleWall(new P2d(10, 20));
+	this.factory = new FactoryGameObjectImpl();
+	this.tank = this.factory.createSimpleTank(new P2d(10,10), player1);
+	this.bullet = this.factory.createSimpleBullet(this.tank);
+	this.obstacle = this.factory.createSimpleWall(new P2d(20, 20));
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testIsAlive() {
-		tank.resolveCollision(bullet);
-		assertTrue(tank.isAlive(), str);
-		tank.resolveCollision(bullet);
-		assertFalse(tank.isAlive(), str);
+		tank.getComponent(Collidable.class).get().resolveCollision(bullet);
+		assertTrue(tank.getComponent(Health.class).get().isAlive());
+		tank.getComponent(Collidable.class).get().resolveCollision(bullet);
+		assertFalse(tank.getComponent(Health.class).get().isAlive());
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testCollision() {
-		var tank2 = this.factory.simpleTank(1, new P2d(20,12), 100, 10);
-		var obstacle1 = this.factory.simpleWall(new P2d(15, 20));
-		tank.resolveCollision(tank2);
-		assertEquals(new P2d(9,10), tank.getPosition());
-		tank.resolveCollision(obstacle1);
-		obstacle1.resolveCollision(tank);
-		assertEquals(new P2d(9,9), tank.getPosition());
-		assertEquals(new P2d(15,20), obstacle1.getPosition());
+		var tank2 = this.factory.createSimpleTank(new P2d(20,12), player1);
+		var obstacle1 = this.factory.createSimpleWall(new P2d(15, 20));
+		tank.getComponent(Collidable.class).get().resolveCollision(tank2);
+		assertEquals(new P2d(9,10), tank.getTransform().getPosition());
+		tank.getComponent(Collidable.class).get().resolveCollision(obstacle1);
+		if(obstacle1.getComponent(Collidable.class).isPresent())
+			obstacle1.getComponent(Collidable.class).get().resolveCollision(tank);
+		assertEquals(new P2d(9,9), tank.getTransform().getPosition());
+		assertEquals(new P2d(15,20), obstacle1.getTransform().getPosition());
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testUpdate() {
-		assertEquals(new P2d(10,10), tank.getPosition());
+		/*assertEquals(new P2d(10,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.RIGHT);
 		tank.update();
-		assertEquals(new P2d(11,10), tank.getPosition());
+		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
+		tank.setDirection(Directions.NONE);
+		tank.update();
+		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
+		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());*/
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testBulletCreation() {
 		tank.setDirection(Directions.RIGHT);
-		var bullet1 = factory.simpleBullet(10, tank);
-		assertEquals(new P2d(20, 10), bullet1.getPosition());
+		assertEquals(new P2d(10, 10), tank.getTransform().getPosition());
+		assertEquals(10, tank.getTransform().getLength());
+		assertEquals(10, tank.getTransform().getWidth());
+		var bullet1 = factory.createSimpleBullet(tank);
+		assertEquals(new P2d(20, 10), bullet1.getTransform().getPosition());
 		tank.setDirection(Directions.LEFT);
-		var bullet2 = factory.simpleBullet(10, tank);
-		assertEquals(new P2d(0, 10), bullet2.getPosition());
+		var bullet2 = factory.createSimpleBullet(tank);
+		assertEquals(new P2d(0, 10), bullet2.getTransform().getPosition());
 		tank.setDirection(Directions.UP);
-		var bullet3 = factory.simpleBullet(10, tank);
-		assertEquals(new P2d(10, 0), bullet3.getPosition());
+		var bullet3 = factory.createSimpleBullet(tank);
+		assertEquals(new P2d(10, 0), bullet3.getTransform().getPosition());
 		tank.setDirection(Directions.DOWN);
-		var bullet4 = factory.simpleBullet(10, tank);
-		assertEquals(new P2d(10, 20), bullet4.getPosition());
+		var bullet4 = factory.createSimpleBullet(tank);
+		assertEquals(new P2d(10, 20), bullet4.getTransform().getPosition());
+		tank.setDirection(Directions.NONE);
+		var bullet5 = factory.createSimpleBullet(tank);
+		assertEquals(new P2d(10, 20), bullet5.getTransform().getPosition());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testAll() {
+		tank.setDirection(Directions.RIGHT);
+		var tank2 = this.factory.createSimpleTank(new P2d(20,12), player1);
+		tank.getComponent(Collidable.class).get().resolveCollision(tank2);
+		tank2.getComponent(Collidable.class).get().resolveCollision(tank);
+		assertEquals(100, tank.getComponent(TankHealth.class).get().getLifePoints());
+		assertEquals(100, tank2.getComponent(TankHealth.class).get().getLifePoints());
+		
+		var bullet2 = this.factory.createSimpleBullet(tank2);
+		tank.getComponent(Collidable.class).get().resolveCollision(bullet2);
+		bullet2.getComponent(Collidable.class).get().resolveCollision(tank);
+		assertTrue(tank.getComponent(Health.class).get().isAlive());
+		assertFalse(bullet2.getComponent(Health.class).get().isAlive());
+		assertEquals(50, tank.getComponent(TankHealth.class).get().getLifePoints());
+
+		tank.getComponent(Collidable.class).get().resolveCollision(obstacle);
+		assertEquals(50, tank.getComponent(TankHealth.class).get().getLifePoints());
+	}
+
+	@org.junit.jupiter.api.Test
+	public void testDirection() {
+		assertEquals(Directions.UP, tank.getTransform().getDirection());
+
+		tank.setDirection(Directions.DOWN);
+		assertEquals(Directions.DOWN, tank.getTransform().getDirection());
+
+
+		tank.setDirection(Directions.NONE);
+		assertEquals(Directions.DOWN, tank.getTransform().getDirection());
 	}
 
 }

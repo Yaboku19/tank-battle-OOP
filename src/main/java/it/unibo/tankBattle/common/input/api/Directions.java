@@ -10,18 +10,18 @@ public enum Directions {
     LEFT(-1, 0),
     NONE(0, 0);
 
-    int x;
-    int y;
+    private double x;
+    private double y;
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    Directions(int x, int y) {
+    Directions(double x, double y) {
         this.x = x;
         this.y = y;
         

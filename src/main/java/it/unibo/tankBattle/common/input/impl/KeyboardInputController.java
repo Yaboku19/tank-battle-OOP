@@ -1,9 +1,7 @@
 package it.unibo.tankBattle.common.input.impl;
 
 import java.util.List;
-import java.util.Queue;
 
-import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.common.input.api.InputController;
 
 public class KeyboardInputController implements InputController{
@@ -26,7 +24,7 @@ public class KeyboardInputController implements InputController{
 
     @Override
     public List<Integer> getKeyCodes() {
-        return List.of(keyCodeMoveUp,keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
+        return List.of(keyCodeMoveUp, keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
     }
 
 

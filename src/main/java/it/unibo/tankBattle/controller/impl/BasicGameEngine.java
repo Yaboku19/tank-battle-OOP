@@ -1,43 +1,64 @@
 package it.unibo.tankBattle.controller.impl;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
 import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
-import it.unibo.tankBattle.model.gameState.api.Player;
 import it.unibo.tankBattle.view.api.View;
 import it.unibo.tankBattle.view.impl.ViewImpl;
-import it.unibo.tankBattle.common.Pair;
-import it.unibo.tankBattle.common.input.api.*;
 
+public class BasicGameEngine implements GameEngine, WorldEventListener {
+    private final View view;
+    private final GameState model;
+    //private final Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
+    //private HashMap<Player,InputController> controllers;
+    private Boolean isOver = false;
+    private Player firstPlayer = null;
+    private Player secondPlayer = null;
 
-public class BasicGameEngine implements GameEngine {
-    private View view;
-    private GameState model;
-    private Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
-    private HashMap<Player,InputController> controllers;
-
-    public BasicGameEngine() {
-        view = new ViewImpl(this);
+    public BasicGameEngine(ViewImpl view) {
+        this.view = view;
         model = new GameStateImpl(this);
     }
 
     @Override
     public void play() {
-        initGame();
+        /*initGame();
         view.setVisible(true);
-        view.bugSolve();
+        view.bugSolve();*/
+    }
+
+    /*private void initGame(){
+        controllers = new HashMap<Player,InputController>();
+        controllers.put(model.getFirstPlayer(), view.getInputControllerPlayer1());
+        controllers.put(model.getSecondPlayer(), view.getInputControllerPlayer2());
+    }*/
+
+    @Override
+    public void startGame() {
+        firstPlayer = new HumanPlayer();
+        secondPlayer = new HumanPlayer();
+        model.createWorld(firstPlayer, secondPlayer);
+        //initGame();
+        /*
+         * new instance of model
+         */
+        loop();
+    }
+
+    private void loop() {
+        this.isOver = false;
+        while(!isOver) {
+            processInput();
+            update();
+            render();
+            // time at each frame toDo
+        }
     }
 
     private void processInput() {
-        var cmd = commandQueue.poll();
-        if(cmd.getX() == model.getFirstPlayer()){
-            cmd.getY().execute(model.getFirstPlayer());
-        }else{
-            cmd.getY().execute(model.getSecondPlayer());
-        }
+        //var cmd = commandQueue.poll();
         /*cmd.execute(cmd);*/
         /*for(var tank : model.getWorld().getTanks()){
             tank.updateInput();
@@ -45,41 +66,39 @@ public class BasicGameEngine implements GameEngine {
         //throw new UnsupportedOperationException("Unimplemented method 'processInput'");
     }
 
-    private void loop() {
-        processInput();
+    private void update() {
+        model.update(null);
     }
 
-    private void initGame(){
-        controllers = new HashMap<Player,InputController>();
-        controllers.put(model.getFirstPlayer(), view.getInputControllerPlayer1());
-        controllers.put(model.getSecondPlayer(), view.getInputControllerPlayer2());
+    private void render() {
+        //view.repaint();
     }
 
-    @Override
-    public void startGame() {
-        System.out.println("game started");
-        model = new GameStateImpl(this);
-        /*
-         * new instance of model
-         */
-        loop();
-    }
-
-    @Override
+    /*@Override
     public void notifyCommand(Player player, Command command) {
         commandQueue.add(new Pair<>(player, command));
-    }
+    }*/
 
-    @Override
+    /*@Override
     public HashMap<Player, InputController> getControllers() {
         //return new HashMap<>(controllers);
         return this.controllers;
+    }*/
+
+    @Override
+    public void endGame(final Player player) {
+        player.incScore();
+        this.isOver = true;
     }
 
     @Override
-    public void endgame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endgame'");
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    @Override
+    public Player getSecondPlayer() {
+        return secondPlayer;
     }
     
 }

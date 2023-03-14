@@ -9,7 +9,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 
 public class FactoryGameScenes {
-    private final View view;
+    /*private final View view;
     private final Dimension screenSize;
 
     protected FactoryGameScenes(View view) {
@@ -172,5 +172,5 @@ public class FactoryGameScenes {
 
     private void setTrasparent(JPanel panel) {
         panel.setBackground(new Color(0,0,0,0));
-    }
+    }*/
 }

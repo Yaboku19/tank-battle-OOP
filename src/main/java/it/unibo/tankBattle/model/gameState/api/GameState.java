@@ -1,31 +1,23 @@
 package it.unibo.tankBattle.model.gameState.api;
 
-import java.util.Set;
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Pair;
+import java.util.stream.Stream;
+import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public interface GameState {
 
-    public Pair<Integer, Integer> getScore(); //0-0 1-0
+    public void createWorld(Player firstPlayer, Player secondPlayer);
 
-    public void update();
+    public void update(Double time);
 
-    public void resolveEvents(Set<Pair<P2d, P2d>> events);
+    public void shot(Player player);
 
-    public void endGame(Player player); 
+    public void setDirection(Directions direction, Player player);
 
-    /**
-     * 
-     * This method get each object's and return it's position and length in order to share
-     * less information to manage collision
-     * 
-     * @return a set of pair of each object's position and length
-     */
-    public Set<Pair<P2d, Integer>> getPositionsAndLength();
+    public Stream<GameObject> getTanks();
 
-    public void input();
+    public Stream<GameObject> getBullets();
 
-    public Player getFirstPlayer();
-
-    public Player getSecondPlayer();
+    public Stream<GameObject> getWalls();
 }

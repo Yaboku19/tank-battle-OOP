@@ -3,7 +3,7 @@ package it.unibo.tankBattle.common.input.impl;
 
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.gameState.api.Player;
+import it.unibo.tankBattle.controller.api.Player;
 
 /**
  * That class manage the movement of the players
