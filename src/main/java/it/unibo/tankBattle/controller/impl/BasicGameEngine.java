@@ -84,13 +84,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         commandQueue.add(new Pair<>(player, command));
         //System.out.println(commandQueue);
     }
-
-    /*@Override
-    public HashMap<Player, InputController> getControllers() {
-        //return new HashMap<>(controllers);
-        return this.controllers;
-    }*/
-
     @Override
     public void endGame(final Player player) {
         player.incScore();

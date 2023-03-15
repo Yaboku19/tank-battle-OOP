@@ -6,7 +6,7 @@ import java.util.List;
  * This interface represent an InutController that gets notified when an input
  * occours.
  */
-public interface InputController {
+public interface InputController <T>{
     
-    public List<Integer> getKeyCodes();
+    public List<T> getKeyCodes();
 }

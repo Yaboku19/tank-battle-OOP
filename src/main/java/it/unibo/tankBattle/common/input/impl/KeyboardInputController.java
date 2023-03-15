@@ -3,8 +3,9 @@ package it.unibo.tankBattle.common.input.impl;
 import java.util.List;
 
 import it.unibo.tankBattle.common.input.api.InputController;
+import javafx.scene.input.KeyEvent;
 
-public class KeyboardInputController implements InputController{
+public class KeyboardInputController implements InputController<KeyEvent>{
 
     private int keyCodeMoveUp;
     private int keyCodeMoveDown;
@@ -23,7 +24,7 @@ public class KeyboardInputController implements InputController{
             }
 
     @Override
-    public List<Integer> getKeyCodes() {
+    public List getKeyCodes() {
         return List.of(keyCodeMoveUp, keyCodeMoveDown, keyCodeMoveLeft, keyCodeMoveRight, keyCodeShoot);
     }
 

@@ -2,6 +2,7 @@ package it.unibo.tankBattle.controller.impl;
 
 import it.unibo.tankBattle.controller.api.Player;
 
+
 public class HumanPlayer implements Player {
     private int score;
 
@@ -18,5 +19,5 @@ public class HumanPlayer implements Player {
     public void incScore() {
         score++;
     }
-    
+
 }
