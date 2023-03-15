@@ -65,7 +65,7 @@ public class ViewImpl extends Application implements View{
     @Override
     public void start(Stage stage){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/layout/mainScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("javafx/resources/layout/mainScene.fxml"));
             scene = new Scene(root);
         } catch (IOException e) {
             System.out.println(e.toString());

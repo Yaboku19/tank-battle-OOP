@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.view.resources.layoutControllers;
+package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;

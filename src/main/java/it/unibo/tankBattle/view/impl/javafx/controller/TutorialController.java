@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.view.resources.layoutControllers;
+package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class TutorialController {
         try {
             Node node = (Node)event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/mainScene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../javafx/layout/mainScene.fxml"));
             Scene tutorial = new Scene(fxmlLoader.load(), 600, 400);
             stage.setScene(tutorial);
         } catch (IOException e) {
