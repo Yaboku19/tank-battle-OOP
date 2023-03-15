@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 public class ViewImpl implements View{
 
     private GameEngine controller;
-    private int cont = 0;
 
     @FXML
     private ResourceBundle resources;
@@ -60,23 +59,9 @@ public class ViewImpl implements View{
                 System.out.println("down");
                 controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
             }
-            /*
-            if(inputControllerPlayer1.getKeyCodes().contains(e.getCode().getCode())){
-                switch(e.getCode().getCode()){
-                    //notifyCommand(new Shoot);
-                    //notifyCommand(new Movement);
-                }
-            }else if(inputControllerPlayer2.getKeyCodes().contains(e.getCode().getCode())){
-                switch(e.getCode().getCode()){
-                    //notifyCommand(new Shoot(Player1));
-                    //notifyCommand(new Movement);
-                }
-            }*/
         };
 
         try{
-            /*node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();*/
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
@@ -129,18 +114,6 @@ public class ViewImpl implements View{
     public void drawMap() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'drawMap'");
-    }
-
-    @Override
-    public InputController getInputControllerPlayer1() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInputControllerPlayer1'");
-    }
-
-    @Override
-    public InputController getInputControllerPlayer2() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInputControllerPlayer2'");
     }
 
     @Override

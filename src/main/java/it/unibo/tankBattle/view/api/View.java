@@ -12,22 +12,5 @@ public interface View {
 
     public void drawMap();
 
-    /*abstract public void tutorial();
-
-    abstract public void menu();
-
-    abstract public void chooseMenu();
-
-    abstract public void bugSolve();
-
-    public void startGame();
-*/
-    public InputController getInputControllerPlayer1();
-
-    public InputController getInputControllerPlayer2();
-/*
-    public Dimension getSize();
-  */
-
     public void setController(GameEngine controller);  
 }
