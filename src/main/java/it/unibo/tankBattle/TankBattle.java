@@ -1,15 +1,19 @@
 package it.unibo.tankBattle;
 
-import it.unibo.tankBattle.view.impl.ViewImpl;
-import javafx.application.Application;
-
-
 /**
- * 
+ * Launcher class.
  */
-public class TankBattle {
+public final class TankBattle {
 
-    public static void main (String[] args) {
-        Application.launch(ViewImpl.class, args);
+    private TankBattle() {
+    };
+
+    /**
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
+        Main.main(args);
     }
+
 }
