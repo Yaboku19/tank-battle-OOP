@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.controller.api;
 
+import it.unibo.tankBattle.common.input.api.Command;
 
 public interface GameEngine {
     /**
@@ -11,7 +12,7 @@ public interface GameEngine {
 
     //public Map<Player, InputController> getControllers();
 
-    //public void notifyCommand(Player player, Command command);
+    public void notifyCommand(Player player, Command command);
 
     public Player getFirstPlayer();
 

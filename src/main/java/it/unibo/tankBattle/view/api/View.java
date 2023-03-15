@@ -2,8 +2,9 @@ package it.unibo.tankBattle.view.api;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.InputController;
+import it.unibo.tankBattle.controller.api.GameEngine;
 
-public interface View {//extends JFrame{
+public interface View {
     
     public void drawTank(P2d position);
 
@@ -26,5 +27,7 @@ public interface View {//extends JFrame{
     public InputController getInputControllerPlayer2();
 /*
     public Dimension getSize();
-  */  
+  */
+
+    public void setController(GameEngine controller);  
 }
