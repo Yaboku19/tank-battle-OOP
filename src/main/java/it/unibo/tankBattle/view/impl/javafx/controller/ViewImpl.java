@@ -1,0 +1,150 @@
+package it.unibo.tankBattle.view.impl.javafx.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.impl.Movement;
+import it.unibo.tankBattle.common.input.impl.Shoot;
+import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.view.api.View;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+
+public class ViewImpl implements View{
+
+    private GameEngine controller;
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button playButton;
+
+    @FXML
+    private Button tutorialButton;
+
+    @FXML
+    void play(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        EventHandler<KeyEvent> keyPressListener = e -> {
+            //System.out.println(controller);
+            switch(e.getCode()){
+                case RIGHT:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
+                    break;
+                case LEFT:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.LEFT));
+                    break;
+                case UP:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.UP));
+                    break;
+                case DOWN:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.DOWN));
+                    break;
+                case SPACE:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Shoot());
+                    break;
+                case D:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.RIGHT));
+                    break;
+                case A:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.LEFT));
+                    break;
+                case W:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.UP));
+                    break;
+                case S:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.DOWN));
+                    break;
+                case CONTROL:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Shoot());
+                    break;
+                default:
+            }
+        };
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
+            Scene game = new Scene(fxmlLoader.load());//, 600, 400);
+            game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
+            stage.setScene(game);
+            //stage.setMaximized(true);
+            stage.setResizable(false);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        controller.play();
+    }
+
+    @FXML
+    void tutorial(ActionEvent event) {
+        try {
+            System.out.println(controller);
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
+            Scene tutorial = new Scene(fxmlLoader.load());
+            //controller = fxmlLoader.getController();
+            TutorialController tutorialController = (TutorialController)fxmlLoader.getController();
+            tutorialController.setPreviousScene(stage.getScene());
+            stage.setScene(tutorial);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    void initialize() {
+        assert playButton != null : "fx:id=\"playButton\" was not injected: check your FXML file 'mainScene.fxml'.";
+        assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
+
+    }
+
+    @Override
+    public void drawTank(P2d position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawTank'");
+    }
+
+    @Override
+    public void drawBullet(P2d position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawBullet'");
+    }
+
+    @Override
+    public void drawMap() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawMap'");
+    }
+
+    @Override
+    public void setController(GameEngine controller) {
+        this.controller = controller;
+    }
+
+}

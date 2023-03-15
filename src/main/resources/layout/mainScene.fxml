@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="it.unibo.tankBattle.view.resources.layoutControllers.MainSceneController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.ViewImpl">
    <children>
-      <Button fx:id="playButton" layoutX="191.0" layoutY="82.0" mnemonicParsing="false" onAction="#play" prefHeight="87.0" prefWidth="218.0" text="PLAY">
+      <Button fx:id="playButton" layoutX="197.0" layoutY="78.0" mnemonicParsing="false" onAction="#play" prefHeight="87.0" prefWidth="218.0" text="PLAY">
          <font>
             <Font size="22.0" />
          </font>
