@@ -69,9 +69,9 @@ public class ViewImpl implements View{
             //stage.setMaximized(true);
             stage.setResizable(false);
         }catch(Exception e){
-            System.out.println("aaa");
             System.out.println(e.toString());
         }
+        controller.play();
     }
 
     @FXML
@@ -83,8 +83,8 @@ public class ViewImpl implements View{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
             Scene tutorial = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            TutorialController t = (TutorialController)fxmlLoader.getController();
-            t.setPreviousScene(stage.getScene());
+            TutorialController tutorialController = (TutorialController)fxmlLoader.getController();
+            tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
         }catch(Exception e){
             System.out.println(e.toString());

@@ -10,8 +10,6 @@ public interface GameEngine {
     
     public void startGame();
 
-    //public Map<Player, InputController> getControllers();
-
     public void notifyCommand(Player player, Command command);
 
     public Player getFirstPlayer();
