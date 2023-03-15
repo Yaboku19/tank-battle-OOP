@@ -4,7 +4,9 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.collision.api.RectangularBoundingBox;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
+import it.unibo.tankBattle.model.gameObject.impl.component.BoundingBoxComp;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
 import it.unibo.tankBattle.model.gameObject.impl.component.BulletHealth;
 import it.unibo.tankBattle.model.gameObject.impl.component.CollidableBullet;
@@ -26,31 +28,38 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
 
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
-        return new BasicGameObject(new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM))
+        final Transform tankTranform = new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM);
+        return new BasicGameObject(tankTranform)
                 .addComponent(new Tank(player))
                 .addComponent(new TankHealth(100))
                 .addComponent(new CollidableTank())
-                .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED));
+                .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED))
+                .addComponent(new BoundingBoxComp(new RectangularBoundingBox(tankTranform)));
     }
 
     @Override
     public GameObject createSimpleBullet(final GameObject tank) {
-        return new BasicGameObject(new Transform(new P2d( tank.getTransform().getPosition().getX() 
-                        + tank.getTransform().getDirection().getX()*tank.getTransform().getLength(), 
-                        tank.getTransform().getPosition().getY() 
-                        + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()),
-                        tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM))
+        final Transform bulletTransform = new Transform(new P2d( tank.getTransform().getPosition().getX() 
+            + tank.getTransform().getDirection().getX()*tank.getTransform().getLength(), 
+            tank.getTransform().getPosition().getY() 
+            + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()),
+            tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM);
+        
+        return new BasicGameObject(bulletTransform)
                 .addComponent(new Bullet())
                 .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE))
                 .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED))
                 .addComponent(new BulletHealth())
-                .addComponent(new CollidableBullet());
+                .addComponent(new CollidableBullet())
+                .addComponent(new BoundingBoxComp(new RectangularBoundingBox(bulletTransform)));
     }
 
     @Override
     public GameObject createSimpleWall(final P2d pos) {
-        return new BasicGameObject(new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM))
-                .addComponent(new Wall());
+        final Transform wallTransform = new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM);
+        return new BasicGameObject(wallTransform)
+                .addComponent(new Wall())
+                .addComponent(new BoundingBoxComp(new RectangularBoundingBox(wallTransform)));
     }
 
 
