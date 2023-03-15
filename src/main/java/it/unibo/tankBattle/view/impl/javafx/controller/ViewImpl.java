@@ -3,31 +3,27 @@ package it.unibo.tankBattle.view.impl.javafx.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.common.input.api.InputController;
+import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import static java.awt.event.KeyEvent.*;
 
-public class MainSceneController {//implements EventHandler<KeyEvent>{
+public class ViewImpl implements View{
 
-    private InputController inputControllerPlayer1;
-    private InputController inputControllerPlayer2;
-    private int newX=0,newY=0;
-    private Circle circle = new Circle();
-    private View view;
+    private GameEngine controller;
+    private int cont = 0;
 
     @FXML
     private ResourceBundle resources;
@@ -47,26 +43,22 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
         Stage stage = (Stage) node.getScene().getWindow();
 
         EventHandler<KeyEvent> keyPressListener = e -> {
-            //System.out.println("keyPressed");
-            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/layout/gameOver.fxml"));
-            try {
-                Scene game = new Scene(fxmlLoader.load());
-                stage.setScene(game);
-            stage.setMaximized(false);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }*/
+            System.out.println(controller);
             if(e.getCode() == KeyCode.RIGHT){
                 System.out.println("right");
+                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
             }
             else if(e.getCode() == KeyCode.LEFT){
                 System.out.println("left");
+                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
             }
             else if(e.getCode() == KeyCode.UP){
                 System.out.println("up");
+                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
             }
             else if(e.getCode() == KeyCode.DOWN){
                 System.out.println("down");
+                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
             }
             /*
             if(inputControllerPlayer1.getKeyCodes().contains(e.getCode().getCode())){
@@ -85,7 +77,7 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
         try{
             /*node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();*/
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/layout/game.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             stage.setScene(game);
@@ -94,16 +86,20 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
         }catch(Exception e){
             System.out.println("aaa");
             System.out.println(e.toString());
-        } 
+        }
     }
 
     @FXML
     void tutorial(ActionEvent event) {
         try {
+            System.out.println(controller);
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../layout/tutorial.fxml"));
-            Scene tutorial = new Scene(fxmlLoader.load(), 600, 400);
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
+            Scene tutorial = new Scene(fxmlLoader.load());
+            //controller = fxmlLoader.getController();
+            TutorialController t = (TutorialController)fxmlLoader.getController();
+            t.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
         }catch(Exception e){
             System.out.println(e.toString());
@@ -117,35 +113,39 @@ public class MainSceneController {//implements EventHandler<KeyEvent>{
 
     }
 
-    /*public MainSceneController(){
-        System.out.println("aaa");
-    }*/
-
-    private void setInputController(){
-        this.inputControllerPlayer1 = view.getInputControllerPlayer1();
-        this.inputControllerPlayer2 = view.getInputControllerPlayer2();
+    @Override
+    public void drawTank(P2d position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawTank'");
     }
 
-/*    @Override
-    public void handle(KeyEvent e) {
-        System.out.println("keyPressed");
+    @Override
+    public void drawBullet(P2d position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawBullet'");
+    }
 
-            if(e.getCode() == KeyCode.RIGHT){
-                newX = newX + 10;
-                circle.setTranslateX(newX);
-            }
-            else if(e.getCode() == KeyCode.LEFT){
-                newX = newX - 10;
-                circle.setTranslateX(newX);
-            }
-            else if(e.getCode() == KeyCode.UP){
-                newY = newY - 10;
-                circle.setTranslateY(newY);
-            }
-            else if(e.getCode() == KeyCode.DOWN){
-                newY = newY + 10;
-                circle.setTranslateY(newY);
-            }
-    }*/
+    @Override
+    public void drawMap() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'drawMap'");
+    }
+
+    @Override
+    public InputController getInputControllerPlayer1() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getInputControllerPlayer1'");
+    }
+
+    @Override
+    public InputController getInputControllerPlayer2() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getInputControllerPlayer2'");
+    }
+
+    @Override
+    public void setController(GameEngine controller) {
+        this.controller = controller;
+    }
 
 }
