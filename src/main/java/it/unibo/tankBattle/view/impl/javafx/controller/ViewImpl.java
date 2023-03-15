@@ -7,6 +7,7 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.common.input.api.InputController;
 import it.unibo.tankBattle.common.input.impl.Movement;
+import it.unibo.tankBattle.common.input.impl.Shoot;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.View;
 import javafx.event.ActionEvent;
@@ -42,22 +43,49 @@ public class ViewImpl implements View{
         Stage stage = (Stage) node.getScene().getWindow();
 
         EventHandler<KeyEvent> keyPressListener = e -> {
-            System.out.println(controller);
-            if(e.getCode() == KeyCode.RIGHT){
-                System.out.println("right");
-                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
-            }
-            else if(e.getCode() == KeyCode.LEFT){
-                System.out.println("left");
-                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
-            }
-            else if(e.getCode() == KeyCode.UP){
-                System.out.println("up");
-                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
-            }
-            else if(e.getCode() == KeyCode.DOWN){
-                System.out.println("down");
-                controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
+            //System.out.println(controller);
+            switch(e.getCode()){
+                case RIGHT:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
+                    break;
+                case LEFT:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.LEFT));
+                    break;
+                case UP:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.UP));
+                    break;
+                case DOWN:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.DOWN));
+                    break;
+                case SPACE:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getFirstPlayer(), new Shoot());
+                    break;
+                case D:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.RIGHT));
+                    break;
+                case A:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.LEFT));
+                    break;
+                case W:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.UP));
+                    break;
+                case S:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.DOWN));
+                    break;
+                case CONTROL:
+                    System.out.println(e.getCode());
+                    controller.notifyCommand(controller.getSecondPlayer(), new Shoot());
+                    break;
+                default:
             }
         };
 
