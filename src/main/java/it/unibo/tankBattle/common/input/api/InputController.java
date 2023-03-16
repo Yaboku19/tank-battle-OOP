@@ -8,5 +8,5 @@ import java.util.List;
  */
 public interface InputController{
     
-    public List<T> getKeyCodes();
+    public List<Integer> getKeyCodes();
 }
