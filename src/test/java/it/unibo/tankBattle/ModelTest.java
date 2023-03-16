@@ -29,8 +29,8 @@ public class ModelTest {
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         model = new GameStateImpl(null);
-        firstPlayer = new HumanPlayer();
-        secondPlayer = new HumanPlayer();
+        //firstPlayer = new HumanPlayer();
+        //secondPlayer = new HumanPlayer();
         model.createWorld(firstPlayer, secondPlayer);
         factoryWorld = new FactoryWorldImpl();
     }
