@@ -77,7 +77,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 		if (dt < period){
 			try {
 				Thread.sleep(period - dt);
-			} catch (Exception ex){}
+			} catch (Exception ex){
+                System.out.println(ex.toString());
+            }
 		}
 	}
 
