@@ -17,11 +17,13 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private final GameState model;
     private final Queue<Command> commandQueue = new LinkedList<>();
     //private HashMap<Player,InputController> controllers;
+    private Thread thread;
     private Boolean isOver = false;
     private Player firstPlayer = null;
     private Player secondPlayer = null;
 
     public BasicGameEngine(final View view) {
+        thread = new Thread(this);
         this.view = view;
         view.setController(this);
         model = new GameStateImpl(this);
@@ -46,25 +48,26 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         secondPlayer = new HumanPlayer(2);
         model.createWorld(firstPlayer, secondPlayer);
         System.out.println("start game");
+        thread.start();
+        System.out.println("start game2");
         //initGame();
         /*
          * new instance of model
          */
-        //loop();
     }
 
     private void loop() {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
         while(!isOver) {
-            System.out.println("loop");
-            /*long currentCycleStartTime = System.currentTimeMillis();
-			long elapsed = currentCycleStartTime - previousCycleStartTime;*/
+            //System.out.println("loop");
+            long currentCycleStartTime = System.currentTimeMillis();
+			long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
             //update(elapsed);
             //render();
-            //waitForNextFrame(currentCycleStartTime);
-			//previousCycleStartTime = currentCycleStartTime;
+            waitForNextFrame(currentCycleStartTime);
+			previousCycleStartTime = currentCycleStartTime;
         }
         view.gameOver();
     }
@@ -79,6 +82,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 	}
 
     private void processInput() {
+        //System.out.println("sono qua");
         if (commandQueue.size() > 0){
             var cmd = commandQueue.poll();
             cmd.execute(model);
@@ -102,7 +106,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void notifyCommand(Command command) {
         commandQueue.add(command);
-        System.out.println(commandQueue);
+        //System.out.println(commandQueue);
     }
     @Override
     public void endGame(final Player player) {
@@ -118,6 +122,13 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public Player getSecondPlayer() {
         return secondPlayer;
+    }
+
+    @Override
+    public void run() {
+        //startGame();
+        System.out.println("aaa");
+        loop();
     }
     
 }

@@ -117,6 +117,7 @@ public class ViewImpl implements View{
             //stage.setMaximized(true);
             stage.setResizable(false);
             controller.startGame();
+            //controller.run();
         }catch(Exception e){
             System.out.println(e.toString());
         }

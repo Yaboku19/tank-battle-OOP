@@ -3,7 +3,7 @@ package it.unibo.tankBattle.controller.api;
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 
-public interface GameEngine {
+public interface GameEngine extends Runnable{
     /**
      * It is called at the beginin by TankBattle.
      */
