@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.controller.impl.HumanPlayer;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameState.api.GameState;
@@ -29,10 +28,30 @@ public class ModelTest {
     @org.junit.jupiter.api.BeforeEach       
 	public void initFactory() {
         model = new GameStateImpl(null);
-        //firstPlayer = new HumanPlayer();
-        //secondPlayer = new HumanPlayer();
+        firstPlayer = createPlayer();
+        secondPlayer = createPlayer();
         model.createWorld(firstPlayer, secondPlayer);
         factoryWorld = new FactoryWorldImpl();
+    }
+
+    private Player createPlayer() {
+        return new Player() {
+
+            @Override
+            public int getScore() {
+                return 1;
+            }
+
+            @Override
+            public void incScore() {
+            }
+
+            @Override
+            public int getCode() {
+                return 0;
+            }
+
+        };
     }
 
     @org.junit.jupiter.api.Test            
