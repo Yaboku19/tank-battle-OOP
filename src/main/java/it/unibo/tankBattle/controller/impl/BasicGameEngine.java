@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.common.input.api.Command;
+import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
@@ -12,10 +13,11 @@ import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
 
-public class BasicGameEngine implements GameEngine, WorldEventListener {
+public class BasicGameEngine implements GameEngine, WorldEventListener, Runnable {
+    private long period = 20;
     private final View view;
     private final GameState model;
-    private final Queue<Pair<Player,Command>> commandQueue = new LinkedList<>();
+    private final Queue<Command> commandQueue = new LinkedList<>();
     //private HashMap<Player,InputController> controllers;
     private Boolean isOver = false;
     private Player firstPlayer = null;
@@ -42,46 +44,66 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer();
-        secondPlayer = new HumanPlayer();
+        firstPlayer = new HumanPlayer(1);
+        secondPlayer = new HumanPlayer(2);
         model.createWorld(firstPlayer, secondPlayer);
+        System.out.println("start game");
         //initGame();
         /*
          * new instance of model
          */
-        loop();
+        //loop();
     }
 
     private void loop() {
         this.isOver = false;
+        long previousCycleStartTime = System.currentTimeMillis();
         while(!isOver) {
+            System.out.println("loop");
+            /*long currentCycleStartTime = System.currentTimeMillis();
+			long elapsed = currentCycleStartTime - previousCycleStartTime;*/
             processInput();
-            update();
-            render();
-            // time at each frame toDo
+            //update(elapsed);
+            //render();
+            //waitForNextFrame(currentCycleStartTime);
+			//previousCycleStartTime = currentCycleStartTime;
         }
+        view.gameOver();
     }
 
+    private void waitForNextFrame(long cycleStartTime){
+		long dt = System.currentTimeMillis() - cycleStartTime;
+		if (dt < period){
+			try {
+				Thread.sleep(period - dt);
+			} catch (Exception ex){}
+		}
+	}
+
     private void processInput() {
-        //var cmd = commandQueue.poll();
-        /*cmd.execute(cmd);*/
+        if (commandQueue.size() > 0){
+            var cmd = commandQueue.poll();
+            cmd.execute();
+        }
         /*for(var tank : model.getWorld().getTanks()){
             tank.updateInput();
         }*/
         //throw new UnsupportedOperationException("Unimplemented method 'processInput'");
     }
 
-    private void update() {
-        model.update(null);
+    private void update(double elapsed) {
+        model.update(elapsed);
     }
 
     private void render() {
-        //view.repaint();
+        view.render();
+        /*view.drawBullet(null);
+        view.drawTank(null);*/
     }
 
     @Override
-    public void notifyCommand(Player player, Command command) {
-        commandQueue.add(new Pair<>(player, command));
+    public void notifyCommand(Command command) {
+        commandQueue.add(command);
         //System.out.println(commandQueue);
     }
     @Override
@@ -98,6 +120,17 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public Player getSecondPlayer() {
         return secondPlayer;
+    }
+
+    @Override
+    public GameState getWorld() {
+        return this.model;
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
     
 }

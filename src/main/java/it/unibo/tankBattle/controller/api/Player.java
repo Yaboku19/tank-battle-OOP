@@ -6,4 +6,6 @@ public interface Player {
     public int getScore();
 
     public void incScore();
+
+    public int getCode();
 }
