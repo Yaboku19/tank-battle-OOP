@@ -26,6 +26,70 @@ public class ViewImpl implements View{
     private Node node;
     private Stage stage;
 
+    private EventHandler<KeyEvent> keyPressListener = e -> {
+        //System.out.println(controller);
+        switch(e.getCode()){
+            case RIGHT:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer()));
+                break;
+            case LEFT:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer()));
+                break;
+            case UP:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer()));
+                break;
+            case DOWN:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer()));
+                break;
+            case SPACE:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
+                break;
+            case D:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer()));
+                break;
+            case A:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer()));
+                break;
+            case W:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer()));
+                break;
+            case S:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer()));
+                break;
+            case CONTROL:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
+                break;
+            default:
+        }
+    };
+
+    private EventHandler<KeyEvent> keyReleasedListener = e -> {
+        //System.out.println(controller);
+        switch(e.getCode()){
+            case RIGHT, LEFT, UP, DOWN:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.NONE, controller.getFirstPlayer()));
+                break;
+            case D, A, W, S:
+                System.out.println(e.getCode());
+                controller.notifyCommand(new Movement(Directions.NONE, controller.getSecondPlayer()));
+                break;
+            default:
+        }
+    };
+
+
+
     @FXML
     private ResourceBundle resources;
 
@@ -43,57 +107,12 @@ public class ViewImpl implements View{
         node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
 
-        EventHandler<KeyEvent> keyPressListener = e -> {
-            //System.out.println(controller);
-            switch(e.getCode()){
-                case RIGHT:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer()));
-                    break;
-                case LEFT:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer()));
-                    break;
-                case UP:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer()));
-                    break;
-                case DOWN:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer()));
-                    break;
-                case SPACE:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
-                    break;
-                case D:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer()));
-                    break;
-                case A:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer()));
-                    break;
-                case W:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer()));
-                    break;
-                case S:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer()));
-                    break;
-                case CONTROL:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
-                    break;
-                default:
-            }
-        };
-
+    
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
+            game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
             //stage.setMaximized(true);
             stage.setResizable(false);
