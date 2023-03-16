@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 public class ViewImpl implements View{
 
     private GameEngine controller;
+    private Node node;
+    private Stage stage;
 
     @FXML
     private ResourceBundle resources;
@@ -38,51 +40,51 @@ public class ViewImpl implements View{
 
     @FXML
     void play(ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        node = (Node) event.getSource();
+        stage = (Stage) node.getScene().getWindow();
 
         EventHandler<KeyEvent> keyPressListener = e -> {
             //System.out.println(controller);
             switch(e.getCode()){
                 case RIGHT:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.RIGHT));
+                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer(), controller));
                     break;
                 case LEFT:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.LEFT));
+                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer(), controller));
                     break;
                 case UP:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.UP));
+                    controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer(), controller));
                     break;
                 case DOWN:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getFirstPlayer(), new Movement(Directions.DOWN));
+                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer(), controller));
                     break;
                 case SPACE:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getFirstPlayer(), new Shoot());
+                    controller.notifyCommand(new Shoot(controller.getFirstPlayer(), controller));
                     break;
                 case D:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.RIGHT));
+                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer(), controller));
                     break;
                 case A:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.LEFT));
+                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer(), controller));
                     break;
                 case W:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.UP));
+                    controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer(), controller));
                     break;
                 case S:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getSecondPlayer(), new Movement(Directions.DOWN));
+                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer(), controller));
                     break;
                 case CONTROL:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(controller.getSecondPlayer(), new Shoot());
+                    controller.notifyCommand(new Shoot(controller.getSecondPlayer(), controller));
                     break;
                 default:
             }
@@ -95,10 +97,10 @@ public class ViewImpl implements View{
             stage.setScene(game);
             //stage.setMaximized(true);
             stage.setResizable(false);
+            controller.startGame();
         }catch(Exception e){
             System.out.println(e.toString());
         }
-        controller.play();
     }
 
     @FXML
@@ -126,15 +128,16 @@ public class ViewImpl implements View{
     }
 
     @Override
-    public void drawTank(Transform transform) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'drawTank'");
+    public void render(){
     }
 
-    @Override
-    public void drawBullet(Transform transform) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'drawBullet'");
+    
+    private void drawTank(Transform transform) {
+
+    }
+
+    private void drawBullet(Transform transform) {
+
     }
 
     @Override
@@ -146,6 +149,24 @@ public class ViewImpl implements View{
     @Override
     public void setController(GameEngine controller) {
         this.controller = controller;
+    }
+
+    @Override
+    public void gameOver() {
+        try {
+            System.out.println(controller);
+            /*Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();*/
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
+            Scene gameOver = new Scene(fxmlLoader.load());
+            //controller = fxmlLoader.getController();
+            GameOverController gameOverController = (GameOverController)fxmlLoader.getController();
+            /*gameOverController.setPreviousScene(stage.getScene());*/
+            stage.setScene(gameOver);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+
     }
 
 }

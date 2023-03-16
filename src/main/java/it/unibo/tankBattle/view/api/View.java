@@ -5,9 +5,13 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 
 public interface View {
     
-    public void drawTank(Transform position);
+    /*public void drawTank(Transform position);
 
-    public void drawBullet(Transform position);
+    public void drawBullet(Transform position);*/
+
+    public void gameOver();
+
+    public void render();
 
     public void drawMap();
 

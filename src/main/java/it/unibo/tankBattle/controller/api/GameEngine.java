@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.controller.api;
 
 import it.unibo.tankBattle.common.input.api.Command;
+import it.unibo.tankBattle.model.gameState.api.GameState;
 
 public interface GameEngine {
     /**
@@ -10,7 +11,9 @@ public interface GameEngine {
     
     public void startGame();
 
-    public void notifyCommand(Player player, Command command);
+    public void notifyCommand(Command command);
+
+    public GameState getWorld();
 
     public Player getFirstPlayer();
 
