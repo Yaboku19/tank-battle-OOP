@@ -1,6 +1,5 @@
 package it.unibo.tankBattle.view.api;
 
-import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
 
 public interface View {

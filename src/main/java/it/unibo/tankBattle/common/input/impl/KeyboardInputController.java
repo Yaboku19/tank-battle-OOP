@@ -3,7 +3,6 @@ package it.unibo.tankBattle.common.input.impl;
 import java.util.List;
 
 import it.unibo.tankBattle.common.input.api.InputController;
-import javafx.scene.input.KeyEvent;
 
 public class KeyboardInputController implements InputController{
 
