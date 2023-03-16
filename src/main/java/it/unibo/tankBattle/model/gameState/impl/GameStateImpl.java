@@ -15,7 +15,7 @@ import it.unibo.tankBattle.model.gameState.api.*;
 import it.unibo.tankBattle.model.world.api.*;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
-public class GameStateImpl implements GameState, CommandListener{
+public class GameStateImpl implements GameState{
     private final FactoryWorld factoryWorld;
     private World world = null;
     private final WorldEventListener listener;

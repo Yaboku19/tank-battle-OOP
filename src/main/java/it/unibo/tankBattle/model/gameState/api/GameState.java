@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public interface GameState {
+public interface GameState extends CommandListener{
 
     public void createWorld(Player firstPlayer, Player secondPlayer);
 
