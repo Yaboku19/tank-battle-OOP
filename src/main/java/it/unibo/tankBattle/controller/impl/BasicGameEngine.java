@@ -102,7 +102,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void notifyCommand(Command command) {
         commandQueue.add(command);
-        //System.out.println(commandQueue);
+        System.out.println(commandQueue);
     }
     @Override
     public void endGame(final Player player) {
