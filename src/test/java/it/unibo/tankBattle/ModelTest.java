@@ -10,7 +10,6 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
-import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
@@ -20,7 +19,7 @@ import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
 
 public class ModelTest {
-    private GameState model;
+    private GameStateImpl model;
     private Player firstPlayer;
     private Player secondPlayer;
     private FactoryWorld factoryWorld;

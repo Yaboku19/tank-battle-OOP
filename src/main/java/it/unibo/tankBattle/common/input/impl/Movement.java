@@ -3,10 +3,8 @@ package it.unibo.tankBattle.common.input.impl;
 
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameState.api.GameState;
-
+import it.unibo.tankBattle.model.gameState.api.CommandListener;
 /**
  * That class manage the movement of the players
  */
@@ -23,7 +21,7 @@ public class Movement implements Command{
     }
 
     @Override
-    public void execute(GameState model) {
+    public void execute(CommandListener model) {
         //player.getTrasform.SetDirection(dir);
         model.setDirection(dir, player);
         //controller.getWorld()
