@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unibo.tankBattle.common.P2d;
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
@@ -125,13 +126,13 @@ public class ViewImpl implements View{
     }
 
     @Override
-    public void drawTank(P2d position) {
+    public void drawTank(Transform transform) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'drawTank'");
     }
 
     @Override
-    public void drawBullet(P2d position) {
+    public void drawBullet(Transform transform) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'drawBullet'");
     }
