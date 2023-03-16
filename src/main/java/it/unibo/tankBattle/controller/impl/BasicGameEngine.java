@@ -3,9 +3,7 @@ package it.unibo.tankBattle.controller.impl;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.common.input.api.Command;
-import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
@@ -13,7 +11,7 @@ import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
 
-public class BasicGameEngine implements GameEngine, WorldEventListener, Runnable {
+public class BasicGameEngine implements GameEngine, WorldEventListener {
     private long period = 20;
     private final View view;
     private final GameState model;
@@ -83,7 +81,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener, Runnable
     private void processInput() {
         if (commandQueue.size() > 0){
             var cmd = commandQueue.poll();
-            cmd.execute();
+            cmd.execute(model);
         }
         /*for(var tank : model.getWorld().getTanks()){
             tank.updateInput();
@@ -120,17 +118,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener, Runnable
     @Override
     public Player getSecondPlayer() {
         return secondPlayer;
-    }
-
-    @Override
-    public GameState getWorld() {
-        return this.model;
-    }
-
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
     
 }

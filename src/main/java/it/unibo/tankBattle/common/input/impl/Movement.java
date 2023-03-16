@@ -5,6 +5,7 @@ import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameState.api.GameState;
 
 /**
  * That class manage the movement of the players
@@ -13,18 +14,19 @@ public class Movement implements Command{
 
     private Directions dir;
     private Player player;
-    private GameEngine controller;
+    //private GameEngine controller;
 
-    public Movement(final Directions dir, final Player player, final GameEngine controller){
+    public Movement(final Directions dir, final Player player){//}, final GameEngine controller){
         this.dir = dir;
         this.player = player;
-        this.controller = controller;
+        //this.controller = controller;
     }
 
     @Override
-    public void execute() {
+    public void execute(GameState model) {
         //player.getTrasform.SetDirection(dir);
-        controller.getWorld().setDirection(dir, player);
+        model.setDirection(dir, player);
+        //controller.getWorld()
         System.out.println(player.getCode() + " " + dir);
     }
     
