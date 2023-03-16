@@ -7,5 +7,5 @@ import it.unibo.tankBattle.controller.api.Player;
  */
 public interface Command {
     
-    void execute(Player player);
+    void execute();
 }
