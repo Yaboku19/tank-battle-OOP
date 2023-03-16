@@ -48,43 +48,43 @@ public class ViewImpl implements View{
             switch(e.getCode()){
                 case RIGHT:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer()));
                     break;
                 case LEFT:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer()));
                     break;
                 case UP:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer()));
                     break;
                 case DOWN:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer()));
                     break;
                 case SPACE:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Shoot(controller.getFirstPlayer(), controller));
+                    controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
                     break;
                 case D:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer()));
                     break;
                 case A:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer()));
                     break;
                 case W:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer()));
                     break;
                 case S:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer(), controller));
+                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer()));
                     break;
                 case CONTROL:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Shoot(controller.getSecondPlayer(), controller));
+                    controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
                     break;
                 default:
             }

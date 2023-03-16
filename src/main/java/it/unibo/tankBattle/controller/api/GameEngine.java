@@ -13,8 +13,6 @@ public interface GameEngine {
 
     public void notifyCommand(Command command);
 
-    public GameState getWorld();
-
     public Player getFirstPlayer();
 
     public Player getSecondPlayer();
