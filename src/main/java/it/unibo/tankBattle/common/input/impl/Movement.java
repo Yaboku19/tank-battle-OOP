@@ -24,8 +24,6 @@ public class Movement implements Command{
     public void execute(CommandListener model) {
         //player.getTrasform.SetDirection(dir);
         model.setDirection(dir, player);
-        //controller.getWorld()
-        System.out.println(player.getCode() + " " + dir);
     }
     
 }

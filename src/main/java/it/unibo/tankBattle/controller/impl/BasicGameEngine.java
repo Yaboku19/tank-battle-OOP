@@ -2,7 +2,10 @@ package it.unibo.tankBattle.controller.impl;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
@@ -27,6 +30,11 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         this.view = view;
         view.setController(this);
         model = new GameStateImpl(this);
+    }
+
+    @Override
+    public Set<Transform> getTransform(){
+        return model.getTanks().map(tank -> tank.getTransform()).collect(Collectors.toSet());
     }
 
     @Override
@@ -63,7 +71,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
             long currentCycleStartTime = System.currentTimeMillis();
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
-            //update(elapsed);
+            update(elapsed);
             render();
             waitForNextFrame(currentCycleStartTime);
 			previousCycleStartTime = currentCycleStartTime;

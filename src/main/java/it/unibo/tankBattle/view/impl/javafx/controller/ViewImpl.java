@@ -166,7 +166,6 @@ public class ViewImpl implements View{
     @Override
     public void drawMap() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'drawMap'");
     }
 
     @Override

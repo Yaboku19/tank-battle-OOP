@@ -74,5 +74,6 @@ public class BasicGameObject implements GameObject{
         if(this.getComponent(Movable.class).isPresent()) {
             this.getComponent(Movable.class).get().setMovingDirection(dir);
         }
+        System.out.println("la direzione è " + dir);
     }
 }
