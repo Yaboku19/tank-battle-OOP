@@ -34,7 +34,7 @@ public class CollidableTank extends AbstractComponent implements Collidable {
 
     private void knockBack(final Directions knockBackDir) {
         if(this.getGameObject().getComponent(Movable.class).isPresent()) {
-            int speed = this.getGameObject().getComponent(Movable.class).get().getSpeed();
+            double speed = this.getGameObject().getComponent(Movable.class).get().getSpeed();
             P2d actualPos = this.getGameObject().getTransform().getPosition();
             this.getGameObject().setPosition(new P2d(actualPos.getX() + knockBackDir.getX()*speed,
                 actualPos.getY() + knockBackDir.getY()*speed));
