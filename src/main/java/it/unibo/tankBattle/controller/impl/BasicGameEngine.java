@@ -49,7 +49,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model.createWorld(firstPlayer, secondPlayer);
         System.out.println("start game");
         thread.start();
-        System.out.println("start game2");
         //initGame();
         /*
          * new instance of model
@@ -65,7 +64,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
             //update(elapsed);
-            //render();
+            render();
             waitForNextFrame(currentCycleStartTime);
 			previousCycleStartTime = currentCycleStartTime;
         }
@@ -114,6 +113,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void endGame(final Player player) {
         player.incScore();
         this.isOver = true;
+        view.gameOver();
     }
 
     @Override

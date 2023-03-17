@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 public class ViewImpl implements View{
 
     private GameEngine controller;
+    private GameController gameController;
     private Node node;
     private Stage stage;
 
@@ -113,6 +114,7 @@ public class ViewImpl implements View{
             game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
             //stage.setMaximized(true);
+            gameController = fxmlLoader.getController();
             stage.setResizable(false);
             controller.startGame();
             //controller.run();
@@ -147,14 +149,17 @@ public class ViewImpl implements View{
 
     @Override
     public void render(){
+        drawTank();
+        drawBullet();
+        drawMap();
     }
 
     
-    private void drawTank(Transform transform) {
-
+    private void drawTank(){//Transform transform) {
+        //gameController.move(controller.getFirstPlayer());   
     }
 
-    private void drawBullet(Transform transform) {
+    private void drawBullet(){//Transform transform) {
 
     }
 
@@ -179,7 +184,7 @@ public class ViewImpl implements View{
             Scene gameOver = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
             GameOverController gameOverController = (GameOverController)fxmlLoader.getController();
-            /*gameOverController.setPreviousScene(stage.getScene());*/
+            gameOverController.setPreviousScene(stage.getScene());
             stage.setScene(gameOver);
         }catch(Exception e){
             System.out.println(e.toString());

@@ -4,9 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class GameOverController {
+
+    private Scene prev;
 
     @FXML
     private ResourceBundle resources;
@@ -28,7 +33,13 @@ public class GameOverController {
 
     @FXML
     void restart(ActionEvent event) {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(prev);
+    }
 
+    public void setPreviousScene (Scene prev){
+        this.prev = prev;
     }
 
     @FXML
