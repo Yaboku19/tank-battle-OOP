@@ -52,14 +52,14 @@ public class GameObjectTest {
 
 	@org.junit.jupiter.api.Test
 	public void testUpdate() {
-		/*assertEquals(new P2d(10,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(10,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.RIGHT);
-		tank.update();
-		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
+		tank.update(10);
+		assertEquals(new P2d(20,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.NONE);
-		tank.update();
-		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
-		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());*/
+		tank.update(1);
+		assertEquals(new P2d(20,10), tank.getTransform().getPosition());
+		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());
 	}
 
 	@org.junit.jupiter.api.Test

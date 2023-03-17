@@ -8,7 +8,7 @@ public interface Movable extends Component {
      * 
      * @return the component speed
      */
-    public int getSpeed();
+    public double getSpeed();
 
     /**
      * 

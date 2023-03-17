@@ -30,8 +30,9 @@ public class BasicGameObject implements GameObject{
 
     @Override
     public void update(double time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if(this.getComponent(Movable.class).isPresent()) {
+            this.getComponent(Movable.class).get().update(time);
+        }
     }
 
     @Override
