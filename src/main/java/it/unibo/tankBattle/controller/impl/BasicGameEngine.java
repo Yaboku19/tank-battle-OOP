@@ -33,11 +33,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     @Override
-    public Set<Transform> getTankTransform(){
-        return model.getTanks().map(tank -> tank.getTransform()).collect(Collectors.toSet());
-    }
-
-    @Override
     public void play() {
         /*initGame();
         view.setVisible(true);
@@ -139,6 +134,16 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         //startGame();
         System.out.println("aaa");
         loop();
+    }
+
+    @Override
+    public Transform getFirstTankTransform(){
+        return model.getTankFromPlayer(firstPlayer).getTransform();
+    }
+
+    @Override
+    public Transform getSecondTankTransform(){
+        return model.getTankFromPlayer(secondPlayer).getTransform();
     }
     
 }

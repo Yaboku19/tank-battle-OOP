@@ -71,7 +71,8 @@ public class GameStateImpl implements GameState{
         getTankFromPlayer(player).setDirection(direction);
     }
 
-    private GameObject getTankFromPlayer(final Player player) {
+    @Override
+    public GameObject getTankFromPlayer(final Player player) {
         return getTanks()
             .filter(t -> t.getComponent(Tank.class).get().getPlayer().equals(player))
             .findFirst()

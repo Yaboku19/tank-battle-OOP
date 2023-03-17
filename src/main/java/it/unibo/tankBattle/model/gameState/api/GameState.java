@@ -15,4 +15,6 @@ public interface GameState extends CommandListener{
     public Stream<GameObject> getBullets();
 
     public Stream<GameObject> getWalls();
+
+    public GameObject getTankFromPlayer(final Player player);
 }

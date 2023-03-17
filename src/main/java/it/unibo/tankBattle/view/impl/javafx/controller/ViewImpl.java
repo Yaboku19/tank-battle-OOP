@@ -156,7 +156,9 @@ public class ViewImpl implements View{
 
     
     private void drawTank(){//Transform transform) {
-        //gameController.move(controller.getFirstPlayer());   
+        gameController.renderFirstTank(controller.getFirstTankTransform());
+        gameController.renderSecondTank(controller.getSecondTankTransform());
+
     }
 
     private void drawBullet(){//Transform transform) {
