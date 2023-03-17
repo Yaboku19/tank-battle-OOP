@@ -45,15 +45,15 @@ public class GameController {
     public void renderFirstTank(Transform t){
         player1.setX(t.getPosition().getX());
         player1.setY(t.getPosition().getY());
-        player1.setFitWidth(t.getWidth()*2);
-        player1.setFitHeight(t.getLength()*2);
+        player1.setFitWidth(t.getWidth());
+        player1.setFitHeight(t.getLength());
     }
 
     public void renderSecondTank(Transform t){
         player2.setX(t.getPosition().getX());
         player2.setY(t.getPosition().getY());
-        player2.setFitWidth(t.getWidth()*2);
-        player2.setFitHeight(t.getLength()*2);
+        player2.setFitWidth(t.getWidth());
+        player2.setFitHeight(t.getLength());
     }
 
 }

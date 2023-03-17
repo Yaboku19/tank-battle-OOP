@@ -8,7 +8,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
 
     private final double speed;
     private Directions movingDirection;
-    
+    private static final double TIME_REDUCTOR = 10; 
 
     public SimpleMovable(final double speed) {
         this.speed = speed;
@@ -19,8 +19,8 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     public void update(double time) {
         var actualPos = this.getGameObject().getTransform().getPosition(); 
         this.getGameObject()
-                .setPosition(new P2d(time*speed*movingDirection.getX() + actualPos.getX(), 
-                time*speed*movingDirection.getY() + actualPos.getY()));
+                .setPosition(new P2d(time/TIME_REDUCTOR*speed*movingDirection.getX() + actualPos.getX(), 
+                time/TIME_REDUCTOR*speed*movingDirection.getY() + actualPos.getY()));
     }
 
     @Override

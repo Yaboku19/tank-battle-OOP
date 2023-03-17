@@ -19,12 +19,12 @@ import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
 
 public class FactoryGameObjectImpl implements FactoryGameObject {
 
-    private final int SIMPLE_TANK_DIM = 10;
+    private final int SIMPLE_TANK_DIM = 50;
     private final int SIMPLE_TANK_SPEED = 1;
-    private final int SIMPLE_BULLET_DIM = 1;
+    private final int SIMPLE_BULLET_DIM = 10;
     private final int SIMPLE_BULLET_DAMAGE = 50;
     private final int SIMPLE_BULLET_SPEED = 2;
-    private final int SIMPLE_WALL_DIM = 10;
+    private final int SIMPLE_WALL_DIM = 50;
 
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
