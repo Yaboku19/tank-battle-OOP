@@ -19,5 +19,5 @@ public interface GameEngine extends Runnable{
 
     public Player getSecondPlayer();
 
-    public Set<Transform> getTransform();
+    public Set<Transform> getTankTransform();
 }

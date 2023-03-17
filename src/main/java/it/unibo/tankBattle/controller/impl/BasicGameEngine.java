@@ -33,7 +33,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     @Override
-    public Set<Transform> getTransform(){
+    public Set<Transform> getTankTransform(){
         return model.getTanks().map(tank -> tank.getTransform()).collect(Collectors.toSet());
     }
 
