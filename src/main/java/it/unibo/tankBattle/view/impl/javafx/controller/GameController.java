@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unibo.tankBattle.common.Transform;
+import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -47,6 +48,7 @@ public class GameController {
         player1.setY(t.getPosition().getY());
         player1.setFitWidth(t.getWidth());
         player1.setFitHeight(t.getLength());
+        player1.setRotate(getRotation(t.getDirection())); 
     }
 
     public void renderSecondTank(Transform t){
@@ -54,6 +56,20 @@ public class GameController {
         player2.setY(t.getPosition().getY());
         player2.setFitWidth(t.getWidth());
         player2.setFitHeight(t.getLength());
+        player2.setRotate(getRotation(t.getDirection()));
+    }
+
+    private double getRotation(Directions dir) {
+        switch(dir) {
+            case RIGHT:
+                return 90;
+            case DOWN:
+                return 180;
+            case LEFT: 
+                return 270;
+            default:
+                return 0;
+        }
     }
 
 }
