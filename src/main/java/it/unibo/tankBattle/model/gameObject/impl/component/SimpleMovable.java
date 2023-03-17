@@ -12,7 +12,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
 
     public SimpleMovable(final double speed) {
         this.speed = speed;
-        this.movingDirection = Directions.UP;
+        this.movingDirection = Directions.NONE;
     }
 
     @Override
