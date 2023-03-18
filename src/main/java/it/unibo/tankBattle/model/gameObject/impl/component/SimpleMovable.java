@@ -15,6 +15,11 @@ public class SimpleMovable extends AbstractComponent implements Movable {
         this.movingDirection = Directions.NONE;
     }
 
+    public SimpleMovable(final double speed, Directions dir) {
+        this.speed = speed;
+        this.movingDirection = dir;
+    }
+
     @Override
     public void update(double time) {
         var actualPos = this.getGameObject().getTransform().getPosition(); 

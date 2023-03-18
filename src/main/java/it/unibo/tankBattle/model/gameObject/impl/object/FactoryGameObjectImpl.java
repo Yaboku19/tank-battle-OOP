@@ -24,7 +24,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     private final int SIMPLE_BULLET_DIM = 10;
     private final int SIMPLE_BULLET_DAMAGE = 50;
     private final int SIMPLE_BULLET_SPEED = 2;
-    private final int SIMPLE_WALL_DIM = 50;
+    private final int SIMPLE_WALL_DIM = 20;
 
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
@@ -48,7 +48,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
         return new BasicGameObject(bulletTransform)
                 .addComponent(new Bullet())
                 .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE))
-                .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED))
+                .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED, bulletTransform.getDirection()))
                 .addComponent(new BulletHealth())
                 .addComponent(new CollidableBullet())
                 .addComponent(new BoundingBoxComp(new RectangularBoundingBox(bulletTransform)));

@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 public class GameController {
 
     private Scene scene;
+    private Set<ImageView> wallSet = new HashSet<>();
+    private Set<ImageView> bulletSet = new HashSet<>();
 
     @FXML
     private ResourceBundle resources;
@@ -39,6 +42,7 @@ public class GameController {
         //assert player1 != null : "fx:id=\"player1\" was not injected: check your FXML file 'game.fxml'.";
         //assert player2 != null : "fx:id=\"player2\" was not injected: check your FXML file 'game.fxml'.";
         Image tank = new Image("/images/tank.gif");
+        
         player1 = new ImageView(tank);
         player2 = new ImageView(tank);
         //mainPane = new AnchorPane();
@@ -47,44 +51,56 @@ public class GameController {
     }
 
     public void renderFirstTank(Transform t){
-        player1.setX(t.getPosition().getX());
-        player1.setY(t.getPosition().getY());
+        player1.setX(t.getUpperLeftPosition().getX());
+        player1.setY(t.getUpperLeftPosition().getY());
         player1.setFitWidth(t.getWidth());
         player1.setFitHeight(t.getLength());
         player1.setRotate(getRotation(t.getDirection())); 
     }
 
-    public void renderSecondTank(Transform t){
-        player2.setX(t.getPosition().getX());
-        player2.setY(t.getPosition().getY());
+    public void renderSecondTank(Transform t) {
+        player2.setX(t.getUpperLeftPosition().getX());
+        player2.setY(t.getUpperLeftPosition().getY());
         player2.setFitWidth(t.getWidth());
         player2.setFitHeight(t.getLength());
         player2.setRotate(getRotation(t.getDirection()));
     }
 
-    public void renderBullet(Set<Transform> bullets){
-        System.out.println("bullets " + bullets.size());
-        for(var t : bullets){
-            ImageView bullet = new ImageView("/images/bullet.png");
+    public void renderBullet(Set<Transform> bullets) {
+        if(bullets.size() > bulletSet.size()){ //to improve
+            ImageView bullet = new ImageView("/images/bullet1.png");
+            bulletSet.add(bullet);
             mainPane.getChildren().add(bullet);
-            bullet.setX(t.getPosition().getX());
-            bullet.setY(t.getPosition().getY());
-            bullet.setFitWidth(t.getWidth());
-            bullet.setFitHeight(t.getLength());
-            bullet.setRotate(getRotation(t.getDirection()));
+        }
+        if(bullets.size() < bulletSet.size()) {
+            bulletSet.remove(bulletSet.iterator().next());
+        }
+        var iterator = bullets.iterator();
+        for (var image : bulletSet) {
+            Transform trans = iterator.next();
+            image.setX(trans.getUpperLeftPosition().getX());
+            image.setY(trans.getUpperLeftPosition().getY());
+            image.setFitWidth(trans.getWidth());
+            image.setFitHeight(trans.getLength());
+            image.setRotate(getRotation(trans.getDirection()));
         }
     }
 
-    public void renderWall(Set<Transform> walls){
-        System.out.println("wall " + walls.size());
-        for(var t : walls){
-            ImageView wall = new ImageView("/images/wall.png");
-            mainPane.getChildren().add(wall);
-            wall.setX(t.getPosition().getX());
-            wall.setY(t.getPosition().getY());
-            wall.setFitWidth(t.getWidth());
-            wall.setFitHeight(t.getLength());
-            wall.setRotate(getRotation(t.getDirection()));
+    public void renderWall(Set<Transform> walls) {
+        //System.out.println("wall " + wallSet.size());
+        //mainPane.getChildren().removeAll(wallSet);
+        //this.wallSet.clear();
+        if(this.wallSet.size() == 0) {
+            for(var t : walls){
+                ImageView wall = new ImageView("/images/obstacle.png");
+                mainPane.getChildren().add(wall);
+                wall.setX(t.getUpperLeftPosition().getX());
+                wall.setY(t.getUpperLeftPosition().getY());
+                wall.setFitWidth(t.getWidth());
+                wall.setFitHeight(t.getLength());
+                wall.setRotate(getRotation(t.getDirection()));
+                this.wallSet.add(wall);
+            }
         }
     }
 

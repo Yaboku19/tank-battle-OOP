@@ -33,8 +33,8 @@ public class ViewImpl implements View{
     private KeyEvent lastCommandSecondPlayer;
 
     private EventHandler<KeyEvent> keyPressListener = e -> {
-        System.out.println("prima " + lastCommandFirstPlayer);
-        System.out.println("e " + e);
+        //System.out.println("prima " + lastCommandFirstPlayer);
+        //System.out.println("e " + e);
         if(lastCommandFirstPlayer != e){
             switch(e.getCode()){
                 case RIGHT:
