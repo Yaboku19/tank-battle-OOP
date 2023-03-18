@@ -1,5 +1,9 @@
 package it.unibo.tankBattle.view.api;
 
+import java.util.Set;
+import java.util.stream.Stream;
+
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
 
 public interface View {
@@ -10,9 +14,9 @@ public interface View {
 
     public void gameOver();
 
-    public void render();
+    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet);
 
-    public void drawMap();
+    public void drawWall(Set<Transform> wall);
 
     public void setController(GameEngine controller);  
 }

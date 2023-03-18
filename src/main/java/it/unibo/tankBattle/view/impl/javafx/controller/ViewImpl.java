@@ -2,6 +2,10 @@ package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.common.input.impl.Movement;
@@ -168,11 +172,12 @@ public class ViewImpl implements View{
     }
 
     @Override
-    public void render(){
+    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
         Platform.runLater(() -> {
-            drawTank();
-            drawBullet();
-            drawMap();
+            drawFirstTank(firstTank);
+            drawSecondTank(secondTank);
+            drawBullet(bullet.collect(Collectors.toSet()));
+            drawWall(wall.collect(Collectors.toSet()));
         });
     }
     /*ESEMPIO********
@@ -202,19 +207,21 @@ public class ViewImpl implements View{
     });*/
 
     
-    private void drawTank(){//Transform transform) {
-        gameController.renderFirstTank(controller.getFirstTankTransform());
-        gameController.renderSecondTank(controller.getSecondTankTransform());
-
+    private void drawFirstTank(Transform tank){//Transform transform) {
+        gameController.renderFirstTank(tank);
     }
 
-    private void drawBullet(){//Transform transform) {
-        gameController.renderBullet(controller.getBulletTransform());
+    private void drawSecondTank(Transform tank){//Transform transform) {
+        gameController.renderSecondTank(tank);
+    }
+
+    private void drawBullet(Set<Transform> bullet){//Transform transform) {
+        gameController.renderBullet(bullet);
     }
 
     @Override
-    public void drawMap() {
-        gameController.renderWall(controller.getWallTransform());
+    public void drawWall(Set<Transform> wall) {
+        gameController.renderWall(wall);
     }
 
     @Override

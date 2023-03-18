@@ -1,8 +1,5 @@
 package it.unibo.tankBattle.controller.api;
 
-import java.util.Set;
-
-import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Command;
 
 public interface GameEngine extends Runnable{
@@ -18,12 +15,4 @@ public interface GameEngine extends Runnable{
     public Player getFirstPlayer();
 
     public Player getSecondPlayer();
-
-    public Transform getFirstTankTransform();
-    
-    public Transform getSecondTankTransform();
-
-    public Set<Transform> getBulletTransform();
-
-    public Set<Transform> getWallTransform();
 }

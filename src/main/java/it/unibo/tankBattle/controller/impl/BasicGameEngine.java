@@ -2,11 +2,6 @@ package it.unibo.tankBattle.controller.impl;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.Player;
@@ -103,7 +98,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     private void render() {
-        view.render();
+        view.render(null, null, model.getWalls(), model.getBullets());
         /*view.drawBullet(null);
         view.drawTank(null);*/
     }
@@ -135,25 +130,5 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         //startGame();
         System.out.println("aaa");
         loop();
-    }
-
-    @Override
-    public Transform getFirstTankTransform(){
-        return model.getTankFromPlayer(firstPlayer).getTransform();
-    }
-
-    @Override
-    public Transform getSecondTankTransform(){
-        return model.getTankFromPlayer(secondPlayer).getTransform();
-    }
-
-    @Override
-    public Set<Transform> getBulletTransform() {
-        return model.getBullets().collect(Collectors.toSet());
-    }
-    
-    @Override
-    public Set<Transform> getWallTransform() {
-        return model.getWalls().collect(Collectors.toSet());
     }
 }
