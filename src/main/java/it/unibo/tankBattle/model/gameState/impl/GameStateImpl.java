@@ -2,6 +2,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 
 import java.util.stream.Stream;
 
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
@@ -85,12 +86,17 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public Stream<GameObject> getBullets() {
-        return world.getEntities().filter(g -> g.getComponent(Bullet.class).isPresent());
+    public Stream<Transform> getBullets() {
+        return world.getEntities()
+                .filter(g -> g.getComponent(Bullet.class).isPresent())
+                .map(b -> b.getTransform());
     }
 
     @Override
-    public Stream<GameObject> getWalls() {
-        return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());
+    public Stream<Transform> getWalls() {
+        /*return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());*/
+        return world.getEntities()
+                .filter(g -> g.getComponent(Wall.class).isPresent())
+                .map(w -> w.getTransform());
     }
 }

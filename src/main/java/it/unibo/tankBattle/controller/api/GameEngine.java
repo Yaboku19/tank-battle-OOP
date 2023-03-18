@@ -22,4 +22,8 @@ public interface GameEngine extends Runnable{
     public Transform getFirstTankTransform();
     
     public Transform getSecondTankTransform();
+
+    public Set<Transform> getBulletTransform();
+
+    public Set<Transform> getWallTransform();
 }

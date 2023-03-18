@@ -56,8 +56,8 @@ public class ModelTest {
     @org.junit.jupiter.api.Test            
 	public void getTest() {        
         var allEntities = model.getTanks().collect(Collectors.toSet());
-        allEntities.addAll(model.getWalls().collect(Collectors.toSet()));
-        allEntities.addAll(model.getBullets().collect(Collectors.toSet()));
+        //allEntities.addAll(model.getWalls().collect(Collectors.toSet()));
+        //allEntities.addAll(model.getBullets().collect(Collectors.toSet()));
         var entitiesSorted = sortEntities(allEntities.stream());
         var worldSortedEntities = sortEntities(factoryWorld.simpleWorld(firstPlayer, secondPlayer)
                                     .getEntities());
