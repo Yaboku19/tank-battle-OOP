@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public interface GameState extends CommandListener{
 
@@ -12,11 +11,9 @@ public interface GameState extends CommandListener{
 
     public void update(Double time);
 
-    public Stream<GameObject> getTanks();
+    public Stream<Transform> getBulletsTrasform();
 
-    public Stream<Transform> getBullets();
+    public Stream<Transform> getWallsTrasform();
 
-    public Stream<Transform> getWalls();
-
-    public GameObject getTankFromPlayer(final Player player);
+    public Transform getTankTrasform(final Player player);
 }

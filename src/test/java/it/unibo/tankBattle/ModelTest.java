@@ -79,11 +79,11 @@ public class ModelTest {
 
     @org.junit.jupiter.api.Test
     public void shotTest() {
-        assertEquals(0, model.getBullets().count());
+        assertEquals(0, model.getBulletsTrasform().count());
         model.shot(firstPlayer);
-        assertEquals(1, model.getBullets().count());
+        assertEquals(1, model.getBulletsTrasform().count());
         model.shot(secondPlayer);
-        assertEquals(2, model.getBullets().count());
+        assertEquals(2, model.getBulletsTrasform().count());
     }
 
     @org.junit.jupiter.api.Test

@@ -61,6 +61,16 @@ public class GameStateImpl implements GameState{
         }
     }
 
+    private Stream<GameObject> getBullets() {
+        return world.getEntities()
+            .filter(g -> g.getComponent(Bullet.class).isPresent());
+    }
+
+    private Stream<GameObject> getWalls() {
+        return world.getEntities()
+            .filter(g -> g.getComponent(Wall.class).isPresent());
+    }
+
     @Override
     public void shot(final Player player) {
         world.addGameObject(factoryGameObject
@@ -72,31 +82,31 @@ public class GameStateImpl implements GameState{
         getTankFromPlayer(player).setDirection(direction);
     }
 
-    @Override
-    public GameObject getTankFromPlayer(final Player player) {
+    private GameObject getTankFromPlayer(final Player player) {
         return getTanks()
             .filter(t -> t.getComponent(Tank.class).get().getPlayer().equals(player))
             .findFirst()
             .get();
     }
 
-    @Override
-    public Stream<GameObject> getTanks() {
+    private Stream<GameObject> getTanks() {
         return world.getEntities().filter(g -> g.getComponent(Tank.class).isPresent());
     }
 
     @Override
-    public Stream<Transform> getBullets() {
-        return world.getEntities()
-                .filter(g -> g.getComponent(Bullet.class).isPresent())
-                .map(b -> b.getTransform());
+    public Stream<Transform> getBulletsTrasform() {
+        return getBullets().map(b -> b.getTransform());
     }
 
     @Override
-    public Stream<Transform> getWalls() {
+    public Stream<Transform> getWallsTrasform() {
         /*return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());*/
-        return world.getEntities()
-                .filter(g -> g.getComponent(Wall.class).isPresent())
+        return getWalls()
                 .map(w -> w.getTransform());
+    }
+
+    @Override
+    public Transform getTankTrasform(Player player) {
+        return getTankFromPlayer(player).getTransform();
     }
 }
