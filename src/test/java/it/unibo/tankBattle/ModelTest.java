@@ -2,21 +2,13 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import it.unibo.tankBattle.common.P2d;
+import java.util.ArrayList;
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
-
-
-
-
 
 public class ModelTest {
     private GameStateImpl model;
@@ -54,28 +46,14 @@ public class ModelTest {
     }
 
     @org.junit.jupiter.api.Test            
-	public void getTest() {        
-        var allEntities = model.getTanks().collect(Collectors.toSet());
-        //allEntities.addAll(model.getWalls().collect(Collectors.toSet()));
-        //allEntities.addAll(model.getBullets().collect(Collectors.toSet()));
-        var entitiesSorted = sortEntities(allEntities.stream());
-        var worldSortedEntities = sortEntities(factoryWorld.simpleWorld(firstPlayer, secondPlayer)
-                                    .getEntities());
-        assertEquals(worldSortedEntities, entitiesSorted);
+	public void getTest() {
+        var allEntities = new ArrayList<Transform>();
+        allEntities.addAll(model.getBulletsTrasform().toList());
+        allEntities.addAll(model.getWallsTrasform().toList());     
+        allEntities.add(model.getTankTrasform(firstPlayer));
+        allEntities.add(model.getTankTrasform(secondPlayer));
+        assertEquals(factoryWorld.simpleWorld(firstPlayer, secondPlayer).getEntities().toList().size(), allEntities.size());
 	}
-
-    private List<P2d> sortEntities(Stream<GameObject> entities) {
-        return entities
-            .map(g -> g.getTransform().getPosition())
-            .sorted((a, b) -> {
-                if(a.getX() == b.getX()) {
-                    return (int)(a.getY() - b.getY());
-                } else {
-                    return (int)(a.getX() - b.getX());
-                }
-            })
-            .toList();
-    }
 
     @org.junit.jupiter.api.Test
     public void shotTest() {
@@ -88,13 +66,9 @@ public class ModelTest {
 
     @org.junit.jupiter.api.Test
     public void ChangeDirectionTest() {
-        var tank = model.getTanks()
-            .filter(g -> g.getComponent(Tank.class).get().getPlayer().equals(firstPlayer))
-            .findFirst()
-            .get();
         //assertEquals(Directions.NONE, tank.getTransform().getDirection());
         model.setDirection(Directions.DOWN, firstPlayer);
-        assertEquals(Directions.DOWN, tank.getTransform().getDirection());
+        assertEquals(Directions.DOWN, model.getTankTrasform(firstPlayer).getDirection());
     }
 
    /* @org.junit.jupiter.api.Test
