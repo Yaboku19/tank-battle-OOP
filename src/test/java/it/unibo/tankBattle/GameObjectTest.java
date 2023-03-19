@@ -42,11 +42,11 @@ public class GameObjectTest {
 		var tank2 = this.factory.createSimpleTank(new P2d(20,12), player1);
 		var obstacle1 = this.factory.createSimpleWall(new P2d(15, 20));
 		tank.getComponent(Collidable.class).get().resolveCollision(tank2);
-		assertEquals(new P2d(9,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(9.9,10), tank.getTransform().getPosition());
 		tank.getComponent(Collidable.class).get().resolveCollision(obstacle1);
 		if(obstacle1.getComponent(Collidable.class).isPresent())
 			obstacle1.getComponent(Collidable.class).get().resolveCollision(tank);
-		assertEquals(new P2d(9,9), tank.getTransform().getPosition());
+		assertEquals(new P2d(9.9,9.9), tank.getTransform().getPosition());
 		assertEquals(new P2d(15,20), obstacle1.getTransform().getPosition());
 	}
 

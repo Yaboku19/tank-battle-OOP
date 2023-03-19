@@ -10,19 +10,20 @@ import it.unibo.tankBattle.model.gameObject.impl.component.*;
 
 public class FactoryGameObjectImpl implements FactoryGameObject {
 
-    private final int SIMPLE_TANK_DIM = 50;
-    private final int SIMPLE_TANK_SPEED = 1;
-    private final int SIMPLE_BULLET_DIM = 10;
+    private final double SIMPLE_TANK_DIM = 50;
+    private final double SIMPLE_TANK_SPEED = 0.1;
+    private final int SIMPLE_TANK_LP = 100;
+    private final double SIMPLE_BULLET_DIM = 10;
     private final int SIMPLE_BULLET_DAMAGE = 50;
-    private final int SIMPLE_BULLET_SPEED = 2;
-    private final int SIMPLE_WALL_DIM = 20;
+    private final double SIMPLE_BULLET_SPEED = 0.5;
+    private final double SIMPLE_WALL_DIM = 20;
 
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
         final Transform tankTranform = new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM);
         return new BasicGameObject(tankTranform)
                 .addComponent(new SimpleTank(player))
-                .addComponent(new TankHealth(100))
+                .addComponent(new TankHealth(SIMPLE_TANK_LP))
                 .addComponent(new CollidableTank())
                 .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED))
                 .addComponent(new BoundingBoxComp(new RectangularBoundingBox(tankTranform)));
