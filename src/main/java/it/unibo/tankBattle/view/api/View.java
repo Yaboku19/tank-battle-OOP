@@ -16,7 +16,7 @@ public interface View {
 
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet);
 
-    public void drawWall(Set<Transform> wall);
+    //public void drawWall(Set<Transform> wall);
 
     public void setController(GameEngine controller);  
 }

@@ -31,6 +31,7 @@ public class ViewImpl implements View{
     private Stage stage;
     private KeyEvent lastCommandFirstPlayer;
     private KeyEvent lastCommandSecondPlayer;
+    private boolean firtsTime = true;
 
     private EventHandler<KeyEvent> keyPressListener = e -> {
         //System.out.println("prima " + lastCommandFirstPlayer);
@@ -174,6 +175,7 @@ public class ViewImpl implements View{
     @Override
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
         Platform.runLater(() -> {
+            gameController.clear();
             drawFirstTank(firstTank);
             drawSecondTank(secondTank);
             drawBullet(bullet.collect(Collectors.toSet()));
@@ -219,8 +221,7 @@ public class ViewImpl implements View{
         gameController.renderBullet(bullet);
     }
 
-    @Override
-    public void drawWall(Set<Transform> wall) {
+    private void drawWall(Set<Transform> wall) {
         gameController.renderWall(wall);
     }
 
