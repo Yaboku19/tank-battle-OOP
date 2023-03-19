@@ -29,66 +29,74 @@ public class ViewImpl implements View{
     private GameController gameController;
     private Node node;
     private Stage stage;
-    private KeyEvent lastCommandFirstPlayer;
-    private KeyEvent lastCommandSecondPlayer;
-    private boolean firtsTime = true;
+    private String lastCommandFirstPlayer = "";
+    private String lastCommandSecondPlayer = "";
 
     private EventHandler<KeyEvent> keyPressListener = e -> {
-        //System.out.println("prima " + lastCommandFirstPlayer);
-        //System.out.println("e " + e);
-        if(lastCommandFirstPlayer != e){
+        
+        String event = e.getCode() + e.getEventType().toString();
+        System.out.println(!lastCommandFirstPlayer.equals(event));
+        if(!lastCommandFirstPlayer.equals(event)){
             switch(e.getCode()){
                 case RIGHT:
                     System.out.println("comando " + e.getCode());
                     controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer()));
+                    lastCommandFirstPlayer = event;
                     break;
                 case LEFT:
-                    //System.out.println("comando " + e.getCode());
+                    System.out.println("comando " + e.getCode());
                     controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer()));
+                    lastCommandFirstPlayer = event;
                     break;
                 case UP:
-                    //System.out.println("comando " + e.getCode());
+                    System.out.println("comando " + e.getCode());
                     controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer()));
+                    lastCommandFirstPlayer = event;
                     break;
                 case DOWN:
-                    //System.out.println("comando " + e.getCode());
+                    System.out.println("comando " + e.getCode());
                     controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer()));
+                    lastCommandFirstPlayer = event;
                     break;
                 case SPACE:
-                    //System.out.println("comando " + e.getCode());
+                    System.out.println("comando " + e.getCode());
                     controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
                     break;
                 default:
             }
-            lastCommandFirstPlayer = e;
-            //System.out.println("dopo " + lastCommandFirstPlayer);
         }
-
-        if(lastCommandSecondPlayer != e){
+        System.out.println(!lastCommandSecondPlayer.equals(event));
+        if(!lastCommandSecondPlayer.equals(event)){
             switch(e.getCode()){
                 case D:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer()));
+                    lastCommandSecondPlayer = event;
                     break;
                 case A:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer()));
+                    lastCommandSecondPlayer = event;
                     break;
                 case W:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer()));
+                    lastCommandSecondPlayer = event;
                     break;
                 case S:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer()));
+                    lastCommandSecondPlayer = event;
                     break;
-                case CONTROL:
+                case Z:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
+                    //lastCommandSecondPlayer += "." ;
                     break;
                 default:
             }
-            lastCommandSecondPlayer = e;
+            /*System.out.println("DOPO lastCommandSecondPlayer " + lastCommandSecondPlayer);
+            System.out.println("DOPO event " + event);*/
         }
 
         /*if(lastCommandFirstPlayer == null){
@@ -99,14 +107,17 @@ public class ViewImpl implements View{
 
     private EventHandler<KeyEvent> keyReleasedListener = e -> {
         //System.out.println(controller);
+        String event = e.getCode().toString() + e.getEventType().toString();
         switch(e.getCode()){
             case RIGHT, LEFT, UP, DOWN:
                 System.out.println(e.getCode());
                 controller.notifyCommand(new Movement(Directions.NONE, controller.getFirstPlayer()));
+                lastCommandFirstPlayer = event;
                 break;
             case D, A, W, S:
                 System.out.println(e.getCode());
                 controller.notifyCommand(new Movement(Directions.NONE, controller.getSecondPlayer()));
+                lastCommandSecondPlayer = event;
                 break;
             default:
         }
