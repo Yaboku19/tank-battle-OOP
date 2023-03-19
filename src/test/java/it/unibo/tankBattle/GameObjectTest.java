@@ -55,10 +55,10 @@ public class GameObjectTest {
 		assertEquals(new P2d(10,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.RIGHT);
 		tank.update(10);
-		assertEquals(new P2d(20,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.NONE);
 		tank.update(1);
-		assertEquals(new P2d(20,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
 		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());
 	}
 
@@ -67,30 +67,30 @@ public class GameObjectTest {
 		assertEquals(Directions.UP, bullet.getTransform().getDirection());
 		tank.setDirection(Directions.RIGHT);
 		assertEquals(new P2d(10, 10), tank.getTransform().getPosition());
-		assertEquals(10, tank.getTransform().getLength());
-		assertEquals(10, tank.getTransform().getWidth());
+		assertEquals(50, tank.getTransform().getLength());
+		assertEquals(50, tank.getTransform().getWidth());
 		var bullet1 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(20, 10), bullet1.getTransform().getPosition());
+		assertEquals(new P2d(60, 10), bullet1.getTransform().getPosition());
 		assertEquals(Directions.RIGHT, bullet1.getTransform().getDirection());
 		
 		tank.setDirection(Directions.LEFT);
 		var bullet2 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(0, 10), bullet2.getTransform().getPosition());
+		assertEquals(new P2d(-40, 10), bullet2.getTransform().getPosition());
 		assertEquals(Directions.LEFT, bullet2.getTransform().getDirection());
 
 		tank.setDirection(Directions.UP);
 		var bullet3 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 0), bullet3.getTransform().getPosition());
+		assertEquals(new P2d(10, -40), bullet3.getTransform().getPosition());
 		assertEquals(Directions.UP, bullet3.getTransform().getDirection());
 
 		tank.setDirection(Directions.DOWN);
 		var bullet4 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 20), bullet4.getTransform().getPosition());
+		assertEquals(new P2d(10, 60), bullet4.getTransform().getPosition());
 		assertEquals(Directions.DOWN, bullet4.getTransform().getDirection());
 
 		tank.setDirection(Directions.NONE);
 		var bullet5 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 20), bullet5.getTransform().getPosition());
+		assertEquals(new P2d(10, 60), bullet5.getTransform().getPosition());
 		assertEquals(Directions.DOWN, bullet5.getTransform().getDirection());
 
 	}

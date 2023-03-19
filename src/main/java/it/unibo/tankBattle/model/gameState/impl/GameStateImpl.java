@@ -7,9 +7,9 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
+import it.unibo.tankBattle.model.gameObject.api.component.Tank;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
-import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
 import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameState.api.*;
@@ -73,8 +73,10 @@ public class GameStateImpl implements GameState{
 
     @Override
     public void shot(final Player player) {
-        world.addGameObject(factoryGameObject
-            .createSimpleBullet(getTankFromPlayer(player)));
+        if(getTankFromPlayer(player).getComponent(Tank.class).get().canShot()) {
+            world.addGameObject(factoryGameObject
+                .createSimpleBullet(getTankFromPlayer(player)));
+        }
     }
 
     @Override

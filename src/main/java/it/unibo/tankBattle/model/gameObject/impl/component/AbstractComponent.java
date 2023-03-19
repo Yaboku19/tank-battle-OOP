@@ -3,7 +3,7 @@ package it.unibo.tankBattle.model.gameObject.impl.component;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public abstract class AbstractComponent implements Component{
+public abstract class AbstractComponent implements Component {
 
     private GameObject attached;
 
