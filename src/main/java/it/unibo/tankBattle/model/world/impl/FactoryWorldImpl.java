@@ -11,21 +11,22 @@ import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.api.World;
 
-public class FactoryWorldImpl implements FactoryWorld{
+public class FactoryWorldImpl implements FactoryWorld {
     private final FactoryGameObject factoryGO;
-    private static final int ROW = 39;
-    private static final int COLUMN = 59;
-    private static final int size = 10;
+    private static final int ROW = 9;
+    private static final int COLUMN = 14;
+    private final double size;
 
     public FactoryWorldImpl() {
         factoryGO = new FactoryGameObjectImpl();
+        this.size = factoryGO.getWallLength();
     }
 
     @Override
     public World simpleWorld(final Player firstPlayer, final Player secondPlayer) {
         Set<GameObject> entities = getBorder();
-        entities.add(factoryGO.createSimpleTank(position(10,10), firstPlayer));
-        entities.add(factoryGO.createSimpleTank(position(COLUMN - 10, ROW - 10), secondPlayer));
+        entities.add(factoryGO.createSimpleTank(position(2,2), firstPlayer));
+        entities.add(factoryGO.createSimpleTank(position(COLUMN - 2, ROW - 2), secondPlayer));
         return new WorldImpl(entities.stream());
     }
 
