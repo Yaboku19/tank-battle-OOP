@@ -11,7 +11,7 @@ public class CollidableBullet extends AbstractComponent implements Collidable{
     }
 
     @Override
-    public void resolveCollision(GameObject collidingObject) {
+    public void resolveCollision(Collidable collidingObject) {
         if(this.getGameObject().getComponent(BulletHealth.class).isPresent()) {
             this.getGameObject().getComponent(BulletHealth.class).get().hit();
         }

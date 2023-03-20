@@ -11,7 +11,7 @@ public abstract class AbstractComponent implements Component{
         this.attached = obj; 
     }
 
-    protected GameObject getGameObject() {
+    public GameObject getGameObject() {
         return this.attached;
     }
     

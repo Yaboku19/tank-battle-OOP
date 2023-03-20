@@ -15,9 +15,9 @@ public class CollidableTank extends AbstractComponent implements Collidable {
     }
 
     @Override
-    public void resolveCollision(final GameObject collidingObject) {
-        knockBack(getKnockBackDirection(collidingObject.getTransform().getPosition()));
-        reduceLp(collidingObject);
+    public void resolveCollision(final Collidable collidingObject) {
+        knockBack(getKnockBackDirection(collidingObject.getGameObject().getTransform().getPosition()));
+        reduceLp(collidingObject.getGameObject());
     }
     
     private Directions getKnockBackDirection(final P2d collidingObjPos) {
