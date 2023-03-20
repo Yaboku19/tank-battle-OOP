@@ -1,7 +1,8 @@
 package it.unibo.tankBattle.controller.api;
 
+import it.unibo.tankBattle.common.input.api.Command;
 
-public interface GameEngine {
+public interface GameEngine extends Runnable{
     /**
      * It is called at the beginin by TankBattle.
      */
@@ -9,9 +10,7 @@ public interface GameEngine {
     
     public void startGame();
 
-    //public Map<Player, InputController> getControllers();
-
-    //public void notifyCommand(Player player, Command command);
+    public void notifyCommand(Command command);
 
     public Player getFirstPlayer();
 

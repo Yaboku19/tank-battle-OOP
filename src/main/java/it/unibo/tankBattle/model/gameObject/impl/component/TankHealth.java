@@ -6,9 +6,8 @@ public class TankHealth extends AbstractComponent implements Health {
 
 
     private int lifePoints;
-    
 
-    public TankHealth(final int lifePoints) {
+    public TankHealth(int lifePoints) {
         this.lifePoints = lifePoints;
     }
 

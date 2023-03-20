@@ -2,20 +2,21 @@ package it.unibo.tankBattle.model.gameState.impl;
 
 import java.util.stream.Stream;
 
+import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
+import it.unibo.tankBattle.model.gameObject.api.component.Tank;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
-import it.unibo.tankBattle.model.gameObject.impl.component.Tank;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
 import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameState.api.*;
 import it.unibo.tankBattle.model.world.api.*;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
-public class GameStateImpl implements GameState {
+public class GameStateImpl implements GameState{
     private final FactoryWorld factoryWorld;
     private World world = null;
     private final WorldEventListener listener;
@@ -60,10 +61,22 @@ public class GameStateImpl implements GameState {
         }
     }
 
+    private Stream<GameObject> getBullets() {
+        return world.getEntities()
+            .filter(g -> g.getComponent(Bullet.class).isPresent());
+    }
+
+    private Stream<GameObject> getWalls() {
+        return world.getEntities()
+            .filter(g -> g.getComponent(Wall.class).isPresent());
+    }
+
     @Override
     public void shot(final Player player) {
-        world.addGameObject(factoryGameObject
-            .createSimpleBullet(getTankFromPlayer(player)));
+        if(getTankFromPlayer(player).getComponent(Tank.class).get().canShot()) {
+            world.addGameObject(factoryGameObject
+                .createSimpleBullet(getTankFromPlayer(player)));
+        }
     }
 
     @Override
@@ -78,18 +91,24 @@ public class GameStateImpl implements GameState {
             .get();
     }
 
-    @Override
-    public Stream<GameObject> getTanks() {
+    private Stream<GameObject> getTanks() {
         return world.getEntities().filter(g -> g.getComponent(Tank.class).isPresent());
     }
 
     @Override
-    public Stream<GameObject> getBullets() {
-        return world.getEntities().filter(g -> g.getComponent(Bullet.class).isPresent());
+    public Stream<Transform> getBulletsTrasform() {
+        return getBullets().map(b -> b.getTransform());
     }
 
     @Override
-    public Stream<GameObject> getWalls() {
-        return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());
+    public Stream<Transform> getWallsTrasform() {
+        /*return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());*/
+        return getWalls()
+                .map(w -> w.getTransform());
+    }
+
+    @Override
+    public Transform getTankTrasform(Player player) {
+        return getTankFromPlayer(player).getTransform();
     }
 }

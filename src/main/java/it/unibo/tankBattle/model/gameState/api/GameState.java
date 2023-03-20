@@ -1,23 +1,19 @@
 package it.unibo.tankBattle.model.gameState.api;
 
 import java.util.stream.Stream;
-import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public interface GameState {
+import it.unibo.tankBattle.common.Transform;
+import it.unibo.tankBattle.controller.api.Player;
+
+public interface GameState extends CommandListener{
 
     public void createWorld(Player firstPlayer, Player secondPlayer);
 
     public void update(Double time);
 
-    public void shot(Player player);
+    public Stream<Transform> getBulletsTrasform();
 
-    public void setDirection(Directions direction, Player player);
+    public Stream<Transform> getWallsTrasform();
 
-    public Stream<GameObject> getTanks();
-
-    public Stream<GameObject> getBullets();
-
-    public Stream<GameObject> getWalls();
+    public Transform getTankTrasform(final Player player);
 }

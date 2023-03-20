@@ -1,11 +1,11 @@
 package it.unibo.tankBattle.common.input.api;
 
-import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameState.api.CommandListener;
 
 /**
  * This interface represent a Command that come from user. 
  */
 public interface Command {
     
-    void execute(Player player);
+    void execute(CommandListener model);
 }

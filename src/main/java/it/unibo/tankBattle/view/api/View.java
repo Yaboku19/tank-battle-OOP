@@ -1,30 +1,22 @@
 package it.unibo.tankBattle.view.api;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.input.api.InputController;
+import java.util.Set;
+import java.util.stream.Stream;
 
-public interface View {//extends JFrame{
+import it.unibo.tankBattle.common.Transform;
+import it.unibo.tankBattle.controller.api.GameEngine;
+
+public interface View {
     
-    public void drawTank(P2d position);
+    /*public void drawTank(Transform position);
 
-    public void drawBullet(P2d position);
+    public void drawBullet(Transform position);*/
 
-    public void drawMap();
+    public void gameOver();
 
-    /*abstract public void tutorial();
+    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet);
 
-    abstract public void menu();
+    //public void drawWall(Set<Transform> wall);
 
-    abstract public void chooseMenu();
-
-    abstract public void bugSolve();
-
-    public void startGame();
-*/
-    public InputController getInputControllerPlayer1();
-
-    public InputController getInputControllerPlayer2();
-/*
-    public Dimension getSize();
-  */  
+    public void setController(GameEngine controller);  
 }

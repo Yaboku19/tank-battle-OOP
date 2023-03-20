@@ -30,7 +30,6 @@ public class KeyboardInputController implements InputController{
 
     /*@Override
     public Queue<Command> getCommands() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCommands'");
     }*/
     

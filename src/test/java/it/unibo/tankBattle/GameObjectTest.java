@@ -7,6 +7,7 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
+import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.TankHealth;
@@ -41,46 +42,57 @@ public class GameObjectTest {
 		var tank2 = this.factory.createSimpleTank(new P2d(20,12), player1);
 		var obstacle1 = this.factory.createSimpleWall(new P2d(15, 20));
 		tank.getComponent(Collidable.class).get().resolveCollision(tank2);
-		assertEquals(new P2d(9,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(9.9,10), tank.getTransform().getPosition());
 		tank.getComponent(Collidable.class).get().resolveCollision(obstacle1);
 		if(obstacle1.getComponent(Collidable.class).isPresent())
 			obstacle1.getComponent(Collidable.class).get().resolveCollision(tank);
-		assertEquals(new P2d(9,9), tank.getTransform().getPosition());
+		assertEquals(new P2d(9.9,9.9), tank.getTransform().getPosition());
 		assertEquals(new P2d(15,20), obstacle1.getTransform().getPosition());
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testUpdate() {
-		/*assertEquals(new P2d(10,10), tank.getTransform().getPosition());
+		assertEquals(new P2d(10,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.RIGHT);
-		tank.update();
+		tank.update(10);
 		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
 		tank.setDirection(Directions.NONE);
-		tank.update();
+		tank.update(1);
 		assertEquals(new P2d(11,10), tank.getTransform().getPosition());
-		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());*/
+		assertEquals(Directions.RIGHT, tank.getTransform().getDirection());
 	}
 
 	@org.junit.jupiter.api.Test
 	public void testBulletCreation() {
+		assertEquals(Directions.UP, bullet.getTransform().getDirection());
 		tank.setDirection(Directions.RIGHT);
 		assertEquals(new P2d(10, 10), tank.getTransform().getPosition());
-		assertEquals(10, tank.getTransform().getLength());
-		assertEquals(10, tank.getTransform().getWidth());
+		assertEquals(50, tank.getTransform().getLength());
+		assertEquals(50, tank.getTransform().getWidth());
 		var bullet1 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(20, 10), bullet1.getTransform().getPosition());
+		assertEquals(new P2d(60, 10), bullet1.getTransform().getPosition());
+		assertEquals(Directions.RIGHT, bullet1.getTransform().getDirection());
+		
 		tank.setDirection(Directions.LEFT);
 		var bullet2 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(0, 10), bullet2.getTransform().getPosition());
+		assertEquals(new P2d(-40, 10), bullet2.getTransform().getPosition());
+		assertEquals(Directions.LEFT, bullet2.getTransform().getDirection());
+
 		tank.setDirection(Directions.UP);
 		var bullet3 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 0), bullet3.getTransform().getPosition());
+		assertEquals(new P2d(10, -40), bullet3.getTransform().getPosition());
+		assertEquals(Directions.UP, bullet3.getTransform().getDirection());
+
 		tank.setDirection(Directions.DOWN);
 		var bullet4 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 20), bullet4.getTransform().getPosition());
+		assertEquals(new P2d(10, 60), bullet4.getTransform().getPosition());
+		assertEquals(Directions.DOWN, bullet4.getTransform().getDirection());
+
 		tank.setDirection(Directions.NONE);
 		var bullet5 = factory.createSimpleBullet(tank);
-		assertEquals(new P2d(10, 20), bullet5.getTransform().getPosition());
+		assertEquals(new P2d(10, 60), bullet5.getTransform().getPosition());
+		assertEquals(Directions.DOWN, bullet5.getTransform().getDirection());
+
 	}
 
 	@org.junit.jupiter.api.Test
@@ -109,10 +121,12 @@ public class GameObjectTest {
 
 		tank.setDirection(Directions.DOWN);
 		assertEquals(Directions.DOWN, tank.getTransform().getDirection());
-
+		assertEquals(Directions.DOWN ,tank.getComponent(Movable.class).get().getMovingDirection());
 
 		tank.setDirection(Directions.NONE);
 		assertEquals(Directions.DOWN, tank.getTransform().getDirection());
+
+		assertEquals(Directions.NONE ,tank.getComponent(Movable.class).get().getMovingDirection());
 	}
 
 }

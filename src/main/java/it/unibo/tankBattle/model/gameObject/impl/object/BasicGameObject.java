@@ -30,7 +30,13 @@ public class BasicGameObject implements GameObject{
 
     @Override
     public void update(double time) {
-        // TODO Auto-generated method stub
+        /*if(this.getComponent(Movable.class).isPresent()) {
+            this.getComponent(Movable.class).get().update(time);
+        }
+        if(this.getComponent(Tank.class).isPresent()) {
+            this.getComponent(Tank.class).get().update(time);
+        }*/
+        this.getComponents().forEach(comp -> comp.update(time));
     }
 
     @Override

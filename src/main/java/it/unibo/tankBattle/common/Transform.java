@@ -29,5 +29,8 @@ public class Transform {
     public double getWidth() {
         return this.width;
     }
+    public P2d getUpperLeftPosition() {
+        return new P2d(this.position.getX()-length/2, this.position.getY()-width/2);
+    }
     
 }

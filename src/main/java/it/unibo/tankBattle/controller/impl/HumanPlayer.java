@@ -2,11 +2,14 @@ package it.unibo.tankBattle.controller.impl;
 
 import it.unibo.tankBattle.controller.api.Player;
 
+
 public class HumanPlayer implements Player {
     private int score;
+    private int code;
 
-    public HumanPlayer() {
+    HumanPlayer(int code) {
         this.score = 0;
+        this.code = code;
     }
 
     @Override
@@ -18,5 +21,10 @@ public class HumanPlayer implements Player {
     public void incScore() {
         score++;
     }
-    
+
+    @Override
+    public int getCode() {
+        return code;
+    }
+
 }
