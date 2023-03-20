@@ -9,9 +9,11 @@ import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public class CollidableTank extends AbstractComponent implements Collidable {
 
+    private double timer = 1;
+
     @Override
     public void update(double time) {
-
+        this.timer = time;
     }
 
     @Override
@@ -36,8 +38,8 @@ public class CollidableTank extends AbstractComponent implements Collidable {
         if(this.getGameObject().getComponent(Movable.class).isPresent()) {
             double speed = this.getGameObject().getComponent(Movable.class).get().getSpeed();
             P2d actualPos = this.getGameObject().getTransform().getPosition();
-            this.getGameObject().setPosition(new P2d(actualPos.getX() + knockBackDir.getX()*speed,
-                actualPos.getY() + knockBackDir.getY()*speed));
+            this.getGameObject().setPosition(new P2d(actualPos.getX() + knockBackDir.getX()*speed*timer,
+                actualPos.getY() + knockBackDir.getY()*speed*timer));
         }
     }
 

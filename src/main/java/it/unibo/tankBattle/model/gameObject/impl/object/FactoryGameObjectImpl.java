@@ -32,9 +32,9 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     @Override
     public GameObject createSimpleBullet(final GameObject tank) {
         final Transform bulletTransform = new Transform(new P2d( tank.getTransform().getPosition().getX() 
-            + tank.getTransform().getDirection().getX()*tank.getTransform().getLength(), 
+            + tank.getTransform().getDirection().getX()*tank.getTransform().getLength()/2, 
             tank.getTransform().getPosition().getY() 
-            + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()),
+            + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()/2),
             tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM);
         
         return new BasicGameObject(bulletTransform)

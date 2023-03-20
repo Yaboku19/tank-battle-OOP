@@ -9,7 +9,6 @@ import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
-import it.unibo.tankBattle.model.gameObject.api.component.Tank;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 import it.unibo.tankBattle.model.gameObject.impl.component.AbstractComponent;
 
@@ -31,12 +30,13 @@ public class BasicGameObject implements GameObject{
 
     @Override
     public void update(double time) {
-        if(this.getComponent(Movable.class).isPresent()) {
+        /*if(this.getComponent(Movable.class).isPresent()) {
             this.getComponent(Movable.class).get().update(time);
         }
         if(this.getComponent(Tank.class).isPresent()) {
             this.getComponent(Tank.class).get().update(time);
-        }
+        }*/
+        this.getComponents().forEach(comp -> comp.update(time));
     }
 
     @Override
