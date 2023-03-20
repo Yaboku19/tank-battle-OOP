@@ -135,6 +135,9 @@ public class ViewImpl implements View{
     private Button playButton;
 
     @FXML
+    private Button settingButton;
+
+    @FXML
     private Button tutorialButton;
 
     @FXML
@@ -154,6 +157,23 @@ public class ViewImpl implements View{
             stage.setResizable(false);
             controller.startGame();
             //controller.run();
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    void settings(ActionEvent event) {
+        try {
+            System.out.println(controller);
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/chooseMenu.fxml"));
+            Scene chooseMenu = new Scene(fxmlLoader.load());
+            //controller = fxmlLoader.getController();
+            ChooseMenu chooseMenuController = (ChooseMenu)fxmlLoader.getController();
+            chooseMenuController.setPreviousScene(stage.getScene());
+            stage.setScene(chooseMenu);
         }catch(Exception e){
             System.out.println(e.toString());
         }

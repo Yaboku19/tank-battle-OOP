@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.ChooseMenu">
+   <children>
+      <Button fx:id="prevTankPlayer1" layoutX="62.0" layoutY="143.0" mnemonicParsing="false" onAction="#prevTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextTankPlayer1" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#nextTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <Button fx:id="prevMap" layoutX="334.0" layoutY="181.0" mnemonicParsing="false" onAction="#prevMap" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextTankPlayer2" layoutX="147.0" layoutY="338.0" mnemonicParsing="false" onAction="#nextTankPlayer2" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <Button fx:id="prevTankPlayer2" layoutX="62.0" layoutY="338.0" mnemonicParsing="false" onAction="#prevTankPlayer2" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextMap" layoutX="463.0" layoutY="181.0" mnemonicParsing="false" onAction="#nextMap" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <ImageView fx:id="player1Image" fitHeight="81.0" fitWidth="123.0" layoutX="66.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="mapImage" fitHeight="121.0" fitWidth="168.0" layoutX="334.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="player2Image" fitHeight="81.0" fitWidth="123.0" layoutX="61.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="81.0" layoutY="33.0" prefHeight="17.0" prefWidth="58.0" text="PLAYER 1" />
+      <Label layoutX="90.0" layoutY="219.0" prefHeight="17.0" prefWidth="58.0" text="PLAYER 2" />
+      <Label layoutX="390.0" layoutY="33.0" prefHeight="17.0" prefWidth="38.0" text="MAP" />
+      <Button layoutX="308.0" layoutY="267.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="244.0" text="SAVE" />
+      <Button layoutX="308.0" layoutY="332.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
+   </children>
+</AnchorPane>

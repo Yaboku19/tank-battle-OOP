@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class TutorialController {
 
-    private Scene prev;
+    private Scene prevScene;
 
     @FXML
     private Button backButton;
@@ -22,14 +22,14 @@ public class TutorialController {
             Scene tutorial = new Scene(fxmlLoader.load());//, 600, 400);*/
             Node node = (Node)event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            stage.setScene(prev);
+            stage.setScene(prevScene);
         /* } catch (IOException e) {
             e.printStackTrace();
         }*/
     }
 
-    public void setPreviousScene (Scene prev){
-        this.prev = prev;
+    public void setPreviousScene (Scene prevScene){
+        this.prevScene = prevScene;
     }
 
 }

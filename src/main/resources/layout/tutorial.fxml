@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.TutorialController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.TutorialController">
    <children>
       <Label layoutX="174.0" layoutY="217.0" prefHeight="17.0" prefWidth="34.0" style="-fx-background-color: white;" text="Z" />
       <Button fx:id="backButton" layoutX="263.0" layoutY="302.0" mnemonicParsing="false" onAction="#back" text="BACK">
