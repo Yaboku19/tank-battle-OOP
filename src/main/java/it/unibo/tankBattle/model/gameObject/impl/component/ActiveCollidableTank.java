@@ -2,14 +2,19 @@ package it.unibo.tankBattle.model.gameObject.impl.component;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
+import it.unibo.tankBattle.model.gameObject.api.component.ActiveCollidable;
 import it.unibo.tankBattle.model.gameObject.api.component.DamageDealer;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public class CollidableTank extends AbstractComponent implements Collidable {
+public class ActiveCollidableTank extends AbstractComponent implements ActiveCollidable {
 
-    private double timer = 1;
+    private double timer;
+
+    public ActiveCollidableTank() {
+        this.timer = 1;
+    }
 
     @Override
     public void update(double time) {
@@ -17,9 +22,9 @@ public class CollidableTank extends AbstractComponent implements Collidable {
     }
 
     @Override
-    public void resolveCollision(final Collidable collidingObject) {
-        knockBack(getKnockBackDirection(collidingObject.getGameObject().getTransform().getPosition()));
-        reduceLp(collidingObject.getGameObject());
+    public void resolveCollision(final GameObject collidingObject) {
+        knockBack(getKnockBackDirection(collidingObject.getTransform().getPosition()));
+        reduceLp(collidingObject);
     }
     
     private Directions getKnockBackDirection(final P2d collidingObjPos) {

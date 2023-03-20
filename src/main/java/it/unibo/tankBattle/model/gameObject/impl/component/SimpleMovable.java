@@ -2,6 +2,7 @@ package it.unibo.tankBattle.model.gameObject.impl.component;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 
 public class SimpleMovable extends AbstractComponent implements Movable {

@@ -7,8 +7,9 @@ import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.model.collision.api.CollisionManager;
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankBattle.model.gameObject.api.component.ActiveCollidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankBattle.model.gameObject.impl.component.PassiveCollidable;
 
 public class CollisionManagerImpl implements CollisionManager {
 
@@ -20,20 +21,20 @@ public class CollisionManagerImpl implements CollisionManager {
 
     @Override
     public void manageCollisions(Stream<GameObject> objects) {
-        Stream<Pair<Collidable, Collidable>> collidingObjects = findCollidingObjects(
+        Stream<Pair<PassiveCollidable, PassiveCollidable>> collidingObjects = findCollidingObjects(
             objects
-                .map(x -> x.getComponent(Collidable.class))
+                .map(x -> x.getComponent(PassiveCollidable.class))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
         );
-        collidingObjects.forEach(pair -> {
-            pair.getX().resolveCollision(pair.getY());
-            pair.getY().resolveCollision(pair.getX());
-        });
+        // collidingObjects.forEach(pair -> {
+        //     pair.getX().resolveCollision(pair.getY());
+        //     pair.getY().resolveCollision(pair.getX());
+        // });
     }
 
-    private Stream<Pair<Collidable, Collidable>> findCollidingObjects(Stream<Collidable> collidables) {
-        List<Collidable> collidablesList = collidables.toList();
+    private Stream<Pair<PassiveCollidable, PassiveCollidable>> findCollidingObjects(Stream<PassiveCollidable> collidables) {
+        List<PassiveCollidable> collidablesList = collidables.toList();
         return IntStream
             .range(0, collidablesList.size())
             .boxed()

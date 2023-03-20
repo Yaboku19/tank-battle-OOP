@@ -4,11 +4,11 @@ import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankBattle.model.gameObject.impl.component.PassiveCollidable;
 
 public class CollisionDetectorImpl implements CollisionDetector {
 
-    public boolean detect(Collidable object1, Collidable object2) {
+    public boolean detect(PassiveCollidable object1, PassiveCollidable object2) {
         Transform transform1 = object1.getGameObject().getTransform();
         Transform transform2 = object2.getGameObject().getTransform();
         return containsAnyCorner(transform1, transform2) || containsAnyCorner(transform2, transform1);

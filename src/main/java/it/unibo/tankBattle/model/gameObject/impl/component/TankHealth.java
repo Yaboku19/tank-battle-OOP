@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.model.gameObject.impl.component;
 
+import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
 
 public class TankHealth extends AbstractComponent implements Health {

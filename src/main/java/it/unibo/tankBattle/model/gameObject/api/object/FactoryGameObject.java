@@ -11,4 +11,6 @@ public interface FactoryGameObject {
 
     public GameObject createSimpleWall(final P2d pos);
 
+    public double getWallLength();
+
 }

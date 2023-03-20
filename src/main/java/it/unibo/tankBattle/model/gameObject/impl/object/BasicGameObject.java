@@ -10,7 +10,7 @@ import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.AbstractComponent;
+import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 
 public class BasicGameObject implements GameObject{
 
