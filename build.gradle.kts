@@ -48,6 +48,9 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    //READ and WRITE YAML file
+    implementation("org.yaml:snakeyaml:1.29")
 }
 
 tasks.withType<Test> {
