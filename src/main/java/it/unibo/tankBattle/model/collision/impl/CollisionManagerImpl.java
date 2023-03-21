@@ -27,6 +27,13 @@ public class CollisionManagerImpl implements CollisionManager {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
         );
+        collidingObjects
+            .filter(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).isPresent())
+            .forEach(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getY().getGameObject()));
+        collidingObjects
+            .filter(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).isPresent())
+            .forEach(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getX().getGameObject()));
+        
         // collidingObjects.forEach(pair -> {
         //     pair.getX().resolveCollision(pair.getY());
         //     pair.getY().resolveCollision(pair.getX());
