@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mapList>
+    <map name="DEFAULTMAP">
+        <code>0</code>
+        <resource>defaultMap.png</resource>
+    </map>
+    <map name="PIPPOMAP">
+        <code>1</code>
+        <resource>pippoMap.png</resource>
+    </map>
+    <map name="PLUTOMAP">
+        <code>2</code>
+        <resource>plutoMap.png</resource>
+    </map>
+</mapList>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tankList>
+    <tank name="SIMPLETANK">
+        <code>0</code>
+        <speed>1</speed>
+        <damage>1</damage>
+        <life>1</life>
+        <resource>SIMPLETANK.png</resource>
+    </tank>
+    <tank name="SPEEDTANK">
+        <code>1</code>
+        <speed>2</speed>
+        <damage>1</damage>
+        <life>1</life>
+        <resource>SPEEDTANK.png</resource>
+    </tank>
+    <tank name="SUPERPOWERTANK">
+        <code>2</code>
+        <speed>1</speed>
+        <damage>1</damage>
+        <life>1</life>
+        <resource>SUPERPOWERTANK.png</resource>
+    </tank>
+</tankList>
