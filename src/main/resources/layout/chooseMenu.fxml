@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.ChooseMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.ChooseMenu">
    <children>
       <Button fx:id="prevTankPlayer1" layoutX="62.0" layoutY="143.0" mnemonicParsing="false" onAction="#prevTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
       <Button fx:id="nextTankPlayer1" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#nextTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
@@ -19,7 +19,18 @@
       <Label layoutX="81.0" layoutY="33.0" prefHeight="17.0" prefWidth="58.0" text="PLAYER 1" />
       <Label layoutX="90.0" layoutY="219.0" prefHeight="17.0" prefWidth="58.0" text="PLAYER 2" />
       <Label layoutX="390.0" layoutY="33.0" prefHeight="17.0" prefWidth="38.0" text="MAP" />
-      <Button layoutX="308.0" layoutY="267.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="244.0" text="SAVE" />
-      <Button layoutX="308.0" layoutY="332.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
+      <Button layoutX="306.0" layoutY="304.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
+      <Label layoutX="189.0" layoutY="48.0" prefHeight="17.0" prefWidth="44.0" text="Speed:" />
+      <Label fx:id="speedP2" layoutX="230.0" layoutY="243.0" />
+      <Label fx:id="damageP1" layoutX="244.0" layoutY="106.0" />
+      <Label fx:id="lifeP1" layoutX="244.0" layoutY="75.0" />
+      <Label fx:id="speedP1" layoutX="244.0" layoutY="48.0" />
+      <Label layoutX="189.0" layoutY="106.0" prefHeight="17.0" prefWidth="58.0" text="Damage:" />
+      <Label layoutX="189.0" layoutY="75.0" text="Life:" />
+      <Label fx:id="damageP2" layoutX="230.0" layoutY="299.0" />
+      <Label fx:id="lifeP2" layoutX="230.0" layoutY="273.0" />
+      <Label layoutX="171.0" layoutY="244.0" prefHeight="17.0" prefWidth="44.0" text="Speed:" />
+      <Label layoutX="171.0" layoutY="302.0" prefHeight="17.0" prefWidth="58.0" text="Damage:" />
+      <Label layoutX="171.0" layoutY="271.0" text="Life:" />
    </children>
 </AnchorPane>
