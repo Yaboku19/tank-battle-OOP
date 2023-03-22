@@ -3,9 +3,9 @@ package it.unibo.tankBattle.model.gameObject.impl.component;
 import java.util.LinkedList;
 import java.util.List;
 
+import it.unibo.tankBattle.model.collision.api.CollisionListener;
 import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
-import it.unibo.tankBattle.model.gameObject.api.component.CollisionListener;
 import it.unibo.tankBattle.model.gameObject.api.component.ObservableCollidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
