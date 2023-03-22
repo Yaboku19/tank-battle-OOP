@@ -26,7 +26,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import org.yaml.snakeyaml.Yaml;
 
 public class ChooseMenu implements Initializable{
 
@@ -149,14 +148,14 @@ public class ChooseMenu implements Initializable{
         player1Image.setImage(tankImagePlayer1.getImage());
         player2Image.setImage(tankImagePlayer2.getImage());
         mapImage.setImage(mapImageChoose.getImage());
-        loadConfig();
+        //loadConfig();
     }
 
     public void setController(GameEngine controller){
         this.controller = controller;
     }
 
-    private void loadConfig(){
+    /*private void loadConfig(){
         try(InputStream inputStream = ClassLoader.getSystemResourceAsStream("config/config.yaml")){
         //try (InputStream inputStream = new FileInputStream(new File(ClassLoader.getSystemResource("config/config.yaml").toURI()))) {
             Yaml yaml = new Yaml();
@@ -178,9 +177,9 @@ public class ChooseMenu implements Initializable{
                     mapImageChoose = MapImage.MAP1;
                     break;
             }
-        }*/
+        }
 
-    }
+    }*/
 
     public void setPreviousScene(Scene prevScene){
         this.prevScene = prevScene;
