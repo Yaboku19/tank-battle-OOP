@@ -5,6 +5,7 @@ import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.collision.api.CollisionListener;
 import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
+import it.unibo.tankBattle.model.gameObject.api.component.ObservableCollidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public class KnockBack extends AbstractComponent implements CollisionListener {
@@ -14,8 +15,14 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
     }
 
     @Override
+    public void gameObjectAttached(GameObject object) {
+        requireSiblingComponent(ObservableCollidable.class).addListener(this);
+    }
+
+    @Override
     public void handleCollision(GameObject self, GameObject collidingObject) {
-        this.getGameObject().setPosition(getOffset(collidingObject));
+        final P2d newPosition = this.getGameObject().getTransform().getPosition().sum(getOffset(collidingObject));
+        this.getGameObject().setPosition(newPosition);
     }
 
     private P2d getOffset(final GameObject collidingObject) {
@@ -37,11 +44,11 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
                 );
             default -> 0;
         };
-        return this.getGameObject().getTransform().getPosition().multiply(offset);
+        return objectDirection.getVector().multiply(-offset);
     }
 
     private double offset(final double center1, final double center2, final double side1, final double side2) {
-        return (side1 / 2 + side2 / 2 - Math.abs(center1 - center2)) / 2;
+        return (side1 / 2 + side2 / 2 - Math.abs(center1 - center2)) / 2 + 0.5;
     }
 
     private Direction movingDirection() {
