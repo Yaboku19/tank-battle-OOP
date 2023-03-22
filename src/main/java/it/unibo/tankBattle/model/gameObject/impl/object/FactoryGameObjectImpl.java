@@ -20,12 +20,12 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
         return new BasicGameObject(new Transform(pos, Direction.UP, SIMPLE_TANK_DIMENSION, SIMPLE_TANK_DIMENSION))
+                .addComponent(new CollisionComponent())
                 .addComponent(new SimpleTank(player))
                 .addComponent(new DamageableImpl(SIMPLE_TANK_LIFEPOINTS))
                 .addComponent(new HealthImpl())
                 .addComponent(new KnockBack())
-                .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED))
-                .addComponent(new CollisionComponent());
+                .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED));
     }
 
     @Override
@@ -37,12 +37,12 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
             tank.getTransform().getDirection(), SIMPLE_BULLET_DIMENSION, SIMPLE_BULLET_DIMENSION);
 
         return new BasicGameObject(bulletTransform)
+                .addComponent(new CollisionComponent())
                 .addComponent(new Bullet())
                 .addComponent(new DealDamageOnCollision(SIMPLE_BULLET_DAMAGE))
                 .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED, bulletTransform.getDirection()))
                 .addComponent(new HealthImpl())
-                .addComponent(new DestroyOnCollision())
-                .addComponent(new CollisionComponent());
+                .addComponent(new DestroyOnCollision());
     }
 
     @Override
