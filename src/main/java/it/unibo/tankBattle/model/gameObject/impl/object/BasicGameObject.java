@@ -6,16 +6,15 @@ import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.AbstractComponent;
 
 public class BasicGameObject implements GameObject{
 
     private P2d position;
-    private Directions direction;
+    private Direction direction;
     private final double length;
     private final double width;
     private Set<Component> components = new HashSet<>();
@@ -55,8 +54,7 @@ public class BasicGameObject implements GameObject{
     @Override
     public GameObject addComponent(final Component component) {
         this.components.add(component);
-        if(component instanceof AbstractComponent)
-            ((AbstractComponent) component).attachGameObject(this);
+        component.attachGameObject(this);
         return this;     
     }
 
@@ -71,8 +69,8 @@ public class BasicGameObject implements GameObject{
     }
 
     @Override
-    public void setDirection(final Directions dir) {
-        if(!dir.equals(Directions.NONE)) {
+    public void setDirection(final Direction dir) {
+        if(!dir.equals(Direction.NONE)) {
             this.direction = dir;
         }
         if(this.getComponent(Movable.class).isPresent()) {

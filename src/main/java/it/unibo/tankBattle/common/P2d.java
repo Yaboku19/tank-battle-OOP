@@ -16,6 +16,10 @@ public class P2d {
     public P2d sum(final P2d v) {
         return new P2d(x + v.getX(), y + v.getY());
     }
+    
+    public P2d multiply(final double multiplier) {
+        return new P2d(x * multiplier, y * multiplier);
+    }
 
     public double getX() {
         return this.x;

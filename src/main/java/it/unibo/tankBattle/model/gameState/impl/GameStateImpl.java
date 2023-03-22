@@ -3,7 +3,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
@@ -35,15 +35,11 @@ public class GameStateImpl implements GameState{
 
     @Override
     public void update(final Double time) {
-        world.getEntities().forEach(g -> {
-            g.update(time);
-            if(isdead(g)) {
-                removeDeadGameObject(g);
-            }
-        });
+        world.getEntities().forEach(g -> g.update(time));
+        world.getEntities().filter(this::isDead).toList().forEach(this::removeDeadGameObject);
     }
 
-    private boolean isdead(final GameObject gameObject) {
+    private boolean isDead(final GameObject gameObject) {
         if (gameObject.getComponent(Health.class).isPresent()) {
             return !gameObject.getComponent(Health.class).get().isAlive();
         } else {
@@ -80,7 +76,7 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public void setDirection(final Directions direction, final Player player) {
+    public void setDirection(final Direction direction, final Player player) {
         getTankFromPlayer(player).setDirection(direction);
     }
 

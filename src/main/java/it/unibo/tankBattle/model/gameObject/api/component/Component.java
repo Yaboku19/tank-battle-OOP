@@ -1,9 +1,13 @@
 package it.unibo.tankBattle.model.gameObject.api.component;
 
+import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public interface Component {
 
-    public void update(double time);
+    void update(double time);
 
+    GameObject getGameObject();
+
+    void attachGameObject(GameObject obj);
 
 }

@@ -1,9 +1,9 @@
 package it.unibo.tankBattle.model.collision.impl;
 
-import it.unibo.tankBattle.model.collision.api.BoundingBox;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 
 public interface CollisionDetector {
-    
-    boolean detect(BoundingBox boundingBox1, BoundingBox boundingBox2);
 
+    boolean detect(Collidable object1, Collidable object2);
+    
 }
