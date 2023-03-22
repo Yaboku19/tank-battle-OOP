@@ -19,8 +19,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
 
     @Override
     public GameObject createSimpleTank(final P2d pos, final Player player) {
-        final Transform tankTranform = new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM);
-        return new BasicGameObject(tankTranform)
+        return new BasicGameObject(new Transform(pos, Directions.UP, SIMPLE_TANK_DIM, SIMPLE_TANK_DIM))
                 .addComponent(new SimpleTank(player))
                 .addComponent(new TankHealth(SIMPLE_TANK_LP))
                 .addComponent(new ActiveCollidableTank())
@@ -31,11 +30,11 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
     @Override
     public GameObject createSimpleBullet(final GameObject tank) {
         final Transform bulletTransform = new Transform(new P2d( tank.getTransform().getPosition().getX() 
-            + tank.getTransform().getDirection().getX()*tank.getTransform().getLength()/2, 
+            + tank.getTransform().getDirection().getX()*(tank.getTransform().getLength()/2 + SIMPLE_BULLET_DIM), 
             tank.getTransform().getPosition().getY() 
-            + tank.getTransform().getDirection().getY()*tank.getTransform().getWidth()/2),
+            + tank.getTransform().getDirection().getY()*(tank.getTransform().getWidth()/2 + SIMPLE_BULLET_DIM)),
             tank.getTransform().getDirection(), SIMPLE_BULLET_DIM, SIMPLE_BULLET_DIM);
-        
+
         return new BasicGameObject(bulletTransform)
                 .addComponent(new Bullet())
                 .addComponent(new SimpleDamageDealer(SIMPLE_BULLET_DAMAGE))
@@ -47,8 +46,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
 
     @Override
     public GameObject createSimpleWall(final P2d pos) {
-        final Transform wallTransform = new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM);
-        return new BasicGameObject(wallTransform)
+        return new BasicGameObject(new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM))
                 .addComponent(new Wall())
                 .addComponent(new CollisionComponent());
     }
