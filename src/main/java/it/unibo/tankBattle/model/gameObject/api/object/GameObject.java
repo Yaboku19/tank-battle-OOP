@@ -5,7 +5,7 @@ import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 
 public interface GameObject {
@@ -24,5 +24,5 @@ public interface GameObject {
     
     public void setPosition(final P2d pos);
 
-    public void setDirection(final Directions pos);
+    public void setDirection(final Direction pos);
 }

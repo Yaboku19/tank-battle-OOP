@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -140,7 +140,7 @@ public class GameController {
         }*/
     }
 
-    private double getRotation(Directions dir) {
+    private double getRotation(Direction dir) {
         switch(dir) {
             case RIGHT:
                 return 90;

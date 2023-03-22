@@ -4,10 +4,10 @@ import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
 public interface Component {
 
-    public void update(double time);
+    void update(double time);
 
-    public GameObject getGameObject();
+    GameObject getGameObject();
 
-    public void attachGameObject(final GameObject obj);
+    void attachGameObject(GameObject obj);
 
 }

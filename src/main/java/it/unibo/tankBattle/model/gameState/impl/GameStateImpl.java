@@ -3,7 +3,7 @@ package it.unibo.tankBattle.model.gameState.impl;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
@@ -76,7 +76,7 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public void setDirection(final Directions direction, final Player player) {
+    public void setDirection(final Direction direction, final Player player) {
         getTankFromPlayer(player).setDirection(direction);
     }
 

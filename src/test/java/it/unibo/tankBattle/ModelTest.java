@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
@@ -67,8 +67,8 @@ public class ModelTest {
     @org.junit.jupiter.api.Test
     public void ChangeDirectionTest() {
         //assertEquals(Directions.NONE, tank.getTransform().getDirection());
-        model.setDirection(Directions.DOWN, firstPlayer);
-        assertEquals(Directions.DOWN, model.getTankTrasform(firstPlayer).getDirection());
+        model.setDirection(Direction.DOWN, firstPlayer);
+        assertEquals(Direction.DOWN, model.getTankTrasform(firstPlayer).getDirection());
     }
 
    /* @org.junit.jupiter.api.Test

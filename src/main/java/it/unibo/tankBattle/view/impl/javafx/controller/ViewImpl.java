@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
 import it.unibo.tankBattle.controller.api.GameEngine;
@@ -40,22 +40,22 @@ public class ViewImpl implements View{
             switch(e.getCode()){
                 case RIGHT:
                     System.out.println("comando " + e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getFirstPlayer()));
+                    controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
                     lastCommandFirstPlayer = event;
                     break;
                 case LEFT:
                     System.out.println("comando " + e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getFirstPlayer()));
+                    controller.notifyCommand(new Movement(Direction.LEFT, controller.getFirstPlayer()));
                     lastCommandFirstPlayer = event;
                     break;
                 case UP:
                     System.out.println("comando " + e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP, controller.getFirstPlayer()));
+                    controller.notifyCommand(new Movement(Direction.UP, controller.getFirstPlayer()));
                     lastCommandFirstPlayer = event;
                     break;
                 case DOWN:
                     System.out.println("comando " + e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getFirstPlayer()));
+                    controller.notifyCommand(new Movement(Direction.DOWN, controller.getFirstPlayer()));
                     lastCommandFirstPlayer = event;
                     break;
                 case SPACE:
@@ -70,22 +70,22 @@ public class ViewImpl implements View{
             switch(e.getCode()){
                 case D:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.RIGHT, controller.getSecondPlayer()));
+                    controller.notifyCommand(new Movement(Direction.RIGHT, controller.getSecondPlayer()));
                     lastCommandSecondPlayer = event;
                     break;
                 case A:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.LEFT, controller.getSecondPlayer()));
+                    controller.notifyCommand(new Movement(Direction.LEFT, controller.getSecondPlayer()));
                     lastCommandSecondPlayer = event;
                     break;
                 case W:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.UP,controller.getSecondPlayer()));
+                    controller.notifyCommand(new Movement(Direction.UP,controller.getSecondPlayer()));
                     lastCommandSecondPlayer = event;
                     break;
                 case S:
                     System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Directions.DOWN, controller.getSecondPlayer()));
+                    controller.notifyCommand(new Movement(Direction.DOWN, controller.getSecondPlayer()));
                     lastCommandSecondPlayer = event;
                     break;
                 case Z:
@@ -111,12 +111,12 @@ public class ViewImpl implements View{
         switch(e.getCode()){
             case RIGHT, LEFT, UP, DOWN:
                 System.out.println(e.getCode());
-                controller.notifyCommand(new Movement(Directions.NONE, controller.getFirstPlayer()));
+                controller.notifyCommand(new Movement(Direction.NONE, controller.getFirstPlayer()));
                 lastCommandFirstPlayer = event;
                 break;
             case D, A, W, S:
                 System.out.println(e.getCode());
-                controller.notifyCommand(new Movement(Directions.NONE, controller.getSecondPlayer()));
+                controller.notifyCommand(new Movement(Direction.NONE, controller.getSecondPlayer()));
                 lastCommandSecondPlayer = event;
                 break;
             default:

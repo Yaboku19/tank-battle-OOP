@@ -1,16 +1,16 @@
 package it.unibo.tankBattle.common;
 
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 
 public class Transform {
 
     private P2d position;
-    private Directions direction;
+    private Direction direction;
     private double length;
     private double width;
 
 
-    public Transform(P2d position, Directions direction, double length, double width) {
+    public Transform(P2d position, Direction direction, double length, double width) {
         this.position = position;
         this.direction = direction;
         this.length = length;
@@ -20,7 +20,7 @@ public class Transform {
     public P2d getPosition() {
         return this.position;
     }
-    public Directions getDirection() {
+    public Direction getDirection() {
         return this.direction;
     }
     public double getLength() {

@@ -1,9 +1,11 @@
 package it.unibo.tankBattle.common.input.api;
 
+import it.unibo.tankBattle.common.P2d;
+
 /**
  * Directions that can be used by the player
  */
-public enum Directions {
+public enum Direction {
     UP(0, -1), 
     RIGHT(1, 0), 
     DOWN(0, 1), 
@@ -21,7 +23,11 @@ public enum Directions {
         return y;
     }
 
-    Directions(double x, double y) {
+    public P2d getVector() {
+        return new P2d(this.x, this.y);
+    }
+
+    Direction(double x, double y) {
         this.x = x;
         this.y = y;
         

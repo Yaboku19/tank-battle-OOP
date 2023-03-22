@@ -2,7 +2,7 @@ package it.unibo.tankBattle.common.input.impl;
 
 
 import it.unibo.tankBattle.common.input.api.Command;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameState.api.CommandListener;
 /**
@@ -10,11 +10,11 @@ import it.unibo.tankBattle.model.gameState.api.CommandListener;
  */
 public class Movement implements Command{
 
-    private Directions dir;
+    private Direction dir;
     private Player player;
     //private GameEngine controller;
 
-    public Movement(final Directions dir, final Player player){//}, final GameEngine controller){
+    public Movement(final Direction dir, final Player player){//}, final GameEngine controller){
         this.dir = dir;
         this.player = player;
         //this.controller = controller;

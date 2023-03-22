@@ -1,21 +1,21 @@
 package it.unibo.tankBattle.model.gameObject.impl.component;
 
 import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.input.api.Directions;
+import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 
 public class SimpleMovable extends AbstractComponent implements Movable {
 
     private final double speed;
-    private Directions movingDirection;
+    private Direction movingDirection;
 
     public SimpleMovable(final double speed) {
         this.speed = speed;
-        this.movingDirection = Directions.NONE;
+        this.movingDirection = Direction.NONE;
     }
 
-    public SimpleMovable(final double speed, Directions dir) {
+    public SimpleMovable(final double speed, Direction dir) {
         this.speed = speed;
         this.movingDirection = dir;
     }
@@ -34,12 +34,12 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     }
 
     @Override
-    public Directions getMovingDirection() {
+    public Direction getMovingDirection() {
         return this.movingDirection;
     }
 
     @Override
-    public void setMovingDirection(final Directions dir) {
+    public void setMovingDirection(final Direction dir) {
         this.movingDirection = dir;
     }
     

@@ -5,8 +5,6 @@ import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 public class Bullet extends AbstractComponent{
 
     @Override
-    public void update(double time) {
-        
-    }
-    
+    public void update(double time) {   
+    } 
 }
