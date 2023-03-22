@@ -28,16 +28,14 @@ public enum TankImage {
     private final String FILESEPARATOR = System.getProperty("file.separator");
     private final String PATH = "images" + "/" + "tank" + "/";
     private final Image image;
-    private final List<Image> images = new ArrayList<>();
 
     /**
      * @param imagename
      *                  name of the image stored in resources
      */
-    TankImage(final String imagename) {
+    private TankImage(final String imagename) {
         //System.out.println("path "+ PATH + imagename);
         image = new Image(ClassLoader.getSystemResource(PATH + imagename).toExternalForm());
-        images.add(image);
     }
 
     /**
@@ -46,10 +44,6 @@ public enum TankImage {
      */
     public Image getImage() {
         return this.image;
-    }
-
-    public List<Image> getImages(){
-        return this.images;
     }
 
     public TankImage next(){

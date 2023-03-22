@@ -8,11 +8,6 @@ import javafx.scene.image.Image;
 public enum MapImage {
 
     /**
-     * BACKGROUND.
-     */
-    BACKGROUND("background.png"),
-
-    /**
      * MAP1.
      */
     MAP1("map1.png"),
@@ -28,7 +23,7 @@ public enum MapImage {
     MAP3("map3.png");
 
     private final String FILESEPARATOR = System.getProperty("file.separator");
-    private final String PATH = "images" + FILESEPARATOR + "map" + FILESEPARATOR;
+    private final String PATH = "images" + "/" + "map" + "/";
     private final Image image;
 
     /**
@@ -36,6 +31,7 @@ public enum MapImage {
      *                  name of the image stored in resources
      */
     private MapImage(final String imagename) {
+        System.out.println("path " + PATH);
         image = new Image(ClassLoader.getSystemResource(PATH + imagename).toExternalForm());
     }
 
@@ -46,4 +42,12 @@ public enum MapImage {
     public Image getImage() {
         return this.image;
     }
+
+    public MapImage next(){
+		return MapImage.values()[(this.ordinal()+1) % MapImage.values().length];
+	}
+
+    public MapImage prev(){
+		return MapImage.values()[(this.ordinal()-1 + MapImage.values().length) % MapImage.values().length];
+	}
 }

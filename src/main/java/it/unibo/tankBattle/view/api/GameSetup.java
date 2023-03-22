@@ -8,6 +8,7 @@ public interface GameSetup {
 
     Integer getLife();
 
+    Integer getDamage();
     /**
      * and other
      */
