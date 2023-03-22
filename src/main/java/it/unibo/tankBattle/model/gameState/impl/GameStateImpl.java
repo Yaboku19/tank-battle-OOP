@@ -35,15 +35,11 @@ public class GameStateImpl implements GameState{
 
     @Override
     public void update(final Double time) {
-        world.getEntities().forEach(g -> {
-            g.update(time);
-            if(isdead(g)) {
-                removeDeadGameObject(g);
-            }
-        });
+        world.getEntities().forEach(g -> g.update(time));
+        world.getEntities().filter(this::isDead).toList().forEach(this::removeDeadGameObject);
     }
 
-    private boolean isdead(final GameObject gameObject) {
+    private boolean isDead(final GameObject gameObject) {
         if (gameObject.getComponent(Health.class).isPresent()) {
             return !gameObject.getComponent(Health.class).get().isAlive();
         } else {
