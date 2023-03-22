@@ -7,9 +7,8 @@ import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.model.collision.api.CollisionManager;
-import it.unibo.tankBattle.model.gameObject.api.component.ActiveCollidable;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.PassiveCollidable;
 
 public class CollisionManagerImpl implements CollisionManager {
 
@@ -21,27 +20,27 @@ public class CollisionManagerImpl implements CollisionManager {
 
     @Override
     public void manageCollisions(Stream<GameObject> objects) {
-        Stream<Pair<PassiveCollidable, PassiveCollidable>> collidingObjects = findCollidingObjects(
+        Stream<Pair<Collidable, Collidable>> collidingObjects = findCollidingObjects(
             objects
-                .map(x -> x.getComponent(PassiveCollidable.class))
+                .map(x -> x.getComponent(Collidable.class))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
         );
-        collidingObjects
-            .filter(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).isPresent())
-            .forEach(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getY().getGameObject()));
-        collidingObjects
-            .filter(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).isPresent())
-            .forEach(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getX().getGameObject()));
+        // collidingObjects
+        //     .filter(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).isPresent())
+        //     .forEach(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getY().getGameObject()));
+        // collidingObjects
+        //     .filter(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).isPresent())
+        //     .forEach(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getX().getGameObject()));
         
-        // collidingObjects.forEach(pair -> {
-        //     pair.getX().resolveCollision(pair.getY());
-        //     pair.getY().resolveCollision(pair.getX());
-        // });
+        collidingObjects.forEach(pair -> {
+            pair.getX().resolveCollision(pair.getY().getGameObject());
+            pair.getY().resolveCollision(pair.getX().getGameObject());
+        });
     }
 
-    private Stream<Pair<PassiveCollidable, PassiveCollidable>> findCollidingObjects(Stream<PassiveCollidable> collidables) {
-        List<PassiveCollidable> collidablesList = collidables.toList();
+    private Stream<Pair<Collidable, Collidable>> findCollidingObjects(Stream<Collidable> collidables) {
+        List<Collidable> collidablesList = collidables.toList();
         return IntStream
             .range(0, collidablesList.size())
             .boxed()

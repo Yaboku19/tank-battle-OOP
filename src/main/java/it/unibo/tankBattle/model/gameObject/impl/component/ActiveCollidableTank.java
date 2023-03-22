@@ -3,12 +3,12 @@ package it.unibo.tankBattle.model.gameObject.impl.component;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Directions;
 import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
-import it.unibo.tankBattle.model.gameObject.api.component.ActiveCollidable;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.component.DamageDealer;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public class ActiveCollidableTank extends AbstractComponent implements ActiveCollidable {
+public class ActiveCollidableTank extends AbstractComponent implements Collidable {
 
     private double timer;
 

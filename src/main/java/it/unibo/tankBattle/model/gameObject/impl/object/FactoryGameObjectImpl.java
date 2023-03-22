@@ -25,7 +25,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
                 .addComponent(new TankHealth(SIMPLE_TANK_LP))
                 .addComponent(new ActiveCollidableTank())
                 .addComponent(new SimpleMovable(SIMPLE_TANK_SPEED))
-                .addComponent(new PassiveCollidable());
+                .addComponent(new CollisionComponent());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
                 .addComponent(new SimpleMovable(SIMPLE_BULLET_SPEED, bulletTransform.getDirection()))
                 .addComponent(new BulletHealth())
                 .addComponent(new ActiveCollidableBullet())
-                .addComponent(new PassiveCollidable());
+                .addComponent(new CollisionComponent());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
         final Transform wallTransform = new Transform(pos, Directions.NONE, SIMPLE_WALL_DIM, SIMPLE_WALL_DIM);
         return new BasicGameObject(wallTransform)
                 .addComponent(new Wall())
-                .addComponent(new PassiveCollidable());
+                .addComponent(new CollisionComponent());
     }
 
     @Override

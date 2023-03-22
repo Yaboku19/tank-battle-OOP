@@ -1,10 +1,10 @@
 package it.unibo.tankBattle.model.gameObject.impl.component;
 
 import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
-import it.unibo.tankBattle.model.gameObject.api.component.ActiveCollidable;
+import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
 
-public class ActiveCollidableBullet extends AbstractComponent implements ActiveCollidable {
+public class ActiveCollidableBullet extends AbstractComponent implements Collidable {
 
     @Override
     public void update(double time) {
