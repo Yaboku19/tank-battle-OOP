@@ -4,7 +4,7 @@ package it.unibo.tankBattle.controller.api;
 /**
  * Control the virus data. 
  */
-public interface ObjectsManager<T,P> {
+public interface ObjectsManager<T> {
 
     /**
      *
