@@ -26,4 +26,10 @@ public interface View {
     public void updateTankPlayer2(NextAndPrevious delta);
 
     public void updateMap(NextAndPrevious delta);
+
+    public void viewUpdateP1(int speed, int damage, int life, String resource);
+
+    public void viewUpdateP2(int speed, int damage, int life, String resource);
+
+    public void viewUpdateMap(String resource);
 }
