@@ -20,13 +20,12 @@ import view.VirusSetup;*/
 public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
 
     //private final File folder = new File(System.getProperty("user.home"), ".TB");
-
-    protected final File config;
+    private final File config;
 
     //private final String path;// = "config/tankConfig.xml";
 
-    protected final Map<String, T> tankMap = new HashMap<String, T>();
-    protected final List<String> keyOrder = new ArrayList<>();
+    private final Map<String, T> dataMap = new HashMap<String, T>();
+    private final List<String> keyOrder = new ArrayList<>();
     private int index = 0;
 
     /**
@@ -45,7 +44,7 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
 
     @Override
     public T getActual() {
-        return tankMap.get(keyOrder.get(index));
+        return dataMap.get(keyOrder.get(index));
     }
     @Override
     public void update(final NextAndPrevious delta) {
@@ -58,4 +57,15 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
         }
     }
 
+    protected File getConfig() {
+        return config;
+    }
+
+    protected List<String> getKeysOrdered() {
+        return keyOrder;
+    }
+
+    protected Map<String, T> getMap() {
+        return dataMap;
+    }
 }

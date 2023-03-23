@@ -27,10 +27,10 @@ public class FactoryObjectManager {
                     /*if (!config.exists()) {
                         copyVirusConfig();
                     }*/
-                    tankList = (TankDataList) unmarshaller.unmarshal(config);
+                    tankList = (TankDataList) unmarshaller.unmarshal(getConfig());
                     for (int i = 0; i < tankList.getTanks().size(); i++) {
-                        tankMap.put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
-                        keyOrder.add(tankList.getTanks().get(i).getName());
+                        getMap().put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
+                        getKeysOrdered().add(tankList.getTanks().get(i).getName());
                     }
                 } catch (JAXBException e) {
                     e.printStackTrace();
@@ -53,10 +53,10 @@ public class FactoryObjectManager {
                     /*if (!config.exists()) {
                         copyVirusConfig();
                     }*/
-                    mapList = (MapDataList) unmarshaller.unmarshal(config);
+                    mapList = (MapDataList) unmarshaller.unmarshal(getConfig());
                     for (int i = 0; i < mapList.getMaps().size(); i++) {
-                        tankMap.put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
-                        keyOrder.add(mapList.getMaps().get(i).getName());
+                        getMap().put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
+                        getKeysOrdered().add(mapList.getMaps().get(i).getName());
                     }
                 } catch (JAXBException e) {
                     e.printStackTrace();

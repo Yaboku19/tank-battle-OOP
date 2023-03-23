@@ -1,8 +1,5 @@
 package it.unibo.tankBattle.view.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.scene.image.Image;
 
 /**
