@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 
 /*import model.virus.Virus;
@@ -45,18 +46,12 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
     public T getActual() {
         return tankMap.get(keyOrder.get(index));
     }
-
     @Override
-    public void next() {
-        index++;
+    public void update(final NextAndPrevious delta) {
+        index += delta.getDelta();
         if (index >= keyOrder.size()) {
             index = 0;
         }
-    }
-
-    @Override
-    public void previous() {
-        index--;
         if (index < 0) {
             index = keyOrder.size() - 1;
         }

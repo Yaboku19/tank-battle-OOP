@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.controller.api;
 
+import it.unibo.tankBattle.common.NextAndPrevious;
 
 /**
  * Control the virus data. 
@@ -14,9 +15,5 @@ public interface ObjectsManager<T> {
 
     T getActual();
 
-    void next();
-
-    void previous();
-
-
+    void update(NextAndPrevious delta);
 }

@@ -140,17 +140,17 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void updateTankPlayer1(NextAndPrevious delta) {
-    
+        tankFirstManager.update(delta);
     }
 
     @Override
     public void updateTankPlayer2(NextAndPrevious delta) {
-        
+        tankSecondManager.update(delta);
     }
 
     @Override
     public void updateMap(NextAndPrevious delta) {
-        
+        mapManager.update(delta);
     }
 
 }
