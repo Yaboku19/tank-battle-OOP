@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import it.unibo.tankBattle.common.ButtonDirection;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
@@ -173,6 +174,7 @@ public class ViewImpl implements View{
             Scene chooseMenu = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
             chooseMenuController = (ChooseMenu)fxmlLoader.getController();
+            chooseMenuController.setViewController(this);
             chooseMenuController.setPreviousScene(stage.getScene());
             stage.setScene(chooseMenu);
         }catch(Exception e){
@@ -249,16 +251,30 @@ public class ViewImpl implements View{
         }
     }
 
-    public void updateP1(int speed, int damage, int life, String resource){
+    public void viewUpdateP1(int speed, int damage, int life, String resource){
         chooseMenuController.updateP1(speed, damage, life, resource);
     }
 
-    public void updateP2(int speed, int damage, int life, String resource){
+    public void viewUpdateP2(int speed, int damage, int life, String resource){
         chooseMenuController.updateP2(speed, damage, life, resource);
     }
 
-    public void updateMap(String resource){
+    public void viewUpdateMap(String resource){
         chooseMenuController.updateMap(resource);
     }
 
+    @Override
+    public void updateTankPlayer1(ButtonDirection delta){
+        //controller.updateTankPlayer1(delta);
+    }
+
+    @Override
+    public void updateTankPlayer2(ButtonDirection delta){
+        //controller.updateTankPlayer1(delta);
+    }
+
+    @Override
+    public void updateMap(ButtonDirection delta){
+        //controller.updateMap(delta);
+    }
 }

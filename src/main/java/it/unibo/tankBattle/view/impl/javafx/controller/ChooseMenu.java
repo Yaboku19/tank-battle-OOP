@@ -12,10 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import it.unibo.tankBattle.common.ButtonDirection;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.GameSetup;
 import it.unibo.tankBattle.view.api.MapImage;
 import it.unibo.tankBattle.view.api.TankImage;
+import it.unibo.tankBattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +37,7 @@ public class ChooseMenu implements Initializable{
     private TankImage tankImagePlayer2 = TankImage.SIMPLETANK;
     private MapImage mapImageChoose = MapImage.MAP1;
     private Map<String, String> configMap;
-    private GameEngine controller = null;
+    private View viewController;
     private final String PATH = "images" + "/" + "map" + "/";
     //private List tankConfigs = new ArrayList<>();
     //private int contP1 = 0;
@@ -94,48 +96,44 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void nextTankPlayer1(ActionEvent event) {
-        //controller.nextTankPlayer1();
-        //contP1 += 1;
-        //updateP1();
-        tankImagePlayer1 = tankImagePlayer1.next();
-        player1Image.setImage(tankImagePlayer1.getImage());
+        viewController.updateTankPlayer1(ButtonDirection.NEXT);
+        /*tankImagePlayer1 = tankImagePlayer1.next();
+        player1Image.setImage(tankImagePlayer1.getImage());*/
     }
 
     @FXML
     void prevTankPlayer1(ActionEvent event) {
-        //controller.prevTankPlayer1();
-        //contP1 -= 1;
-        //updateP1();
-        tankImagePlayer1 = tankImagePlayer1.prev();
-        player1Image.setImage(tankImagePlayer1.getImage());
+        //viewController.prevTankPlayer1();
+        /*tankImagePlayer1 = tankImagePlayer1.prev();
+        player1Image.setImage(tankImagePlayer1.getImage());*/
     }
 
     @FXML
     void nextTankPlayer2(ActionEvent event) {
-        //controller.nextTankPlayer2();
-        tankImagePlayer2 = tankImagePlayer2.next();
-        player2Image.setImage(tankImagePlayer2.getImage());
+        //viewController.nextTankPlayer2();
+        /*tankImagePlayer2 = tankImagePlayer2.next();
+        player2Image.setImage(tankImagePlayer2.getImage());*/
     }
 
     @FXML
     void prevTankPlayer2(ActionEvent event) {
-        //controller.prevTankPlayer2();
-        tankImagePlayer2 = tankImagePlayer2.prev();
-        player2Image.setImage(tankImagePlayer2.getImage());
+        //viewController.prevTankPlayer2();
+        /*tankImagePlayer2 = tankImagePlayer2.prev();
+        player2Image.setImage(tankImagePlayer2.getImage());*/
     }
 
     @FXML
     void nextMap(ActionEvent event) {
-        //controller.nextMap();
-        mapImageChoose = mapImageChoose.next();
-        mapImage.setImage(mapImageChoose.getImage());
+        //viewController.nextMap();
+        /*mapImageChoose = mapImageChoose.next();
+        mapImage.setImage(mapImageChoose.getImage());*/
     }
 
     @FXML
     void prevMap(ActionEvent event) {
-        //controller.prevMap();
-        mapImageChoose = mapImageChoose.prev();
-        mapImage.setImage(mapImageChoose.getImage());
+        //viewController.prevMap();
+        /*mapImageChoose = mapImageChoose.prev();
+        mapImage.setImage(mapImageChoose.getImage());*/
     }
 
     @FXML
@@ -152,8 +150,8 @@ public class ChooseMenu implements Initializable{
         mapImage.setImage(mapImageChoose.getImage());
     }
 
-    public void setController(GameEngine controller){
-        this.controller = controller;
+    public void setViewController(View viewController){
+        this.viewController = viewController;
     }
 
 
