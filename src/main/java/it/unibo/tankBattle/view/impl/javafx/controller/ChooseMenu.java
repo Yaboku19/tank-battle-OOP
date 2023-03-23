@@ -33,10 +33,10 @@ import javafx.stage.Stage;
 public class ChooseMenu implements Initializable{
 
     private Scene prevScene;
-    private TankImage tankImagePlayer1 = TankImage.SUPERPOWERTANK;
+    /*private TankImage tankImagePlayer1 = TankImage.SUPERPOWERTANK;
     private TankImage tankImagePlayer2 = TankImage.SIMPLETANK;
     private MapImage mapImageChoose = MapImage.MAP1;
-    private Map<String, String> configMap;
+    private Map<String, String> configMap;*/
     private View viewController;
     private final String PATH = "images" + "/" + "map" + "/";
     //private List tankConfigs = new ArrayList<>();
@@ -103,13 +103,14 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void prevTankPlayer1(ActionEvent event) {
-        //viewController.prevTankPlayer1();
+        viewController.updateTankPlayer1(NextAndPrevious.PREVIOUS);
         /*tankImagePlayer1 = tankImagePlayer1.prev();
         player1Image.setImage(tankImagePlayer1.getImage());*/
     }
 
     @FXML
     void nextTankPlayer2(ActionEvent event) {
+        viewController.updateTankPlayer2(NextAndPrevious.NEXT);
         //viewController.nextTankPlayer2();
         /*tankImagePlayer2 = tankImagePlayer2.next();
         player2Image.setImage(tankImagePlayer2.getImage());*/
@@ -117,6 +118,7 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void prevTankPlayer2(ActionEvent event) {
+        viewController.updateTankPlayer2(NextAndPrevious.PREVIOUS);
         //viewController.prevTankPlayer2();
         /*tankImagePlayer2 = tankImagePlayer2.prev();
         player2Image.setImage(tankImagePlayer2.getImage());*/
@@ -124,6 +126,7 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void nextMap(ActionEvent event) {
+        viewController.updateMap(NextAndPrevious.NEXT);
         //viewController.nextMap();
         /*mapImageChoose = mapImageChoose.next();
         mapImage.setImage(mapImageChoose.getImage());*/
@@ -131,6 +134,7 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void prevMap(ActionEvent event) {
+        viewController.updateMap(NextAndPrevious.PREVIOUS);
         //viewController.prevMap();
         /*mapImageChoose = mapImageChoose.prev();
         mapImage.setImage(mapImageChoose.getImage());*/
@@ -145,9 +149,9 @@ public class ChooseMenu implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        player1Image.setImage(tankImagePlayer1.getImage());
+        /*player1Image.setImage(tankImagePlayer1.getImage());
         player2Image.setImage(tankImagePlayer2.getImage());
-        mapImage.setImage(mapImageChoose.getImage());
+        mapImage.setImage(mapImageChoose.getImage());*/
     }
 
     public void setViewController(View viewController){
