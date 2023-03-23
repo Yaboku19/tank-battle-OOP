@@ -37,7 +37,7 @@ dependencies {
     // implementation("com.google.guava:guava:28.1-jre")
 
     // JavaFX: comment out if you do not need them
-    val javaFxVersion = 15
+    val javaFxVersion = 19
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
@@ -51,6 +51,7 @@ dependencies {
 
     //READ and WRITE XML file
     implementation ("javax.xml.bind:jaxb-api:2.3.1")
+    implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
     /*annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
 	testAnnotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")*/
 }

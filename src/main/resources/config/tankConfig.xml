@@ -5,20 +5,20 @@
         <speed>1</speed>
         <damage>1</damage>
         <life>1</life>
-        <resource>SIMPLETANK.png</resource>
+        <resource>standardTank</resource>
     </tank>
     <tank name="SPEEDTANK">
         <code>1</code>
         <speed>2</speed>
         <damage>1</damage>
         <life>1</life>
-        <resource>SPEEDTANK.png</resource>
+        <resource>speedTank</resource>
     </tank>
     <tank name="SUPERPOWERTANK">
         <code>2</code>
         <speed>1</speed>
-        <damage>1</damage>
+        <damage>2</damage>
         <life>1</life>
-        <resource>SUPERPOWERTANK.png</resource>
+        <resource>powerTank</resource>
     </tank>
 </tankList>

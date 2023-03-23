@@ -2,14 +2,14 @@
 <mapList>
     <map name="DEFAULTMAP">
         <code>0</code>
-        <resource>defaultMap.png</resource>
+        <resource>map1.png</resource>
     </map>
     <map name="PIPPOMAP">
         <code>1</code>
-        <resource>pippoMap.png</resource>
+        <resource>map2.png</resource>
     </map>
     <map name="PLUTOMAP">
         <code>2</code>
-        <resource>plutoMap.png</resource>
+        <resource>map3.png</resource>
     </map>
 </mapList>

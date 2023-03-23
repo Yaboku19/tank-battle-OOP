@@ -38,7 +38,7 @@ public class ChooseMenu implements Initializable{
     private MapImage mapImageChoose = MapImage.MAP1;
     private Map<String, String> configMap;*/
     private View viewController;
-    private final String PATH = "images" + "/" + "map" + "/";
+    private final String PATH = "images" + "/";
     //private List tankConfigs = new ArrayList<>();
     //private int contP1 = 0;
     //private int contP2 = 0;
@@ -167,18 +167,18 @@ public class ChooseMenu implements Initializable{
         speedP1.setText(Integer.toString(speed));
         damageP1.setText(Integer.toString(damage));
         lifeP1.setText(Integer.toString(life));
-        player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
+        player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/" + resource + "Blue.gif").toExternalForm()));
     }
 
     public void updateP2(int speed, int damage, int life, String resource){
         speedP2.setText(Integer.toString(speed));
         damageP2.setText(Integer.toString(damage));
         lifeP2.setText(Integer.toString(life));
-        player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
+        player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/" + resource + "Green.gif").toExternalForm()));
     }
 
     public void updateMap(String resource){
-        mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
+        mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));
     }
 
 }

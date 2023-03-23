@@ -21,8 +21,7 @@ public class FactoryObjectManager {
             public void read() {
                 tankList.setTank(new ArrayList<TankData>());
                 try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance("it.unibo.tankBattle.model.gameSetup.TankDataList");
-                    System.out.println("fsfasfaes");
+                    final JAXBContext jaxbContext = JAXBContext.newInstance(TankDataList.class);
                     final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         
                     /*if (!config.exists()) {
@@ -34,7 +33,7 @@ public class FactoryObjectManager {
                         keyOrder.add(tankList.getTanks().get(i).getName());
                     }
                 } catch (JAXBException e) {
-                    System.out.println("pippo pippa pippi");
+                    e.printStackTrace();
                 }
             }
             
