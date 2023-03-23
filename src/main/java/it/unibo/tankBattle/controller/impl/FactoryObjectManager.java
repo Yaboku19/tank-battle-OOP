@@ -4,6 +4,7 @@ import it.unibo.tankBattle.model.gameSetup.MapData;
 import it.unibo.tankBattle.model.gameSetup.MapDataList;
 import it.unibo.tankBattle.model.gameSetup.TankData;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
@@ -13,14 +14,15 @@ import it.unibo.tankBattle.model.gameSetup.TankDataList;
 
 public class FactoryObjectManager {
     
-    public ObjectsManagerImpl<TankData> tankManager() {
-        return new ObjectsManagerImpl<TankData>("/config/tankConfig.xml") {
+    public ObjectsManagerImpl<TankData> tankManager() throws URISyntaxException {
+        return new ObjectsManagerImpl<TankData>(ClassLoader.getSystemResource("config/tankConfig.xml").toURI()) {
             private TankDataList tankList = new TankDataList();
             @Override
             public void read() {
                 tankList.setTank(new ArrayList<TankData>());
                 try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance(TankDataList.class);
+                    final JAXBContext jaxbContext = JAXBContext.newInstance("it.unibo.tankBattle.model.gameSetup.TankDataList");
+                    System.out.println("fsfasfaes");
                     final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         
                     /*if (!config.exists()) {
@@ -32,15 +34,15 @@ public class FactoryObjectManager {
                         keyOrder.add(tankList.getTanks().get(i).getName());
                     }
                 } catch (JAXBException e) {
-                    e.printStackTrace();
+                    System.out.println("pippo pippa pippi");
                 }
             }
             
         };
     }
 
-    public ObjectsManagerImpl<MapData> MapManager() {
-        return new ObjectsManagerImpl<MapData>("/config/mapConfig.xml") {
+    public ObjectsManagerImpl<MapData> MapManager() throws URISyntaxException{
+        return new ObjectsManagerImpl<MapData>(ClassLoader.getSystemResource("config/mapConfig.xml").toURI()) {
             private MapDataList mapList = new MapDataList();
             @Override
             public void read() {

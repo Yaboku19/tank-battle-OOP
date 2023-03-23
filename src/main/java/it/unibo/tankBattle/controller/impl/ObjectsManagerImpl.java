@@ -1,6 +1,7 @@
 package it.unibo.tankBattle.controller.impl;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
      * Constructor method.
      * 
      */
-    public ObjectsManagerImpl(String path) {
+    public ObjectsManagerImpl(URI path) {
         config = new File(path);
     }
 

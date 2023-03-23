@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.controller.impl;
 
+import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,9 +26,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private Boolean isOver = false;
     private Player firstPlayer = null;
     private Player secondPlayer = null;
-    private final ObjectsManager<TankData> tankFirstManager;
-    private final ObjectsManager<TankData> tankSecondManager;
-    private final ObjectsManager<MapData> mapManager;
+    private ObjectsManager<TankData> tankFirstManager;
+    private ObjectsManager<TankData> tankSecondManager;
+    private ObjectsManager<MapData> mapManager;
     private final FactoryObjectManager factoryObjectsManager;
     private ChooseMenu settingsViewController = null;
 
@@ -37,9 +38,16 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         view.setController(this);
         model = new GameStateImpl(this);
         factoryObjectsManager = new FactoryObjectManager();
-        tankFirstManager = factoryObjectsManager.tankManager();
-        tankSecondManager = factoryObjectsManager.tankManager();
-        mapManager = factoryObjectsManager.MapManager();
+        try {
+            tankFirstManager = factoryObjectsManager.tankManager();
+            tankSecondManager = factoryObjectsManager.tankManager();
+            mapManager = factoryObjectsManager.MapManager();
+            tankFirstManager.read();
+            tankSecondManager.read();
+            mapManager.read();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         //objectsManager.readVirus();
     }
 
