@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import it.unibo.tankBattle.common.ButtonDirection;
+import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
@@ -264,17 +264,17 @@ public class ViewImpl implements View{
     }
 
     @Override
-    public void updateTankPlayer1(ButtonDirection delta){
+    public void updateTankPlayer1(NextAndPrevious delta){
         //controller.updateTankPlayer1(delta);
     }
 
     @Override
-    public void updateTankPlayer2(ButtonDirection delta){
+    public void updateTankPlayer2(NextAndPrevious delta){
         //controller.updateTankPlayer1(delta);
     }
 
     @Override
-    public void updateMap(ButtonDirection delta){
+    public void updateMap(NextAndPrevious delta){
         //controller.updateMap(delta);
     }
 }

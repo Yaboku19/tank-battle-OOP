@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import it.unibo.tankBattle.common.ButtonDirection;
+import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.GameSetup;
 import it.unibo.tankBattle.view.api.MapImage;
@@ -96,7 +96,7 @@ public class ChooseMenu implements Initializable{
 
     @FXML
     void nextTankPlayer1(ActionEvent event) {
-        viewController.updateTankPlayer1(ButtonDirection.NEXT);
+        viewController.updateTankPlayer1(NextAndPrevious.NEXT);
         /*tankImagePlayer1 = tankImagePlayer1.next();
         player1Image.setImage(tankImagePlayer1.getImage());*/
     }
