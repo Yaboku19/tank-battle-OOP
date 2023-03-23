@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.controller.api;
 
+import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.input.api.Command;
 
 public interface GameEngine extends Runnable {
@@ -12,9 +13,9 @@ public interface GameEngine extends Runnable {
 
     public Player getSecondPlayer();
 
-    public void updateTankPlayer1(/*ButtonDirection direction*/);
+    public void updateTankPlayer1(NextAndPrevious delta);
 
-    public void updateTankPlayer2(/*ButtonDirection direction*/);
+    public void updateTankPlayer2(NextAndPrevious delta);
 
-    public void updateMap(/*ButtonDirection direction*/);
+    public void updateMap(NextAndPrevious delta);
 }

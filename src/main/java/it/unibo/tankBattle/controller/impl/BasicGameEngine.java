@@ -2,6 +2,8 @@ package it.unibo.tankBattle.controller.impl;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
+import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
@@ -137,20 +139,18 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     @Override
-    public void updateTankPlayer1() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTankPlayer1'");
+    public void updateTankPlayer1(NextAndPrevious delta) {
+    
     }
 
     @Override
-    public void updateTankPlayer2() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTankPlayer2'");
+    public void updateTankPlayer2(NextAndPrevious delta) {
+        
     }
 
     @Override
-    public void updateMap() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateMap'");
+    public void updateMap(NextAndPrevious delta) {
+        
     }
+
 }

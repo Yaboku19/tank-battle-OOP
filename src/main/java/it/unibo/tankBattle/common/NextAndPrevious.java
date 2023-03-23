@@ -1,11 +1,11 @@
 package it.unibo.tankBattle.common;
 
-public enum ButtonDirection {
+public enum NextAndPrevious {
     NEXT(1), PREVIOUS(-1);
 
     private int delta;
 
-    private ButtonDirection(final int delta) {
+    private NextAndPrevious(final int delta) {
         this.delta = delta;
     }
 
