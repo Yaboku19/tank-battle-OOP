@@ -26,17 +26,12 @@ public class CollisionManagerImpl implements CollisionManager {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
         );
-        // collidingObjects
-        //     .filter(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).isPresent())
-        //     .forEach(pair -> pair.getX().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getY().getGameObject()));
-        // collidingObjects
-        //     .filter(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).isPresent())
-        //     .forEach(pair -> pair.getY().getGameObject().getComponent(ActiveCollidable.class).get().resolveCollision(pair.getX().getGameObject()));
-        
-        collidingObjects.forEach(pair -> {
-            pair.getX().resolveCollision(pair.getY().getGameObject());
-            pair.getY().resolveCollision(pair.getX().getGameObject());
-        });
+        collidingObjects
+            .toList()
+            .forEach(pair -> {
+                pair.getX().resolveCollision(pair.getY().getGameObject());
+                pair.getY().resolveCollision(pair.getX().getGameObject());
+            });
     }
 
     private Stream<Pair<Collidable, Collidable>> findCollidingObjects(Stream<Collidable> collidables) {
@@ -49,6 +44,5 @@ public class CollisionManagerImpl implements CollisionManager {
                 .skip(index + 1)
                 .map(object -> new Pair<>(collidablesList.get(index), object)))
             .filter(pair -> this.detector.detect(pair.getX(), pair.getY()));
-    }
-    
+    }  
 }

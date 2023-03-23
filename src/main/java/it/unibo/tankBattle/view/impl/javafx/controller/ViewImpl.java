@@ -27,6 +27,7 @@ public class ViewImpl implements View{
 
     private GameEngine controller;
     private GameController gameController;
+    private ChooseMenu chooseMenuController;
     private Node node;
     private Stage stage;
     private String lastCommandFirstPlayer = "";
@@ -171,7 +172,7 @@ public class ViewImpl implements View{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/chooseMenu.fxml"));
             Scene chooseMenu = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            ChooseMenu chooseMenuController = (ChooseMenu)fxmlLoader.getController();
+            chooseMenuController = (ChooseMenu)fxmlLoader.getController();
             chooseMenuController.setPreviousScene(stage.getScene());
             stage.setScene(chooseMenu);
         }catch(Exception e){
@@ -200,7 +201,6 @@ public class ViewImpl implements View{
     void initialize() {
         assert playButton != null : "fx:id=\"playButton\" was not injected: check your FXML file 'mainScene.fxml'.";
         assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
-
     }
 
     @Override
@@ -213,42 +213,16 @@ public class ViewImpl implements View{
             drawWall(wall.collect(Collectors.toSet()));
         });
     }
-    /*ESEMPIO********
-    Thread thread = new Thread(new Runnable() {
-
-        @Override
-        public void run() {
-            Runnable updater = new Runnable() {
-
-                @Override
-                public void run() {
-                    render();
-                }
-            };
-
-            while (true) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                }
-
-                // UI update is run on the Application thread
-                Platform.runLater(updater);
-            }
-        }
-
-    });*/
-
     
-    private void drawFirstTank(Transform tank){//Transform transform) {
+    private void drawFirstTank(Transform tank){
         gameController.renderFirstTank(tank);
     }
 
-    private void drawSecondTank(Transform tank){//Transform transform) {
+    private void drawSecondTank(Transform tank){
         gameController.renderSecondTank(tank);
     }
 
-    private void drawBullet(Set<Transform> bullet){//Transform transform) {
+    private void drawBullet(Set<Transform> bullet){
         gameController.renderBullet(bullet);
     }
 
@@ -265,18 +239,26 @@ public class ViewImpl implements View{
     public void gameOver() {
         try {
             System.out.println(controller);
-            /*Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();*/
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
             Scene gameOver = new Scene(fxmlLoader.load());
-            //controller = fxmlLoader.getController();
             GameOverController gameOverController = (GameOverController)fxmlLoader.getController();
             gameOverController.setPreviousScene(stage.getScene());
             stage.setScene(gameOver);
         }catch(Exception e){
             System.out.println(e.toString());
         }
+    }
 
+    public void updateP1(int speed, int damage, int life, String resource){
+        chooseMenuController.updateP1(speed, damage, life, resource);
+    }
+
+    public void updateP2(int speed, int damage, int life, String resource){
+        chooseMenuController.updateP2(speed, damage, life, resource);
+    }
+
+    public void updateMap(String resource){
+        chooseMenuController.updateMap(resource);
     }
 
 }
