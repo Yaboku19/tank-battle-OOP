@@ -265,16 +265,16 @@ public class ViewImpl implements View{
 
     @Override
     public void updateTankPlayer1(NextAndPrevious delta){
-        //controller.updateTankPlayer1(delta);
+        controller.updateTankPlayer1(delta);
     }
 
     @Override
     public void updateTankPlayer2(NextAndPrevious delta){
-        //controller.updateTankPlayer1(delta);
+        controller.updateTankPlayer2(delta);
     }
 
     @Override
     public void updateMap(NextAndPrevious delta){
-        //controller.updateMap(delta);
+        controller.updateMap(delta);
     }
 }
