@@ -251,30 +251,33 @@ public class ViewImpl implements View{
         }
     }
 
+    @Override
     public void viewUpdateP1(int speed, int damage, int life, String resource){
         chooseMenuController.updateP1(speed, damage, life, resource);
     }
 
+    @Override
     public void viewUpdateP2(int speed, int damage, int life, String resource){
         chooseMenuController.updateP2(speed, damage, life, resource);
     }
 
+    @Override
     public void viewUpdateMap(String resource){
         chooseMenuController.updateMap(resource);
     }
 
     @Override
     public void updateTankPlayer1(NextAndPrevious delta){
-        //controller.updateTankPlayer1(delta);
+        controller.updateTankPlayer1(delta);
     }
 
     @Override
     public void updateTankPlayer2(NextAndPrevious delta){
-        //controller.updateTankPlayer1(delta);
+        controller.updateTankPlayer2(delta);
     }
 
     @Override
     public void updateMap(NextAndPrevious delta){
-        //controller.updateMap(delta);
+        controller.updateMap(delta);
     }
 }
