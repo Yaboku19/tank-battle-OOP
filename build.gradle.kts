@@ -51,8 +51,8 @@ dependencies {
 
     //READ and WRITE XML file
     implementation ("javax.xml.bind:jaxb-api:2.3.1")
-    annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
-	testAnnotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
+    /*annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
+	testAnnotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")*/
 }
 
 tasks.withType<Test> {
