@@ -21,7 +21,7 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
 
     protected final File config;
 
-    private final String path;// = "config/tankConfig.xml";
+    //private final String path;// = "config/tankConfig.xml";
 
     protected final Map<String, T> tankMap = new HashMap<String, T>();
     protected final List<String> keyOrder = new ArrayList<>();
@@ -32,8 +32,7 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
      * 
      */
     public ObjectsManagerImpl(String path) {
-        this.path = path;
-        config = new File(ClassLoader.getSystemResource(path).toString());
+        config = new File(path);
     }
 
     /**

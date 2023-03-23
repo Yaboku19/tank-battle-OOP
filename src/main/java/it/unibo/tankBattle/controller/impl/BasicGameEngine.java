@@ -7,6 +7,8 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
+import it.unibo.tankBattle.model.gameSetup.MapData;
+import it.unibo.tankBattle.model.gameSetup.TankData;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
@@ -21,7 +23,10 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private Boolean isOver = false;
     private Player firstPlayer = null;
     private Player secondPlayer = null;
-    private final ObjectsManager<Integer,Integer> objectsManager;
+    private final ObjectsManager<TankData> tankFirstManager;
+    private final ObjectsManager<TankData> tankSecondManager;
+    private final ObjectsManager<MapData> mapManager;
+    private final FactoryObjectManager factoryObjectsManager;
     private ChooseMenu settingsViewController = null;
 
     public BasicGameEngine(final View view) {
@@ -29,7 +34,10 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         this.view = view;
         view.setController(this);
         model = new GameStateImpl(this);
-        objectsManager = new ObjectsManagerImpl<Integer,Integer>("filePath");
+        factoryObjectsManager = new FactoryObjectManager();
+        tankFirstManager = factoryObjectsManager.tankManager();
+        tankSecondManager = factoryObjectsManager.tankManager();
+        mapManager = factoryObjectsManager.MapManager();
         //objectsManager.readVirus();
     }
 
@@ -126,5 +134,23 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     public void setSettingsViewController(ChooseMenu settingsViewController){
         this.settingsViewController = settingsViewController;
+    }
+
+    @Override
+    public void updateTankPlayer1() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateTankPlayer1'");
+    }
+
+    @Override
+    public void updateTankPlayer2() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateTankPlayer2'");
+    }
+
+    @Override
+    public void updateMap() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateMap'");
     }
 }

@@ -13,7 +13,7 @@ import it.unibo.tankBattle.model.gameSetup.TankDataList;
 
 public class FactoryObjectManager {
     
-    public ObjectsManagerImpl<TankData> GameObjectManager() {
+    public ObjectsManagerImpl<TankData> tankManager() {
         return new ObjectsManagerImpl<TankData>("/config/tankConfig.xml") {
             private TankDataList tankList = new TankDataList();
             @Override
@@ -63,5 +63,9 @@ public class FactoryObjectManager {
             }
             
         };
+    }
+
+    private <T, P> void readCommon() {
+
     }
 }
