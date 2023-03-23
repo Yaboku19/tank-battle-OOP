@@ -141,16 +141,22 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void updateTankPlayer1(NextAndPrevious delta) {
         tankFirstManager.update(delta);
+        var toReturn = tankFirstManager.getActual();
+        view.viewUpdateP1(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
 
     @Override
     public void updateTankPlayer2(NextAndPrevious delta) {
         tankSecondManager.update(delta);
+        var toReturn = tankSecondManager.getActual();
+        view.viewUpdateP2(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
 
     @Override
     public void updateMap(NextAndPrevious delta) {
         mapManager.update(delta);
+        var toReturn = mapManager.getActual();
+        view.viewUpdateMap(toReturn.getResource());
     }
 
 }
