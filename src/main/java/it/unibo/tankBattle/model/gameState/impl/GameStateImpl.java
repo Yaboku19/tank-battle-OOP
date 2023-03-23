@@ -6,6 +6,9 @@ import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
+import it.unibo.tankBattle.model.collision.api.CollisionManager;
+import it.unibo.tankBattle.model.collision.impl.CollisionDetectorImpl;
+import it.unibo.tankBattle.model.collision.impl.CollisionManagerImpl;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
 import it.unibo.tankBattle.model.gameObject.api.component.Tank;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
@@ -21,11 +24,13 @@ public class GameStateImpl implements GameState{
     private World world = null;
     private final WorldEventListener listener;
     private final FactoryGameObject factoryGameObject;
+    private final CollisionManager collisionManager;
 
     public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
         this.listener = listener;
         factoryGameObject = new FactoryGameObjectImpl();
+        collisionManager = new CollisionManagerImpl(new CollisionDetectorImpl());
     }
 
     @Override
@@ -37,6 +42,7 @@ public class GameStateImpl implements GameState{
     public void update(final Double time) {
         world.getEntities().forEach(g -> g.update(time));
         world.getEntities().filter(this::isDead).toList().forEach(this::removeDeadGameObject);
+        collisionManager.manageCollisions(world.getEntities());
     }
 
     private boolean isDead(final GameObject gameObject) {
