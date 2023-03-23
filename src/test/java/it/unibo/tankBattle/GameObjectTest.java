@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.component.Damageable;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
