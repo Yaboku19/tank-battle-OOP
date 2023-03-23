@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -35,6 +36,7 @@ public class ChooseMenu implements Initializable{
     private MapImage mapImageChoose = MapImage.MAP1;
     private Map<String, String> configMap;
     private GameEngine controller = null;
+    private final String PATH = "images" + "/" + "map" + "/";
     //private List tankConfigs = new ArrayList<>();
     //private int contP1 = 0;
     //private int contP2 = 0;
@@ -148,82 +150,33 @@ public class ChooseMenu implements Initializable{
         player1Image.setImage(tankImagePlayer1.getImage());
         player2Image.setImage(tankImagePlayer2.getImage());
         mapImage.setImage(mapImageChoose.getImage());
-        //loadConfig();
     }
 
     public void setController(GameEngine controller){
         this.controller = controller;
     }
 
-    /*private void loadConfig(){
-        try(InputStream inputStream = ClassLoader.getSystemResourceAsStream("config/config.yaml")){
-        //try (InputStream inputStream = new FileInputStream(new File(ClassLoader.getSystemResource("config/config.yaml").toURI()))) {
-            Yaml yaml = new Yaml();
-            configMap = yaml.load(inputStream);
-            System.out.println(configMap);
-        } catch (Exception e) {
-            System.out.println("eccezioneeeeeeee");
-            e.printStackTrace();
-        }
-        /*for(var key : configMap.keySet()){
-            switch(key){
-                case "tankImagePlayer1":
-                    tankImagePlayer1 = TankImage.SIMPLETANK;
-                    break;
-                case "tankImagePlayer2":
-                    tankImagePlayer2 = TankImage.SIMPLETANK;
-                    break;
-                case "mapImageChoose":
-                    mapImageChoose = MapImage.MAP1;
-                    break;
-            }
-        }
-
-    }*/
 
     public void setPreviousScene(Scene prevScene){
         this.prevScene = prevScene;
     }
 
-    /*@Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    public void updateP1(int speed, int damage, int life, String resource){
+        speedP1.setText(Integer.toString(speed));
+        damageP1.setText(Integer.toString(damage));
+        lifeP1.setText(Integer.toString(life));
+        player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
     }
 
-    @Override
-    public Integer getSpeed() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpeed'");
+    public void updateP2(int speed, int damage, int life, String resource){
+        speedP2.setText(Integer.toString(speed));
+        damageP2.setText(Integer.toString(damage));
+        lifeP2.setText(Integer.toString(life));
+        player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
     }
 
-    @Override
-    public Integer getLife() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLife'");
+    public void updateMap(String resource){
+        mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + resource).toExternalForm()));
     }
 
-    @Override
-    public Integer getDamage() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLife'");
-    }*/
-
-
-    /*public void updateP1(int speed, int damage, int life, String resource){
-        speedP1.setText(speed);
-        .
-        .
-        .
-    }
-    */
-
-
-    /*public void updateP2(int speed, int damage, int life, String resource){
-        speedP2.setText(speed);
-        .
-        .
-        .
-    }
-    */
 }

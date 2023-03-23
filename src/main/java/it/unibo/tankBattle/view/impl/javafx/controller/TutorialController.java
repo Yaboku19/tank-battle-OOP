@@ -16,16 +16,9 @@ public class TutorialController {
 
     @FXML
     private void back(ActionEvent event) {
-        /*try {*/
-            /*
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/mainScene.fxml"));
-            Scene tutorial = new Scene(fxmlLoader.load());//, 600, 400);*/
             Node node = (Node)event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(prevScene);
-        /* } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     public void setPreviousScene (Scene prevScene){
