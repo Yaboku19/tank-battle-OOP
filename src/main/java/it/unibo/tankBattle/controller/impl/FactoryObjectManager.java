@@ -4,9 +4,8 @@ import it.unibo.tankBattle.model.gameSetup.MapData;
 import it.unibo.tankBattle.model.gameSetup.MapDataList;
 import it.unibo.tankBattle.model.gameSetup.TankData;
 
+import java.io.File;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -16,24 +15,12 @@ public class FactoryObjectManager {
     
     public ObjectsManagerImpl<TankData> tankManager() throws URISyntaxException {
         return new ObjectsManagerImpl<TankData>(ClassLoader.getSystemResource("config/tankConfig.xml").toURI()) {
-            private TankDataList tankList = new TankDataList();
             @Override
             public void read() {
-                tankList.setTank(new ArrayList<TankData>());
-                try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance(TankDataList.class);
-                    final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        
-                    /*if (!config.exists()) {
-                        copyVirusConfig();
-                    }*/
-                    tankList = (TankDataList) unmarshaller.unmarshal(getConfig());
-                    for (int i = 0; i < tankList.getTanks().size(); i++) {
-                        getMap().put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
-                        getKeysOrdered().add(tankList.getTanks().get(i).getName());
-                    }
-                } catch (JAXBException e) {
-                    e.printStackTrace();
+                TankDataList tankList = getUnmarshaller(TankDataList.class, getConfig());
+                for (int i = 0; i < tankList.getTanks().size(); i++) {
+                    getMap().put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
+                    getKeysOrdered().add(tankList.getTanks().get(i).getName());
                 }
             }
             
@@ -42,31 +29,28 @@ public class FactoryObjectManager {
 
     public ObjectsManagerImpl<MapData> MapManager() throws URISyntaxException{
         return new ObjectsManagerImpl<MapData>(ClassLoader.getSystemResource("config/mapConfig.xml").toURI()) {
-            private MapDataList mapList = new MapDataList();
             @Override
             public void read() {
-                mapList.setMap(new ArrayList<MapData>());
-                try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance(MapDataList.class);
-                    final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        
-                    /*if (!config.exists()) {
-                        copyVirusConfig();
-                    }*/
-                    mapList = (MapDataList) unmarshaller.unmarshal(getConfig());
-                    for (int i = 0; i < mapList.getMaps().size(); i++) {
-                        getMap().put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
-                        getKeysOrdered().add(mapList.getMaps().get(i).getName());
-                    }
-                } catch (JAXBException e) {
-                    e.printStackTrace();
+                MapDataList mapList = getUnmarshaller(MapDataList.class, getConfig());
+                for (int i = 0; i < mapList.getMaps().size(); i++) {
+                    getMap().put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
+                    getKeysOrdered().add(mapList.getMaps().get(i).getName());
                 }
             }
             
         };
     }
 
-    private <T, P> void readCommon() {
-
+    @SuppressWarnings("unchecked")
+    private <T> T getUnmarshaller(Class<T> C, File config) {
+        try {
+            final JAXBContext jaxbContext = JAXBContext.newInstance(C);
+            final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            var dataList = (T) unmarshaller.unmarshal(config);;
+            return dataList;
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
