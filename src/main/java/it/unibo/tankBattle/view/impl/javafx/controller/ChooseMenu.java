@@ -30,6 +30,12 @@ public class ChooseMenu implements Initializable{
     //private int contP1 = 0;
     //private int contP2 = 0;
 
+    public ChooseMenu() {
+        viewController.updateTankPlayer1(NextAndPrevious.NONE);
+        viewController.updateTankPlayer2(NextAndPrevious.NONE);
+        viewController.updateMap(NextAndPrevious.NONE);
+    }
+
     @FXML
     private ResourceBundle resources;
 
@@ -136,9 +142,7 @@ public class ChooseMenu implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*player1Image.setImage(tankImagePlayer1.getImage());
-        player2Image.setImage(tankImagePlayer2.getImage());
-        mapImage.setImage(mapImageChoose.getImage());*/
+
     }
 
     public void setViewController(View viewController){
