@@ -19,7 +19,7 @@ public class MapDataList {
     private List<MapData> map = new ArrayList<>();
 
     /**
-     * @return List<MapData> lists
+     * @return List<MapData> list
      */
     public List<MapData> getMaps() {
         return this.map;

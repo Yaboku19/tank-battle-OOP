@@ -19,7 +19,7 @@ public class TankDataList {
     private List<TankData> tank = new ArrayList<>();
 
     /**
-     * @return List<TankData> lists
+     * @return List<TankData> list
      */
     public List<TankData> getTanks() {
         return this.tank;
