@@ -1,15 +1,15 @@
 package it.unibo.tankBattle.controller.impl;
 
-import it.unibo.tankBattle.model.gameSetup.MapData;
-import it.unibo.tankBattle.model.gameSetup.MapDataList;
-import it.unibo.tankBattle.model.gameSetup.TankData;
-
 import java.io.File;
 import java.net.URISyntaxException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import it.unibo.tankBattle.model.gameSetup.TankDataList;
+
+import it.unibo.tankBattle.model.gameSetup.impl.MapData;
+import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
+import it.unibo.tankBattle.model.gameSetup.impl.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 
 public class FactoryObjectManager {
     
@@ -18,9 +18,9 @@ public class FactoryObjectManager {
             @Override
             public void read() {
                 TankDataList tankList = getUnmarshaller(TankDataList.class, getConfig());
-                for (int i = 0; i < tankList.getTanks().size(); i++) {
-                    getMap().put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
-                    getKeysOrdered().add(tankList.getTanks().get(i).getName());
+                for (int i = 0; i < tankList.getData().size(); i++) {
+                    getMap().put(tankList.getData().get(i).getName(), tankList.getData().get(i));
+                    getKeysOrdered().add(tankList.getData().get(i).getName());
                 }
             }
             
@@ -32,9 +32,9 @@ public class FactoryObjectManager {
             @Override
             public void read() {
                 MapDataList mapList = getUnmarshaller(MapDataList.class, getConfig());
-                for (int i = 0; i < mapList.getMaps().size(); i++) {
-                    getMap().put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
-                    getKeysOrdered().add(mapList.getMaps().get(i).getName());
+                for (int i = 0; i < mapList.getData().size(); i++) {
+                    getMap().put(mapList.getData().get(i).getName(), mapList.getData().get(i));
+                    getKeysOrdered().add(mapList.getData().get(i).getName());
                 }
             }
             
@@ -46,7 +46,7 @@ public class FactoryObjectManager {
         try {
             final JAXBContext jaxbContext = JAXBContext.newInstance(C);
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            var dataList = (T) unmarshaller.unmarshal(config);;
+            var dataList = (T) unmarshaller.unmarshal(config);
             return dataList;
         } catch (JAXBException e) {
             e.printStackTrace();

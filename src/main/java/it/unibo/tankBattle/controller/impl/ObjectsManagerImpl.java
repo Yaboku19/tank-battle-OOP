@@ -42,6 +42,11 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
     @Override
     abstract public void read();
 
+    private void reade() {
+        
+    }
+
+
     @Override
     public T getActual() {
         return dataMap.get(keyOrder.get(index));
