@@ -176,6 +176,9 @@ public class ViewImpl implements View{
             chooseMenuController = (ChooseMenu)fxmlLoader.getController();
             chooseMenuController.setViewController(this);
             chooseMenuController.setPreviousScene(stage.getScene());
+            updateTankPlayer1(NextAndPrevious.NONE);
+            updateTankPlayer2(NextAndPrevious.NONE);
+            updateMap(NextAndPrevious.NONE);
             stage.setScene(chooseMenu);
         }catch(Exception e){
             System.out.println(e.toString());
