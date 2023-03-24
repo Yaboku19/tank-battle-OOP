@@ -155,14 +155,14 @@ public class ChooseMenu implements Initializable{
         speedP1.setText(Integer.toString(speed));
         damageP1.setText(Integer.toString(damage));
         lifeP1.setText(Integer.toString(life));
-        player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/" + resource + "Blue.gif").toExternalForm()));
+        player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/blue" + resource).toExternalForm()));
     }
 
     public void updateP2(int speed, int damage, int life, String resource){
         speedP2.setText(Integer.toString(speed));
         damageP2.setText(Integer.toString(damage));
         lifeP2.setText(Integer.toString(life));
-        player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/" + resource + "Green.gif").toExternalForm()));
+        player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/green" + resource).toExternalForm()));
     }
 
     public void updateMap(String resource){
