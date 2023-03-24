@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.model.gameSetup.api.Data;
@@ -19,7 +23,7 @@ import model.virus.VirusFactory;
 import model.virus.VirusFactoryImpl;
 import view.VirusSetup;*/
 
-public abstract class ObjectsManagerImpl<T extends Data> implements ObjectsManager<T> {
+public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implements ObjectsManager<T, C> {
 
     //private final File folder = new File(System.getProperty("user.home"), ".TB");
     private final File config;
@@ -41,8 +45,21 @@ public abstract class ObjectsManagerImpl<T extends Data> implements ObjectsManag
     /**
      *
      */
+    @SuppressWarnings("unchecked")
     @Override
-    abstract public void read();
+    public void read(Class<C> c) {
+        try {
+            final JAXBContext jaxbContext = JAXBContext.newInstance(c);
+            final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            var dataList = (C) unmarshaller.unmarshal(config);
+            for (int i = 0; i < dataList.getData().size(); i++) {
+                getMap().put(dataList.getData().get(i).getName(), dataList.getData().get(i));
+                getKeysOrdered().add(dataList.getData().get(i).getName());
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public T getActual() {
