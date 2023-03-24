@@ -7,16 +7,10 @@ import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
 
 public interface View {
-    
-    /*public void drawTank(Transform position);
-
-    public void drawBullet(Transform position);*/
 
     public void gameOver();
 
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet);
-
-    //public void drawWall(Set<Transform> wall);
 
     public void setController(GameEngine controller);  
 
@@ -31,4 +25,6 @@ public interface View {
     public void viewUpdateP2(int speed, int damage, int life, String resource);
 
     public void viewUpdateMap(String resource);
+
+    public void setTanksResource(String tank1, String tank2);
 }

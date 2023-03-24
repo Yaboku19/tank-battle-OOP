@@ -2,7 +2,6 @@ package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,6 +32,8 @@ public class ViewImpl implements View{
     private Stage stage;
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
+    private String tank1Resource;
+    private String tank2Resource;
 
     private EventHandler<KeyEvent> keyPressListener = e -> {
         
@@ -146,16 +147,16 @@ public class ViewImpl implements View{
     void play(ActionEvent event) {
         node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
-
-    
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
+            gameController = new GameController(tank1Resource, tank2Resource);
+            fxmlLoader.setControllerFactory(controller -> gameController);
             Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
             //stage.setMaximized(true);
-            gameController = fxmlLoader.getController();
+            //gameController = fxmlLoader.getController();
             stage.setResizable(false);
             controller.startGame();
             //controller.run();
@@ -212,27 +213,11 @@ public class ViewImpl implements View{
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
         Platform.runLater(() -> {
             gameController.clear();
-            drawFirstTank(firstTank);
-            drawSecondTank(secondTank);
-            drawBullet(bullet.collect(Collectors.toSet()));
-            drawWall(wall.collect(Collectors.toSet()));
+            gameController.renderFirstTank(firstTank);
+            gameController.renderSecondTank(secondTank);
+            gameController.renderBullet(bullet.collect(Collectors.toSet()));
+            gameController.renderWall(wall.collect(Collectors.toSet()));
         });
-    }
-    
-    private void drawFirstTank(Transform tank){
-        gameController.renderFirstTank(tank);
-    }
-
-    private void drawSecondTank(Transform tank){
-        gameController.renderSecondTank(tank);
-    }
-
-    private void drawBullet(Set<Transform> bullet){
-        gameController.renderBullet(bullet);
-    }
-
-    private void drawWall(Set<Transform> wall) {
-        gameController.renderWall(wall);
     }
 
     @Override
@@ -282,5 +267,11 @@ public class ViewImpl implements View{
     @Override
     public void updateMap(NextAndPrevious delta){
         controller.updateMap(delta);
+    }
+
+    @Override
+    public void setTanksResource(String tank1Resource, String tank2Resource) {
+        this.tank1Resource = tank1Resource;
+        this.tank2Resource = tank2Resource;
     }
 }

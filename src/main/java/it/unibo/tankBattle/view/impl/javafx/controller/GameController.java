@@ -38,18 +38,21 @@ public class GameController {
 
     @FXML
     void initialize() {
-        //assert player1 != null : "fx:id=\"player1\" was not injected: check your FXML file 'game.fxml'.";
-        //assert player2 != null : "fx:id=\"player2\" was not injected: check your FXML file 'game.fxml'.";
-        Image tank = new Image("/images/tank.gif");
+        //Image tank = new Image("/images/tank.gif");
         bulletImage = new Image("/images/bullet1.png");
         wallImage = new Image("/images/obstacle.png");
         
-        player1 = new ImageView(tank);
-        player2 = new ImageView(tank);
-        //mainPane = new AnchorPane();
+        //player1 = new ImageView(tank);
+        //player2 = new ImageView(tank);
         mainPane.getChildren().add(player1);
         mainPane.getChildren().add(player2);
     }
+
+    public GameController(String tank1, String tank2){
+        player1 = new ImageView(new Image(tank1));
+        player2 = new ImageView(new Image(tank2));
+    }
+
 
     public void clear(){
         mainPane.getChildren().removeAll(mainPane.getChildren());
