@@ -31,9 +31,9 @@ public class ChooseMenu implements Initializable{
     //private int contP2 = 0;
 
     public ChooseMenu() {
-        viewController.updateTankPlayer1(NextAndPrevious.NONE);
+        /*viewController.updateTankPlayer1(NextAndPrevious.NONE);
         viewController.updateTankPlayer2(NextAndPrevious.NONE);
-        viewController.updateMap(NextAndPrevious.NONE);
+        viewController.updateMap(NextAndPrevious.NONE);*/
     }
 
     @FXML

@@ -1,6 +1,9 @@
 package it.unibo.tankBattle.model.gameSetup.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import it.unibo.tankBattle.model.gameSetup.api.Data;
+
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,7 +14,7 @@ import javax.xml.bind.annotation.XmlAccessType;
  */
 @XmlRootElement (name = "tank")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class TankData {
+public class TankData implements Data{
 
     @XmlAttribute
     private String name;

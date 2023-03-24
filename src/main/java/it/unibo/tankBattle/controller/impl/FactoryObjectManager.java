@@ -6,6 +6,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import it.unibo.tankBattle.model.gameSetup.api.Data;
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
 import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
 import it.unibo.tankBattle.model.gameSetup.impl.TankData;
@@ -17,11 +19,7 @@ public class FactoryObjectManager {
         return new ObjectsManagerImpl<TankData>(ClassLoader.getSystemResource("config/tankConfig.xml").toURI()) {
             @Override
             public void read() {
-                TankDataList tankList = getUnmarshaller(TankDataList.class, getConfig());
-                for (int i = 0; i < tankList.getData().size(); i++) {
-                    getMap().put(tankList.getData().get(i).getName(), tankList.getData().get(i));
-                    getKeysOrdered().add(tankList.getData().get(i).getName());
-                }
+                getUnmarshaller(TankDataList.class, getConfig(), this);
             }
             
         };
@@ -31,26 +29,23 @@ public class FactoryObjectManager {
         return new ObjectsManagerImpl<MapData>(ClassLoader.getSystemResource("config/mapConfig.xml").toURI()) {
             @Override
             public void read() {
-                MapDataList mapList = getUnmarshaller(MapDataList.class, getConfig());
-                for (int i = 0; i < mapList.getData().size(); i++) {
-                    getMap().put(mapList.getData().get(i).getName(), mapList.getData().get(i));
-                    getKeysOrdered().add(mapList.getData().get(i).getName());
-                }
+                getUnmarshaller(MapDataList.class, getConfig(), this);
             }
-            
         };
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T getUnmarshaller(Class<T> C, File config) {
+    private <T extends DataList<C>, C extends Data> void getUnmarshaller(Class<T> c, File config, ObjectsManagerImpl<C> setup) {
         try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(C);
+            final JAXBContext jaxbContext = JAXBContext.newInstance(c);
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             var dataList = (T) unmarshaller.unmarshal(config);
-            return dataList;
+            for (int i = 0; i < dataList.getData().size(); i++) {
+                setup.getMap().put(dataList.getData().get(i).getName(), dataList.getData().get(i));
+                setup.getKeysOrdered().add(dataList.getData().get(i).getName());
+            }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        return null;
     }
 }

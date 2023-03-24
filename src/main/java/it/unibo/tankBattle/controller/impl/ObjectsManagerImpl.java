@@ -9,6 +9,8 @@ import java.util.Map;
 
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
+import it.unibo.tankBattle.model.gameSetup.api.Data;
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
 
 /*import model.virus.Virus;
 import model.virus.VirusData;
@@ -17,7 +19,7 @@ import model.virus.VirusFactory;
 import model.virus.VirusFactoryImpl;
 import view.VirusSetup;*/
 
-public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
+public abstract class ObjectsManagerImpl<T extends Data> implements ObjectsManager<T> {
 
     //private final File folder = new File(System.getProperty("user.home"), ".TB");
     private final File config;
@@ -41,11 +43,6 @@ public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
      */
     @Override
     abstract public void read();
-
-    private void reade() {
-        
-    }
-
 
     @Override
     public T getActual() {
