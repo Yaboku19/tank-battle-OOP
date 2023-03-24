@@ -26,7 +26,7 @@ public class TankData {
     @XmlElement
     private String resource;
     /**
-     * Gets the virus' name.
+     * Gets the Player's name.
      * @return the name
      */
     public String getName() {
@@ -34,89 +34,71 @@ public class TankData {
     }
 
     /**
-     * Gets the virus' minimum incubation period.
-     * @return the minIncubationPeriod
+     * Gets the code
+     * @return player code
      */
     public int getCode() {
         return code;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxIncubationPeriod
+     * Gets the Tank speed.
+     * @return the tank's speed
      */
     public int getSpeed() {
         return speed;
     }
 
     /**
-     * Gets the virus' minimum recovery period.
-     * @return the minRecoveryPeriod
+     * Gets the bullet damage of the tank.
+     * @return the Tank's damage
      */
     public int getDamage() {
         return damage;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * Gets the Tank's life points.
+     * @return the the life points
      */
     public int getLife() {
         return life;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * Gets the tank resource.
+     * @return the resource
      */
     public String getResource() {
         return resource;
     }
 
-    /**
-     * sets the virus' name.
-     * @param name the name to set
-     */
+   
     public void setName(final String name) {
         this.name = name;
     }
 
-    /**
-     * Sets the virus' minimum incubation period.
-     * @param minIncubationPeriod the minIncubationPeriod to set
-     */
+    
     public void setCode(final int code) {
         this.code = code;
     }
 
-    /**
-     * Sets the virus' minimum incubation period.
-     * @param minIncubationPeriod the minIncubationPeriod to set
-     */
+    
     public void setSpeed(final int speed) {
         this.speed = speed;
     }
 
-    /**
-     * Sets the virus' maximum incubation period.
-     * @param maxIncubationPeriod the maxIncubationPeriod to set
-     */
+    
     public void setLife(final int life) {
         this.life = life;
     }
 
-    /**
-     * Sets the virus' infectivity rate.
-     * @param infectivity the infectivity to set
-     */
+    
     public void setDamage(final int damage) {
         this.damage = damage;
     }
 
-    /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
-     */
+    
     public void setResource(final String resource) {
         this.resource = resource;
     }

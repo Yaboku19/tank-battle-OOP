@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.controller.api;
 
+import it.unibo.tankBattle.model.gameSetup.TankData;
 
 public interface Player {
 
@@ -8,4 +9,6 @@ public interface Player {
     public void incScore();
 
     public int getCode();
+
+    public TankData getTankData();
 }
