@@ -1,6 +1,6 @@
 package it.unibo.tankBattle.controller.api;
 
-import it.unibo.tankBattle.model.gameSetup.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.TankData;
 
 public interface Player {
 

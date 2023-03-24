@@ -1,7 +1,7 @@
 package it.unibo.tankBattle.controller.impl;
 
 import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameSetup.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.TankData;
 
 
 public class HumanPlayer implements Player {
