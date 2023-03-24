@@ -150,13 +150,15 @@ public class ViewImpl implements View{
         stage = (Stage) node.getScene().getWindow();
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
+            controller.setViewResources();
             gameController = new GameController(tank1Resource, tank2Resource);
             fxmlLoader.setControllerFactory(controller -> gameController);
             Scene game = new Scene(fxmlLoader.load());//, 600, 400);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
-            gameOverController.setGameScene(game);
+            System.out.println("qui");
+            //gameOverController.setGameScene(game);
             //stage.setMaximized(true);
             //gameController = fxmlLoader.getController();
             stage.setResizable(false);

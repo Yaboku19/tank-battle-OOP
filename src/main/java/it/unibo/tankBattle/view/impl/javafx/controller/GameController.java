@@ -49,8 +49,8 @@ public class GameController {
     }
 
     public GameController(String tank1, String tank2){
-        player1 = new ImageView(new Image(tank1));
-        player2 = new ImageView(new Image(tank2));
+        player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
+        player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
     }
 
 
