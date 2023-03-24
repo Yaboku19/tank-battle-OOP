@@ -20,18 +20,8 @@ import javafx.stage.Stage;
 public class ChooseMenu implements Initializable{
 
     private Scene prevScene;
-    /*private TankImage tankImagePlayer1 = TankImage.SUPERPOWERTANK;
-    private TankImage tankImagePlayer2 = TankImage.SIMPLETANK;
-    private MapImage mapImageChoose = MapImage.MAP1;
-    private Map<String, String> configMap;*/
     private View viewController;
     private final String PATH = "images" + "/";
-    //private List tankConfigs = new ArrayList<>();
-    //private int contP1 = 0;
-    //private int contP2 = 0;
-
-    public ChooseMenu() {
-    }
 
     @FXML
     private ResourceBundle resources;
