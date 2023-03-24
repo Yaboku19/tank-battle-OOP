@@ -22,7 +22,7 @@ public class TankDataList implements DataList<TankData>{
     private List<TankData> tank = new ArrayList<>();
 
     /**
-     * @return List<TankData> lists
+     * @return List<TankData> list
      */
     public List<TankData> getData() {
         return this.tank;

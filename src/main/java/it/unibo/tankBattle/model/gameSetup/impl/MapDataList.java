@@ -22,7 +22,7 @@ public class MapDataList implements DataList<MapData>{
     private List<MapData> map = new ArrayList<>();
 
     /**
-     * @return List<MapData> lists
+     * @return List<MapData> list
      */
     public List<MapData> getData() {
         return this.map;

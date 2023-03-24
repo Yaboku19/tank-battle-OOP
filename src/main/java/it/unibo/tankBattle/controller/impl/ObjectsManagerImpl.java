@@ -16,13 +16,6 @@ import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.model.gameSetup.api.Data;
 import it.unibo.tankBattle.model.gameSetup.api.DataList;
 
-/*import model.virus.Virus;
-import model.virus.VirusData;
-import model.virus.VirusDataList;
-import model.virus.VirusFactory;
-import model.virus.VirusFactoryImpl;
-import view.VirusSetup;*/
-
 public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implements ObjectsManager<T, C> {
 
     //private final File folder = new File(System.getProperty("user.home"), ".TB");

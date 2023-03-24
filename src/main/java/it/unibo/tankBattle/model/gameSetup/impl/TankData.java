@@ -28,8 +28,9 @@ public class TankData implements Data{
     private int life;
     @XmlElement
     private String resource;
+
     /**
-     * Gets the virus' name.
+     * Gets the tank name.
      * @return the name
      */
     public String getName() {
@@ -37,47 +38,47 @@ public class TankData implements Data{
     }
 
     /**
-     * Gets the virus' minimum incubation period.
-     * @return the minIncubationPeriod
+     * Gets the tank code.
+     * @return the code
      */
     public int getCode() {
         return code;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxIncubationPeriod
+     * Gets the tank speed.
+     * @return the speed
      */
     public int getSpeed() {
         return speed;
     }
 
     /**
-     * Gets the virus' minimum recovery period.
-     * @return the minRecoveryPeriod
+     * Gets the tank damage.
+     * @return the damage
      */
     public int getDamage() {
         return damage;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * Gets the tank life.
+     * @return the life
      */
     public int getLife() {
         return life;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * Gets the tank resource.
+     * @return the resource
      */
     public String getResource() {
         return resource;
     }
 
     /**
-     * sets the virus' name.
+     * sets the tank name.
      * @param name the name to set
      */
     public void setName(final String name) {
@@ -85,40 +86,40 @@ public class TankData implements Data{
     }
 
     /**
-     * Sets the virus' minimum incubation period.
-     * @param minIncubationPeriod the minIncubationPeriod to set
+     * sets the tank code.
+     * @param code the code to set
      */
     public void setCode(final int code) {
         this.code = code;
     }
 
     /**
-     * Sets the virus' minimum incubation period.
-     * @param minIncubationPeriod the minIncubationPeriod to set
+     * sets the tank speed.
+     * @param speed the speed to set
      */
     public void setSpeed(final int speed) {
         this.speed = speed;
     }
 
     /**
-     * Sets the virus' maximum incubation period.
-     * @param maxIncubationPeriod the maxIncubationPeriod to set
+     * sets the tank life.
+     * @param life the life to set
      */
     public void setLife(final int life) {
         this.life = life;
     }
 
     /**
-     * Sets the virus' infectivity rate.
-     * @param infectivity the infectivity to set
+     * sets the tank demage.
+     * @param demage the demage to set
      */
     public void setDamage(final int damage) {
         this.damage = damage;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * sets the tank resource.
+     * @param resource the resource to set
      */
     public void setResource(final String resource) {
         this.resource = resource;
