@@ -1,72 +1,22 @@
 package it.unibo.tankBattle.controller.impl;
 
-import it.unibo.tankBattle.model.gameSetup.MapData;
-import it.unibo.tankBattle.model.gameSetup.MapDataList;
-import it.unibo.tankBattle.model.gameSetup.TankData;
-
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import it.unibo.tankBattle.model.gameSetup.TankDataList;
+import it.unibo.tankBattle.model.gameSetup.impl.MapData;
+import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
+import it.unibo.tankBattle.model.gameSetup.impl.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 
 public class FactoryObjectManager {
     
-    public ObjectsManagerImpl<TankData> tankManager() throws URISyntaxException {
-        return new ObjectsManagerImpl<TankData>(ClassLoader.getSystemResource("config/tankConfig.xml").toURI()) {
-            private TankDataList tankList = new TankDataList();
-            @Override
-            public void read() {
-                tankList.setTank(new ArrayList<TankData>());
-                try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance(TankDataList.class);
-                    final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        
-                    /*if (!config.exists()) {
-                        copyVirusConfig();
-                    }*/
-                    tankList = (TankDataList) unmarshaller.unmarshal(getConfig());
-                    for (int i = 0; i < tankList.getTanks().size(); i++) {
-                        getMap().put(tankList.getTanks().get(i).getName(), tankList.getTanks().get(i));
-                        getKeysOrdered().add(tankList.getTanks().get(i).getName());
-                    }
-                } catch (JAXBException e) {
-                    e.printStackTrace();
-                }
-            }
-            
-        };
+    public ObjectsManagerImpl<TankData, TankDataList> tankManager() throws URISyntaxException {
+        var toReturn = new ObjectsManagerImpl<TankData,TankDataList>(ClassLoader.getSystemResource("config/tankConfig.xml").toURI());
+        toReturn.read(TankDataList.class);
+        return toReturn;
     }
 
-    public ObjectsManagerImpl<MapData> MapManager() throws URISyntaxException{
-        return new ObjectsManagerImpl<MapData>(ClassLoader.getSystemResource("config/mapConfig.xml").toURI()) {
-            private MapDataList mapList = new MapDataList();
-            @Override
-            public void read() {
-                mapList.setMap(new ArrayList<MapData>());
-                try {
-                    final JAXBContext jaxbContext = JAXBContext.newInstance(MapDataList.class);
-                    final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        
-                    /*if (!config.exists()) {
-                        copyVirusConfig();
-                    }*/
-                    mapList = (MapDataList) unmarshaller.unmarshal(getConfig());
-                    for (int i = 0; i < mapList.getMaps().size(); i++) {
-                        getMap().put(mapList.getMaps().get(i).getName(), mapList.getMaps().get(i));
-                        getKeysOrdered().add(mapList.getMaps().get(i).getName());
-                    }
-                } catch (JAXBException e) {
-                    e.printStackTrace();
-                }
-            }
-            
-        };
-    }
-
-    private <T, P> void readCommon() {
-
+    public ObjectsManagerImpl<MapData, MapDataList> MapManager() throws URISyntaxException{
+        var toReturn = new ObjectsManagerImpl<MapData,MapDataList>(ClassLoader.getSystemResource("config/mapConfig.xml").toURI());
+        toReturn.read(MapDataList.class);
+        return toReturn;
     }
 }

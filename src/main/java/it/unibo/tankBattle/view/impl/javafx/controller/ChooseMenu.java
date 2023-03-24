@@ -31,7 +31,6 @@ public class ChooseMenu implements Initializable{
     //private int contP2 = 0;
 
     public ChooseMenu() {
-
     }
 
     @FXML

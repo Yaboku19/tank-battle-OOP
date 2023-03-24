@@ -1,7 +1,10 @@
-package it.unibo.tankBattle.model.gameSetup;
+package it.unibo.tankBattle.model.gameSetup.impl;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
@@ -13,7 +16,7 @@ import java.util.List;
  */
 @XmlRootElement(name = "mapList")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class MapDataList {
+public class MapDataList implements DataList<MapData>{
 
     @XmlElement(name = "map")
     private List<MapData> map = new ArrayList<>();
@@ -21,15 +24,14 @@ public class MapDataList {
     /**
      * @return List<MapData> list
      */
-    public List<MapData> getMaps() {
+    public List<MapData> getData() {
         return this.map;
     }
 
     /**
      * @param map MapData list
      */
-
-    public void setMap(final List<MapData> map) {
+    public void setData(final List<MapData> map) {
         this.map = map;
     }
 

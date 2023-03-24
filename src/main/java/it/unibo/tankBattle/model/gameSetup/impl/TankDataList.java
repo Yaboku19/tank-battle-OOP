@@ -1,7 +1,10 @@
-package it.unibo.tankBattle.model.gameSetup;
+package it.unibo.tankBattle.model.gameSetup.impl;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
@@ -13,7 +16,7 @@ import java.util.List;
  */
 @XmlRootElement(name = "tankList")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class TankDataList {
+public class TankDataList implements DataList<TankData>{
 
     @XmlElement(name = "tank")
     private List<TankData> tank = new ArrayList<>();
@@ -21,7 +24,7 @@ public class TankDataList {
     /**
      * @return List<TankData> list
      */
-    public List<TankData> getTanks() {
+    public List<TankData> getData() {
         return this.tank;
     }
 
@@ -29,7 +32,7 @@ public class TankDataList {
      * @param tank TankData list
      */
 
-    public void setTank(final List<TankData> tank) {
+    public void setData(final List<TankData> tank) {
         this.tank = tank;
     }
 

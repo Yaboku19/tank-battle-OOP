@@ -5,13 +5,13 @@ import it.unibo.tankBattle.common.NextAndPrevious;
 /**
  * Control the virus data. 
  */
-public interface ObjectsManager<T> {
+public interface ObjectsManager<T, C> {
 
     /**
      *
      * Read all the tanks from the config file.
      */
-    void read();
+    void read(Class<C> clas);
 
     T getActual();
 

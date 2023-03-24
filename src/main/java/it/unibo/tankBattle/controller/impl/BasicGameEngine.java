@@ -10,8 +10,10 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
-import it.unibo.tankBattle.model.gameSetup.MapData;
-import it.unibo.tankBattle.model.gameSetup.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.MapData;
+import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
+import it.unibo.tankBattle.model.gameSetup.impl.TankData;
+import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
@@ -26,9 +28,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private Boolean isOver = false;
     private Player firstPlayer = null;
     private Player secondPlayer = null;
-    private ObjectsManager<TankData> tankFirstManager;
-    private ObjectsManager<TankData> tankSecondManager;
-    private ObjectsManager<MapData> mapManager;
+    private ObjectsManager<TankData, TankDataList> tankFirstManager;
+    private ObjectsManager<TankData, TankDataList> tankSecondManager;
+    private ObjectsManager<MapData, MapDataList> mapManager;
     private final FactoryObjectManager factoryObjectsManager;
     private ChooseMenu settingsViewController = null;
 
@@ -42,9 +44,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
             tankFirstManager = factoryObjectsManager.tankManager();
             tankSecondManager = factoryObjectsManager.tankManager();
             mapManager = factoryObjectsManager.MapManager();
-            tankFirstManager.read();
-            tankSecondManager.read();
-            mapManager.read();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -53,8 +52,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer(1);
-        secondPlayer = new HumanPlayer(2);
+        firstPlayer = new HumanPlayer(1, tankFirstManager.getActual());
+        secondPlayer = new HumanPlayer(2, tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer);
         System.out.println("start game");
         thread.start();
