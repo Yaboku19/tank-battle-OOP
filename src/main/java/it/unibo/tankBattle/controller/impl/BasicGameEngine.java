@@ -54,7 +54,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void startGame() {
         firstPlayer = new HumanPlayer(1, tankFirstManager.getActual());
         secondPlayer = new HumanPlayer(2, tankSecondManager.getActual());
-        model.createWorld(firstPlayer, secondPlayer);
+        model.createWorld(firstPlayer, secondPlayer
+            , mapManager.getActual());
         System.out.println("start game");
         thread.start();
         //initGame();

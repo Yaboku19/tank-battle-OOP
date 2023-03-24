@@ -15,6 +15,7 @@ import it.unibo.tankBattle.model.gameObject.api.object.*;
 import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
 import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
 import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.gameState.api.*;
 import it.unibo.tankBattle.model.world.api.*;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
@@ -34,8 +35,8 @@ public class GameStateImpl implements GameState{
     }
 
     @Override
-    public void createWorld(final Player firstPlayer, final Player secondPlayer) {
-        world = factoryWorld.simpleWorld(firstPlayer, secondPlayer);
+    public void createWorld(final Player firstPlayer, final Player secondPlayer, final MapData DataList) {
+        world = factoryWorld.simpleWorld(firstPlayer, secondPlayer, DataList);
     }
 
     @Override

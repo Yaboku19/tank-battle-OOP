@@ -46,8 +46,8 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             var dataList = (C) unmarshaller.unmarshal(config);
             for (int i = 0; i < dataList.getData().size(); i++) {
-                getMap().put(dataList.getData().get(i).getName(), dataList.getData().get(i));
-                getKeysOrdered().add(dataList.getData().get(i).getName());
+                dataMap.put(dataList.getData().get(i).getName(), dataList.getData().get(i));
+                keyOrder.add(dataList.getData().get(i).getName());
             }
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -67,17 +67,5 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
         if (index < 0) {
             index = keyOrder.size() - 1;
         }
-    }
-
-    protected File getConfig() {
-        return config;
-    }
-
-    protected List<String> getKeysOrdered() {
-        return keyOrder;
-    }
-
-    protected Map<String, T> getMap() {
-        return dataMap;
     }
 }

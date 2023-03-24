@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mapList>
     <map name="DEFAULTMAP">
-        <code>0</code>
+        <position>
+            <x>2</x>
+            <y>2</y>
+            <type>tank1</type>
+        </position>
+        <position>
+            <x>12</x>
+            <y>7</y>
+            <type>tank2</type>
+        </position>
+        <position>
+            <x>5</x>
+            <y>5</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>7</x>
+            <y>4</y>
+            <type>wall</type>
+        </position>
         <resource>map1.png</resource>
     </map>
     <map name="PIPPOMAP">
-        <code>1</code>
+        <position>
+            <x>1</x>
+            <y>1</y>
+            <type>tank1</type>
+        </position>
+        <position>
+            <x>5</x>
+            <y>1</y>
+            <type>tank2</type>
+        </position>
         <resource>map2.png</resource>
     </map>
     <map name="PLUTOMAP">
-        <code>2</code>
+        <position>
+            <x>5</x>
+            <y>5</y>
+            <type>tank1</type>
+        </position>
+        <position>
+            <x>8</x>
+            <y>2</y>
+            <type>tank2</type>
+        </position>
         <resource>map3.png</resource>
     </map>
 </mapList>
