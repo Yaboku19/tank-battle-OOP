@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameSetup.TankData;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
@@ -40,6 +41,11 @@ public class ModelTest {
             @Override
             public int getCode() {
                 return 0;
+            }
+
+            @Override
+            public TankData getTankData() {
+                return null;
             }
 
         };
