@@ -5,18 +5,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.GameOverController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.GameOverController">
    <children>
-      <Button fx:id="restartButton" layoutX="87.0" layoutY="272.0" mnemonicParsing="false" onAction="#restart" prefHeight="69.0" prefWidth="164.0" text="RESTART">
+      <Button fx:id="restartButton" layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#restart" prefHeight="46.0" prefWidth="152.0" text="RESTART">
          <font>
-            <Font size="22.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="quitButton" layoutX="372.0" layoutY="272.0" mnemonicParsing="false" onAction="#quit" prefHeight="69.0" prefWidth="164.0" text="QUIT">
+      <Label fx:id="winLabel" layoutX="117.0" layoutY="62.0" prefHeight="84.0" prefWidth="348.0" style="-fx-background-color: BLUE;" textAlignment="CENTER">
          <font>
-            <Font size="22.0" />
+            <Font size="50.0" />
+         </font></Label>
+      <Button fx:id="quitButton" layoutX="495.0" layoutY="341.0" mnemonicParsing="false" onAction="#quit" prefHeight="31.0" prefWidth="66.0" text="QUIT">
+         <font>
+            <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="86.0" layoutY="66.0" prefHeight="84.0" prefWidth="409.0" style="-fx-background-color: WHITE;" text="PLAYER 1 WON" />
+      <Button fx:id="mainMenuButton" layoutX="214.0" layoutY="279.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="46.0" prefWidth="152.0" text="MAIN MENU">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class GameOverController {
@@ -20,10 +21,21 @@ public class GameOverController {
     private URL location;
 
     @FXML
+    private Button mainMenuButton;
+
+    @FXML
     private Button quitButton;
 
     @FXML
     private Button restartButton;
+
+    @FXML
+    private Label winLabel;
+
+    @FXML
+    void mainMenu(ActionEvent event) {
+
+    }
 
     @FXML
     void quit(ActionEvent event) {
