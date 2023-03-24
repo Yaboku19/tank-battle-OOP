@@ -18,4 +18,6 @@ public interface GameEngine extends Runnable {
     public void updateTankPlayer2(NextAndPrevious delta);
 
     public void updateMap(NextAndPrevious delta);
+
+    public void setViewResources();
 }

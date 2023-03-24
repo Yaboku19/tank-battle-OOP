@@ -29,14 +29,15 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage){
-        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/mainScene.fxml"));//getClass().getResource("view/impl/javafx/resources/layout/mainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/mainScene.fxml"));
         Parent root;
         try {
-            root = loader.load(); //FXMLLoader.load(getClass().getResource("javafx/resources/layout/mainScene.fxml"));
+            root = loader.load();
             final View view = loader.getController();
             final GameEngine controller = new BasicGameEngine(view);
             view.setController(controller);
-            final Scene scene = new Scene(root);//, 1000, 700);
+            final Scene scene = new Scene(root);
+            view.setMainMenuScene(scene);
             stage.setTitle("Tank-Battle");
             stage.setScene(scene);
             stage.setOnCloseRequest(e -> {

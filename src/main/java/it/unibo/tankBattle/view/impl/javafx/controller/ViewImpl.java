@@ -31,6 +31,8 @@ public class ViewImpl implements View{
     private GameOverController gameOverController;
     private Node node;
     private Stage stage;
+    private Scene gameScene;
+    private Scene mainMenuScene;
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String tank1Resource;
@@ -145,27 +147,28 @@ public class ViewImpl implements View{
     private Button tutorialButton;
 
     @FXML
+    void initialize() {
+        assert playButton != null : "fx:id=\"playButton\" was not injected: check your FXML file 'mainScene.fxml'.";
+        assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
+    }
+
+    @FXML
     void play(ActionEvent event) {
         node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
         try{
-            controller.startGame();
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
+            controller.setViewResources();
             gameController = new GameController(tank1Resource, tank2Resource);
-            fxmlLoader.setController(gameController);
-            //fxmlLoader.setControllerFactory(controller -> gameController);
-            Scene game = new Scene(fxmlLoader.load());
-            //gameController = fxmlLoader.getController();
-            //gameController.setTanksResource(tank1Resource, tank2Resource);
-            game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
-            game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
-            stage.setScene(game);
-            gameOverController.setGameScene(game);
-            //stage.setMaximized(true);
-            stage.setResizable(false);
-            //controller.run();
+            fxmlLoader.setControllerFactory(controller -> gameController);
+            gameScene = new Scene(fxmlLoader.load());
+            gameScene.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
+            gameScene.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
+            stage.setScene(gameScene);
+            stage.setResizable(true);
+            controller.startGame();
         }catch(Exception e){
-            //System.out.println(e.toString());
+            System.out.println(e.toString());
         }
     }
 
@@ -207,26 +210,15 @@ public class ViewImpl implements View{
         }
     }
 
-    @FXML
-    void initialize() {
-        assert playButton != null : "fx:id=\"playButton\" was not injected: check your FXML file 'mainScene.fxml'.";
-        assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
-    }
-
     @Override
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
-        try{
-            Platform.runLater(() -> {
-                gameController.clear();
-                gameController.renderFirstTank(firstTank);
-                gameController.renderSecondTank(secondTank);
-                gameController.renderBullet(bullet.collect(Collectors.toSet()));
-                gameController.renderWall(wall.collect(Collectors.toSet()));
-            });
-        }catch(Exception e){
-            e.printStackTrace();
-            System.exit(1);
-        }
+        Platform.runLater(() -> {
+            gameController.clear();
+            gameController.renderFirstTank(firstTank);
+            gameController.renderSecondTank(secondTank);
+            gameController.renderBullet(bullet.collect(Collectors.toSet()));
+            gameController.renderWall(wall.collect(Collectors.toSet()));
+        });
     }
 
     @Override
@@ -241,10 +233,15 @@ public class ViewImpl implements View{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
             Scene gameOver = new Scene(fxmlLoader.load());
             gameOverController = (GameOverController)fxmlLoader.getController();
-            gameOverController.setMenuScene(stage.getScene());
+            gameOverController.setMenuScene(mainMenuScene);
             gameOverController.setViewController(this);
-            stage.setScene(gameOver);
+            gameOverController.setGameScene(gameScene);
+            
+            Platform.runLater(()->{
+                stage.setScene(gameOver);
+            });
         }catch(Exception e){
+            System.out.println("quaaaaaaaaaaxxxxxxxxxxx");
             System.out.println(e.toString());
         }
     }
@@ -293,5 +290,10 @@ public class ViewImpl implements View{
     @Override
     public void newStart() {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void setMainMenuScene(Scene mainMenuScene) {
+        this.mainMenuScene = mainMenuScene;
     }
 }

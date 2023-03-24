@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
+import javafx.scene.Scene;
 
 public interface View {
 
@@ -27,6 +28,8 @@ public interface View {
     public void viewUpdateMap(String resource);
 
     public void setTanksResource(String tank1, String tank2);
+
+    public void setMainMenuScene(Scene mainMenuScene);
 
     public void restart();
 

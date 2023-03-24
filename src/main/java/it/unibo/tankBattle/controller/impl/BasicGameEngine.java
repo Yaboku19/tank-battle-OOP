@@ -56,7 +56,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         secondPlayer = new HumanPlayer(2, tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer);
         System.out.println("start game");
-        view.setTanksResource(tankFirstManager.getActual().getResource(), tankSecondManager.getActual().getResource());
         thread.start();
         //initGame();
         /*
@@ -164,6 +163,11 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         mapManager.update(delta);
         var toReturn = mapManager.getActual();
         view.viewUpdateMap(toReturn.getResource());
+    }
+
+    @Override
+    public void setViewResources() {
+        view.setTanksResource(tankFirstManager.getActual().getResource(), tankSecondManager.getActual().getResource());
     }
 
 }
