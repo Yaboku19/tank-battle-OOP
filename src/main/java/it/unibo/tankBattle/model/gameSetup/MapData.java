@@ -21,7 +21,7 @@ public class MapData {
     private String resource;
 
     /**
-     * Gets the virus' name.
+     * Gets the map name.
      * @return the name
      */
     public String getName() {
@@ -29,23 +29,23 @@ public class MapData {
     }
 
     /**
-     * Gets the virus' minimum incubation period.
-     * @return the minIncubationPeriod
+     * Gets the map code.
+     * @return the code
      */
     public int getCode() {
         return code;
     }
 
     /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * Gets the map resourceImage.
+     * @return the resourceImage
      */
     public String getResource() {
         return resource;
     }
 
     /**
-     * sets the virus' name.
+     * sets the map name.
      * @param name the name to set
      */
     public void setName(final String name) {
@@ -53,16 +53,16 @@ public class MapData {
     }
 
     /**
-     * Sets the virus' minimum incubation period.
-     * @param minIncubationPeriod the minIncubationPeriod to set
+     * sets the map code.
+     * @param code the code to set
      */
     public void setCode(final int code) {
         this.code = code;
     }
 
      /**
-     * Gets the virus' maximum incubation period.
-     * @return the maxRecoveryPeriod
+     * sets the map resource.
+     * @param resource the resource to set
      */
     public void setResource(final String resource) {
         this.resource = resource;

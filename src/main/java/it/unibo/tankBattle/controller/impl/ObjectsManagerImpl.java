@@ -10,13 +10,6 @@ import java.util.Map;
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 
-/*import model.virus.Virus;
-import model.virus.VirusData;
-import model.virus.VirusDataList;
-import model.virus.VirusFactory;
-import model.virus.VirusFactoryImpl;
-import view.VirusSetup;*/
-
 public abstract class ObjectsManagerImpl<T> implements ObjectsManager<T> {
 
     //private final File folder = new File(System.getProperty("user.home"), ".TB");
