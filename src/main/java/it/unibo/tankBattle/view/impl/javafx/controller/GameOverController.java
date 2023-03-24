@@ -2,6 +2,9 @@ package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.unibo.tankBattle.view.api.View;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,7 +15,9 @@ import javafx.stage.Stage;
 
 public class GameOverController {
 
-    private Scene prev;
+    private View viewController;
+    private Scene mainManuScene;
+    private Scene gameScene;
 
     @FXML
     private ResourceBundle resources;
@@ -33,32 +38,45 @@ public class GameOverController {
     private Label winLabel;
 
     @FXML
-    void mainMenu(ActionEvent event) {
+    void initialize() {
+        assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
+        assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
+    }
 
+    @FXML
+    void mainMenu(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        viewController.newStart();
+        stage.setScene(mainManuScene);
     }
 
     @FXML
     void quit(ActionEvent event) {
-        System.exit(0);
-
+        Platform.exit();
     }
 
     @FXML
     void restart(ActionEvent event) {
         Node node = (Node)event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        stage.setScene(prev);
+        viewController.restart();
+        stage.setScene(gameScene);
     }
 
-    public void setPreviousScene (Scene prev){
-        this.prev = prev;
+    public void setViewController(View viewController){
+        this.viewController = viewController;
     }
 
-    @FXML
-    void initialize() {
-        assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
-        assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
-
+    public void setGameScene(Scene gameScene){
+        this.gameScene = gameScene;
     }
 
+    public void setMenuScene(Scene mainManuScene){
+        this.mainManuScene = mainManuScene;
+    }
+
+    public void setWinLabel(String playerCode){
+        winLabel.setText("Player " + playerCode + "wins");
+    }
 }

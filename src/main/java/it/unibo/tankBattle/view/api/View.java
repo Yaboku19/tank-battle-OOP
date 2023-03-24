@@ -27,4 +27,8 @@ public interface View {
     public void viewUpdateMap(String resource);
 
     public void setTanksResource(String tank1, String tank2);
+
+    public void restart();
+
+    public void newStart();
 }
