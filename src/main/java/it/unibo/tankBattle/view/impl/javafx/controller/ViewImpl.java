@@ -28,6 +28,7 @@ public class ViewImpl implements View{
     private GameEngine controller;
     private GameController gameController;
     private ChooseMenu chooseMenuController;
+    private GameOverController gameOverController;
     private Node node;
     private Stage stage;
     private String lastCommandFirstPlayer = "";
@@ -155,6 +156,7 @@ public class ViewImpl implements View{
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
+            gameOverController.setGameScene(game);
             //stage.setMaximized(true);
             //gameController = fxmlLoader.getController();
             stage.setResizable(false);
@@ -231,8 +233,9 @@ public class ViewImpl implements View{
             System.out.println(controller);
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
             Scene gameOver = new Scene(fxmlLoader.load());
-            GameOverController gameOverController = (GameOverController)fxmlLoader.getController();
-            gameOverController.setPreviousScene(stage.getScene());
+            gameOverController = (GameOverController)fxmlLoader.getController();
+            gameOverController.setMenuScene(stage.getScene());
+            gameOverController.setViewController(this);
             stage.setScene(gameOver);
         }catch(Exception e){
             System.out.println(e.toString());
@@ -273,5 +276,15 @@ public class ViewImpl implements View{
     public void setTanksResource(String tank1Resource, String tank2Resource) {
         this.tank1Resource = tank1Resource;
         this.tank2Resource = tank2Resource;
+    }
+
+    @Override
+    public void restart() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void newStart() {
+        // TODO Auto-generated method stub
     }
 }
