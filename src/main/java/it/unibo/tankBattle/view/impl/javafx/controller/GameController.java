@@ -49,10 +49,9 @@ public class GameController {
     }
 
     public GameController(String tank1, String tank2){
-        player1 = new ImageView(new Image(tank1));
-        player2 = new ImageView(new Image(tank2));
+        /*player1 = new ImageView(new Image(ClassLoader.getSystemResource(tank1).toExternalForm()));
+        player2 = new ImageView(new Image(ClassLoader.getSystemResource(tank2).toExternalForm()));*/
     }
-
 
     public void clear(){
         mainPane.getChildren().removeAll(mainPane.getChildren());
@@ -85,38 +84,15 @@ public class GameController {
             bullet.setFitHeight(b.getLength());
             bullet.setRotate(getRotation(b.getDirection()));
             mainPane.getChildren().add(bullet);
-            //System.out.println("Stampato i bullet");
-
         }
-        /*if(bullets.size() > bulletSet.size()){ //to improve
-            ImageView bullet = new ImageView("/images/bullet1.png");
-            bulletSet.add(bullet);
-            mainPane.getChildren().add(bullet);
-        }
-        if(bullets.size() < bulletSet.size()) {
-            bulletSet.remove(bulletSet.iterator().next());
-        }
-        var iterator = bullets.iterator();
-        for (var image : bulletSet) {
-            Transform trans = iterator.next();
-            image.setX(trans.getUpperLeftPosition().getX());
-            image.setY(trans.getUpperLeftPosition().getY());
-            image.setFitWidth(trans.getWidth());
-            image.setFitHeight(trans.getLength());
-            image.setRotate(getRotation(trans.getDirection()));
-        }*/
     }
 
     public void renderWall(Set<Transform> walls) {
-        //System.out.println("wall " + wallSet.size());
-        //mainPane.getChildren().removeAll(wallSet);
-        //this.wallSet.clear();
         if(this.wallSet.size() == 0) {
             System.out.println("wallSet.size = 0");
             System.out.println("set dei walls " + walls.size());
             for(var t : walls){
                 ImageView wall = new ImageView(wallImage);
-                //mainPane.getChildren().add(wall);
                 wall.setX(t.getUpperLeftPosition().getX());
                 wall.setY(t.getUpperLeftPosition().getY());
                 wall.setFitWidth(t.getWidth());
@@ -125,22 +101,8 @@ public class GameController {
                 this.wallSet.add(wall);
             }
             System.out.println("wallSet.size = " + wallSet.size());
-        }
-        //System.out.println("FUORI IF wallSet.size = " + wallSet.size());
-        
+        }        
         mainPane.getChildren().addAll(wallSet);
-        /*
-        for(var w : walls){
-            ImageView wall = new ImageView(wallImage);
-            wall.setX(w.getUpperLeftPosition().getX());
-            wall.setY(w.getUpperLeftPosition().getY());
-            wall.setFitWidth(w.getWidth());
-            wall.setFitHeight(w.getLength());
-            wall.setRotate(getRotation(w.getDirection()));
-            mainPane.getChildren().add(wall);
-            System.out.println("Stampato i wall");
-
-        }*/
     }
 
     private double getRotation(Direction dir) {
@@ -154,6 +116,12 @@ public class GameController {
             default:
                 return 0;
         }
+    }
+
+    public void setTanksResource(String tank1Resource, String tank2Resource){
+
+        /*player1 = new ImageView(new Image(tank1Resource));
+        player2 = new ImageView(new Image(tank2Resource));   */
     }
 
 }

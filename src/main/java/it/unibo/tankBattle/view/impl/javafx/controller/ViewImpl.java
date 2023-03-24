@@ -149,21 +149,23 @@ public class ViewImpl implements View{
         node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
         try{
+            controller.startGame();
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             gameController = new GameController(tank1Resource, tank2Resource);
-            fxmlLoader.setControllerFactory(controller -> gameController);
-            Scene game = new Scene(fxmlLoader.load());//, 600, 400);
+            fxmlLoader.setController(gameController);
+            //fxmlLoader.setControllerFactory(controller -> gameController);
+            Scene game = new Scene(fxmlLoader.load());
+            //gameController = fxmlLoader.getController();
+            //gameController.setTanksResource(tank1Resource, tank2Resource);
             game.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             game.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
             stage.setScene(game);
             gameOverController.setGameScene(game);
             //stage.setMaximized(true);
-            //gameController = fxmlLoader.getController();
             stage.setResizable(false);
-            controller.startGame();
             //controller.run();
         }catch(Exception e){
-            System.out.println(e.toString());
+            //System.out.println(e.toString());
         }
     }
 
@@ -213,13 +215,18 @@ public class ViewImpl implements View{
 
     @Override
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
-        Platform.runLater(() -> {
-            gameController.clear();
-            gameController.renderFirstTank(firstTank);
-            gameController.renderSecondTank(secondTank);
-            gameController.renderBullet(bullet.collect(Collectors.toSet()));
-            gameController.renderWall(wall.collect(Collectors.toSet()));
-        });
+        try{
+            Platform.runLater(() -> {
+                gameController.clear();
+                gameController.renderFirstTank(firstTank);
+                gameController.renderSecondTank(secondTank);
+                gameController.renderBullet(bullet.collect(Collectors.toSet()));
+                gameController.renderWall(wall.collect(Collectors.toSet()));
+            });
+        }catch(Exception e){
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     @Override
