@@ -274,8 +274,8 @@ public class ViewImpl implements View{
 
     @Override
     public void setTanksResource(String tank1Resource, String tank2Resource) {
-        this.tank1Resource = tank1Resource;
-        this.tank2Resource = tank2Resource;
+        this.tank1Resource = "blue" + tank1Resource;
+        this.tank2Resource = "green" + tank2Resource;
     }
 
     @Override
