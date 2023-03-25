@@ -17,7 +17,7 @@ import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
-import it.unibo.tankBattle.view.impl.javafx.controller.ChooseMenu;
+import it.unibo.tankBattle.view.impl.javafx.controller.SettingsController;
 
 public class BasicGameEngine implements GameEngine, WorldEventListener {
     private long period = 20;
@@ -32,7 +32,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
     private final FactoryObjectManager factoryObjectsManager;
-    private ChooseMenu settingsViewController = null;
 
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
@@ -140,7 +139,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         loop();
     }
 
-    public void setSettingsViewController(ChooseMenu settingsViewController){
+    public void setSettingsViewController(SettingsController settingsViewController){
         this.settingsViewController = settingsViewController;
     }
 
