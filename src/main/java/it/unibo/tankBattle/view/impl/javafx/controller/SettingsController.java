@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
-public class ChooseMenu implements Initializable{
+public class SettingsController implements Initializable{
 
     private Scene prevScene;
     private View viewController;
