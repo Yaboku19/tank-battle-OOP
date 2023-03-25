@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.gameSetup.impl.TankData;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
@@ -22,7 +23,7 @@ public class ModelTest {
         model = new GameStateImpl(null);
         firstPlayer = createPlayer();
         secondPlayer = createPlayer();
-        model.createWorld(firstPlayer, secondPlayer);
+        model.createWorld(firstPlayer, secondPlayer, new MapData());
         factoryWorld = new FactoryWorldImpl();
     }
 
@@ -58,7 +59,7 @@ public class ModelTest {
         allEntities.addAll(model.getWallsTrasform().toList());     
         allEntities.add(model.getTankTrasform(firstPlayer));
         allEntities.add(model.getTankTrasform(secondPlayer));
-        assertEquals(factoryWorld.simpleWorld(firstPlayer, secondPlayer).getEntities().toList().size(), allEntities.size());
+        assertEquals(factoryWorld.simpleWorld(firstPlayer, secondPlayer, new MapData()).getEntities().toList().size(), allEntities.size());
 	}
 
     @org.junit.jupiter.api.Test

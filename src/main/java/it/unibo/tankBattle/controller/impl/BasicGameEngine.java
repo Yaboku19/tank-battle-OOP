@@ -45,7 +45,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        //objectsManager.readVirus();
     }
 
     @Override
@@ -66,7 +65,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
         while(!isOver) {
-            //System.out.println("bbbbbbbbbbbbbbbbbbbb");
             long currentCycleStartTime = System.currentTimeMillis();
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
@@ -90,15 +88,10 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 	}
 
     private void processInput() {
-        //System.out.println("sono qua");
         if (commandQueue.size() > 0){
             var cmd = commandQueue.poll();
             cmd.execute(model);
         }
-        /*for(var tank : model.getWorld().getTanks()){
-            tank.updateInput();
-        }*/
-        //throw new UnsupportedOperationException("Unimplemented method 'processInput'");
     }
 
     private void update(double elapsed) {
@@ -106,16 +99,15 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     private void render() {
-        view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), model.getWallsTrasform(), model.getBulletsTrasform());
-        /*view.drawBullet(null);
-        view.drawTank(null);*/
+        view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), 
+                model.getWallsTrasform(), model.getBulletsTrasform());
     }
 
     @Override
     public void notifyCommand(Command command) {
         commandQueue.add(command);
-        //System.out.println(commandQueue);
     }
+
     @Override
     public void endGame(final Player player) {
         player.incScore();
@@ -135,8 +127,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void run() {
-        //startGame();
-        System.out.println("aaa");
         loop();
     }
 
@@ -173,7 +163,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void restart() {
         thread = new Thread(this);
-        model.createWorld(firstPlayer, secondPlayer);
+        model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
     }
 
