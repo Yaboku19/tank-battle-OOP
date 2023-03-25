@@ -48,6 +48,8 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderWall(wall.collect(Collectors.toSet()));
+            gameController.updateLifeLabel(50, 70);
+            
             //System.out.println(stage.getWidth()+ " "+ stage.getHeight());
             //System.out.println(gameScene.getWidth()+ " "+ gameScene.getHeight());
         });

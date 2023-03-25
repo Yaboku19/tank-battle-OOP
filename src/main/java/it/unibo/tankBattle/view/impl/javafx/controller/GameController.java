@@ -9,6 +9,7 @@ import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,12 @@ public class GameController {
     private URL location;
 
     @FXML
+    private Label firstTankLife;
+
+    @FXML
+    private Label secondTankLife;
+
+    @FXML
     private AnchorPane mainPane;
 
     @FXML
@@ -41,6 +48,7 @@ public class GameController {
     @FXML
     void initialize() {
         //Image tank = new Image("/images/tank.gif");
+        firstTankLife.setText("aaaaaaaaaaaaaaaaaaaaaaa");
         bulletImage = new Image("/images/bullet1.png");
         wallImage = new Image("/images/box.png");
         
@@ -103,6 +111,11 @@ public class GameController {
             }
         //}        
         mainPane.getChildren().addAll(wallSet);
+    }
+
+    public void updateLifeLabel(int firstTank, int secondTank){
+        firstTankLife.setText(Integer.toString(firstTank));
+        secondTankLife.setText(Integer.toString(secondTank));
     }
 
     private double getRotation(Direction dir) {
