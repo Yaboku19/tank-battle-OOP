@@ -20,4 +20,8 @@ public interface GameEngine extends Runnable {
     public void updateMap(NextAndPrevious delta);
 
     public void setViewResources();
+
+    public void restart();
+
+    public void newStart();
 }

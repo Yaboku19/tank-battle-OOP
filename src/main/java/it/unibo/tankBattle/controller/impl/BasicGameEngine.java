@@ -17,7 +17,6 @@ import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
-import it.unibo.tankBattle.view.impl.javafx.controller.ChooseMenu;
 
 public class BasicGameEngine implements GameEngine, WorldEventListener {
     private long period = 20;
@@ -32,7 +31,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
     private final FactoryObjectManager factoryObjectsManager;
-    private ChooseMenu settingsViewController = null;
 
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
@@ -68,7 +66,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
         while(!isOver) {
-            //System.out.println("loop");
+            //System.out.println("bbbbbbbbbbbbbbbbbbbb");
             long currentCycleStartTime = System.currentTimeMillis();
 			long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
@@ -121,6 +119,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void endGame(final Player player) {
         player.incScore();
+        view.setWinner(Integer.toString(player.getCode()));
         this.isOver = true;
     }
 
@@ -141,9 +140,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         loop();
     }
 
-    public void setSettingsViewController(ChooseMenu settingsViewController){
+    /*public void setSettingsViewController(SettingsController settingsViewController){
         this.settingsViewController = settingsViewController;
-    }
+    }*/
 
     @Override
     public void updateTankPlayer1(NextAndPrevious delta) {
@@ -169,6 +168,18 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void setViewResources() {
         view.setTanksResource(tankFirstManager.getActual().getResource(), tankSecondManager.getActual().getResource());
+    }
+
+    @Override
+    public void restart() {
+        thread = new Thread(this);
+        model.createWorld(firstPlayer, secondPlayer);
+        thread.start();
+    }
+
+    @Override
+    public void newStart() {
+        thread = new Thread(this);
     }
 
 }
