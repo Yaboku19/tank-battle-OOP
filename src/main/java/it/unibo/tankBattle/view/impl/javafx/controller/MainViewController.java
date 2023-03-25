@@ -82,7 +82,7 @@ public class MainViewController{
         try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/chooseMenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
             Scene settings = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
             settingsController = (SettingsController)fxmlLoader.getController();

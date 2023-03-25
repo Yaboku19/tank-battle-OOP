@@ -107,7 +107,7 @@ public class ViewController implements View {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/mainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
         Parent root;
         try {
             root = loader.load();
