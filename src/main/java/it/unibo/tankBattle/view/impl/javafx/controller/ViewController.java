@@ -20,6 +20,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
+
 
 public class ViewController implements View {
 
@@ -46,6 +48,8 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderWall(wall.collect(Collectors.toSet()));
+            //System.out.println(stage.getWidth()+ " "+ stage.getHeight());
+            //System.out.println(gameScene.getWidth()+ " "+ gameScene.getHeight());
         });
     }
 
@@ -106,6 +110,8 @@ public class ViewController implements View {
             //mainViewController.setMainMenuScene(scene);
             stage.setTitle("Tank-Battle");
             stage.setScene(mainViewScene);
+            stage.setMaxHeight(Screen.getPrimary().getBounds().getWidth()*2/3);
+            stage.setMaxWidth(Screen.getPrimary().getBounds().getHeight()*3/2);
             stage.setOnCloseRequest(e -> {
                 Platform.exit();
                 System.exit(0);
