@@ -2,17 +2,9 @@ package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.common.input.impl.Movement;
-import it.unibo.tankBattle.common.input.impl.Shoot;
-import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.api.View;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,6 +61,7 @@ public class MainViewController{
             fxmlLoader.setControllerFactory(controller -> gameController);
             gameScene = new Scene(fxmlLoader.load());
             addKeyListener();
+            viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
             stage.setResizable(true);
             viewController.startGame();

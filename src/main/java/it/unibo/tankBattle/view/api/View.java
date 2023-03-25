@@ -8,7 +8,6 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.view.impl.javafx.controller.GameController;
 import it.unibo.tankBattle.view.impl.javafx.controller.SettingsController;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -47,6 +46,10 @@ public interface View {
     public void addCommand(KeyEvent e);
 
     public void setGameController(GameController gameController);
+
+    public void setGameScene(Scene gameScene);
+
+    public void setWinner(String code);
 
     public void setSettingsController(SettingsController settingsController);
 }

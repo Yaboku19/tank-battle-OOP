@@ -10,28 +10,14 @@ import it.unibo.tankBattle.view.api.View;
 import javafx.scene.Scene;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
-import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.view.api.View;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -48,6 +34,7 @@ public class ViewController implements View {
     private Scene gameScene;
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
+    private String winner;
     /*private String tank1Resource;
     private String tank2Resource;*/
 
@@ -139,7 +126,7 @@ public class ViewController implements View {
             gameOverController.setMenuScene(mainViewScene);
             gameOverController.setViewController(this);
             gameOverController.setGameScene(gameScene);
-            
+            gameOverController.setWinLabel(winner);
             Platform.runLater(()->{
                 stage.setScene(gameOver);
             });
@@ -150,12 +137,12 @@ public class ViewController implements View {
 
     @Override
     public void restart() {
-        // TODO Auto-generated method stub
+        controller.restart();
     }
 
     @Override
     public void newStart() {
-        // TODO Auto-generated method stub
+        controller.newStart();
     }
 
     @Override
@@ -252,7 +239,17 @@ public class ViewController implements View {
     }
 
     @Override
+    public void setGameScene(Scene gameScene){
+        this.gameScene = gameScene;
+    }
+
+    @Override
     public void setSettingsController(SettingsController settingsController){
         this.settingsController = settingsController;
+    }
+
+    @Override
+    public void setWinner(String code) {
+        this.winner = code;
     }
 }

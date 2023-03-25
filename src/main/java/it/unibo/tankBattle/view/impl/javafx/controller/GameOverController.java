@@ -64,19 +64,19 @@ public class GameOverController {
         stage.setScene(gameScene);
     }
 
-    public void setViewController(View viewController){
+    public void setViewController(View viewController) {
         this.viewController = viewController;
     }
 
-    public void setGameScene(Scene gameScene){
+    public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
 
-    public void setMenuScene(Scene mainManuScene){
+    public void setMenuScene(Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
 
-    public void setWinLabel(String playerCode){
-        winLabel.setText("Player " + playerCode + "wins");
+    public void setWinLabel(String playerCode) {
+        winLabel.setText("Player " + playerCode + " wins");
     }
 }
