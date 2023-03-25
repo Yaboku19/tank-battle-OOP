@@ -16,11 +16,6 @@
             <y>5</y>
             <type>wall</type>
         </position>
-        <position>
-            <x>7</x>
-            <y>4</y>
-            <type>wall</type>
-        </position>
         <resource>map1.png</resource>
     </map>
     <map name="PIPPOMAP">
