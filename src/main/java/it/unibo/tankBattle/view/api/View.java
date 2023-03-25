@@ -5,7 +5,12 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
+import it.unibo.tankBattle.view.impl.javafx.controller.GameController;
+import it.unibo.tankBattle.view.impl.javafx.controller.SettingsController;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public interface View {
 
@@ -29,9 +34,19 @@ public interface View {
 
     public void setTanksResource(String tank1, String tank2);
 
-    public void setMainMenuScene(Scene mainMenuScene);
+    public void start(Stage stage);
 
     public void restart();
 
     public void newStart();
+
+    public void setViewResources();
+
+    public void startGame();
+
+    public void addCommand(KeyEvent e);
+
+    public void setGameController(GameController gameController);
+
+    public void setSettingsController(SettingsController settingsController);
 }
