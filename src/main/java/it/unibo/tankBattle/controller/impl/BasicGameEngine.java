@@ -29,18 +29,22 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
-    private final FactoryObjectManager factoryObjectsManager;
 
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
         this.view = view;
         view.setController(this);
         model = new GameStateImpl(this);
-        factoryObjectsManager = new FactoryObjectManager();
         try {
-            tankFirstManager = factoryObjectsManager.tankManager();
-            tankSecondManager = factoryObjectsManager.tankManager();
-            mapManager = factoryObjectsManager.MapManager();
+            tankFirstManager = new ObjectsManagerImpl<TankData,TankDataList>
+                (ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+                , TankDataList.class);
+            tankSecondManager = new ObjectsManagerImpl<TankData,TankDataList>
+                (ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+                , TankDataList.class);
+            mapManager = new ObjectsManagerImpl<MapData,MapDataList>
+                (ClassLoader.getSystemResource("config/mapConfig.xml").toURI()
+                , MapDataList.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
