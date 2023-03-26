@@ -8,15 +8,13 @@ import java.util.Set;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
 
 public class GameController {
 
-    private Scene scene;
+    //private Scene scene;
     private Image bulletImage;
     private Image wallImage;
     private Set<ImageView> wallSet = new HashSet<>();

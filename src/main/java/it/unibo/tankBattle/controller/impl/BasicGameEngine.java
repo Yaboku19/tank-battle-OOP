@@ -162,6 +162,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void restart() {
+        thread.interrupt();
         thread = new Thread(this);
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
@@ -169,6 +170,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void newStart() {
+        thread.interrupt();
         thread = new Thread(this);
     }
 

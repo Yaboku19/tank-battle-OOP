@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.view.api.View;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,19 +16,22 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class MainViewController{
+public class MainViewController {
 
     private GameController gameController;
     private SettingsController settingsController;
-    private GameOverController gameOverController;
+    //private GameOverController gameOverController;
     private View viewController;
     private Node node;
     private Stage stage;
     private Scene gameScene;
-    private Scene mainMenuScene;
+    //private Scene mainMenuScene;
     private String tank1Resource;
     private String tank2Resource;
-
+    private ChangeListener<? super Number> widthChangeListener;
+    private ChangeListener<? super Number> heightChangeListener;
+    private boolean isDiagonalResize = false;
+    
     @FXML
     private ResourceBundle resources;
 
@@ -63,6 +67,7 @@ public class MainViewController{
             addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
+            this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
         }catch(Exception e){
@@ -127,5 +132,19 @@ public class MainViewController{
         };
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
+    }
+
+    private void setDiagonalResize() {
+        if(!isDiagonalResize) {
+            isDiagonalResize = true;
+            widthChangeListener = (observable, oldValue, newValue) -> {
+                stage.setHeight(newValue.doubleValue() * 2.0/ 3.0);
+            };
+            heightChangeListener = (observable, oldValue, newValue) -> {
+                stage.setWidth(newValue.doubleValue() * 3.0 / 2.0);
+            };
+            stage.widthProperty().addListener(widthChangeListener);
+            stage.heightProperty().addListener(heightChangeListener);
+        }
     }
 }
