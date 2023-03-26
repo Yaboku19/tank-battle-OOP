@@ -1,7 +1,10 @@
 package it.unibo.tankBattle.controller.impl;
 
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import javax.xml.bind.JAXBException;
 
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.input.api.Command;
@@ -9,6 +12,8 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
+import it.unibo.tankBattle.model.gameSetup.api.Data;
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
 import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
 import it.unibo.tankBattle.model.gameSetup.impl.TankData;
@@ -36,18 +41,24 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         view.setController(this);
         model = new GameStateImpl(this);
         try {
-            tankFirstManager = new ObjectsManagerImpl<TankData,TankDataList>
-                (ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+            tankFirstManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
                 , TankDataList.class);
-            tankSecondManager = new ObjectsManagerImpl<TankData,TankDataList>
-                (ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+            tankSecondManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
                 , TankDataList.class);
-            mapManager = new ObjectsManagerImpl<MapData,MapDataList>
-                (ClassLoader.getSystemResource("config/mapConfig.xml").toURI()
+            mapManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/mapConfig.xml").toURI()
                 , MapDataList.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private <T extends Data, C extends DataList<T>> ObjectsManager<T, C> generateObjectManager(
+            URI path
+            , Class<C> clas) throws JAXBException {
+        return new ObjectsManagerImpl<T, C>(path, clas);
     }
 
     @Override
