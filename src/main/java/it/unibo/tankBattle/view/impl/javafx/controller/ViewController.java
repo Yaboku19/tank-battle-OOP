@@ -90,8 +90,8 @@ public class ViewController implements View {
     }
 
     @Override
-    public void setTanksResource(String tank1Resource, String tank2Resource) {
-        mainViewController.setTanksResource("blue" + tank1Resource,"green" + tank2Resource);
+    public void setResource(String tank1Resource, String tank2Resource, String mapResource) {
+        mainViewController.setResource("blue" + tank1Resource,"green" + tank2Resource, mapResource);
 
     }
 

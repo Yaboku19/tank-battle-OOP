@@ -11,6 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 public class GameController {
 
@@ -37,20 +42,24 @@ public class GameController {
     private ImageView player2;
 
     @FXML
+    private Image backImage;
+
+    @FXML
     void initialize() {
         //Image tank = new Image("/images/tank.gif");
-        bulletImage = new Image("/images/bullet1.png");
+        bulletImage = new Image("/images/cannonBall1.png");
         wallImage = new Image("/images/box.png");
-        
-        //player1 = new ImageView(tank);
-        //player2 = new ImageView(tank);
+        mainPane.setBackground(new Background(new BackgroundImage(backImage, 
+            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         mainPane.getChildren().add(player1);
         mainPane.getChildren().add(player2);
     }
 
-    public GameController(String tank1, String tank2){
+    public GameController(String tank1, String tank2, String map) {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
+        backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
     }
 
     public void clear() {

@@ -31,7 +31,7 @@ public interface View {
 
     public void viewUpdateMap(String resource);
 
-    public void setTanksResource(String tank1, String tank2);
+    public void setResource(String tank1, String tank2, String mapResource);
 
     public void start(Stage stage);
 

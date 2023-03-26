@@ -28,6 +28,7 @@ public class MainViewController {
     //private Scene mainMenuScene;
     private String tank1Resource;
     private String tank2Resource;
+    private String mapResource;
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
     private boolean isDiagonalResize = false;
@@ -60,7 +61,7 @@ public class MainViewController {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             viewController.setViewResources();
-            gameController = new GameController(tank1Resource, tank2Resource);
+            gameController = new GameController(tank1Resource, tank2Resource, mapResource);
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             gameScene = new Scene(fxmlLoader.load());
@@ -116,9 +117,10 @@ public class MainViewController {
         this.viewController = viewController;
     }
 
-    public void setTanksResource(String tank1Resource, String tank2Resource){
+    public void setResource(String tank1Resource, String tank2Resource, String mapResource){
         this.tank1Resource = tank1Resource;
         this.tank2Resource = tank2Resource;
+        this.mapResource = mapResource;
     }
 
     private void addKeyListener(){

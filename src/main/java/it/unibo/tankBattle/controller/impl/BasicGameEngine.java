@@ -157,7 +157,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void setViewResources() {
-        view.setTanksResource(tankFirstManager.getActual().getResource(), tankSecondManager.getActual().getResource());
+        view.setResource(tankFirstManager.getActual().getResource(),
+                tankSecondManager.getActual().getResource(),
+                mapManager.getActual().getResource());
     }
 
     @Override
