@@ -1,6 +1,5 @@
 package it.unibo.tankBattle.controller.impl;
 
-import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -42,7 +41,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
             tankFirstManager = factoryObjectsManager.tankManager();
             tankSecondManager = factoryObjectsManager.tankManager();
             mapManager = factoryObjectsManager.MapManager();
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

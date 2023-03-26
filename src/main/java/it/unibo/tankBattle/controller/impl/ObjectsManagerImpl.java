@@ -29,28 +29,26 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
 
     /**
      * Constructor method.
+     * @throws JAXBException
      * 
      */
-    public ObjectsManagerImpl(URI path) {
+    public ObjectsManagerImpl(URI path, Class<C> clas) throws JAXBException {
         config = new File(path);
+        read(clas);
     }
 
     /**
+     * @throws JAXBException
      *
      */
     @SuppressWarnings("unchecked")
-    @Override
-    public void read(Class<C> c) {
-        try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(c);
-            final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            var dataList = (C) unmarshaller.unmarshal(config);
-            for (int i = 0; i < dataList.getData().size(); i++) {
-                dataMap.put(dataList.getData().get(i).getName(), dataList.getData().get(i));
-                keyOrder.add(dataList.getData().get(i).getName());
-            }
-        } catch (JAXBException e) {
-            e.printStackTrace();
+    private void read(Class<C> c) throws JAXBException {
+        final JAXBContext jaxbContext = JAXBContext.newInstance(c);
+        final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        var dataList = (C) unmarshaller.unmarshal(config);
+        for (int i = 0; i < dataList.getData().size(); i++) {
+            dataMap.put(dataList.getData().get(i).getName(), dataList.getData().get(i));
+            keyOrder.add(dataList.getData().get(i).getName());
         }
     }
 
