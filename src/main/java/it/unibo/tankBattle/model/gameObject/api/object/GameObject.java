@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.model.gameObject.api.object;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public interface GameObject {
     
     public void update(double time);
 
-    public Set<Component> getComponents();
+    public List<Component> getComponents();
 
     public <T extends Component> Optional<T> getComponent(final Class<T> component);
 

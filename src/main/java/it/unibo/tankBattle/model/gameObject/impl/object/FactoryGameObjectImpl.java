@@ -27,8 +27,8 @@ public class FactoryGameObjectImpl implements FactoryGameObject {
                 .addComponent(new CollisionComponent())
                 .addComponent(new DamageableImpl(player.getTankData().getLife()))
                 .addComponent(new HealthImpl())
-                .addComponent(new KnockBack())
-                .addComponent(new SimpleMovable(tank.getSpeed()));
+                .addComponent(new SimpleMovable(tank.getSpeed()))
+                .addComponent(new KnockBack());
     }
 
     @Override

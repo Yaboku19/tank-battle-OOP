@@ -23,6 +23,7 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
     public void handleCollision(GameObject self, GameObject collidingObject) {
         final P2d newPosition = this.getGameObject().getTransform().getPosition().sum(getOffset(collidingObject));
         this.getGameObject().setPosition(newPosition);
+        System.out.println("colliding");
     }
 
     private P2d getOffset(final GameObject collidingObject) {
@@ -44,11 +45,12 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
                 );
             default -> 0;
         };
+        System.out.println(offset);
         return objectDirection.getVector().multiply(-offset);
     }
 
     private double offset(final double center1, final double center2, final double side1, final double side2) {
-        return (side1 / 2 + side2 / 2 - Math.abs(center1 - center2)) / 2 + 0.5;
+        return (side1 / 2 + side2 / 2 - Math.abs(center1 - center2)) + 1.5;              
     }
 
     private Direction movingDirection() {
