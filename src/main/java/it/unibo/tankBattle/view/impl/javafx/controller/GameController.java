@@ -25,8 +25,12 @@ public class GameController {
     private Image bulletImage;
     private Image wallImage;
     private Set<ImageView> wallSet = new HashSet<>();
-    private static final double STANDARD_HEIGHT = 400;
-    private static final double STANDARD_WIDTH = 600;
+    private double standardHeight = 1;
+    private double standardWidth = 1;
+    private boolean isProportionSet = false;
+
+    private static final double RIGHT_ANGLE = 90;
+    private static final double STRAIGHT_ANGLE = 180;    
 
     @FXML
     private ResourceBundle resources;
@@ -105,18 +109,17 @@ public class GameController {
     }
 
     public void renderWall(Set<Transform> walls) {
-        //if(this.wallSet.size() == 0) {
-            wallSet.clear();    //new
-            for(var t : walls){
-                ImageView wall = new ImageView(wallImage);
-                wall.setX(t.getUpperLeftPosition().getX()*getWidth());
-                wall.setY(t.getUpperLeftPosition().getY()*getHeight());
-                wall.setFitWidth(t.getWidth()*getWidth());
-                wall.setFitHeight(t.getLength()*getHeight());
-                wall.setRotate(getRotation(t.getDirection()));
-                this.wallSet.add(wall);
-            }
-        //}        
+        wallSet.clear();
+        this.setProportion(walls);
+        for(var t : walls) {
+            ImageView wall = new ImageView(wallImage);
+            wall.setX(t.getUpperLeftPosition().getX()*getWidth());
+            wall.setY(t.getUpperLeftPosition().getY()*getHeight());
+            wall.setFitWidth(t.getWidth()*getWidth());
+            wall.setFitHeight(t.getLength()*getHeight());
+            wall.setRotate(getRotation(t.getDirection()));
+            this.wallSet.add(wall);
+        }        
         mainPane.getChildren().addAll(wallSet);
     }
 
@@ -126,23 +129,33 @@ public class GameController {
     }
 
     private double getRotation(Direction dir) {
-        switch(dir) {
-            case RIGHT:
-                return 90;
-            case DOWN:
-                return 180;
-            case LEFT: 
-                return 270;
-            default:
-                return 0;
-        }
+        return switch(dir) {
+            case RIGHT -> GameController.RIGHT_ANGLE;
+            case DOWN -> GameController.STRAIGHT_ANGLE;
+            case LEFT -> (GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE);
+            default -> 0;
+        };
     }
 
     private double getWidth() {
-        return mainPane.getWidth() / GameController.STANDARD_WIDTH;
+        return mainPane.getWidth() / standardWidth;
     }
 
     private double getHeight() {
-        return mainPane.getHeight() / GameController.STANDARD_HEIGHT;
+        return mainPane.getHeight() / standardHeight;
+    }
+
+    private void setProportion(Set<Transform> walls) {
+        if(!isProportionSet) {
+            this.isProportionSet = true;
+            double maxX = 0.0;
+            double maxY = 0.0;
+            for (Transform transform : walls) {
+                maxX = Math.max(maxX, transform.getUpperLeftPosition().getX());
+                maxY = Math.max(maxY, transform.getUpperLeftPosition().getY());
+            }
+            this.standardWidth = maxX + walls.iterator().next().getWidth();
+            this.standardHeight = maxY + walls.iterator().next().getLength();
+        }
     }
 }
