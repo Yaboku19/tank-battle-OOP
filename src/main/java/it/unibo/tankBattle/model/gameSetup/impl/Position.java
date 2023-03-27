@@ -3,9 +3,7 @@ package it.unibo.tankBattle.model.gameSetup.impl;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import it.unibo.tankBattle.common.P2d;
-import javafx.util.Pair;
 
 import javax.xml.bind.annotation.XmlAccessType;
 

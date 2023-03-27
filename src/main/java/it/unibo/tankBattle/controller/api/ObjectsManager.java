@@ -7,12 +7,6 @@ import it.unibo.tankBattle.common.NextAndPrevious;
  */
 public interface ObjectsManager<T, C> {
 
-    /**
-     *
-     * Read all the tanks from the config file.
-     */
-    void read(Class<C> clas);
-
     T getActual();
 
     void update(NextAndPrevious delta);

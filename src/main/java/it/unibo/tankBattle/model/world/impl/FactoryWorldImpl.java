@@ -14,8 +14,6 @@ import it.unibo.tankBattle.model.world.api.World;
 
 public class FactoryWorldImpl implements FactoryWorld {
     private final FactoryGameObject factoryGO;
-    private static final int ROW = 9;
-    private static final int COLUMN = 14;
     private final double size;
 
     public FactoryWorldImpl() {

@@ -92,8 +92,8 @@ public class ViewController implements View {
     }
 
     @Override
-    public void setTanksResource(String tank1Resource, String tank2Resource) {
-        mainViewController.setTanksResource("blue" + tank1Resource,"green" + tank2Resource);
+    public void setResource(String tank1Resource, String tank2Resource, String mapResource) {
+        mainViewController.setResource("blue" + tank1Resource,"green" + tank2Resource, mapResource);
 
     }
 
@@ -112,8 +112,8 @@ public class ViewController implements View {
             //mainViewController.setMainMenuScene(scene);
             stage.setTitle("Tank-Battle");
             stage.setScene(mainViewScene);
-            stage.setMaxHeight(Screen.getPrimary().getBounds().getWidth()*2/3);
-            stage.setMaxWidth(Screen.getPrimary().getBounds().getHeight()*3/2);
+            //stage.setMaxHeight(Screen.getPrimary().getBounds().getWidth()*2/3);
+            //stage.setMaxWidth(Screen.getPrimary().getBounds().getHeight()*3/2);
             stage.setOnCloseRequest(e -> {
                 Platform.exit();
                 System.exit(0);
@@ -145,12 +145,19 @@ public class ViewController implements View {
 
     @Override
     public void restart() {
+        this.setDimension();
         controller.restart();
     }
 
     @Override
     public void newStart() {
+        this.setDimension();
         controller.newStart();
+    }
+
+    private void setDimension() {
+        stage.setWidth(Screen.getPrimary().getBounds().getWidth()/2);
+        stage.setHeight(stage.getWidth()* 2.0 / 3.0 + 1.0);
     }
 
     @Override
@@ -160,6 +167,7 @@ public class ViewController implements View {
 
     @Override
     public void startGame() {
+        setDimension();
         controller.startGame();
     }
 
@@ -167,7 +175,7 @@ public class ViewController implements View {
     public void addCommand(KeyEvent e) {
         if(e.getEventType() == KeyEvent.KEY_PRESSED){
             String event = e.getCode().toString() + e.getEventType().toString();
-            if(!lastCommandFirstPlayer.equals(event)){
+            if(!lastCommandFirstPlayer.equals(event)) {
                     switch(e.getCode()){
                         case RIGHT:
                             controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
