@@ -63,8 +63,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer(1, tankFirstManager.getActual());
-        secondPlayer = new HumanPlayer(2, tankSecondManager.getActual());
+        firstPlayer = new HumanPlayer("ema", tankFirstManager.getActual());
+        secondPlayer = new HumanPlayer("ricky", tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer
             , mapManager.getActual());
         System.out.println("start game");
@@ -125,7 +125,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void endGame(final Player player) {
         player.incScore();
-        view.setWinner(Integer.toString(player.getCode()));
+        view.setWinner(player.getCode());
         this.isOver = true;
     }
 
