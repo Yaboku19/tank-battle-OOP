@@ -8,6 +8,7 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,8 +39,6 @@ public class ViewController implements View {
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String winner;
-    /*private String tank1Resource;
-    private String tank2Resource;*/
 
     @Override
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
@@ -48,8 +48,7 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderWall(wall.collect(Collectors.toSet()));
-            gameController.updateLifeLabel(50, 70);
-            
+            gameController.updateLifeLabel(50, 70);            
             //System.out.println(stage.getWidth()+ " "+ stage.getHeight());
             //System.out.println(gameScene.getWidth()+ " "+ gameScene.getHeight());
         });
@@ -99,6 +98,13 @@ public class ViewController implements View {
 
     @Override
     public void start(Stage stage) {
+        try{
+            Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
+            stage.getIcons().add(icon);
+
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
         this.stage = stage;
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
         Parent root;
