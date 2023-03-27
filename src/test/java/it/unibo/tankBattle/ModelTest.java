@@ -40,8 +40,8 @@ public class ModelTest {
             }
 
             @Override
-            public int getCode() {
-                return 0;
+            public String getCode() {
+                return "0";
             }
 
             @Override
