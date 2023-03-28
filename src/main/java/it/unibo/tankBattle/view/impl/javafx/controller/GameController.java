@@ -68,6 +68,7 @@ public class GameController {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
         backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
+        //caricaAudio
     }
 
     public void clear() {

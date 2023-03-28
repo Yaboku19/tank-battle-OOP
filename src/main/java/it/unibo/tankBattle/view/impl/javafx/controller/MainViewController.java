@@ -13,7 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainViewController {
@@ -40,6 +44,9 @@ public class MainViewController {
     private URL location;
 
     @FXML
+    private VBox buttonBox;
+
+    @FXML
     private Button playButton;
 
     @FXML
@@ -50,8 +57,7 @@ public class MainViewController {
 
     @FXML
     void initialize() {
-        assert playButton != null : "fx:id=\"playButton\" was not injected: check your FXML file 'mainScene.fxml'.";
-        assert tutorialButton != null : "fx:id=\"tutorialButton\" was not injected: check your FXML file 'mainScene.fxml'.";
+
     }
 
     @FXML
@@ -91,6 +97,7 @@ public class MainViewController {
             viewController.updateTankPlayer1(NextAndPrevious.NONE);
             viewController.updateTankPlayer2(NextAndPrevious.NONE);
             viewController.updateMap(NextAndPrevious.NONE);
+            stage.setResizable(false);
             stage.setScene(settings);
         }catch(Exception e){
             System.out.println(e.toString());

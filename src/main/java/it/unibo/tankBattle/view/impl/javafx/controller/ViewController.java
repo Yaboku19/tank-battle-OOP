@@ -10,19 +10,22 @@ import it.unibo.tankBattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 public class ViewController implements View {
@@ -106,7 +109,7 @@ public class ViewController implements View {
             e.printStackTrace();
         }
         this.stage = stage;
-        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main2.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -118,6 +121,8 @@ public class ViewController implements View {
             //mainViewController.setMainMenuScene(scene);
             stage.setTitle("Tank-Battle");
             stage.setScene(mainViewScene);
+            stage.setMinHeight(430);
+            stage.setMinWidth(600);
             //stage.setMaxHeight(Screen.getPrimary().getBounds().getWidth()*2/3);
             //stage.setMaxWidth(Screen.getPrimary().getBounds().getHeight()*3/2);
             stage.setOnCloseRequest(e -> {
@@ -179,6 +184,12 @@ public class ViewController implements View {
 
     @Override
     public void addCommand(KeyEvent e) {
+        Media sound = null;
+        try {
+            sound = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
+        } catch (URISyntaxException e1) {
+            e1.printStackTrace();
+        }
         if(e.getEventType() == KeyEvent.KEY_PRESSED){
             String event = e.getCode().toString() + e.getEventType().toString();
             if(!lastCommandFirstPlayer.equals(event)) {
@@ -200,6 +211,8 @@ public class ViewController implements View {
                             lastCommandFirstPlayer = event;
                             break;
                         case SPACE:
+                            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                            mediaPlayer.play();
                             controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
                             break;
                         default:

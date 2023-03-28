@@ -108,6 +108,7 @@ public class SettingsController implements Initializable{
     void back(ActionEvent event) {
         Node node = (Node)event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
+        stage.setResizable(true);
         stage.setScene(prevScene);
     }
 
