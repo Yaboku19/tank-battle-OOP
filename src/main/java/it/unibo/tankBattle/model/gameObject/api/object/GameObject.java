@@ -7,22 +7,48 @@ import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
-
+/**
+ * javadoc
+ */
 public interface GameObject {
-    
-    public void update(double time);
-
-    public Set<Component> getComponents();
-
-    public <T extends Component> Optional<T> getComponent(final Class<T> component);
-
-    public GameObject addComponent(final Component component);
-
-    public Transform getTransform();
+    /**
+     * javadoc.
+     * @param time param
+     */
+    void update(double time);
+    /**
+     * javadoc.
+     * @return return
+     */
+    Set<Component> getComponents();
+    /**
+     * javadoc.
+     * @param <T> param
+     * @param component param
+     * @return return
+     */
+    <T extends Component> Optional<T> getComponent(Class<T> component);
+    /**
+     * javadoc.
+     * @param component param
+     * @return return
+     */
+    GameObject addComponent(Component component);
+    /**
+     * javadoc.
+     * @return return
+     */
+    Transform getTransform();
 
     //public void setTransform(Transform transform);
-    
-    public void setPosition(final P2d pos);
-
-    public void setDirection(final Direction pos);
+    /**
+     * javadoc.
+     * @param pos param
+     */
+    void setPosition(P2d pos);
+    /**
+     * javadoc.
+     * @param pos param
+     */
+    void setDirection(Direction pos);
 }

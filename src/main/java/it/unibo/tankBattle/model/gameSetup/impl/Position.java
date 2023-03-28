@@ -4,9 +4,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import it.unibo.tankBattle.common.P2d;
-
 import javax.xml.bind.annotation.XmlAccessType;
-
+/**
+ * javadock.
+ */
 @XmlRootElement (name = "position")
 @XmlAccessorType (XmlAccessType.FIELD)
 public class Position {
@@ -16,11 +17,17 @@ public class Position {
     private double y;
     @XmlElement
     private String type;
-
-    public String getType(){
+    /**
+     * javadock.
+     * @return return
+     */
+    public String getType() {
         return type;
     }
-
+    /**
+     * javadock.
+     * @return return
+     */
     public P2d getPosition() {
         return new P2d(x, y);
     }

@@ -66,7 +66,9 @@ public class GameController {
 
     @FXML
     private Image backImage;
-
+    /**
+    * javadoc.
+    */
     @FXML
     void initialize() {
         bulletImage = new Image("/images/cannonBall1.png");

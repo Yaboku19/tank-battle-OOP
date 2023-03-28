@@ -1,5 +1,11 @@
 package it.unibo.tankBattle.model.gameSetup.api;
-
+/**
+ * javadoc.
+ */
 public interface Data {
-    public String getName();
+    /**
+     * javadoc.
+     * @return return
+     */
+    String getName();
 }

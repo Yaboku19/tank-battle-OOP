@@ -10,11 +10,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
 /**
- *
+ * javadock.
  */
 @XmlRootElement (name = "tank")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class TankData implements Data{
+public class TankData implements Data {
 
     @XmlAttribute
     private String name;
@@ -111,7 +111,7 @@ public class TankData implements Data{
 
     /**
      * sets the tank demage.
-     * @param demage the demage to set
+     * @param damage the demage to set
      */
     public void setDamage(final int damage) {
         this.damage = damage;

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlAccessType;
  */
 @XmlRootElement (name = "map")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class MapData implements Data{
+public class MapData implements Data {
 
     @XmlAttribute
     private String name;
@@ -49,7 +49,10 @@ public class MapData implements Data{
     public String getResource() {
         return resource;
     }
-
+    /**
+     * javadock.
+     * @return return
+     */
     public P2d getPositionFirstTank() {
         return position
             .stream()
@@ -58,7 +61,10 @@ public class MapData implements Data{
             .get()
             .getPosition();
     }
-
+    /**
+     * javadock.
+     * @return return
+     */
     public P2d getPositionSecondTank() {
         return position
         .stream()
@@ -67,7 +73,10 @@ public class MapData implements Data{
         .get()
         .getPosition();
     }
-
+    /**
+     * javadock.
+     * @return return
+     */
     public Set<P2d> getWall() {
         return addBorder(position
             .stream()
@@ -77,11 +86,11 @@ public class MapData implements Data{
     }
 
     private Set<P2d> addBorder(final Set<P2d> wall) {
-        for(int i = 0; i <= row; i++) {
+        for (int i = 0; i <= row; i++) {
             wall.add(new P2d(0, i));
             wall.add(new P2d(column, i));
         }
-        for(int i = 1; i < column; i++) {
+        for (int i = 1; i < column; i++) {
             wall.add(new P2d(i, 0));
             wall.add(new P2d(i, row));
         }

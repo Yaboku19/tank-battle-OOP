@@ -16,7 +16,7 @@ import java.util.List;
  */
 @XmlRootElement(name = "mapList")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class MapDataList implements DataList<MapData>{
+public class MapDataList implements DataList<MapData> {
 
     @XmlElement(name = "map")
     private List<MapData> map = new ArrayList<>();

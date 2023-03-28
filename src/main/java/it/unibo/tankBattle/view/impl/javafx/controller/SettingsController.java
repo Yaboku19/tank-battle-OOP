@@ -75,37 +75,58 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Button prevTankPlayer2;
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void nextTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.NEXT);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void prevTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.PREVIOUS);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void nextTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.NEXT);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void prevTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.PREVIOUS);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void nextMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.NEXT);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void prevMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.PREVIOUS);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void back(final ActionEvent event) {
         Node node = (Node) event.getSource();

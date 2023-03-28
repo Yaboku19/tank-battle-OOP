@@ -23,7 +23,7 @@ import javafx.stage.Screen;
 /**
  * javadock.
  */
-public final class ViewController implements View {
+public class ViewController implements View {
 
     private GameEngine controller;
     private GameController gameController;
@@ -37,7 +37,9 @@ public final class ViewController implements View {
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String winner;
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
             final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank) {
@@ -50,48 +52,66 @@ public final class ViewController implements View {
             gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);
         });
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setController(final GameEngine controller) {
         this.controller = controller;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP1(speed, damage, life, resource);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void viewUpdateP2(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP2(speed, damage, life, resource);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void viewUpdateMap(final String resource) {
         settingsController.updateMap(resource);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void updateTankPlayer1(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void updateTankPlayer2(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void updateMap(final NextAndPrevious delta) {
         controller.updateMap(delta);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setResource(final String tank1Resource, final String tank2Resource,
             final String mapResource) {
         mainViewController.setResource("blue" + tank1Resource, "green" + tank2Resource, mapResource);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void start(final Stage stage) {
         try {
@@ -127,7 +147,9 @@ public final class ViewController implements View {
             System.out.println(e.toString());
         }
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void gameOver() {
         try {
@@ -146,13 +168,17 @@ public final class ViewController implements View {
             System.out.println(e.toString());
         }
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void restart() {
         this.setDimension();
         controller.restart();
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void newStart() {
         this.setDimension();
@@ -163,18 +189,24 @@ public final class ViewController implements View {
         stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
         stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setViewResources() {
         controller.setViewResources();
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void startGame() {
         setDimension();
         controller.startGame();
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void addCommand(final KeyEvent e) {
         if (e.getEventType() == KeyEvent.KEY_PRESSED) {
@@ -255,22 +287,30 @@ public final class ViewController implements View {
             }
         }
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setSettingsController(final SettingsController settingsController) {
         this.settingsController = settingsController;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setWinner(final String code) {
         this.winner = code;

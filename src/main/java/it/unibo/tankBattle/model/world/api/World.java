@@ -6,9 +6,19 @@ import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
  * The classe where are saved all the GameObject of the Map.
  */
 public interface World {
-    public Stream<GameObject> getEntities();
-
-    public void removeGameObject(final GameObject gameObject);
-
-    public void addGameObject(final GameObject gameObject);
+    /**
+     * javadock.
+     * @return return
+     */
+    Stream<GameObject> getEntities();
+    /**
+     * javadock.
+     * @param gameObject param
+     */
+    void removeGameObject(GameObject gameObject);
+    /**
+     * javadock.
+     * @param gameObject param
+     */
+    void addGameObject(GameObject gameObject);
 }

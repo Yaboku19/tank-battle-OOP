@@ -58,7 +58,10 @@ public class MainViewController {
     void initialize() {
 
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void play(final ActionEvent event) {
         node = (Node) event.getSource();
@@ -80,7 +83,10 @@ public class MainViewController {
             System.out.println(e.toString());
         }
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void settings(final ActionEvent event) {
         try {
@@ -102,7 +108,10 @@ public class MainViewController {
             System.out.println(e.toString());
         }
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void tutorial(final ActionEvent event) {
         try {

@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * javadock.
  */
 @XmlRootElement(name = "tankList")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class TankDataList implements DataList<TankData>{
+public class TankDataList implements DataList<TankData> {
 
     @XmlElement(name = "tank")
     private List<TankData> tank = new ArrayList<>();

@@ -11,25 +11,31 @@ import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.world.api.FactoryWorld;
 import it.unibo.tankBattle.model.world.api.World;
-
+/**
+ * javadock.
+ */
 public class FactoryWorldImpl implements FactoryWorld {
     private final FactoryGameObject factoryGO;
     private final double size;
-
+    /**
+     * javadock.
+     */
     public FactoryWorldImpl() {
         factoryGO = new FactoryGameObjectImpl();
         this.size = factoryGO.getWallLength();
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public World simpleWorld(final Player firstPlayer, final Player secondPlayer, final MapData mapdata) {
         Set<GameObject> entities = getWall(mapdata.getWall());
         entities.add(factoryGO.createSimpleTank(
-            position(mapdata.getPositionFirstTank().getX(),mapdata.getPositionFirstTank().getY())
-            , firstPlayer));
+            position(mapdata.getPositionFirstTank().getX(), mapdata.getPositionFirstTank().getY()),
+            firstPlayer));
         entities.add(factoryGO.createSimpleTank(
-            position(mapdata.getPositionSecondTank().getX(),mapdata.getPositionSecondTank().getY())
-            , secondPlayer));
+            position(mapdata.getPositionSecondTank().getX(), mapdata.getPositionSecondTank().getY()),
+            secondPlayer));
         return new WorldImpl(entities.stream());
     }
 
@@ -40,8 +46,8 @@ public class FactoryWorldImpl implements FactoryWorld {
         }
         return border;
     }
-    
-    private P2d position(double multiplier1, double multiplier2) {
+
+    private P2d position(final double multiplier1, final double multiplier2) {
         return new P2d(multiplier1 * size + size / 2, multiplier2 * size + size / 2);
     }
 }

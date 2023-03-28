@@ -38,13 +38,18 @@ public class GameOverController {
 
     @FXML
     private Label winLabel;
-
+    /**
+     * javadoc.
+     */
     @FXML
     void initialize() {
         assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
         assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void mainMenu(final ActionEvent event) {
         Node node = (Node) event.getSource();
@@ -52,12 +57,18 @@ public class GameOverController {
         viewController.newStart();
         stage.setScene(mainManuScene);
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void quit(final ActionEvent event) {
         Platform.exit();
     }
-
+    /**
+     * javadoc.
+     * @param event param
+     */
     @FXML
     void restart(final ActionEvent event) {
         Node node = (Node) event.getSource();
