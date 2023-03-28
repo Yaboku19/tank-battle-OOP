@@ -2,13 +2,13 @@
 <mapList>
     <map name="DEFAULTMAP">
         <position>
-            <x>2</x>
-            <y>2</y>
+            <x>12</x>
+            <y>7</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>12</x>
-            <y>7</y>
+            <x>2</x>
+            <y>2</y>
             <type>tank2</type>
         </position>
         <position>
@@ -20,12 +20,12 @@
     </map>
     <map name="PIPPOMAP">
         <position>
-            <x>1</x>
+            <x>5</x>
             <y>1</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>5</x>
+            <x>1</x>
             <y>1</y>
             <type>tank2</type>
         </position>
@@ -33,13 +33,13 @@
     </map>
     <map name="PLUTOMAP">
         <position>
-            <x>5</x>
-            <y>5</y>
+            <x>8</x>
+            <y>2</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>8</x>
-            <y>2</y>
+            <x>5</x>
+            <y>5</y>
             <type>tank2</type>
         </position>
         <resource>map3.png</resource>
