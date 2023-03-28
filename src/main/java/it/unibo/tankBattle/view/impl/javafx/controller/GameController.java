@@ -67,7 +67,6 @@ public class GameController {
 
     @FXML
     void initialize() {
-        //Image tank = new Image("/images/tank.gif");
         bulletImage = new Image("/images/cannonBall1.png");
         wallImage = new Image("/images/box.png");
         mainPane.setBackground(new Background(new BackgroundImage(backImage, 
@@ -97,6 +96,8 @@ public class GameController {
         player1.setFitHeight(t.getLength()*getHeight());
         player1.setRotate(getRotation(t.getDirection()));
         mainPane.getChildren().add(player1);
+        firstTankLife.setTranslateX(getWidth());
+        firstTankLife.setTranslateY(getHeight());
     }
 
     public void renderSecondTank(Transform t) {
@@ -145,6 +146,7 @@ public class GameController {
         } catch (URISyntaxException e1) {
             e1.printStackTrace();
         }
+        
     }
 
     private Set<Transform> findNewBullet(Set<Transform> bullets) {
@@ -191,6 +193,8 @@ public class GameController {
     public void updateLifeLabel(int firstTank, int secondTank){
         firstTankLife.setText(Integer.toString(firstTank));
         secondTankLife.setText(Integer.toString(secondTank));
+        mainPane.getChildren().add(firstTankLife);
+        mainPane.getChildren().add(secondTankLife);
     }
 
     private double getRotation(Direction dir) {

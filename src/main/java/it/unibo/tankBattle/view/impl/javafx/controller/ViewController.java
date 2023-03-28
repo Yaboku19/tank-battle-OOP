@@ -23,7 +23,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 
-
+/**
+ * javadock.
+ */
 public class ViewController implements View {
 
     private GameEngine controller;
@@ -40,66 +42,66 @@ public class ViewController implements View {
     private String winner;
 
     @Override
-    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
+    public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
+            final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank) {
         Platform.runLater(() -> {
             gameController.clear();
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderFirstTank(firstTank);
             gameController.renderSecondTank(secondTank);
             gameController.renderWall(wall.collect(Collectors.toSet()));
-            gameController.updateLifeLabel(50, 70);            
+            gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);
         });
     }
 
     @Override
-    public void setController(GameEngine controller) {
+    public void setController(final GameEngine controller) {
         this.controller = controller;
     }
 
-    
     @Override
-    public void viewUpdateP1(int speed, int damage, int life, String resource){
+    public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP1(speed, damage, life, resource);
     }
 
     @Override
-    public void viewUpdateP2(int speed, int damage, int life, String resource){
+    public void viewUpdateP2(final int speed, final int damage, final int life, final String resource){
         settingsController.updateP2(speed, damage, life, resource);
     }
 
     @Override
-    public void viewUpdateMap(String resource){
+    public void viewUpdateMap(final String resource) {
         settingsController.updateMap(resource);
     }
 
     @Override
-    public void updateTankPlayer1(NextAndPrevious delta){
+    public void updateTankPlayer1(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
 
     @Override
-    public void updateTankPlayer2(NextAndPrevious delta){
+    public void updateTankPlayer2(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
 
     @Override
-    public void updateMap(NextAndPrevious delta){
+    public void updateMap(final NextAndPrevious delta) {
         controller.updateMap(delta);
     }
 
     @Override
-    public void setResource(String tank1Resource, String tank2Resource, String mapResource) {
-        mainViewController.setResource("blue" + tank1Resource,"green" + tank2Resource, mapResource);
-
+    public void setResource(final String tank1Resource, final String tank2Resource,
+            final String mapResource) {
+        mainViewController.setResource("blue" + tank1Resource, "green" + tank2Resource, mapResource);
     }
 
     @Override
-    public void start(Stage stage) {
-        try{
+    public void start(final Stage stage) {
+        try {
             Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
             stage.getIcons().add(icon);
 
-        } catch(NullPointerException e){
+        } catch(NullPointerException e) {
             e.printStackTrace();
         }
         this.stage = stage;
@@ -123,7 +125,7 @@ public class ViewController implements View {
                 Platform.exit();
                 System.exit(0);
             });
-            stage.show();            
+            stage.show();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -135,15 +137,15 @@ public class ViewController implements View {
             System.out.println(controller);
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
             Scene gameOver = new Scene(fxmlLoader.load());
-            gameOverController = (GameOverController)fxmlLoader.getController();
+            gameOverController = (GameOverController) fxmlLoader.getController();
             gameOverController.setMenuScene(mainViewScene);
             gameOverController.setViewController(this);
             gameOverController.setGameScene(gameScene);
             gameOverController.setWinLabel(winner);
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 stage.setScene(gameOver);
             });
-        }catch(Exception e){
+        } catch(Exception e) {
             System.out.println(e.toString());
         }
     }
