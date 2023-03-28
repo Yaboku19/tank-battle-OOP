@@ -2,7 +2,6 @@ package it.unibo.tankBattle.model.gameObject.api.object;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;

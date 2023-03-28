@@ -1,11 +1,8 @@
 package it.unibo.tankBattle.model.gameObject.impl.object;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;

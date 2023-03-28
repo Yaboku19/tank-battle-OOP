@@ -46,7 +46,10 @@ public class P2d {
     public double getY() {
         return this.y;
     }
-
+    /**
+     * javadoc.
+     * @return return
+     */
     public double getMagnitude() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
