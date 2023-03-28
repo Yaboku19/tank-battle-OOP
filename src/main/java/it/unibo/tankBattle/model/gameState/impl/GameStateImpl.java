@@ -9,6 +9,7 @@ import it.unibo.tankBattle.controller.api.WorldEventListener;
 import it.unibo.tankBattle.model.collision.api.CollisionManager;
 import it.unibo.tankBattle.model.collision.impl.CollisionDetectorImpl;
 import it.unibo.tankBattle.model.collision.impl.CollisionManagerImpl;
+import it.unibo.tankBattle.model.gameObject.api.component.Damageable;
 import it.unibo.tankBattle.model.gameObject.api.component.Health;
 import it.unibo.tankBattle.model.gameObject.api.component.Tank;
 import it.unibo.tankBattle.model.gameObject.api.object.*;
@@ -20,7 +21,8 @@ import it.unibo.tankBattle.model.gameState.api.*;
 import it.unibo.tankBattle.model.world.api.*;
 import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
 
-public class GameStateImpl implements GameState{
+public class GameStateImpl implements GameState {
+    
     private final FactoryWorld factoryWorld;
     private World world = null;
     private final WorldEventListener listener;
@@ -113,5 +115,13 @@ public class GameStateImpl implements GameState{
     @Override
     public Transform getTankTrasform(Player player) {
         return getTankFromPlayer(player).getTransform();
+    }
+
+    @Override
+    public int getTankLife(Player player) {
+        return this.getTankFromPlayer(player)
+                .getComponent(Damageable.class)
+                .get()
+                .getLifePoints();
     }
 }

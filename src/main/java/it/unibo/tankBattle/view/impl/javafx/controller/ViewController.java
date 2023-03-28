@@ -40,14 +40,14 @@ public class ViewController implements View {
     private String winner;
 
     @Override
-    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
+    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet, int lifeFirstTank, int lifeSecondTank){
         Platform.runLater(() -> {
             gameController.clear();
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderFirstTank(firstTank);
             gameController.renderSecondTank(secondTank);
             gameController.renderWall(wall.collect(Collectors.toSet()));
-            gameController.updateLifeLabel(50, 70);            
+            gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);            
         });
     }
 

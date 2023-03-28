@@ -15,7 +15,7 @@ public interface View {
 
     public void gameOver();
 
-    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet);
+    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank);
 
     public void setController(GameEngine controller);  
 
