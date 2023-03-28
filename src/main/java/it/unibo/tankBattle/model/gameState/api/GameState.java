@@ -17,4 +17,6 @@ public interface GameState extends CommandListener{
     public Stream<Transform> getWallsTrasform();
 
     public Transform getTankTrasform(final Player player);
+
+    public int getTankLife(final Player player);
 }
