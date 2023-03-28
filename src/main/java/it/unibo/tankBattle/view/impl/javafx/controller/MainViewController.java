@@ -16,8 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-public class MainViewController implements Runnable{
+/**
+ * javadock.
+ */
+public class MainViewController {
 
     private GameController gameController;
     private SettingsController settingsController;
@@ -33,7 +35,7 @@ public class MainViewController implements Runnable{
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
     private boolean isDiagonalResize = false;
-    
+
     @FXML
     private ResourceBundle resources;
 
@@ -58,10 +60,10 @@ public class MainViewController implements Runnable{
     }
 
     @FXML
-    void play(ActionEvent event) {
+    void play(final ActionEvent event) {
         node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
-        try{
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             viewController.setViewResources();
             gameController = new GameController(tank1Resource, tank2Resource, mapResource);
@@ -74,20 +76,20 @@ public class MainViewController implements Runnable{
             this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
     @FXML
-    void settings(ActionEvent event) {
+    void settings(final ActionEvent event) {
         try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
             Scene settings = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            settingsController = (SettingsController)fxmlLoader.getController();
+            settingsController = (SettingsController) fxmlLoader.getController();
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
             settingsController.setPreviousScene(stage.getScene());
@@ -96,55 +98,62 @@ public class MainViewController implements Runnable{
             viewController.updateMap(NextAndPrevious.NONE);
             stage.setResizable(false);
             stage.setScene(settings);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
     @FXML
-    void tutorial(ActionEvent event) {
+    void tutorial(final ActionEvent event) {
         try {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
             Scene tutorial = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            TutorialController tutorialController = (TutorialController)fxmlLoader.getController();
+            TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
             tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
-
-    public void setViewController(View viewController){
+    /**
+     * javadock.
+     * @param viewController param
+     */
+    public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
-
-    public void setResource(String tank1Resource, String tank2Resource, String mapResource){
+    /**
+     * javadock.
+     * @param tank1Resource param
+     * @param tank2Resource param
+     * @param mapResource param
+     */
+    public void setResource(final String tank1Resource, final String tank2Resource, final String mapResource) {
         this.tank1Resource = tank1Resource;
         this.tank2Resource = tank2Resource;
         this.mapResource = mapResource;
     }
 
-    private void addKeyListener(){
+    private void addKeyListener() {
         EventHandler<KeyEvent> keyPressListener = e -> {
             viewController.addCommand(e);
         };
-    
+
         EventHandler<KeyEvent> keyReleasedListener = e -> {
             viewController.addCommand(e);
-        
         };
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
     }
 
     private void setDiagonalResize() {
-        if(!isDiagonalResize) {
+        if (!isDiagonalResize) {
             isDiagonalResize = true;
             widthChangeListener = (observable, oldValue, newValue) -> {
-                stage.setHeight(newValue.doubleValue() * 2.0/ 3.0);
+                stage.setHeight(newValue.doubleValue() * 2.0 / 3.0);
             };
             heightChangeListener = (observable, oldValue, newValue) -> {
                 stage.setWidth(newValue.doubleValue() * 3.0 / 2.0);
@@ -152,9 +161,5 @@ public class MainViewController implements Runnable{
             stage.widthProperty().addListener(widthChangeListener);
             stage.heightProperty().addListener(heightChangeListener);
         }
-    }
-
-    @Override
-    public void run() {
     }
 }

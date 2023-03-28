@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+/**
+ * javadock.
+ */
 public class TutorialController {
 
     private Scene prevScene;
@@ -15,13 +17,16 @@ public class TutorialController {
     private Button backButton;
 
     @FXML
-    private void back(ActionEvent event) {
-            Node node = (Node)event.getSource();
+    private void back(final ActionEvent event) {
+            Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(prevScene);
     }
-
-    public void setPreviousScene (Scene prevScene){
+    /**
+     * javadock.
+     * @param prevScene param
+     */
+    public void setPreviousScene(final Scene prevScene) {
         this.prevScene = prevScene;
     }
 
