@@ -2,11 +2,18 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.GameController">
    <children>
-      <Label fx:id="firstTankLife" layoutX="433.0" layoutY="241.0" prefHeight="30.0" prefWidth="39.0" text="/100" />
-      <Label fx:id="secondTankLife" layoutX="159.0" layoutY="241.0" prefHeight="30.0" prefWidth="39.0" text="/100" />
+      <Label fx:id="secondTankLife" layoutX="14.0" layoutY="355.0" prefHeight="31.0" prefWidth="50.0" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Label fx:id="firstTankLife" layoutX="536.0" layoutY="355.0" prefHeight="31.0" prefWidth="50.0" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
