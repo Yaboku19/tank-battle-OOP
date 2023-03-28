@@ -72,11 +72,11 @@ public class GameOverController {
         this.gameScene = gameScene;
     }
 
-    public void setMenuScene(Scene mainManuScene) {
+    public void setMenuScene(final Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
 
-    public void setWinLabel(String playerCode) {
+    public void setWinLabel(final String playerCode) {
         winLabel.setText("Player " + playerCode + " wins");
     }
 }
