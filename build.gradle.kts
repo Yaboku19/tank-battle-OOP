@@ -24,7 +24,8 @@ val javaFXModules = listOf(
     "controls",
     "fxml",
     "swing",
-    "graphics"
+    "graphics",
+    "media"
 )
 
 val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
@@ -38,6 +39,7 @@ dependencies {
 
     // JavaFX: comment out if you do not need them
     val javaFxVersion = 19
+
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
@@ -52,6 +54,7 @@ dependencies {
     //READ and WRITE XML file
     implementation ("javax.xml.bind:jaxb-api:2.3.1")
     implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
+    //implementation ("org.openjfx:javafx-media:17")
     /*annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
 	testAnnotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")*/
 }
