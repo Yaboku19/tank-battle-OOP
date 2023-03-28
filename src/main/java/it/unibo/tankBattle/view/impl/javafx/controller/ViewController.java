@@ -23,7 +23,7 @@ import javafx.stage.Screen;
 /**
  * javadock.
  */
-public class ViewController implements View {
+public final class ViewController implements View {
 
     private GameEngine controller;
     private GameController gameController;
