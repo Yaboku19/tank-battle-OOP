@@ -13,14 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainViewController {
+public class MainViewController implements Runnable{
 
     private GameController gameController;
     private SettingsController settingsController;
@@ -155,5 +152,9 @@ public class MainViewController {
             stage.widthProperty().addListener(widthChangeListener);
             stage.heightProperty().addListener(heightChangeListener);
         }
+    }
+
+    @Override
+    public void run() {
     }
 }

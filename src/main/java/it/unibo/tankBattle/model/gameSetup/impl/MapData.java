@@ -23,14 +23,15 @@ import javax.xml.bind.annotation.XmlAccessType;
 @XmlAccessorType (XmlAccessType.FIELD)
 public class MapData implements Data{
 
-    private static final int ROW = 9;
-    private static final int COLUMN = 14;
-
     @XmlAttribute
     private String name;
     @XmlElement(name = "position")
     private List<Position> position = new ArrayList<>();
-    @XmlElement
+    @XmlElement(name = "row")
+    private int row;
+    @XmlElement(name = "column")
+    private int column;
+    @XmlElement(name = "resource")
     private String resource;
 
     /**
@@ -76,13 +77,13 @@ public class MapData implements Data{
     }
 
     private Set<P2d> addBorder(final Set<P2d> wall) {
-        for(int i = 0; i <= ROW; i++) {
+        for(int i = 0; i <= row; i++) {
             wall.add(new P2d(0, i));
-            wall.add(new P2d(COLUMN, i));
+            wall.add(new P2d(column, i));
         }
-        for(int i = 1; i < COLUMN; i++) {
+        for(int i = 1; i < column; i++) {
             wall.add(new P2d(i, 0));
-            wall.add(new P2d(i, ROW));
+            wall.add(new P2d(i, row));
         }
         return wall;
     }

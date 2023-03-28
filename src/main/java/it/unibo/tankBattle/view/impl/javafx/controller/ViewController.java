@@ -183,18 +183,22 @@ public class ViewController implements View {
             if(!lastCommandFirstPlayer.equals(event)) {
                     switch(e.getCode()){
                         case RIGHT:
+                            System.out.println("RIGHT__");
                             controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case LEFT:
+                            System.out.println("LEFT__");
                             controller.notifyCommand(new Movement(Direction.LEFT, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case UP:
+                            System.out.println("UP__");
                             controller.notifyCommand(new Movement(Direction.UP, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case DOWN:
+                            System.out.println("DOWN__");
                             controller.notifyCommand(new Movement(Direction.DOWN, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;

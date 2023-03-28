@@ -16,6 +16,8 @@
             <y>5</y>
             <type>wall</type>
         </position>
+        <row>9</row>
+        <column>14</column>
         <resource>map1.png</resource>
     </map>
     <map name="PIPPOMAP">
@@ -29,6 +31,8 @@
             <y>1</y>
             <type>tank2</type>
         </position>
+        <row>20</row>
+        <column>25</column>
         <resource>map2.png</resource>
     </map>
     <map name="PLUTOMAP">
@@ -42,6 +46,8 @@
             <y>5</y>
             <type>tank2</type>
         </position>
+        <row>11</row>
+        <column>17</column>
         <resource>map3.png</resource>
     </map>
 </mapList>
