@@ -7,12 +7,12 @@ import it.unibo.tankBattle.model.gameSetup.impl.TankData;
 public class HumanPlayer implements Player {
     
     private int score;
-    private final int code;
+    private final String name;
     private final TankData tankData;
 
-    HumanPlayer(int code, TankData tankData) {
+    HumanPlayer(String name, TankData tankData) {
         this.score = 0;
-        this.code = code;
+        this.name = name;
         this.tankData = tankData;
     }
 
@@ -27,8 +27,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int getCode() {
-        return code;
+    public String getCode() {
+        return name;
     }
 
     @Override

@@ -8,7 +8,7 @@ public interface Player {
 
     public void incScore();
 
-    public int getCode();
+    public String getCode();
 
     public TankData getTankData();
 }

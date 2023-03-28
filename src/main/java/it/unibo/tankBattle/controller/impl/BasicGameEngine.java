@@ -1,8 +1,10 @@
 package it.unibo.tankBattle.controller.impl;
 
-import java.net.URISyntaxException;
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import javax.xml.bind.JAXBException;
 
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.input.api.Command;
@@ -10,6 +12,8 @@ import it.unibo.tankBattle.controller.api.GameEngine;
 import it.unibo.tankBattle.controller.api.ObjectsManager;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.controller.api.WorldEventListener;
+import it.unibo.tankBattle.model.gameSetup.api.Data;
+import it.unibo.tankBattle.model.gameSetup.api.DataList;
 import it.unibo.tankBattle.model.gameSetup.impl.MapData;
 import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
 import it.unibo.tankBattle.model.gameSetup.impl.TankData;
@@ -30,27 +34,37 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
-    private final FactoryObjectManager factoryObjectsManager;
 
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
         this.view = view;
         view.setController(this);
         model = new GameStateImpl(this);
-        factoryObjectsManager = new FactoryObjectManager();
         try {
-            tankFirstManager = factoryObjectsManager.tankManager();
-            tankSecondManager = factoryObjectsManager.tankManager();
-            mapManager = factoryObjectsManager.MapManager();
-        } catch (URISyntaxException e) {
+            tankFirstManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+                , TankDataList.class);
+            tankSecondManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
+                , TankDataList.class);
+            mapManager = generateObjectManager(
+                ClassLoader.getSystemResource("config/mapConfig.xml").toURI()
+                , MapDataList.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private <T extends Data, C extends DataList<T>> ObjectsManager<T, C> generateObjectManager(
+            URI path
+            , Class<C> clas) throws JAXBException {
+        return new ObjectsManagerImpl<T, C>(path, clas);
+    }
+
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer(1, tankFirstManager.getActual());
-        secondPlayer = new HumanPlayer(2, tankSecondManager.getActual());
+        firstPlayer = new HumanPlayer("ema", tankFirstManager.getActual());
+        secondPlayer = new HumanPlayer("ricky", tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer
             , mapManager.getActual());
         System.out.println("start game");
@@ -111,7 +125,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void endGame(final Player player) {
         player.incScore();
-        view.setWinner(Integer.toString(player.getCode()));
+        view.setWinner(player.getCode());
         this.isOver = true;
     }
 
@@ -157,11 +171,14 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void setViewResources() {
-        view.setTanksResource(tankFirstManager.getActual().getResource(), tankSecondManager.getActual().getResource());
+        view.setResource(tankFirstManager.getActual().getResource(),
+                tankSecondManager.getActual().getResource(),
+                mapManager.getActual().getResource());
     }
 
     @Override
     public void restart() {
+        thread.interrupt();
         thread = new Thread(this);
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
@@ -169,6 +186,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void newStart() {
+        thread.interrupt();
         thread = new Thread(this);
     }
 
