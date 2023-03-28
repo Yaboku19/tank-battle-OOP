@@ -67,7 +67,6 @@ public class GameController {
 
     @FXML
     void initialize() {
-        //Image tank = new Image("/images/tank.gif");
         bulletImage = new Image("/images/cannonBall1.png");
         wallImage = new Image("/images/box.png");
         mainPane.setBackground(new Background(new BackgroundImage(backImage, 
@@ -183,6 +182,8 @@ public class GameController {
     public void updateLifeLabel(int firstTank, int secondTank){
         firstTankLife.setText(Integer.toString(firstTank));
         secondTankLife.setText(Integer.toString(secondTank));
+        mainPane.getChildren().add(firstTankLife);
+        mainPane.getChildren().add(secondTankLife);
     }
 
     private double getRotation(Direction dir) {

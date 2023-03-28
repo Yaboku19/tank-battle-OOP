@@ -114,7 +114,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     private void render() {
         view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), 
-                model.getWallsTrasform(), model.getBulletsTrasform());
+                model.getWallsTrasform(), model.getBulletsTrasform(), 50 , 30);
     }
 
     @Override
