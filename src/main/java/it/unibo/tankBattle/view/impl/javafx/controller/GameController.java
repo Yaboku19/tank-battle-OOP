@@ -4,9 +4,10 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,13 +20,15 @@ import javafx.scene.layout.BackgroundSize;
 
 public class GameController {
 
-    //private Scene scene;
     private Image bulletImage;
     private Image wallImage;
     private Set<ImageView> wallSet = new HashSet<>();
     private double standardHeight = 1;
     private double standardWidth = 1;
     private boolean isProportionSet = false;
+    private Set<Transform> activeBullet;
+    private Image shotSprite;
+    private Set<ImageView> spriteSet = new HashSet<>();
 
     private static final double RIGHT_ANGLE = 90;
     private static final double STRAIGHT_ANGLE = 180;    
@@ -64,6 +67,8 @@ public class GameController {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
         backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
+        shotSprite = new Image((ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm()));
+        this.activeBullet = new HashSet<>();
     }
 
     public void clear() {
@@ -75,7 +80,7 @@ public class GameController {
         player1.setY(t.getUpperLeftPosition().getY()*getHeight());
         player1.setFitWidth(t.getWidth()*getWidth());
         player1.setFitHeight(t.getLength()*getHeight());
-        player1.setRotate(getRotation(t.getDirection())); 
+        player1.setRotate(getRotation(t.getDirection()));
         mainPane.getChildren().add(player1);
     }
 
@@ -98,6 +103,30 @@ public class GameController {
             bullet.setRotate(getRotation(b.getDirection()));
             mainPane.getChildren().add(bullet);
         }
+        var newBullets = findNewBullet(bullets);
+        //if(newBullets.size>0)
+        newBullets.forEach(pos -> renderBulletSprite(pos));
+        findExplodeBullet(bullets).forEach(pos -> renderBulletSprite(pos));
+        mainPane.getChildren().addAll(spriteSet);
+        this.activeBullet = bullets;
+    }
+
+    private Set<Transform> findNewBullet(Set<Transform> bullets) {
+        Set<Double> activeBulletX = activeBullet.stream().map(pos -> pos.getUpperLeftPosition().getX()).collect(Collectors.toSet());
+        Set<Double> activeBulletY = activeBullet.stream().map(pos -> pos.getUpperLeftPosition().getY()).collect(Collectors.toSet());
+        return bullets.stream()
+                .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
+                .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
+                .collect(Collectors.toSet());
+    }
+
+    private Set<Transform> findExplodeBullet(Set<Transform> bullets) {
+        Set<Double> activeBulletX = bullets.stream().map(pos -> pos.getUpperLeftPosition().getX()).collect(Collectors.toSet());
+        Set<Double> activeBulletY = bullets.stream().map(pos -> pos.getUpperLeftPosition().getY()).collect(Collectors.toSet());
+        return activeBullet.stream()
+                .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
+                .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
+                .collect(Collectors.toSet());
     }
 
     public void renderWall(Set<Transform> walls) {
@@ -144,5 +173,36 @@ public class GameController {
             this.standardWidth = maxX + walls.iterator().next().getWidth();
             this.standardHeight = maxY + walls.iterator().next().getLength();
         }
+    }
+
+    public void renderBulletSprite(Transform shotPoint) {
+        final AnimationTimer animation = new AnimationTimer() {
+
+            private ImageView spriteImage;
+            private long startTime;
+
+            @Override
+            public void start() {
+                super.start();
+                startTime = System.nanoTime();
+                spriteImage = new ImageView(shotSprite);
+                spriteImage.setX((shotPoint.getPosition().getX()-shotPoint.getWidth())*getWidth());
+                spriteImage.setY((shotPoint.getPosition().getY()-shotPoint.getLength())*getHeight());
+                spriteImage.setFitWidth(getWidth()*shotPoint.getWidth()*2);
+                spriteImage.setFitHeight(getHeight()*shotPoint.getLength()*2);
+                spriteImage.setRotate(getRotation(shotPoint.getDirection()));
+                spriteSet.add(spriteImage);
+            }
+
+            @Override
+            public void handle(long now) {
+                long elapsedTime = now - startTime;
+                if(elapsedTime > 400_000_000) {
+                    spriteSet.remove(spriteImage);
+                    this.stop();
+                }
+            }
+        };
+        animation.start();
     }
 }

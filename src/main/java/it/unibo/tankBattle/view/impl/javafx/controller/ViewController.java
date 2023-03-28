@@ -44,9 +44,9 @@ public class ViewController implements View {
     public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet){
         Platform.runLater(() -> {
             gameController.clear();
+            gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderFirstTank(firstTank);
             gameController.renderSecondTank(secondTank);
-            gameController.renderBullet(bullet.collect(Collectors.toSet()));
             gameController.renderWall(wall.collect(Collectors.toSet()));
             //System.out.println(stage.getWidth()+ " "+ stage.getHeight());
             //System.out.println(gameScene.getWidth()+ " "+ gameScene.getHeight());
