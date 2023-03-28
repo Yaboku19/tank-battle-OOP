@@ -29,6 +29,10 @@ public class P2d {
         return this.y;
     }
 
+    public double getMagnitude() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
     public String toString() {
         return "P2d("+x+","+y+")";
     }
@@ -47,6 +51,4 @@ public class P2d {
             return false;
         return true;
     }
-
-
 }
