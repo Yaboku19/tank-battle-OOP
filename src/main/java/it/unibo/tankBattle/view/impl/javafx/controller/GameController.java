@@ -96,6 +96,8 @@ public class GameController {
         player1.setFitHeight(t.getLength()*getHeight());
         player1.setRotate(getRotation(t.getDirection()));
         mainPane.getChildren().add(player1);
+        firstTankLife.setTranslateX(getWidth());
+        firstTankLife.setTranslateY(getHeight());
     }
 
     public void renderSecondTank(Transform t) {
@@ -144,6 +146,7 @@ public class GameController {
         } catch (URISyntaxException e1) {
             e1.printStackTrace();
         }
+        
     }
 
     private Set<Transform> findNewBullet(Set<Transform> bullets) {
