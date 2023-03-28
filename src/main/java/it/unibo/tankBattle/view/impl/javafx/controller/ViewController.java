@@ -10,9 +10,7 @@ import it.unibo.tankBattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 import it.unibo.tankBattle.common.input.api.Direction;
@@ -24,8 +22,6 @@ import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 
 public class ViewController implements View {
@@ -52,8 +48,6 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderWall(wall.collect(Collectors.toSet()));
             gameController.updateLifeLabel(50, 70);            
-            //System.out.println(stage.getWidth()+ " "+ stage.getHeight());
-            //System.out.println(gameScene.getWidth()+ " "+ gameScene.getHeight());
         });
     }
 
@@ -184,12 +178,6 @@ public class ViewController implements View {
 
     @Override
     public void addCommand(KeyEvent e) {
-        Media sound = null;
-        try {
-            sound = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
-        } catch (URISyntaxException e1) {
-            e1.printStackTrace();
-        }
         if(e.getEventType() == KeyEvent.KEY_PRESSED){
             String event = e.getCode().toString() + e.getEventType().toString();
             if(!lastCommandFirstPlayer.equals(event)) {
@@ -211,8 +199,6 @@ public class ViewController implements View {
                             lastCommandFirstPlayer = event;
                             break;
                         case SPACE:
-                            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                            mediaPlayer.play();
                             controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
                             break;
                         default:

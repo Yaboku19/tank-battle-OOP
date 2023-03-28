@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.view.impl.javafx.controller;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -8,8 +9,8 @@ import java.util.stream.Collectors;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import javafx.animation.AnimationTimer;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,9 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameController {
 
@@ -31,6 +35,8 @@ public class GameController {
     private Set<Transform> activeBullet;
     private Image shotSprite;
     private Set<ImageView> spriteSet = new HashSet<>();
+    private MediaPlayer mediaPlayer;
+    private Media shoot;
 
     private static final double RIGHT_ANGLE = 90;
     private static final double STRAIGHT_ANGLE = 180;    
@@ -77,6 +83,7 @@ public class GameController {
         backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
         shotSprite = new Image((ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm()));
         this.activeBullet = new HashSet<>();
+        loadAudioResource();
     }
 
     public void clear() {
@@ -112,11 +119,32 @@ public class GameController {
             mainPane.getChildren().add(bullet);
         }
         var newBullets = findNewBullet(bullets);
-        //if(newBullets.size>0)
+        if(newBullets.size() > 0) {
+            Task<Void> audioTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+
+                   mediaPlayer = new MediaPlayer(shoot);
+                   mediaPlayer.play();
+          
+                   return null;
+                }
+             };
+             new Thread(audioTask).start();
+        }
         newBullets.forEach(pos -> renderBulletSprite(pos));
         findExplodeBullet(bullets).forEach(pos -> renderBulletSprite(pos));
         mainPane.getChildren().addAll(spriteSet);
         this.activeBullet = bullets;
+    }
+
+    private void loadAudioResource() {
+        try {
+            shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
+            mediaPlayer = new MediaPlayer(shoot);
+        } catch (URISyntaxException e1) {
+            e1.printStackTrace();
+        }
     }
 
     private Set<Transform> findNewBullet(Set<Transform> bullets) {
@@ -218,4 +246,9 @@ public class GameController {
         };
         animation.start();
     }
+
+    /*@Override
+    public void run() {
+        mediaPlayer.play();
+    }*/
 }
