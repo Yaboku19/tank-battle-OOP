@@ -1,5 +1,6 @@
 package it.unibo.tankBattle.model.gameObject.api.object;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public interface GameObject {
      * javadoc.
      * @return return
      */
-    Set<Component> getComponents();
+    List<Component> getComponents();
     /**
      * javadoc.
      * @param <T> param
@@ -39,6 +40,9 @@ public interface GameObject {
      * @return return
      */
     Transform getTransform();
+
+
+
 
     //public void setTransform(Transform transform);
     /**

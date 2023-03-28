@@ -1,6 +1,8 @@
 package it.unibo.tankBattle.model.gameObject.impl.object;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class BasicGameObject implements GameObject {
     private Direction direction;
     private final double length;
     private final double width;
-    private Set<Component> components = new HashSet<>();
+    private List<Component> components = new LinkedList<>();
 
     /**
      * javadoc.
@@ -48,8 +50,8 @@ public class BasicGameObject implements GameObject {
     * {@inheritDoc}
     */
     @Override
-    public Set<Component> getComponents() {
-        return this.components;
+    public List<Component> getComponents() {
+        return this.components;    
     }
     /**
     * {@inheritDoc}

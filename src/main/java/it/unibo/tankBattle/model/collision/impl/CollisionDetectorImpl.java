@@ -24,10 +24,10 @@ public class CollisionDetectorImpl implements CollisionDetector {
     }
 
     private boolean containsCorner(final Transform transform, final P2d corner) {
-        return corner.getX() > transform.getPosition().getX() - transform.getLength() / 2
-            && corner.getX() < transform.getPosition().getX() + transform.getLength() / 2
-            && corner.getY() > transform.getPosition().getY() - transform.getWidth() / 2
-            && corner.getY() < transform.getPosition().getY() + transform.getWidth() / 2;
+        return corner.getX() >= transform.getPosition().getX() - transform.getLength() / 2
+            && corner.getX() <= transform.getPosition().getX() + transform.getLength() / 2
+            && corner.getY() >= transform.getPosition().getY() - transform.getWidth() / 2
+            && corner.getY() <= transform.getPosition().getY() + transform.getWidth() / 2;
     }
 
     private Stream<P2d> corners(final Transform transform) {
