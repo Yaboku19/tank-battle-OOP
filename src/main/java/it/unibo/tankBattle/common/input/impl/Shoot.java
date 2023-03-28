@@ -4,22 +4,25 @@ import it.unibo.tankBattle.common.input.api.Command;
 import it.unibo.tankBattle.controller.api.Player;
 import it.unibo.tankBattle.model.gameState.api.CommandListener;
 /**
- * That class manage shoot of the player
+ * That class manage shoot of the player.
  */
-public class Shoot implements Command{
+public class Shoot implements Command {
 
     private Player player;
-
-    public Shoot(final Player player){//, final GameEngine controller){
+    /**
+     * javadoc.
+     * @param player player
+     */
+    public Shoot(final Player player) {
         this.player = player;
-        //this.controller = controller;
     }
-
-    
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void execute(CommandListener model) {
+    public void execute(final CommandListener model) {
         model.shot(player);
         System.out.println(player.getCode());
     }
-    
+
 }

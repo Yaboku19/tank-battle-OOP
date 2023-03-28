@@ -8,28 +8,37 @@ import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.component.ObservableCollidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-
+/**
+ * javadoc.
+ */
 public class CollisionComponent extends AbstractComponent implements Collidable, ObservableCollidable  {
 
     private final List<CollisionListener> listeners = new LinkedList<>();
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void update(double time) {
+    public void update(final double time) {
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void addListener(CollisionListener listener) {
+    public void addListener(final CollisionListener listener) {
         this.listeners.add(listener);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void removeListener(CollisionListener listener) {
+    public void removeListener(final CollisionListener listener) {
         this.listeners.remove(listener);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void resolveCollision(GameObject collidingObject) {
+    public void resolveCollision(final GameObject collidingObject) {
         this.listeners.forEach(listener -> listener.handleCollision(getGameObject(), collidingObject));
     }
-    
 }

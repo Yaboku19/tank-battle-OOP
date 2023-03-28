@@ -1,24 +1,26 @@
 package it.unibo.tankBattle.model.gameObject.api.component;
 
 import it.unibo.tankBattle.common.input.api.Direction;
-
+/**
+ * javadoc.
+ */
 public interface Movable extends Component {
 
     /**
-     * 
+     * javadoc.
      * @return the component speed
      */
-    public double getSpeed();
+    double getSpeed();
 
     /**
-     * 
+     * javadoc.
      * @return the direction where the object has to move, {@value}Directions.NONE if is not moving
      */
-    public Direction getMovingDirection();
+    Direction getMovingDirection();
 
     /**
-     * 
+     * javadoc.
      * @param dir the next direction
      */
-    public void setMovingDirection(final Direction dir);
+    void setMovingDirection(Direction dir);
 }

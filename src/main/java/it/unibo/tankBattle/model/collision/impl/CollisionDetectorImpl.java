@@ -5,27 +5,32 @@ import java.util.stream.Stream;
 import it.unibo.tankBattle.common.P2d;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
-
+/**
+ * javadoc.
+ */
 public class CollisionDetectorImpl implements CollisionDetector {
-
-    public boolean detect(Collidable object1, Collidable object2) {
+    /**
+    * {@inheritDoc}
+    */
+    @Override
+    public boolean detect(final Collidable object1, final Collidable object2) {
         Transform transform1 = object1.getGameObject().getTransform();
         Transform transform2 = object2.getGameObject().getTransform();
         return containsAnyCorner(transform1, transform2) || containsAnyCorner(transform2, transform1);
     }
 
-    private boolean containsAnyCorner(Transform transform1, Transform transform2) {
+    private boolean containsAnyCorner(final Transform transform1, final Transform transform2) {
         return corners(transform2).anyMatch(corner -> containsCorner(transform1, corner));
     }
 
-    private boolean containsCorner(Transform transform, P2d corner) {
+    private boolean containsCorner(final Transform transform, final P2d corner) {
         return corner.getX() > transform.getPosition().getX() - transform.getLength() / 2
             && corner.getX() < transform.getPosition().getX() + transform.getLength() / 2
             && corner.getY() > transform.getPosition().getY() - transform.getWidth() / 2
             && corner.getY() < transform.getPosition().getY() + transform.getWidth() / 2;
     }
 
-    private Stream<P2d> corners(Transform transform) {
+    private Stream<P2d> corners(final Transform transform) {
         Stream<P2d> offsets = Stream.of(
             new P2d(transform.getLength() / 2, transform.getWidth() / 2),
             new P2d(-transform.getLength() / 2, transform.getWidth() / 2),
@@ -34,5 +39,4 @@ public class CollisionDetectorImpl implements CollisionDetector {
         );
         return offsets.map(transform.getPosition()::sum);
     }
-    
 }

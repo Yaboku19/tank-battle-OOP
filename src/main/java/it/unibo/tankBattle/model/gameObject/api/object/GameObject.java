@@ -8,7 +8,7 @@ import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.model.gameObject.api.component.Component;
 /**
- * javadoc
+ * javadoc.
  */
 public interface GameObject {
     /**

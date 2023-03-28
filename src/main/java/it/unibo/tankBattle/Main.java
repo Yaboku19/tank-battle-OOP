@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * 
  */
-public class Main extends Application{
+public class Main extends Application {
 
     private View viewController;
 
@@ -20,10 +20,11 @@ public class Main extends Application{
     public static void main(final String[] args) {
         launch(args);
     }
-
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void start(Stage stage){
+    public void start(final Stage stage) {
         viewController = new ViewController();
         viewController.start(stage);
     }

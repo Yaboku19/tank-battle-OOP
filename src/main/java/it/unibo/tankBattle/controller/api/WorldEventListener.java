@@ -1,5 +1,11 @@
 package it.unibo.tankBattle.controller.api;
-
+/**
+ * javadoc.
+ */
 public interface WorldEventListener {
-    public void endGame(Player player);
+    /**
+     * javadoc.
+     * @param player param
+     */
+    void endGame(Player player);
 }

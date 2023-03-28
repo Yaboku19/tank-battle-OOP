@@ -7,20 +7,28 @@ import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
 import it.unibo.tankBattle.model.gameObject.api.component.Movable;
 import it.unibo.tankBattle.model.gameObject.api.component.ObservableCollidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-
+/**
+ * javadoc.
+ */
 public class KnockBack extends AbstractComponent implements CollisionListener {
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void update(double time) {
+    public void update(final double time) {
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void gameObjectAttached(GameObject object) {
+    public void gameObjectAttached(final GameObject object) {
         requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void handleCollision(GameObject self, GameObject collidingObject) {
+    public void handleCollision(final GameObject self, final GameObject collidingObject) {
         final P2d newPosition = this.getGameObject().getTransform().getPosition().sum(getOffset(collidingObject));
         this.getGameObject().setPosition(newPosition);
     }

@@ -1,14 +1,27 @@
 package it.unibo.tankBattle.controller.api;
 
 import it.unibo.tankBattle.model.gameSetup.impl.TankData;
-
+/**
+ * javadoc.
+ */
 public interface Player {
-
-    public int getScore();
-
-    public void incScore();
-
-    public String getCode();
-
-    public TankData getTankData();
+    /**
+     * javadoc.
+     * @return return
+     */
+    int getScore();
+    /**
+     * javadoc.
+     */
+    void incScore();
+    /**
+     * javadoc.
+     * @return return
+     */
+    String getCode();
+    /**
+     * javadoc.
+     * @return return
+     */
+    TankData getTankData();
 }

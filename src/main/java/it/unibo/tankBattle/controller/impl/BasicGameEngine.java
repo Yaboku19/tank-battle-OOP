@@ -21,9 +21,11 @@ import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
 import it.unibo.tankBattle.model.gameState.api.GameState;
 import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
 import it.unibo.tankBattle.view.api.View;
-
+/**
+ * javadoc.
+ */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
-    private long period = 20;
+    private final long period = 20;
     private final View view;
     private final GameState model;
     private final Queue<Command> commandQueue = new LinkedList<>();
@@ -34,7 +36,10 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
-
+    /**
+     * javadoc.
+     * @param view
+     */
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
         this.view = view;
@@ -42,31 +47,28 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model = new GameStateImpl(this);
         try {
             tankFirstManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
-                , TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
             tankSecondManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI()
-                , TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
             mapManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/mapConfig.xml").toURI()
-                , MapDataList.class);
+                ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private <T extends Data, C extends DataList<T>> ObjectsManager<T, C> generateObjectManager(
-            URI path
-            , Class<C> clas) throws JAXBException {
+            final URI path, final Class<C> clas) throws JAXBException {
         return new ObjectsManagerImpl<T, C>(path, clas);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void startGame() {
         firstPlayer = new HumanPlayer("ema", tankFirstManager.getActual());
         secondPlayer = new HumanPlayer("ricky", tankSecondManager.getActual());
-        model.createWorld(firstPlayer, secondPlayer
-            , mapManager.getActual());
+        model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         System.out.println("start game");
         thread.start();
         //initGame();
@@ -78,104 +80,121 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private void loop() {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
-        while(!isOver) {
+        while (!isOver) {
             long currentCycleStartTime = System.currentTimeMillis();
-			long elapsed = currentCycleStartTime - previousCycleStartTime;
+            long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
             update(elapsed);
             render();
             waitForNextFrame(currentCycleStartTime);
-			previousCycleStartTime = currentCycleStartTime;
+            previousCycleStartTime = currentCycleStartTime;
         }
         view.gameOver();
     }
 
-    private void waitForNextFrame(long cycleStartTime){
-		long dt = System.currentTimeMillis() - cycleStartTime;
-		if (dt < period){
-			try {
-				Thread.sleep(period - dt);
-			} catch (Exception ex){
+    private void waitForNextFrame(final long cycleStartTime) {
+        long dt = System.currentTimeMillis() - cycleStartTime;
+        if (dt < period) {
+            try {
+                Thread.sleep(period - dt);
+            } catch (Exception ex) {
                 System.out.println(ex.toString());
             }
-		}
-	}
+        }
+    }
 
     private void processInput() {
-        if (commandQueue.size() > 0){
+        if (commandQueue.size() > 0) {
             var cmd = commandQueue.poll();
             cmd.execute(model);
         }
     }
 
-    private void update(double elapsed) {
+    private void update(final double elapsed) {
         model.update(elapsed);
     }
 
     private void render() {
         view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), 
-                model.getWallsTrasform(), model.getBulletsTrasform(), model.getTankLife(firstPlayer) , model.getTankLife(secondPlayer));
+            model.getWallsTrasform(), model.getBulletsTrasform(), model.getTankLife(firstPlayer),
+            model.getTankLife(secondPlayer));
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void notifyCommand(Command command) {
+    public void notifyCommand(final Command command) {
         commandQueue.add(command);
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void endGame(final Player player) {
         player.incScore();
         view.setWinner(player.getCode());
         this.isOver = true;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public Player getFirstPlayer() {
         return firstPlayer;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public Player getSecondPlayer() {
         return secondPlayer;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void run() {
         loop();
     }
-
-    /*public void setSettingsViewController(SettingsController settingsViewController){
-        this.settingsViewController = settingsViewController;
-    }*/
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void updateTankPlayer1(NextAndPrevious delta) {
+    public void updateTankPlayer1(final NextAndPrevious delta) {
         tankFirstManager.update(delta);
         var toReturn = tankFirstManager.getActual();
         view.viewUpdateP1(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void updateTankPlayer2(NextAndPrevious delta) {
+    public void updateTankPlayer2(final NextAndPrevious delta) {
         tankSecondManager.update(delta);
         var toReturn = tankSecondManager.getActual();
         view.viewUpdateP2(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void updateMap(NextAndPrevious delta) {
+    public void updateMap(final NextAndPrevious delta) {
         mapManager.update(delta);
         var toReturn = mapManager.getActual();
         view.viewUpdateMap(toReturn.getResource());
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void setViewResources() {
         view.setResource(tankFirstManager.getActual().getResource(),
                 tankSecondManager.getActual().getResource(),
                 mapManager.getActual().getResource());
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void restart() {
         thread.interrupt();
@@ -183,11 +202,12 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
     public void newStart() {
         thread.interrupt();
         thread = new Thread(this);
     }
-
 }

@@ -9,17 +9,24 @@ import it.unibo.tankBattle.common.Pair;
 import it.unibo.tankBattle.model.collision.api.CollisionManager;
 import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
 import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-
+/**
+ * javadoc.
+ */
 public class CollisionManagerImpl implements CollisionManager {
 
     private final CollisionDetector detector;
-
-    public CollisionManagerImpl(CollisionDetector detector) {
+    /**
+     * javadoc.
+     * @param detector param
+     */
+    public CollisionManagerImpl(final CollisionDetector detector) {
         this.detector = detector;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void manageCollisions(Stream<GameObject> objects) {
+    public void manageCollisions(final Stream<GameObject> objects) {
         Stream<Pair<Collidable, Collidable>> collidingObjects = findCollidingObjects(
             objects
                 .map(x -> x.getComponent(Collidable.class))
@@ -34,7 +41,7 @@ public class CollisionManagerImpl implements CollisionManager {
             });
     }
 
-    private Stream<Pair<Collidable, Collidable>> findCollidingObjects(Stream<Collidable> collidables) {
+    private Stream<Pair<Collidable, Collidable>> findCollidingObjects(final Stream<Collidable> collidables) {
         List<Collidable> collidablesList = collidables.toList();
         return IntStream
             .range(0, collidablesList.size())
@@ -44,5 +51,5 @@ public class CollisionManagerImpl implements CollisionManager {
                 .skip(index + 1)
                 .map(object -> new Pair<>(collidablesList.get(index), object)))
             .filter(pair -> this.detector.detect(pair.getX(), pair.getY()));
-    }  
+    }
 }
