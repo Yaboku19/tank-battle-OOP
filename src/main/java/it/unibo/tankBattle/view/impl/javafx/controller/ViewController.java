@@ -1,7 +1,6 @@
 package it.unibo.tankBattle.view.impl.javafx.controller;
 
 import java.util.stream.Stream;
-
 import it.unibo.tankBattle.common.NextAndPrevious;
 import it.unibo.tankBattle.common.Transform;
 import it.unibo.tankBattle.controller.api.GameEngine;
@@ -9,10 +8,8 @@ import it.unibo.tankBattle.controller.impl.BasicGameEngine;
 import it.unibo.tankBattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-
 import java.io.IOException;
 import java.util.stream.Collectors;
-
 import it.unibo.tankBattle.common.input.api.Direction;
 import it.unibo.tankBattle.common.input.impl.Movement;
 import it.unibo.tankBattle.common.input.impl.Shoot;
@@ -65,7 +62,7 @@ public class ViewController implements View {
     }
 
     @Override
-    public void viewUpdateP2(final int speed, final int damage, final int life, final String resource){
+    public void viewUpdateP2(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP2(speed, damage, life, resource);
     }
 
@@ -101,7 +98,7 @@ public class ViewController implements View {
             Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
             stage.getIcons().add(icon);
 
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         this.stage = stage;
@@ -145,7 +142,7 @@ public class ViewController implements View {
             Platform.runLater(() -> {
                 stage.setScene(gameOver);
             });
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
@@ -163,8 +160,8 @@ public class ViewController implements View {
     }
 
     private void setDimension() {
-        stage.setWidth(Screen.getPrimary().getBounds().getWidth()/2);
-        stage.setHeight(stage.getWidth()* 2.0 / 3.0 + 1.0);
+        stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
+        stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
 
     @Override
@@ -179,24 +176,28 @@ public class ViewController implements View {
     }
 
     @Override
-    public void addCommand(KeyEvent e) {
-        if(e.getEventType() == KeyEvent.KEY_PRESSED){
+    public void addCommand(final KeyEvent e) {
+        if (e.getEventType() == KeyEvent.KEY_PRESSED) {
             String event = e.getCode().toString() + e.getEventType().toString();
-            if(!lastCommandFirstPlayer.equals(event)) {
-                    switch(e.getCode()){
+            if (!lastCommandFirstPlayer.equals(event)) {
+                    switch (e.getCode()) {
                         case RIGHT:
+                            System.out.println("RIGHT__");
                             controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case LEFT:
+                            System.out.println("LEFT__");
                             controller.notifyCommand(new Movement(Direction.LEFT, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case UP:
+                            System.out.println("UP__");
                             controller.notifyCommand(new Movement(Direction.UP, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
                         case DOWN:
+                            System.out.println("DOWN__");
                             controller.notifyCommand(new Movement(Direction.DOWN, controller.getFirstPlayer()));
                             lastCommandFirstPlayer = event;
                             break;
@@ -206,9 +207,8 @@ public class ViewController implements View {
                         default:
                     }
                 }
-    
-                if(!lastCommandSecondPlayer.equals(event)){
-                    switch(e.getCode()){
+                if (!lastCommandSecondPlayer.equals(event)) {
+                    switch (e.getCode()) {
                         case D:
                             System.out.println(e.getCode());
                             controller.notifyCommand(new Movement(Direction.RIGHT, controller.getSecondPlayer()));
@@ -221,7 +221,7 @@ public class ViewController implements View {
                             break;
                         case W:
                             System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.UP,controller.getSecondPlayer()));
+                            controller.notifyCommand(new Movement(Direction.UP, controller.getSecondPlayer()));
                             lastCommandSecondPlayer = event;
                             break;
                         case S:
@@ -237,10 +237,10 @@ public class ViewController implements View {
                     }
                 }
         }
-        
-        if(e.getEventType() == KeyEvent.KEY_RELEASED){
+
+        if (e.getEventType() == KeyEvent.KEY_RELEASED) {
             String event = e.getCode().toString() + e.getEventType().toString();
-            switch(e.getCode()){
+            switch (e.getCode()) {
                 case RIGHT, LEFT, UP, DOWN:
                     System.out.println(e.getCode());
                     controller.notifyCommand(new Movement(Direction.NONE, controller.getFirstPlayer()));
@@ -257,22 +257,22 @@ public class ViewController implements View {
     }
 
     @Override
-    public void setGameController(GameController gameController){
+    public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
 
     @Override
-    public void setGameScene(Scene gameScene){
+    public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
 
     @Override
-    public void setSettingsController(SettingsController settingsController){
+    public void setSettingsController(final SettingsController settingsController) {
         this.settingsController = settingsController;
     }
 
     @Override
-    public void setWinner(String code) {
+    public void setWinner(final String code) {
         this.winner = code;
     }
 }

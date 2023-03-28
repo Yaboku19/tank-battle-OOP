@@ -12,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+/**
+ * javadock.
+ */
 public class GameOverController {
 
     private View viewController;
@@ -44,7 +46,7 @@ public class GameOverController {
     }
 
     @FXML
-    void mainMenu(ActionEvent event) {
+    void mainMenu(final ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         viewController.newStart();
@@ -52,31 +54,43 @@ public class GameOverController {
     }
 
     @FXML
-    void quit(ActionEvent event) {
+    void quit(final ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
-    void restart(ActionEvent event) {
-        Node node = (Node)event.getSource();
+    void restart(final ActionEvent event) {
+        Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         viewController.restart();
         stage.setScene(gameScene);
     }
-
-    public void setViewController(View viewController) {
+    /**
+     * javadock.
+     * @param viewController param
+     */
+    public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
-
-    public void setGameScene(Scene gameScene) {
+    /**
+     * javadock.
+     * @param gameScene param
+     */
+    public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
-
-    public void setMenuScene(Scene mainManuScene) {
+    /**
+     * javadock.
+     * @param mainManuScene param
+     */
+    public void setMenuScene(final Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
-
-    public void setWinLabel(String playerCode) {
+    /**
+     * javadock.
+     * @param playerCode param
+     */
+    public void setWinLabel(final String playerCode) {
         winLabel.setText("Player " + playerCode + " wins");
     }
 }

@@ -16,12 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-
-public class SettingsController implements Initializable{
+/**
+ * javadock.
+ */
+public class SettingsController implements Initializable {
 
     private Scene prevScene;
     private View viewController;
-    private final String PATH = "images" + "/";
+    private final String PATH = "images/";
 
     @FXML
     private ResourceBundle resources;
@@ -75,72 +77,92 @@ public class SettingsController implements Initializable{
     private Button prevTankPlayer2;
 
     @FXML
-    void nextTankPlayer1(ActionEvent event) {
+    void nextTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.NEXT);
     }
 
     @FXML
-    void prevTankPlayer1(ActionEvent event) {
+    void prevTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.PREVIOUS);
     }
 
     @FXML
-    void nextTankPlayer2(ActionEvent event) {
+    void nextTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.NEXT);
     }
 
     @FXML
-    void prevTankPlayer2(ActionEvent event) {
+    void prevTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.PREVIOUS);
     }
 
     @FXML
-    void nextMap(ActionEvent event) {
+    void nextMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.NEXT);
     }
 
     @FXML
-    void prevMap(ActionEvent event) {
+    void prevMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.PREVIOUS);
     }
 
     @FXML
-    void back(ActionEvent event) {
-        Node node = (Node)event.getSource();
+    void back(final ActionEvent event) {
+        Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setResizable(true);
         stage.setScene(prevScene);
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
 
     }
-
-    public void setViewController(View viewController){
+    /**
+     * javadock.
+     * @param viewController param
+     */
+    public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
-
-
-    public void setPreviousScene(Scene prevScene){
+    /**
+     * javadock.
+     * @param prevScene param
+     */
+    public void setPreviousScene(final Scene prevScene) {
         this.prevScene = prevScene;
     }
-
-    public void updateP1(int speed, int damage, int life, String resource){
+    /**
+     * javadock.
+     * @param speed param
+     * @param damage param
+     * @param life param
+     * @param resource param
+     */
+    public void updateP1(final int speed, final int damage, final int life, final String resource) {
         speedP1.setText(Integer.toString(speed));
         damageP1.setText(Integer.toString(damage));
         lifeP1.setText(Integer.toString(life));
         player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/blue" + resource).toExternalForm()));
     }
-
-    public void updateP2(int speed, int damage, int life, String resource){
+    /**
+     * javadock.
+     * @param speed param
+     * @param damage param
+     * @param life param
+     * @param resource param
+     */
+    public void updateP2(final int speed, final int damage, final int life, final String resource) {
         speedP2.setText(Integer.toString(speed));
         damageP2.setText(Integer.toString(damage));
         lifeP2.setText(Integer.toString(life));
         player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/green" + resource).toExternalForm()));
     }
-
-    public void updateMap(String resource){
+    /**
+     * javadock.
+     * @param resource param
+     */
+    public void updateMap(final String resource) {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));
     }
 
