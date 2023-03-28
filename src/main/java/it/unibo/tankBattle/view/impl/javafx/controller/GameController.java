@@ -148,8 +148,12 @@ public class GameController {
     }
 
     private Set<Transform> findNewBullet(Set<Transform> bullets) {
-        Set<Double> activeBulletX = activeBullet.stream().map(pos -> pos.getUpperLeftPosition().getX()).collect(Collectors.toSet());
-        Set<Double> activeBulletY = activeBullet.stream().map(pos -> pos.getUpperLeftPosition().getY()).collect(Collectors.toSet());
+        Set<Double> activeBulletX = new HashSet<>();
+        Set<Double> activeBulletY = new HashSet<>();
+        activeBullet.forEach(bull -> {
+            activeBulletX.add(bull.getUpperLeftPosition().getX());
+            activeBulletY.add(bull.getUpperLeftPosition().getY());
+        });
         return bullets.stream()
                 .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
                 .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
@@ -157,8 +161,12 @@ public class GameController {
     }
 
     private Set<Transform> findExplodeBullet(Set<Transform> bullets) {
-        Set<Double> activeBulletX = bullets.stream().map(pos -> pos.getUpperLeftPosition().getX()).collect(Collectors.toSet());
-        Set<Double> activeBulletY = bullets.stream().map(pos -> pos.getUpperLeftPosition().getY()).collect(Collectors.toSet());
+        Set<Double> activeBulletX = new HashSet<>();
+        Set<Double> activeBulletY = new HashSet<>();
+        bullets.forEach(bull -> {
+            activeBulletX.add(bull.getUpperLeftPosition().getX());
+            activeBulletY.add(bull.getUpperLeftPosition().getY());
+        });
         return activeBullet.stream()
                 .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
                 .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
