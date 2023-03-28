@@ -39,7 +39,8 @@ public class GameController {
     private Media shoot;
 
     private static final double RIGHT_ANGLE = 90;
-    private static final double STRAIGHT_ANGLE = 180;    
+    private static final double STRAIGHT_ANGLE = 180;
+    private static final long ANIMATION_TIME = 400_000_000;
 
     @FXML
     private ResourceBundle resources;
@@ -72,8 +73,6 @@ public class GameController {
         mainPane.setBackground(new Background(new BackgroundImage(backImage, 
             BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-        mainPane.getChildren().add(player1);
-        mainPane.getChildren().add(player2);
     }
 
     public GameController(String tank1, String tank2, String map) {
@@ -250,7 +249,7 @@ public class GameController {
             @Override
             public void handle(long now) {
                 long elapsedTime = now - startTime;
-                if(elapsedTime > 400_000_000) {
+                if(elapsedTime > GameController.ANIMATION_TIME) {
                     spriteSet.remove(spriteImage);
                     this.stop();
                 }
