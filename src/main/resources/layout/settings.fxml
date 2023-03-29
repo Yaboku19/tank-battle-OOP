@@ -6,11 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankbattle.view.impl.javafx.controller.SettingsController">
-=======
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.SettingsController">
->>>>>>> a4035e9ffd5be89506aa4387c17b8c3845334271
    <children>
       <Button fx:id="prevTankPlayer1" layoutX="48.0" layoutY="143.0" mnemonicParsing="false" onAction="#prevTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
       <Button fx:id="nextTankPlayer1" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#nextTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
