@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
@@ -40,7 +41,15 @@ public class ViewController implements View {
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
+    private ChangeListener<? super Number> widthChangeListener;
+    private ChangeListener<? super Number> heightChangeListener;
 
+    private static final double SETTINGS_MIN_HEIGHT = 430;
+    private static final double SETTINGS_MIN_WIDTH = 600;
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
             final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank,
@@ -129,13 +138,10 @@ public class ViewController implements View {
             controller.setViewResources();
             mainViewController.setViewController(this);
             mainViewScene = new Scene(root);
-            //mainViewController.setMainMenuScene(scene);
             stage.setTitle("Tank-Battle");
             stage.setScene(mainViewScene);
-            stage.setMinHeight(430);
-            stage.setMinWidth(600);
-            //stage.setMaxHeight(Screen.getPrimary().getBounds().getWidth()*2/3);
-            //stage.setMaxWidth(Screen.getPrimary().getBounds().getHeight()*3/2);
+            stage.setMinHeight(SETTINGS_MIN_HEIGHT);
+            stage.setMinWidth(SETTINGS_MIN_WIDTH);
             stage.setOnCloseRequest(e -> {
                 Platform.exit();
                 System.exit(0);
@@ -151,7 +157,6 @@ public class ViewController implements View {
     @Override
     public void gameOver() {
         try {
-            System.out.println(controller);
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
             final Scene gameOver = new Scene(fxmlLoader.load());
             final GameOverController gameOverController = (GameOverController) fxmlLoader.getController();
@@ -160,7 +165,12 @@ public class ViewController implements View {
             gameOverController.setGameScene(gameScene);
             gameOverController.setWinLabel(winner);
             Platform.runLater(() -> {
+                stage.widthProperty().removeListener(widthChangeListener);
+                stage.heightProperty().removeListener(heightChangeListener);
+                //stage.setHeight(gameScene.getHeight());
+                //stage.setWidth(gameScene.getWidth());
                 stage.setScene(gameOver);
+                stage.sizeToScene();
             });
         } catch (IOException e) {
             System.out.println(e.toString());
@@ -172,6 +182,7 @@ public class ViewController implements View {
     @Override
     public void restart() {
         this.setDimension();
+        this.setDiagonalResize();
         controller.restart();
     }
     /**
@@ -179,7 +190,8 @@ public class ViewController implements View {
     */
     @Override
     public void newStart() {
-        this.setDimension();
+        //stage.setHeight(mainViewScene.getHeight());
+        //stage.setWidth(mainViewScene.getWidth());
         controller.newStart();
     }
 
@@ -199,6 +211,7 @@ public class ViewController implements View {
     */
     @Override
     public void startGame() {
+        this.setDiagonalResize();
         setDimension();
         controller.startGame();
     }
@@ -310,6 +323,9 @@ public class ViewController implements View {
         this.winner = code;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPlayerName(final String firstPlayerName, final String secondPlayerName) {
         if (firstPlayerName != "") {
@@ -320,13 +336,30 @@ public class ViewController implements View {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getFirstPlayerName() {
         return this.firstPlayerName;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSecondPlayerName() {
         return this.secondPlayerName;
+    }
+
+    private void setDiagonalResize() {
+        widthChangeListener = (observable, oldValue, newValue) -> {
+            stage.setHeight(newValue.doubleValue() * 2.0 / 3.0);
+        };
+        heightChangeListener = (observable, oldValue, newValue) -> {
+            stage.setWidth(newValue.doubleValue() * 3.0 / 2.0);
+        };
+        stage.widthProperty().addListener(widthChangeListener);
+        stage.heightProperty().addListener(heightChangeListener);
     }
 }

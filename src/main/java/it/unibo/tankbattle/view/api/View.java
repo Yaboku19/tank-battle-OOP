@@ -23,12 +23,14 @@ public interface View {
 
     /**
      * javadoc.
-     * @param firstTank
-     * @param secondTank
-     * @param wall
-     * @param bullet
-     * @param lifeFirstTank
-     * @param lifeSecondTank
+     * @param firstTank first tank Transform
+     * @param secondTank second tank Transform
+     * @param wall walls' Transform set
+     * @param bullet bullets' Transform set
+     * @param lifeFirstTank first player tank's life
+     * @param lifeSecondTank second player tank's life
+     * @param firstPlayerScore first player score
+     * @param secondPlayerScore second player score
      */
     void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, 
             Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank,

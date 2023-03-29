@@ -21,6 +21,9 @@ public class TutorialController {
             final Node node = (Node) event.getSource();
             final Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(prevScene);
+            //stage.setHeight(stage.getHeight()-0.01);
+            //stage.setWidth(stage.getWidth()-0.01);
+            stage.sizeToScene();
     }
     /**
      * javadock.

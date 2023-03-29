@@ -140,6 +140,7 @@ public class SettingsController implements Initializable {
         final Stage stage = (Stage) node.getScene().getWindow();
         stage.setResizable(true);
         stage.setScene(prevScene);
+        stage.sizeToScene();
         viewController.setPlayerName(firstPlayerName.getText(), secondPlayerName.getText());
     }
 
