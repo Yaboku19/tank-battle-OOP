@@ -125,7 +125,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private void render() {
         view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), 
                 model.getWallsTrasform(), model.getBulletsTrasform(), 
-                model.getTankLife(firstPlayer), model.getTankLife(secondPlayer));
+                model.getTankLife(firstPlayer), model.getTankLife(secondPlayer),
+                firstPlayer.getScore(), secondPlayer.getScore());
     }
 
     /**
@@ -141,8 +142,9 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      */
     @Override
     public void endGame(final Player player) {
-        player.incScore();
-        view.setWinner(player.getCode());
+        Player winner = findWinner(player);
+        winner.incScore();
+        view.setWinner(winner.getName());
         this.isOver = true;
     }
 
@@ -228,5 +230,13 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void newStart() {
         thread.interrupt();
         thread = new Thread(this);
+    }
+
+    private Player findWinner (final Player deadPlayer) {
+        if(deadPlayer == firstPlayer) {
+            return secondPlayer;
+        } else {
+            return firstPlayer;
+        }
     }
 }

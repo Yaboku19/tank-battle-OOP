@@ -31,7 +31,8 @@ public interface View {
      * @param lifeSecondTank
      */
     void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, 
-            Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank);
+            Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank,
+            int firstPlayerScore, int secondPlayerScore);
 
     /**
      * javadoc.

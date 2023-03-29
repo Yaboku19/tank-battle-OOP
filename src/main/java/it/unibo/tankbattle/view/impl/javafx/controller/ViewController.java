@@ -40,12 +40,11 @@ public class ViewController implements View {
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
-    private int firstPlayerScore = 0;
-    private int secondPlayerScore = 0;
 
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
-            final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank) {
+            final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank,
+            final int firstPlayerScore, final int secondPlayerScore) {
         Platform.runLater(() -> {
             gameController.clear();
             gameController.renderBullet(bullet.collect(Collectors.toSet()));

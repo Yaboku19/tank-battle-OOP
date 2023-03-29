@@ -22,7 +22,7 @@ public class Shoot implements Command {
     @Override
     public void execute(final CommandListener model) {
         model.shot(player);
-        System.out.println(player.getCode());
+        System.out.println(player.getName());
     }
 
 }
