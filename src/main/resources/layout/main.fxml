@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankBattle.view.impl.javafx.controller.MainViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankbattle.view.impl.javafx.controller.MainViewController">
    <children>
       <VBox fx:id="buttonBox" layoutX="200.0" layoutY="20.0" prefHeight="260.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>

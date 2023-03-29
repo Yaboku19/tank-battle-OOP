@@ -66,5 +66,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("it.unibo.tankBattle.TankBattle")
+    mainClass.set("it.unibo.tankbattle.TankBattle")
 }
