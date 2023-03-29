@@ -38,9 +38,9 @@ public class ViewController implements View {
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String winner;
-    /**
-    * {@inheritDoc}
-    */
+    private String firstPlayerName = "Player 1";
+    private String secondPlayerName = "Player 2";
+
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
             final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank) {
@@ -306,5 +306,21 @@ public class ViewController implements View {
     @Override
     public void setWinner(final String code) {
         this.winner = code;
+    }
+
+    @Override
+    public void setPlayerName(String firstPlayerName, String secondPlayerName) {
+        this.firstPlayerName = firstPlayerName;
+        this.secondPlayerName = secondPlayerName;
+    }
+
+    @Override
+    public String getFirstPlayerName() {
+        return this.firstPlayerName;
+    }
+
+    @Override
+    public String getSecondPlayerName() {
+        return this.secondPlayerName;
     }
 }
