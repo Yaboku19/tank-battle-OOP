@@ -29,14 +29,17 @@ import javafx.scene.media.MediaPlayer;
  */
 public class GameController {
 
-    private Image bulletImage;
-    private Image wallImage;
+    private final Image bulletImage;
+    private final Image wallImage;
+    private final ImageView player1;
+    private final ImageView player2;
+    private final Image backImage;
     private Set<ImageView> wallSet = new HashSet<>();
     private double standardHeight = 1;
     private double standardWidth = 1;
     private boolean isProportionSet = false;
     private Set<Transform> activeBullet;
-    private Image shotSprite;
+    private final Image shotSprite;
     private Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
@@ -60,21 +63,12 @@ public class GameController {
     @FXML
     private AnchorPane mainPane;
 
-    @FXML
-    private ImageView player1;
-
-    @FXML
-    private ImageView player2;
-
-    @FXML
-    private Image backImage;
     /**
     * javadoc.
     */
     @FXML
     void initialize() {
-        bulletImage = new Image("/images/cannonBall1.png");
-        wallImage = new Image("/images/box.png");
+        
         mainPane.setBackground(new Background(new BackgroundImage(backImage, 
             BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
@@ -88,6 +82,8 @@ public class GameController {
     public GameController(final String tank1, final String tank2, final String map) {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
+        bulletImage = new Image(ClassLoader.getSystemResource("images/cannonBall1.png").toExternalForm());
+        wallImage = new Image(ClassLoader.getSystemResource("images/box.png").toExternalForm());
         backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
         shotSprite = new Image((ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm()));
         this.activeBullet = new HashSet<>();
@@ -99,6 +95,7 @@ public class GameController {
     public void clear() {
         mainPane.getChildren().removeAll(mainPane.getChildren());
     }
+
     /**
      * javadock.
      * @param t param
@@ -113,6 +110,7 @@ public class GameController {
         firstTankLife.setTranslateX(getWidth());
         firstTankLife.setTranslateY(getHeight());
     }
+    
     /**
      * javadock.
      * @param t param
@@ -139,7 +137,7 @@ public class GameController {
             bullet.setRotate(getRotation(b.getDirection()));
             mainPane.getChildren().add(bullet);
         }
-        var newBullets = findNewBullet(bullets);
+        var newBullets = findBullet(bullets, this.activeBullet);
         if (newBullets.size() > 0) {
             Task<Void> audioTask = new Task<Void>() {
                 @Override
@@ -154,7 +152,7 @@ public class GameController {
              new Thread(audioTask).start();
         }
         newBullets.forEach(pos -> renderBulletSprite(pos));
-        findExplodeBullet(bullets).forEach(pos -> renderBulletSprite(pos));
+        findBullet(this.activeBullet, bullets).forEach(pos -> renderBulletSprite(pos));
         mainPane.getChildren().addAll(spriteSet);
         this.activeBullet = bullets;
     }
@@ -162,38 +160,25 @@ public class GameController {
     private void loadAudioResource() {
         try {
             shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
-            mediaPlayer = new MediaPlayer(shoot);
         } catch (URISyntaxException e1) {
             e1.printStackTrace();
         }
 
     }
 
-    private Set<Transform> findNewBullet(final Set<Transform> bullets) {
-        Set<Double> activeBulletX = new HashSet<>();
-        Set<Double> activeBulletY = new HashSet<>();
-        activeBullet.forEach(bull -> {
-            activeBulletX.add(bull.getUpperLeftPosition().getX());
-            activeBulletY.add(bull.getUpperLeftPosition().getY());
+    private Set<Transform> findBullet(final Set<Transform> newBullet, final Set<Transform> oldBullet) {
+        Set<Double> bulletX = new HashSet<>();
+        Set<Double> bulletY = new HashSet<>();
+        oldBullet.forEach(bull -> {
+            bulletX.add(bull.getUpperLeftPosition().getX());
+            bulletY.add(bull.getUpperLeftPosition().getY());
         });
-        return bullets.stream()
-                .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
-                .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
+        return newBullet.stream()
+                .filter(pos -> !bulletX.contains(pos.getUpperLeftPosition().getX()))
+                .filter(pos -> !bulletY.contains(pos.getUpperLeftPosition().getY()))
                 .collect(Collectors.toSet());
     }
 
-    private Set<Transform> findExplodeBullet(final Set<Transform> bullets) {
-        Set<Double> activeBulletX = new HashSet<>();
-        Set<Double> activeBulletY = new HashSet<>();
-        bullets.forEach(bull -> {
-            activeBulletX.add(bull.getUpperLeftPosition().getX());
-            activeBulletY.add(bull.getUpperLeftPosition().getY());
-        });
-        return activeBullet.stream()
-                .filter(pos -> !activeBulletX.contains(pos.getUpperLeftPosition().getX()))
-                .filter(pos -> !activeBulletY.contains(pos.getUpperLeftPosition().getY()))
-                .collect(Collectors.toSet());
-    }
     /**
      * javadock.
      * @param walls param
