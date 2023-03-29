@@ -17,7 +17,6 @@ public class GameObjectTest {
     private FactoryGameObject factory;
 	private GameObject tank;
 	private GameObject bullet;
-	private GameObject obstacle;
 	private Player player1;
 
     @org.junit.jupiter.api.BeforeEach
@@ -25,7 +24,6 @@ public class GameObjectTest {
 	this.factory = new FactoryGameObjectImpl();
 	this.tank = this.factory.createSimpleTank(new P2d(10,10), player1);
 	this.bullet = this.factory.createSimpleBullet(this.tank);
-	this.obstacle = this.factory.createSimpleWall(new P2d(20, 20));
 	}
 
 	@org.junit.jupiter.api.Test
