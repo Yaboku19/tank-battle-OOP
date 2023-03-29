@@ -37,7 +37,7 @@ public class GameController {
     private Set<ImageView> wallSet = new HashSet<>();
     private double standardHeight = 1;
     private double standardWidth = 1;
-    private boolean isProportionSet = false;
+    private boolean isProportionSet;
     private Set<Transform> activeBullet;
     private final Image shotSprite;
     private Set<ImageView> spriteSet = new HashSet<>();
@@ -129,7 +129,7 @@ public class GameController {
      */
     public void renderBullet(final Set<Transform> bullets) {
         for (final Transform b : bullets) {
-            ImageView bullet = new ImageView(bulletImage);
+            final ImageView bullet = new ImageView(bulletImage);
             bullet.setX(b.getUpperLeftPosition().getX() * getWidth());
             bullet.setY(b.getUpperLeftPosition().getY() * getHeight());
             bullet.setFitWidth(b.getWidth() * getWidth());
@@ -137,9 +137,9 @@ public class GameController {
             bullet.setRotate(getRotation(b.getDirection()));
             mainPane.getChildren().add(bullet);
         }
-        var newBullets = findBullet(bullets, this.activeBullet);
-        if (newBullets.size() > 0) {
-            Task<Void> audioTask = new Task<Void>() {
+        final var newBullets = findBullet(bullets, this.activeBullet);
+        if (!newBullets.isEmpty()) {
+            final Task<Void> audioTask = new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
 
@@ -186,8 +186,8 @@ public class GameController {
     public void renderWall(final Set<Transform> walls) {
         wallSet.clear();
         this.setProportion(walls);
-        for (var t : walls) {
-            ImageView wall = new ImageView(wallImage);
+        for (final var t : walls) {
+            final ImageView wall = new ImageView(wallImage);
             wall.setX(t.getUpperLeftPosition().getX() * getWidth());
             wall.setY(t.getUpperLeftPosition().getY() * getHeight());
             wall.setFitWidth(t.getWidth() * getWidth());
@@ -213,7 +213,7 @@ public class GameController {
         return switch (dir) {
             case RIGHT -> GameController.RIGHT_ANGLE;
             case DOWN -> GameController.STRAIGHT_ANGLE;
-            case LEFT -> (GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE);
+            case LEFT -> GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE;
             default -> 0;
         };
     }
@@ -231,7 +231,7 @@ public class GameController {
             this.isProportionSet = true;
             double maxX = 0.0;
             double maxY = 0.0;
-            for (Transform transform : walls) {
+            for (final Transform transform : walls) {
                 maxX = Math.max(maxX, transform.getUpperLeftPosition().getX());
                 maxY = Math.max(maxY, transform.getUpperLeftPosition().getY());
             }

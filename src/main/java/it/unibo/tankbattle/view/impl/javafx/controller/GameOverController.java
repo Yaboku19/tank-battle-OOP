@@ -52,8 +52,8 @@ public class GameOverController {
      */
     @FXML
     void mainMenu(final ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        final Node node = (Node) event.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
         viewController.newStart();
         stage.setScene(mainManuScene);
     }
@@ -71,8 +71,8 @@ public class GameOverController {
      */
     @FXML
     void restart(final ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        final Node node = (Node) event.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
         viewController.restart();
         stage.setScene(gameScene);
     }

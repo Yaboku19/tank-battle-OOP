@@ -19,7 +19,7 @@ public class BasicGameObject implements GameObject {
     private Direction direction;
     private final double length;
     private final double width;
-    private List<Component> components = new LinkedList<>();
+    private final List<Component> components = new LinkedList<>();
 
     /**
      * javadoc.

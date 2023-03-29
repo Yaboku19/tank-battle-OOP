@@ -30,9 +30,9 @@ public class TankData implements Data {
     private String resource;
 
     /**
-     * Gets the tank name.
-     * @return the name
-     */
+    * {@inheritDoc}
+    */
+    @Override
     public String getName() {
         return name;
     }

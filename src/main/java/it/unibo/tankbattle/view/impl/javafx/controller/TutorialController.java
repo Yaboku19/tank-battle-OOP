@@ -18,8 +18,8 @@ public class TutorialController {
 
     @FXML
     private void back(final ActionEvent event) {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
+            final Node node = (Node) event.getSource();
+            final Stage stage = (Stage) node.getScene().getWindow();
             stage.setScene(prevScene);
     }
     /**

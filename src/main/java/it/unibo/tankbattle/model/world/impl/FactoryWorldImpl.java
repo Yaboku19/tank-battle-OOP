@@ -29,7 +29,7 @@ public class FactoryWorldImpl implements FactoryWorld {
     */
     @Override
     public World simpleWorld(final Player firstPlayer, final Player secondPlayer, final MapData mapdata) {
-        Set<GameObject> entities = getWall(mapdata.getWall());
+        final Set<GameObject> entities = getWall(mapdata.getWall());
         entities.add(factoryGO.createSimpleTank(
             position(mapdata.getPositionFirstTank().getX(), mapdata.getPositionFirstTank().getY()),
             firstPlayer));
@@ -40,8 +40,8 @@ public class FactoryWorldImpl implements FactoryWorld {
     }
 
     private Set<GameObject> getWall(final Set<P2d> wall) {
-        Set<GameObject> border = new HashSet<>();
-        for (var pos : wall) {
+        final Set<GameObject> border = new HashSet<>();
+        for (final var pos : wall) {
             border.add(factoryGO.createSimpleWall(position(pos.getX(), pos.getY())));
         }
         return border;

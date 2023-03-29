@@ -26,18 +26,17 @@ public class MapData implements Data {
     @XmlAttribute
     private String name;
     @XmlElement(name = "position")
-    private List<Position> position = new ArrayList<>();
+    private final List<Position> position = new ArrayList<>();
     @XmlElement(name = "row")
     private int row;
     @XmlElement(name = "column")
     private int column;
     @XmlElement(name = "resource")
     private String resource;
-
     /**
-     * Gets the map name.
-     * @return the name
-     */
+    * {@inheritDoc}
+    */
+    @Override
     public String getName() {
         return name;
     }
@@ -56,7 +55,7 @@ public class MapData implements Data {
     public P2d getPositionFirstTank() {
         return position
             .stream()
-            .filter(p -> p.getType().equals("tank1"))
+            .filter(p -> "tank1".equals(p.getType()))
             .findFirst()
             .get()
             .getPosition();
@@ -68,7 +67,7 @@ public class MapData implements Data {
     public P2d getPositionSecondTank() {
         return position
         .stream()
-        .filter(p -> p.getType().equals("tank2"))
+        .filter(p -> "tank2".equals(p.getType()))
         .findFirst()
         .get()
         .getPosition();
@@ -80,7 +79,7 @@ public class MapData implements Data {
     public Set<P2d> getWall() {
         return addBorder(position
             .stream()
-            .filter(p -> p.getType().equals("wall"))
+            .filter(p -> "wall".equals(p.getType()))
             .map(p -> p.getPosition())
             .collect(Collectors.toSet()));
     }

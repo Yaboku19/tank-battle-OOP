@@ -20,18 +20,18 @@ public class TankDataList implements DataList<TankData> {
 
     @XmlElement(name = "tank")
     private List<TankData> tank = new ArrayList<>();
-
     /**
-     * @return List<TankData> list
-     */
+    * {@inheritDoc}
+    */
+    @Override
     public List<TankData> getData() {
         return this.tank;
     }
 
     /**
-     * @param tank TankData list
-     */
-
+    * {@inheritDoc}
+    */
+    @Override
     public void setData(final List<TankData> tank) {
         this.tank = tank;
     }
