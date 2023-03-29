@@ -43,6 +43,7 @@ public class GameController {
     private Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
+    
 
     private static final double RIGHT_ANGLE = 90;
     private static final double STRAIGHT_ANGLE = 180;
@@ -62,6 +63,15 @@ public class GameController {
 
     @FXML
     private AnchorPane mainPane;
+
+    @FXML
+    private Label player1Label;
+
+    @FXML
+    private Label player2Label;
+
+    @FXML
+    private Label scoreLabel;
 
     /**
     * javadoc.
@@ -207,6 +217,19 @@ public class GameController {
         secondTankLife.setText(Integer.toString(secondTank));
         mainPane.getChildren().add(firstTankLife);
         mainPane.getChildren().add(secondTankLife);
+    }
+        /**
+     * javadock.
+     * @param firstTank param
+     * @param secondTank param
+     */
+    public void drawLabel(final String firstPlayerName, final String secondPlayerName, final int firstPlayerScore, final int secondPlayerScore) {
+        player1Label.setText(firstPlayerName);
+        player2Label.setText(secondPlayerName);
+        scoreLabel.setText(Integer.toString(secondPlayerScore) + " - " + Integer.toString(firstPlayerScore));
+        mainPane.getChildren().add(player1Label);
+        mainPane.getChildren().add(player2Label);
+        mainPane.getChildren().add(scoreLabel);
     }
 
     private double getRotation(final Direction dir) {

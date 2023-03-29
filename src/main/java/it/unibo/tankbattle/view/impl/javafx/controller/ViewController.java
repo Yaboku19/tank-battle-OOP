@@ -40,6 +40,8 @@ public class ViewController implements View {
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
+    private int firstPlayerScore = 0;
+    private int secondPlayerScore = 0;
 
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
@@ -51,6 +53,7 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderWall(wall.collect(Collectors.toSet()));
             gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);
+            gameController.drawLabel(firstPlayerName, secondPlayerName, firstPlayerScore, secondPlayerScore);
         });
     }
     /**
@@ -309,9 +312,13 @@ public class ViewController implements View {
     }
 
     @Override
-    public void setPlayerName(String firstPlayerName, String secondPlayerName) {
-        this.firstPlayerName = firstPlayerName;
-        this.secondPlayerName = secondPlayerName;
+    public void setPlayerName(final String firstPlayerName, final String secondPlayerName) {
+        if (firstPlayerName != "") {
+            this.firstPlayerName = firstPlayerName;
+        }
+        if (secondPlayerName != "") {
+            this.secondPlayerName = secondPlayerName;
+        }
     }
 
     @Override
