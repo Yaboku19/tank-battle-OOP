@@ -1,5 +1,6 @@
 package it.unibo.tankbattle.view.impl.javafx.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,10 +23,8 @@ import javafx.stage.Stage;
 public class MainViewController {
 
     private GameController gameController;
-    private SettingsController settingsController;
     //private GameOverController gameOverController;
     private View viewController;
-    private Node node;
     private Stage stage;
     private Scene gameScene;
     //private Scene mainMenuScene;
@@ -34,7 +33,7 @@ public class MainViewController {
     private String mapResource;
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
-    private boolean isDiagonalResize = false;
+    private boolean isDiagonalResize;
 
     @FXML
     private ResourceBundle resources;
@@ -64,10 +63,10 @@ public class MainViewController {
      */
     @FXML
     void play(final ActionEvent event) {
-        node = (Node) event.getSource();
+        final Node node = (Node) event.getSource();
         stage = (Stage) node.getScene().getWindow();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
+            final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             viewController.setViewResources();
             gameController = new GameController(tank1Resource, tank2Resource, mapResource);
             viewController.setGameController(gameController);
@@ -79,7 +78,7 @@ public class MainViewController {
             this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
     }
@@ -90,12 +89,12 @@ public class MainViewController {
     @FXML
     void settings(final ActionEvent event) {
         try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
-            Scene settings = new Scene(fxmlLoader.load());
+            final Node node = (Node) event.getSource();
+            final Stage stage = (Stage) node.getScene().getWindow();
+            final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
+            final Scene settings = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            settingsController = (SettingsController) fxmlLoader.getController();
+            final SettingsController settingsController = (SettingsController) fxmlLoader.getController();
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
             settingsController.setPreviousScene(stage.getScene());
@@ -104,7 +103,7 @@ public class MainViewController {
             viewController.updateMap(NextAndPrevious.NONE);
             stage.setResizable(false);
             stage.setScene(settings);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
     }
@@ -115,15 +114,15 @@ public class MainViewController {
     @FXML
     void tutorial(final ActionEvent event) {
         try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
-            Scene tutorial = new Scene(fxmlLoader.load());
+            final Node node = (Node) event.getSource();
+            final Stage stage = (Stage) node.getScene().getWindow();
+            final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
+            final Scene tutorial = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
-            TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
+            final TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
             tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
     }
@@ -147,11 +146,11 @@ public class MainViewController {
     }
 
     private void addKeyListener() {
-        EventHandler<KeyEvent> keyPressListener = e -> {
+        final EventHandler<KeyEvent> keyPressListener = e -> {
             viewController.addCommand(e);
         };
 
-        EventHandler<KeyEvent> keyReleasedListener = e -> {
+        final EventHandler<KeyEvent> keyReleasedListener = e -> {
             viewController.addCommand(e);
         };
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);

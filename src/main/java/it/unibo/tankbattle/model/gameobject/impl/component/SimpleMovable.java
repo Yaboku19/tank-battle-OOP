@@ -33,7 +33,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     */
     @Override
     public void update(final double time) {
-        var actualPos = this.getGameObject().getTransform().getPosition(); 
+        final var actualPos = this.getGameObject().getTransform().getPosition(); 
         this.getGameObject()
                 .setPosition(new P2d(time * speed * movingDirection.getX() + actualPos.getX(), 
                 time * speed * movingDirection.getY() + actualPos.getY()));

@@ -28,7 +28,7 @@ import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 public class GameStateImpl implements GameState {
 
     private final FactoryWorld factoryWorld;
-    private World world = null;
+    private World world;
     private final WorldEventListener listener;
     private final FactoryGameObject factoryGameObject;
     private final CollisionManager collisionManager;

@@ -31,13 +31,13 @@ public class GameController {
 
     private Image bulletImage;
     private Image wallImage;
-    private Set<ImageView> wallSet = new HashSet<>();
+    private final Set<ImageView> wallSet = new HashSet<>();
     private double standardHeight = 1;
     private double standardWidth = 1;
-    private boolean isProportionSet = false;
+    private boolean isProportionSet;
     private Set<Transform> activeBullet;
-    private Image shotSprite;
-    private Set<ImageView> spriteSet = new HashSet<>();
+    private final Image shotSprite;
+    private final Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
 
@@ -60,13 +60,13 @@ public class GameController {
     private AnchorPane mainPane;
 
     @FXML
-    private ImageView player1;
+    private final ImageView player1;
 
     @FXML
-    private ImageView player2;
+    private final ImageView player2;
 
     @FXML
-    private Image backImage;
+    private final Image backImage;
     /**
     * javadoc.
     */
@@ -89,8 +89,8 @@ public class GameController {
     public GameController(final String tank1, final String tank2, final String map) {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
-        backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
-        shotSprite = new Image((ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm()));
+        backImage = new Image(ClassLoader.getSystemResource("images/map/" + map).toExternalForm());
+        shotSprite = new Image(ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm());
         this.activeBullet = new HashSet<>();
         loadAudioResource();
     }
@@ -132,7 +132,7 @@ public class GameController {
      */
     public void renderBullet(final Set<Transform> bullets) {
         for (final Transform b : bullets) {
-            ImageView bullet = new ImageView(bulletImage);
+            final ImageView bullet = new ImageView(bulletImage);
             bullet.setX(b.getUpperLeftPosition().getX() * getWidth());
             bullet.setY(b.getUpperLeftPosition().getY() * getHeight());
             bullet.setFitWidth(b.getWidth() * getWidth());
@@ -140,9 +140,9 @@ public class GameController {
             bullet.setRotate(getRotation(b.getDirection()));
             mainPane.getChildren().add(bullet);
         }
-        var newBullets = findNewBullet(bullets);
-        if (newBullets.size() > 0) {
-            Task<Void> audioTask = new Task<Void>() {
+        final var newBullets = findNewBullet(bullets);
+        if (!newBullets.isEmpty()) {
+            final Task<Void> audioTask = new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
 
@@ -171,8 +171,8 @@ public class GameController {
     }
 
     private Set<Transform> findNewBullet(final Set<Transform> bullets) {
-        Set<Double> activeBulletX = new HashSet<>();
-        Set<Double> activeBulletY = new HashSet<>();
+        final Set<Double> activeBulletX = new HashSet<>();
+        final Set<Double> activeBulletY = new HashSet<>();
         activeBullet.forEach(bull -> {
             activeBulletX.add(bull.getUpperLeftPosition().getX());
             activeBulletY.add(bull.getUpperLeftPosition().getY());
@@ -184,8 +184,8 @@ public class GameController {
     }
 
     private Set<Transform> findExplodeBullet(final Set<Transform> bullets) {
-        Set<Double> activeBulletX = new HashSet<>();
-        Set<Double> activeBulletY = new HashSet<>();
+        final Set<Double> activeBulletX = new HashSet<>();
+        final Set<Double> activeBulletY = new HashSet<>();
         bullets.forEach(bull -> {
             activeBulletX.add(bull.getUpperLeftPosition().getX());
             activeBulletY.add(bull.getUpperLeftPosition().getY());
@@ -202,8 +202,8 @@ public class GameController {
     public void renderWall(final Set<Transform> walls) {
         wallSet.clear();
         this.setProportion(walls);
-        for (var t : walls) {
-            ImageView wall = new ImageView(wallImage);
+        for (final var t : walls) {
+            final ImageView wall = new ImageView(wallImage);
             wall.setX(t.getUpperLeftPosition().getX() * getWidth());
             wall.setY(t.getUpperLeftPosition().getY() * getHeight());
             wall.setFitWidth(t.getWidth() * getWidth());
@@ -229,7 +229,7 @@ public class GameController {
         return switch (dir) {
             case RIGHT -> GameController.RIGHT_ANGLE;
             case DOWN -> GameController.STRAIGHT_ANGLE;
-            case LEFT -> (GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE);
+            case LEFT -> GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE;
             default -> 0;
         };
     }
@@ -247,7 +247,7 @@ public class GameController {
             this.isProportionSet = true;
             double maxX = 0.0;
             double maxY = 0.0;
-            for (Transform transform : walls) {
+            for (final Transform transform : walls) {
                 maxX = Math.max(maxX, transform.getUpperLeftPosition().getX());
                 maxY = Math.max(maxY, transform.getUpperLeftPosition().getY());
             }
@@ -280,7 +280,7 @@ public class GameController {
 
             @Override
             public void handle(final long now) {
-                long elapsedTime = now - startTime;
+                final long elapsedTime = now - startTime;
                 if (elapsedTime > 400_000_000) {
                     spriteSet.remove(spriteImage);
                     this.stop();

@@ -20,17 +20,17 @@ public class MapDataList implements DataList<MapData> {
 
     @XmlElement(name = "map")
     private List<MapData> map = new ArrayList<>();
-
     /**
-     * @return List<MapData> list
-     */
+    * {@inheritDoc}
+    */
+    @Override
     public List<MapData> getData() {
         return this.map;
     }
-
     /**
-     * @param map MapData list
-     */
+    * {@inheritDoc}
+    */
+    @Override
     public void setData(final List<MapData> map) {
         this.map = map;
     }

@@ -129,8 +129,8 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void back(final ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        final Node node = (Node) event.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
         stage.setResizable(true);
         stage.setScene(prevScene);
     }
