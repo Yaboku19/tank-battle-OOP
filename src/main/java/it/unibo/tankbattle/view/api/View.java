@@ -11,51 +11,157 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+/**
+ * javadoc.
+ */
 public interface View {
 
-    public void gameOver();
+    /**
+     * javadoc.
+     */
+    void gameOver();
 
-    public void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank);
+    /**
+     * javadoc.
+     * @param firstTank
+     * @param secondTank
+     * @param wall
+     * @param bullet
+     * @param lifeFirstTank
+     * @param lifeSecondTank
+     */
+    void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, 
+            Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank);
 
-    public void setController(GameEngine controller);  
+    /**
+     * javadoc.
+     * @param controller
+     */
+    void setController(GameEngine controller);
 
-    public void updateTankPlayer1(NextAndPrevious delta);
+    /**
+     * javadoc.
+     * @param delta
+     */
+    void updateTankPlayer1(NextAndPrevious delta);
 
-    public void updateTankPlayer2(NextAndPrevious delta);
+    /**
+     * javadoc.
+     * @param delta
+     */
+    void updateTankPlayer2(NextAndPrevious delta);
 
-    public void updateMap(NextAndPrevious delta);
+    /**
+     * javadoc.
+     * @param delta
+     */
+    void updateMap(NextAndPrevious delta);
 
-    public void viewUpdateP1(int speed, int damage, int life, String resource);
+    /**
+     * javadoc.
+     * @param speed
+     * @param damage
+     * @param life
+     * @param resource
+     */
+    void viewUpdateP1(int speed, int damage, int life, String resource);
 
-    public void viewUpdateP2(int speed, int damage, int life, String resource);
+    /**
+     * javadoc.
+     * @param speed
+     * @param damage
+     * @param life
+     * @param resource
+     */
+    void viewUpdateP2(int speed, int damage, int life, String resource);
 
-    public void viewUpdateMap(String resource);
+    /**
+     * javadoc.
+     * @param resource
+     */
+    void viewUpdateMap(String resource);
 
-    public void setResource(String tank1, String tank2, String mapResource);
+    /**
+     * javadoc.
+     * @param tank1
+     * @param tank2
+     * @param mapResource
+     */
+    void setResource(String tank1, String tank2, String mapResource);
 
-    public void start(Stage stage);
+    /**
+     * javadoc.
+     * @param stage
+     */
+    void start(Stage stage);
 
-    public void restart();
+    /**
+     * javadoc.
+     */
+    void restart();
 
-    public void newStart();
+    /**
+     * javadoc.
+     */
+    void newStart();
 
-    public void setViewResources();
+    /**
+     * javadoc.
+     */
+    void setViewResources();
 
-    public void startGame();
+    /**
+     * javadoc.
+     */
+    void startGame();
 
-    public void addCommand(KeyEvent e);
+    /**
+     * javadoc.
+     * @param e
+     */
+    void addCommand(KeyEvent e);
 
-    public void setGameController(GameController gameController);
+    /**
+     * javadoc.
+     * @param gameController
+     */
+    void setGameController(GameController gameController);
 
-    public void setGameScene(Scene gameScene);
+    /**
+     * javadoc.
+     * @param gameScene
+     */
+    void setGameScene(Scene gameScene);
 
-    public void setWinner(String code);
+    /**
+     * javadoc.
+     * @param code
+     */
+    void setWinner(String code);
 
-    public void setSettingsController(SettingsController settingsController);
+    /**
+     * javadoc.
+     * @param settingsController
+     */
+    void setSettingsController(SettingsController settingsController);
 
-    public void setPlayerName(String firstPlayerName, String secondPlayerName);
+    /**
+     * javadoc.
+     * @param firstPlayerName
+     * @param secondPlayerName
+     */
+    void setPlayerName(String firstPlayerName, String secondPlayerName);
 
-    public String getFirstPlayerName();
+    /**
+     * javadoc.
+     * @return first player's name
+     */
+    String getFirstPlayerName();
 
-    public String getSecondPlayerName();
+    /**
+     * javadoc.
+     * @return second player's name
+     */
+    String getSecondPlayerName();
+
 }
