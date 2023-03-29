@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameSetup.impl;
+package it.unibo.tankbattle.model.gamesetup.impl;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;

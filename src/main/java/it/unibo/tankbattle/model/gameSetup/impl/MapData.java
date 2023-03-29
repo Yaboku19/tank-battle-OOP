@@ -1,9 +1,9 @@
-package it.unibo.tankbattle.model.gameSetup.impl;
+package it.unibo.tankbattle.model.gamesetup.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 import it.unibo.tankbattle.common.P2d;
-import it.unibo.tankbattle.model.gameSetup.api.Data;
+import it.unibo.tankbattle.model.gamesetup.api.Data;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;

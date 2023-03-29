@@ -13,8 +13,8 @@ import javax.xml.bind.Unmarshaller;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.controller.api.ObjectsManager;
-import it.unibo.tankbattle.model.gameSetup.api.Data;
-import it.unibo.tankbattle.model.gameSetup.api.DataList;
+import it.unibo.tankbattle.model.gamesetup.api.Data;
+import it.unibo.tankbattle.model.gamesetup.api.DataList;
 /**
  * javadoc.
  * @param <T> param

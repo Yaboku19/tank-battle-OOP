@@ -1,7 +1,7 @@
 package it.unibo.tankbattle.controller.impl;
 
 import it.unibo.tankbattle.controller.api.Player;
-import it.unibo.tankbattle.model.gameSetup.impl.TankData;
+import it.unibo.tankbattle.model.gamesetup.impl.TankData;
 /**
  * javadoc.
  */

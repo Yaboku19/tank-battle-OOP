@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
-import it.unibo.tankbattle.model.gameSetup.impl.MapData;
-import it.unibo.tankbattle.model.gameSetup.impl.TankData;
 import it.unibo.tankbattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankbattle.model.gamesetup.impl.MapData;
+import it.unibo.tankbattle.model.gamesetup.impl.TankData;
 import it.unibo.tankbattle.model.world.api.FactoryWorld;
 import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 

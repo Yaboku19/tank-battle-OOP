@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameSetup.api;
+package it.unibo.tankbattle.model.gamesetup.api;
 
 import java.util.List;
 /**

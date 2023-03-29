@@ -13,14 +13,14 @@ import it.unibo.tankbattle.controller.api.GameEngine;
 import it.unibo.tankbattle.controller.api.ObjectsManager;
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.controller.api.WorldEventListener;
-import it.unibo.tankbattle.model.gameSetup.api.Data;
-import it.unibo.tankbattle.model.gameSetup.api.DataList;
-import it.unibo.tankbattle.model.gameSetup.impl.MapData;
-import it.unibo.tankbattle.model.gameSetup.impl.MapDataList;
-import it.unibo.tankbattle.model.gameSetup.impl.TankData;
-import it.unibo.tankbattle.model.gameSetup.impl.TankDataList;
 import it.unibo.tankbattle.model.gameState.api.GameState;
 import it.unibo.tankbattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankbattle.model.gamesetup.api.Data;
+import it.unibo.tankbattle.model.gamesetup.api.DataList;
+import it.unibo.tankbattle.model.gamesetup.impl.MapData;
+import it.unibo.tankbattle.model.gamesetup.impl.MapDataList;
+import it.unibo.tankbattle.model.gamesetup.impl.TankData;
+import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
 import it.unibo.tankbattle.view.api.View;
 /**
  * javadoc.
