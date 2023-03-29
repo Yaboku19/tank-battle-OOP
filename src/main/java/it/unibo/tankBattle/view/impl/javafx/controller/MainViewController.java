@@ -86,7 +86,6 @@ public class MainViewController {
             Stage stage = (Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
             Scene settings = new Scene(fxmlLoader.load());
-            //controller = fxmlLoader.getController();
             settingsController = (SettingsController)fxmlLoader.getController();
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
@@ -97,7 +96,7 @@ public class MainViewController {
             stage.setResizable(false);
             stage.setScene(settings);
         }catch(Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
