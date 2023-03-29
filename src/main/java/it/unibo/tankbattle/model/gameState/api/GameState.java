@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameState.api;
+package it.unibo.tankbattle.model.gamestate.api;
 
 import java.util.stream.Stream;
 

@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameState.api;
+package it.unibo.tankbattle.model.gamestate.api;
 
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;

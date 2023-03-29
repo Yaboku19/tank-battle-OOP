@@ -2,7 +2,7 @@ package it.unibo.tankbattle.common.input.impl;
 
 import it.unibo.tankbattle.common.input.api.Command;
 import it.unibo.tankbattle.controller.api.Player;
-import it.unibo.tankbattle.model.gameState.api.CommandListener;
+import it.unibo.tankbattle.model.gamestate.api.CommandListener;
 /**
  * That class manage shoot of the player.
  */
