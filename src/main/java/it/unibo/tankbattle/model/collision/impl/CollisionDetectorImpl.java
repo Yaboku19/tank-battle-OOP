@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.Transform;
-import it.unibo.tankbattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
 /**
  * javadoc.
  */

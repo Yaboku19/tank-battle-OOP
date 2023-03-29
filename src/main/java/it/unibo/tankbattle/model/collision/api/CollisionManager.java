@@ -2,7 +2,7 @@ package it.unibo.tankbattle.model.collision.api;
 
 import java.util.stream.Stream;
 
-import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 /**
  * javadoc.
  */

@@ -1,21 +1,21 @@
-package it.unibo.tankbattle.model.gameObject.impl.object;
+package it.unibo.tankbattle.model.gameobject.impl.object;
 
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
-import it.unibo.tankbattle.model.gameObject.api.component.Tank;
-import it.unibo.tankbattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankbattle.model.gameObject.impl.component.Bullet;
-import it.unibo.tankbattle.model.gameObject.impl.component.CollisionComponent;
-import it.unibo.tankbattle.model.gameObject.impl.component.DamageableImpl;
-import it.unibo.tankbattle.model.gameObject.impl.component.DealDamageOnCollision;
-import it.unibo.tankbattle.model.gameObject.impl.component.DestroyOnCollision;
-import it.unibo.tankbattle.model.gameObject.impl.component.HealthImpl;
-import it.unibo.tankbattle.model.gameObject.impl.component.KnockBack;
-import it.unibo.tankbattle.model.gameObject.impl.component.SimpleMovable;
-import it.unibo.tankbattle.model.gameObject.impl.component.Wall;
+import it.unibo.tankbattle.model.gameobject.api.component.Tank;
+import it.unibo.tankbattle.model.gameobject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameobject.impl.component.Bullet;
+import it.unibo.tankbattle.model.gameobject.impl.component.CollisionComponent;
+import it.unibo.tankbattle.model.gameobject.impl.component.DamageableImpl;
+import it.unibo.tankbattle.model.gameobject.impl.component.DealDamageOnCollision;
+import it.unibo.tankbattle.model.gameobject.impl.component.DestroyOnCollision;
+import it.unibo.tankbattle.model.gameobject.impl.component.HealthImpl;
+import it.unibo.tankbattle.model.gameobject.impl.component.KnockBack;
+import it.unibo.tankbattle.model.gameobject.impl.component.SimpleMovable;
+import it.unibo.tankbattle.model.gameobject.impl.component.Wall;
 /**
  * javadoc.
  */

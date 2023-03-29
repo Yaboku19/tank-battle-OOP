@@ -1,10 +1,10 @@
-package it.unibo.tankbattle.model.gameObject.impl.component;
+package it.unibo.tankbattle.model.gameobject.impl.component;
 
 import it.unibo.tankbattle.model.collision.api.CollisionListener;
-import it.unibo.tankbattle.model.gameObject.api.component.AbstractComponent;
-import it.unibo.tankbattle.model.gameObject.api.component.Damageable;
-import it.unibo.tankbattle.model.gameObject.api.component.ObservableCollidable;
-import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameobject.api.component.AbstractComponent;
+import it.unibo.tankbattle.model.gameobject.api.component.Damageable;
+import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 /**
  * javadoc.
  */

@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.Pair;
 import it.unibo.tankbattle.model.collision.api.CollisionManager;
-import it.unibo.tankbattle.model.gameObject.api.component.Collidable;
-import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 /**
  * javadoc.
  */

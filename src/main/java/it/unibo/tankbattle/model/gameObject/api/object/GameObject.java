@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameObject.api.object;
+package it.unibo.tankbattle.model.gameobject.api.object;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
-import it.unibo.tankbattle.model.gameObject.api.component.Component;
+import it.unibo.tankbattle.model.gameobject.api.component.Component;
 /**
  * javadoc.
  */

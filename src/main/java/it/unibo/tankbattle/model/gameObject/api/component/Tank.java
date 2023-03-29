@@ -1,4 +1,4 @@
-package it.unibo.tankbattle.model.gameObject.api.component;
+package it.unibo.tankbattle.model.gameobject.api.component;
 
 import it.unibo.tankbattle.controller.api.Player;
 /**
