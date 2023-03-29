@@ -72,13 +72,14 @@ public class MainViewController {
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             gameScene = new Scene(fxmlLoader.load());
-            addKeyListener();
+            //addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
             this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
-        } catch (IOException e) {
+            this.addKeyListener();
+        }catch(Exception e){
             System.out.println(e.toString());
         }
     }

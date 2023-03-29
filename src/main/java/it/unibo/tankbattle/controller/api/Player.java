@@ -18,7 +18,7 @@ public interface Player {
      * javadoc.
      * @return return
      */
-    String getCode();
+    String getName();
     /**
      * javadoc.
      * @return return

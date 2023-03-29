@@ -10,117 +10,159 @@ import it.unibo.tankbattle.view.impl.javafx.controller.SettingsController;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
 /**
- * javadock.
+ * javadoc.
  */
 public interface View {
+
     /**
-     * javadock.
+     * javadoc.
      */
     void gameOver();
+
     /**
-     * javadock.
-     * @param firstTank param
-     * @param secondTank param
-     * @param wall param
-     * @param bullet param
-     * @param lifeFirstTank param
-     * @param lifeSecondTank param
+     * javadoc.
+     * @param firstTank
+     * @param secondTank
+     * @param wall
+     * @param bullet
+     * @param lifeFirstTank
+     * @param lifeSecondTank
      */
-    void render(Transform firstTank, Transform secondTank, Stream<Transform> wall,
-        Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank);
+    void render(Transform firstTank, Transform secondTank, Stream<Transform> wall, 
+            Stream<Transform> bullet,  int lifeFirstTank, int lifeSecondTank,
+            int firstPlayerScore, int secondPlayerScore);
+
     /**
-     * javadock.
-     * @param controller param
+     * javadoc.
+     * @param controller
      */
     void setController(GameEngine controller);
+
     /**
-     * javadock.
-     * @param delta param
+     * javadoc.
+     * @param delta
      */
     void updateTankPlayer1(NextAndPrevious delta);
+
     /**
-     * javadock.
-     * @param delta param
+     * javadoc.
+     * @param delta
      */
     void updateTankPlayer2(NextAndPrevious delta);
+
     /**
-     * javadock.
-     * @param delta param
+     * javadoc.
+     * @param delta
      */
     void updateMap(NextAndPrevious delta);
+
     /**
-     * javadock.
-     * @param speed param
-     * @param damage param
-     * @param life param
-     * @param resource param
+     * javadoc.
+     * @param speed
+     * @param damage
+     * @param life
+     * @param resource
      */
     void viewUpdateP1(int speed, int damage, int life, String resource);
+
     /**
-     * javadock.
-     * @param speed param
-     * @param damage param
-     * @param life param
-     * @param resource param
+     * javadoc.
+     * @param speed
+     * @param damage
+     * @param life
+     * @param resource
      */
     void viewUpdateP2(int speed, int damage, int life, String resource);
+
     /**
-     * javadock.
-     * @param resource param
+     * javadoc.
+     * @param resource
      */
     void viewUpdateMap(String resource);
+
     /**
-     * javadock.
-     * @param tank1 param
-     * @param tank2 param
-     * @param mapResource param
+     * javadoc.
+     * @param tank1
+     * @param tank2
+     * @param mapResource
      */
     void setResource(String tank1, String tank2, String mapResource);
+
     /**
-     * javadock.
-     * @param stage param
+     * javadoc.
+     * @param stage
      */
     void start(Stage stage);
+
     /**
-     * javadock.
+     * javadoc.
      */
     void restart();
+
     /**
-     * javadock.
+     * javadoc.
      */
     void newStart();
+
     /**
-     * javadock.
+     * javadoc.
      */
     void setViewResources();
+
     /**
-     * javadock.
+     * javadoc.
      */
     void startGame();
+
     /**
-     * javadock.
-     * @param e param
+     * javadoc.
+     * @param e
      */
     void addCommand(KeyEvent e);
+
     /**
-     * javadock.
-     * @param gameController param
+     * javadoc.
+     * @param gameController
      */
     void setGameController(GameController gameController);
+
     /**
-     * javadock.
-     * @param gameScene param
+     * javadoc.
+     * @param gameScene
      */
     void setGameScene(Scene gameScene);
+
     /**
-     * javadock.
-     * @param code param
+     * javadoc.
+     * @param code
      */
     void setWinner(String code);
+
     /**
-     * javadock.
-     * @param settingsController param
+     * javadoc.
+     * @param settingsController
      */
     void setSettingsController(SettingsController settingsController);
+
+    /**
+     * javadoc.
+     * @param firstPlayerName
+     * @param secondPlayerName
+     */
+    void setPlayerName(String firstPlayerName, String secondPlayerName);
+
+    /**
+     * javadoc.
+     * @return first player's name
+     */
+    String getFirstPlayerName();
+
+    /**
+     * javadoc.
+     * @return second player's name
+     */
+    String getSecondPlayerName();
+
 }

@@ -22,11 +22,14 @@ import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
 import it.unibo.tankbattle.model.gamestate.api.GameState;
 import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
 import it.unibo.tankbattle.view.api.View;
+
 /**
  * javadoc.
+ * 
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
-    private static final long PERIOD = 20;
+
+    private final static long PERIOD = 20;
     private final View view;
     private final GameState model;
     private final Queue<Command> commandQueue = new LinkedList<>();
@@ -37,6 +40,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
+
     /**
      * javadoc.
      * @param view
@@ -48,29 +52,33 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model = new GameStateImpl(this);
         try {
             tankFirstManager = generateObjectManager(
-            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), 
+                TankDataList.class);
             tankSecondManager = generateObjectManager(
-            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), 
+                TankDataList.class);
             mapManager = generateObjectManager(
-            ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
-        } catch (JAXBException | URISyntaxException e) {
+                ClassLoader.getSystemResource("config/mapConfig.xml").toURI(),
+                MapDataList.class);
+        } catch (URISyntaxException | JAXBException e) {
             e.printStackTrace();
         }
     }
 
     private <T extends Data, C extends DataList<T>> ObjectsManager<T, C> generateObjectManager(
-            final URI path, final Class<C> clas) throws JAXBException {
+            final URI path, 
+            final Class<C> clas) throws JAXBException {
         return new ObjectsManagerImpl<T, C>(path, clas);
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer("ema", tankFirstManager.getActual());
-        secondPlayer = new HumanPlayer("ricky", tankSecondManager.getActual());
+        firstPlayer = new HumanPlayer(view.getFirstPlayerName(), tankFirstManager.getActual());
+        secondPlayer = new HumanPlayer(view.getSecondPlayerName(), tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
-        System.out.println("start game");
         thread.start();
         //initGame();
         /*
@@ -106,8 +114,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     private void processInput() {
         if (commandQueue.size() > 0) {
-            final var cmd = commandQueue.poll();
-            cmd.execute(model);
+            commandQueue.poll().execute(model);
         }
     }
 
@@ -117,84 +124,97 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     private void render() {
         view.render(model.getTankTrasform(firstPlayer), model.getTankTrasform(secondPlayer), 
-            model.getWallsTrasform(), model.getBulletsTrasform(), model.getTankLife(firstPlayer),
-            model.getTankLife(secondPlayer));
+                model.getWallsTrasform(), model.getBulletsTrasform(), 
+                model.getTankLife(firstPlayer), model.getTankLife(secondPlayer),
+                firstPlayer.getScore(), secondPlayer.getScore());
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void notifyCommand(final Command command) {
         commandQueue.add(command);
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void endGame(final Player player) {
-        player.incScore();
-        view.setWinner(player.getCode());
+        Player winner = findWinner(player);
+        winner.incScore();
+        view.setWinner(winner.getName());
         this.isOver = true;
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public Player getFirstPlayer() {
         return firstPlayer;
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public Player getSecondPlayer() {
         return secondPlayer;
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         loop();
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void updateTankPlayer1(final NextAndPrevious delta) {
         tankFirstManager.update(delta);
-        view.viewUpdateP1(tankFirstManager.getActual().getSpeed(), tankFirstManager.getActual().getDamage(),
-            tankFirstManager.getActual().getLife(), tankFirstManager.getActual().getResource());
+        final var toReturn = tankFirstManager.getActual();
+        view.viewUpdateP1(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void updateTankPlayer2(final NextAndPrevious delta) {
         tankSecondManager.update(delta);
-        view.viewUpdateP2(tankSecondManager.getActual().getSpeed(), tankSecondManager.getActual().getDamage(),
-            tankSecondManager.getActual().getLife(), tankSecondManager.getActual().getResource());
+        final var toReturn = tankSecondManager.getActual();
+        view.viewUpdateP2(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void updateMap(final NextAndPrevious delta) {
         mapManager.update(delta);
-        view.viewUpdateMap(mapManager.getActual().getResource());
+        final var toReturn = mapManager.getActual();
+        view.viewUpdateMap(toReturn.getResource());
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void setViewResources() {
         view.setResource(tankFirstManager.getActual().getResource(),
                 tankSecondManager.getActual().getResource(),
                 mapManager.getActual().getResource());
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void restart() {
         thread.interrupt();
@@ -202,12 +222,21 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void newStart() {
         thread.interrupt();
         thread = new Thread(this);
+    }
+
+    private Player findWinner (final Player deadPlayer) {
+        if(deadPlayer == firstPlayer) {
+            return secondPlayer;
+        } else {
+            return firstPlayer;
+        }
     }
 }

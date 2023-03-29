@@ -37,7 +37,7 @@ public class HumanPlayer implements Player {
     * {@inheritDoc}
     */
     @Override
-    public String getCode() {
+    public String getName() {
         return name;
     }
     /**

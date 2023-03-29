@@ -62,7 +62,7 @@ public class ModelTest {
             }
 
             @Override
-            public String getCode() {
+            public String getName() {
                 return "0";
             }
 

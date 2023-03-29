@@ -38,12 +38,13 @@ public class ViewController implements View {
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String winner;
-    /**
-    * {@inheritDoc}
-    */
+    private String firstPlayerName = "Player 1";
+    private String secondPlayerName = "Player 2";
+
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
-            final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank) {
+            final Stream<Transform> bullet, final int lifeFirstTank, final int lifeSecondTank,
+            final int firstPlayerScore, final int secondPlayerScore) {
         Platform.runLater(() -> {
             gameController.clear();
             gameController.renderBullet(bullet.collect(Collectors.toSet()));
@@ -51,6 +52,7 @@ public class ViewController implements View {
             gameController.renderSecondTank(secondTank);
             gameController.renderWall(wall.collect(Collectors.toSet()));
             gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);
+            gameController.drawLabel(firstPlayerName, secondPlayerName, firstPlayerScore, secondPlayerScore);
         });
     }
     /**
@@ -306,5 +308,25 @@ public class ViewController implements View {
     @Override
     public void setWinner(final String code) {
         this.winner = code;
+    }
+
+    @Override
+    public void setPlayerName(final String firstPlayerName, final String secondPlayerName) {
+        if (firstPlayerName != "") {
+            this.firstPlayerName = firstPlayerName;
+        }
+        if (secondPlayerName != "") {
+            this.secondPlayerName = secondPlayerName;
+        }
+    }
+
+    @Override
+    public String getFirstPlayerName() {
+        return this.firstPlayerName;
+    }
+
+    @Override
+    public String getSecondPlayerName() {
+        return this.secondPlayerName;
     }
 }

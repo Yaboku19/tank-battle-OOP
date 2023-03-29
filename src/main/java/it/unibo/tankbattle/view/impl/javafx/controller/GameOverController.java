@@ -97,11 +97,8 @@ public class GameOverController {
     public void setMenuScene(final Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
-    /**
-     * javadock.
-     * @param playerCode param
-     */
-    public void setWinLabel(final String playerCode) {
-        winLabel.setText("Player " + playerCode + " wins");
+
+    public void setWinLabel(String playerName) {
+        winLabel.setText(playerName + " wins");
     }
 }
