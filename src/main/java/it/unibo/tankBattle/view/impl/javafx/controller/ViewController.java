@@ -40,6 +40,8 @@ public class ViewController implements View {
     private String lastCommandFirstPlayer = "";
     private String lastCommandSecondPlayer = "";
     private String winner;
+    private String firstPlayerName = "Player 1";
+    private String secondPlayerName = "Player 2";
 
     @Override
     public void render(final Transform firstTank, final Transform secondTank, final Stream<Transform> wall,
@@ -274,5 +276,21 @@ public class ViewController implements View {
     @Override
     public void setWinner(String code) {
         this.winner = code;
+    }
+
+    @Override
+    public void setPlayerName(String firstPlayerName, String secondPlayerName) {
+        this.firstPlayerName = firstPlayerName;
+        this.secondPlayerName = secondPlayerName;
+    }
+
+    @Override
+    public String getFirstPlayerName() {
+        return this.firstPlayerName;
+    }
+
+    @Override
+    public String getSecondPlayerName() {
+        return this.secondPlayerName;
     }
 }

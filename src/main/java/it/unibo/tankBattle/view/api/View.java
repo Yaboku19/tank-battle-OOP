@@ -52,4 +52,10 @@ public interface View {
     public void setWinner(String code);
 
     public void setSettingsController(SettingsController settingsController);
+
+    public void setPlayerName(String firstPlayerName, String secondPlayerName);
+
+    public String getFirstPlayerName();
+
+    public String getSecondPlayerName();
 }

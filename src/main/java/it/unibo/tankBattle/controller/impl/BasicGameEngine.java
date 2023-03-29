@@ -63,8 +63,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     @Override
     public void startGame() {
-        firstPlayer = new HumanPlayer("ema", tankFirstManager.getActual());
-        secondPlayer = new HumanPlayer("ricky", tankSecondManager.getActual());
+        firstPlayer = new HumanPlayer(view.getFirstPlayerName(), tankFirstManager.getActual());
+        secondPlayer = new HumanPlayer(view.getSecondPlayerName(), tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer
             , mapManager.getActual());
         System.out.println("start game");
