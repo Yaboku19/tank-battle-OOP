@@ -6,10 +6,10 @@ import it.unibo.tankbattle.common.input.api.Direction;
  */
 public class Transform {
 
-    private P2d position;
-    private Direction direction;
-    private double length;
-    private double width;
+    private final P2d position;
+    private final Direction direction;
+    private final double length;
+    private final double width;
 
     /**
      * javadoc.

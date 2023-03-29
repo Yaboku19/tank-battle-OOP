@@ -8,11 +8,11 @@ import it.unibo.tankbattle.common.input.api.InputController;
  */
 public class KeyboardInputController implements InputController {
 
-    private int keyCodeMoveUp;
-    private int keyCodeMoveDown;
-    private int keyCodeMoveLeft;
-    private int keyCodeMoveRight;
-    private int keyCodeShoot;
+    private final int keyCodeMoveUp;
+    private final int keyCodeMoveDown;
+    private final int keyCodeMoveLeft;
+    private final int keyCodeMoveRight;
+    private final int keyCodeShoot;
     /**
      * javadoc.
      * @param keyCodeMoveUp param

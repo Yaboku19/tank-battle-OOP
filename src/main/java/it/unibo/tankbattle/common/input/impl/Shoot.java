@@ -8,7 +8,7 @@ import it.unibo.tankbattle.model.gameState.api.CommandListener;
  */
 public class Shoot implements Command {
 
-    private Player player;
+    private final Player player;
     /**
      * javadoc.
      * @param player player

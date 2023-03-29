@@ -22,9 +22,9 @@ import it.unibo.tankbattle.model.gameSetup.api.DataList;
  */
 public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implements ObjectsManager<T, C> {
     private final File config;
-    private final Map<String, T> dataMap = new HashMap<String, T>();
+    private final Map<String, T> dataMap = new HashMap<>();
     private final List<String> keyOrder = new ArrayList<>();
-    private int index = 0;
+    private int index;
 
     /**
      * javadoc.
@@ -46,7 +46,7 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
     private void read(final Class<C> c) throws JAXBException {
         final JAXBContext jaxbContext = JAXBContext.newInstance(c);
         final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        var dataList = (C) unmarshaller.unmarshal(config);
+        final var dataList = (C) unmarshaller.unmarshal(config);
         for (int i = 0; i < dataList.getData().size(); i++) {
             dataMap.put(dataList.getData().get(i).getName(), dataList.getData().get(i));
             keyOrder.add(dataList.getData().get(i).getName());

@@ -10,8 +10,6 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private View viewController;
-
     /**
      * The main of the application.
      * @param args
@@ -25,7 +23,7 @@ public class Main extends Application {
     */
     @Override
     public void start(final Stage stage) {
-        viewController = new ViewController();
+        final View viewController = new ViewController();
         viewController.start(stage);
     }
 

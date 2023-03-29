@@ -10,8 +10,8 @@ import it.unibo.tankbattle.model.gameState.api.CommandListener;
  */
 public class Movement implements Command {
 
-    private Direction dir;
-    private Player player;
+    private final Direction dir;
+    private final Player player;
     //private GameEngine controller;
     /**
      * javadoc.

@@ -6,7 +6,7 @@ package it.unibo.tankbattle;
 public final class TankBattle {
 
     private TankBattle() {
-    };
+    }
 
     /**
      * javadoc.

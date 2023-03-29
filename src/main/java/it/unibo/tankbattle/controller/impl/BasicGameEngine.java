@@ -1,6 +1,7 @@
 package it.unibo.tankbattle.controller.impl;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,14 +26,14 @@ import it.unibo.tankbattle.view.api.View;
  * javadoc.
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
-    private final long period = 20;
+    private static final long PERIOD = 20;
     private final View view;
     private final GameState model;
     private final Queue<Command> commandQueue = new LinkedList<>();
     private Thread thread;
     private Boolean isOver = false;
-    private Player firstPlayer = null;
-    private Player secondPlayer = null;
+    private Player firstPlayer;
+    private Player secondPlayer;
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
@@ -47,12 +48,12 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model = new GameStateImpl(this);
         try {
             tankFirstManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
             tankSecondManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
             mapManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
-        } catch (Exception e) {
+            ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
+        } catch (JAXBException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
@@ -81,8 +82,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
         while (!isOver) {
-            long currentCycleStartTime = System.currentTimeMillis();
-            long elapsed = currentCycleStartTime - previousCycleStartTime;
+            final long currentCycleStartTime = System.currentTimeMillis();
+            final long elapsed = currentCycleStartTime - previousCycleStartTime;
             processInput();
             update(elapsed);
             render();
@@ -93,11 +94,11 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     private void waitForNextFrame(final long cycleStartTime) {
-        long dt = System.currentTimeMillis() - cycleStartTime;
-        if (dt < period) {
+        final long dt = System.currentTimeMillis() - cycleStartTime;
+        if (dt < PERIOD) {
             try {
-                Thread.sleep(period - dt);
-            } catch (Exception ex) {
+                Thread.sleep(PERIOD - dt);
+            } catch (InterruptedException ex) {
                 System.out.println(ex.toString());
             }
         }
@@ -105,7 +106,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
 
     private void processInput() {
         if (commandQueue.size() > 0) {
-            var cmd = commandQueue.poll();
+            final var cmd = commandQueue.poll();
             cmd.execute(model);
         }
     }
@@ -162,8 +163,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void updateTankPlayer1(final NextAndPrevious delta) {
         tankFirstManager.update(delta);
-        var toReturn = tankFirstManager.getActual();
-        view.viewUpdateP1(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.viewUpdateP1(tankFirstManager.getActual().getSpeed(), tankFirstManager.getActual().getDamage(),
+            tankFirstManager.getActual().getLife(), tankFirstManager.getActual().getResource());
     }
     /**
     * {@inheritDoc}
@@ -171,8 +172,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void updateTankPlayer2(final NextAndPrevious delta) {
         tankSecondManager.update(delta);
-        var toReturn = tankSecondManager.getActual();
-        view.viewUpdateP2(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.viewUpdateP2(tankSecondManager.getActual().getSpeed(), tankSecondManager.getActual().getDamage(),
+            tankSecondManager.getActual().getLife(), tankSecondManager.getActual().getResource());
     }
     /**
     * {@inheritDoc}
@@ -180,8 +181,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     @Override
     public void updateMap(final NextAndPrevious delta) {
         mapManager.update(delta);
-        var toReturn = mapManager.getActual();
-        view.viewUpdateMap(toReturn.getResource());
+        view.viewUpdateMap(mapManager.getActual().getResource());
     }
     /**
     * {@inheritDoc}

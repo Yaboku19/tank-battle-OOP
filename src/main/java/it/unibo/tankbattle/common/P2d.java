@@ -5,8 +5,8 @@ package it.unibo.tankbattle.common;
  */
 public class P2d {
 
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
     /**
      * javadoc.
      * @param x param
@@ -88,13 +88,8 @@ public class P2d {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        P2d other = (P2d) obj;
-        if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
-            return false;
-        }
-        return true;
+        final P2d other = (P2d) obj;
+        return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x) 
+            && Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y);
     }
 }

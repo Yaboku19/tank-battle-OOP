@@ -62,7 +62,7 @@ package it.unibo.tankbattle.common;
             return false;
         }
 
-        Pair other = (Pair) obj;
+        final Pair other = (Pair) obj;
 
         if (x == null) {
             if (other.x != null) {

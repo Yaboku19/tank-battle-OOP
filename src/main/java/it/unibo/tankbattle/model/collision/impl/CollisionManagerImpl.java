@@ -27,7 +27,7 @@ public class CollisionManagerImpl implements CollisionManager {
     */
     @Override
     public void manageCollisions(final Stream<GameObject> objects) {
-        Stream<Pair<Collidable, Collidable>> collidingObjects = findCollidingObjects(
+        final Stream<Pair<Collidable, Collidable>> collidingObjects = findCollidingObjects(
             objects
                 .map(x -> x.getComponent(Collidable.class))
                 .filter(Optional::isPresent)
@@ -42,7 +42,7 @@ public class CollisionManagerImpl implements CollisionManager {
     }
 
     private Stream<Pair<Collidable, Collidable>> findCollidingObjects(final Stream<Collidable> collidables) {
-        List<Collidable> collidablesList = collidables.toList();
+        final List<Collidable> collidablesList = collidables.toList();
         return IntStream
             .range(0, collidablesList.size())
             .boxed()

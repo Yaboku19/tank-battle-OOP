@@ -14,8 +14,8 @@ public class CollisionDetectorImpl implements CollisionDetector {
     */
     @Override
     public boolean detect(final Collidable object1, final Collidable object2) {
-        Transform transform1 = object1.getGameObject().getTransform();
-        Transform transform2 = object2.getGameObject().getTransform();
+        final Transform transform1 = object1.getGameObject().getTransform();
+        final Transform transform2 = object2.getGameObject().getTransform();
         return containsAnyCorner(transform1, transform2) || containsAnyCorner(transform2, transform1);
     }
 
@@ -31,7 +31,7 @@ public class CollisionDetectorImpl implements CollisionDetector {
     }
 
     private Stream<P2d> corners(final Transform transform) {
-        Stream<P2d> offsets = Stream.of(
+        final Stream<P2d> offsets = Stream.of(
             new P2d(transform.getLength() / 2, transform.getWidth() / 2),
             new P2d(-transform.getLength() / 2, transform.getWidth() / 2),
             new P2d(transform.getLength() / 2, -transform.getWidth() / 2),
