@@ -1,7 +1,7 @@
-package it.unibo.tankBattle.model.gameState.api;
+package it.unibo.tankbattle.model.gameState.api;
 
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.controller.api.Player;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.controller.api.Player;
 /**
  * javadock.
  */

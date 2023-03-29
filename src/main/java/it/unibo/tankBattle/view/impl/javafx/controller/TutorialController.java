@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.view.impl.javafx.controller;
+package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

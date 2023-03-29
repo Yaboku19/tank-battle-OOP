@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.gameObject.api.component;
+package it.unibo.tankbattle.model.gameObject.api.component;
 /**
  * javadoc.
  */

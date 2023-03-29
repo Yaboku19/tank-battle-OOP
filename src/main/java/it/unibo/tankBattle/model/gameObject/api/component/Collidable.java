@@ -1,6 +1,6 @@
-package it.unibo.tankBattle.model.gameObject.api.component;
+package it.unibo.tankbattle.model.gameObject.api.component;
 
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
 /**
  * javadoc.
  */

@@ -1,7 +1,8 @@
-package it.unibo.tankBattle.model.world.api;
+package it.unibo.tankbattle.model.world.api;
 
 import java.util.stream.Stream;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
 /**
  * The classe where are saved all the GameObject of the Map.
  */

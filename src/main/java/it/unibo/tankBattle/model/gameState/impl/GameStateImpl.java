@@ -1,26 +1,27 @@
-package it.unibo.tankBattle.model.gameState.impl;
+package it.unibo.tankbattle.model.gameState.impl;
 
 import java.util.stream.Stream;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.controller.api.WorldEventListener;
-import it.unibo.tankBattle.model.collision.api.CollisionManager;
-import it.unibo.tankBattle.model.collision.impl.CollisionDetectorImpl;
-import it.unibo.tankBattle.model.collision.impl.CollisionManagerImpl;
-import it.unibo.tankBattle.model.gameObject.api.component.Damageable;
-import it.unibo.tankBattle.model.gameObject.api.component.Health;
-import it.unibo.tankBattle.model.gameObject.api.component.Tank;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
-import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
-import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
-import it.unibo.tankBattle.model.gameSetup.impl.MapData;
-import it.unibo.tankBattle.model.gameState.api.GameState;
-import it.unibo.tankBattle.model.world.api.FactoryWorld;
-import it.unibo.tankBattle.model.world.api.World;
-import it.unibo.tankBattle.model.world.impl.FactoryWorldImpl;
+
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.controller.api.WorldEventListener;
+import it.unibo.tankbattle.model.collision.api.CollisionManager;
+import it.unibo.tankbattle.model.collision.impl.CollisionDetectorImpl;
+import it.unibo.tankbattle.model.collision.impl.CollisionManagerImpl;
+import it.unibo.tankbattle.model.gameObject.api.component.Damageable;
+import it.unibo.tankbattle.model.gameObject.api.component.Health;
+import it.unibo.tankbattle.model.gameObject.api.component.Tank;
+import it.unibo.tankbattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameObject.impl.component.Bullet;
+import it.unibo.tankbattle.model.gameObject.impl.component.Wall;
+import it.unibo.tankbattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.model.gameSetup.impl.MapData;
+import it.unibo.tankbattle.model.gameState.api.GameState;
+import it.unibo.tankbattle.model.world.api.FactoryWorld;
+import it.unibo.tankbattle.model.world.api.World;
+import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 /**
  * javadock.
  */

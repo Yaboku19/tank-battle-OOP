@@ -1,7 +1,7 @@
-package it.unibo.tankBattle;
+package it.unibo.tankbattle;
 
-import it.unibo.tankBattle.view.api.View;
-import it.unibo.tankBattle.view.impl.javafx.controller.ViewController;
+import it.unibo.tankbattle.view.api.View;
+import it.unibo.tankbattle.view.impl.javafx.controller.ViewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -1,7 +1,7 @@
-package it.unibo.tankBattle.model.world.api;
+package it.unibo.tankbattle.model.world.api;
 
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameSetup.impl.MapData;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameSetup.impl.MapData;
 /**
  * javadock.
  */

@@ -1,10 +1,10 @@
-package it.unibo.tankBattle.model.gameState.api;
+package it.unibo.tankbattle.model.gameState.api;
 
 import java.util.stream.Stream;
 
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameSetup.impl.MapData;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameSetup.impl.MapData;
 /**
  * javadock.
  */

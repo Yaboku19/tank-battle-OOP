@@ -1,10 +1,10 @@
-package it.unibo.tankBattle.model.collision.impl;
+package it.unibo.tankbattle.model.collision.impl;
 
 import java.util.stream.Stream;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.model.gameObject.api.component.Collidable;
 /**
  * javadoc.
  */

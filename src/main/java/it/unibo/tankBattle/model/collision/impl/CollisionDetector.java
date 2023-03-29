@@ -1,6 +1,6 @@
-package it.unibo.tankBattle.model.collision.impl;
+package it.unibo.tankbattle.model.collision.impl;
 
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankbattle.model.gameObject.api.component.Collidable;
 /**
  * javadoc.
  */

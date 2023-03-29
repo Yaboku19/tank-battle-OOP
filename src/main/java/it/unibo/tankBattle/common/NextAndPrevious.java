@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.common;
+package it.unibo.tankbattle.common;
 /**
  * javadoc.
  */

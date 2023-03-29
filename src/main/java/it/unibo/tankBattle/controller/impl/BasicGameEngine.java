@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.controller.impl;
+package it.unibo.tankbattle.controller.impl;
 
 import java.net.URI;
 import java.util.LinkedList;
@@ -6,21 +6,21 @@ import java.util.Queue;
 
 import javax.xml.bind.JAXBException;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.common.input.api.Command;
-import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.controller.api.ObjectsManager;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.controller.api.WorldEventListener;
-import it.unibo.tankBattle.model.gameSetup.api.Data;
-import it.unibo.tankBattle.model.gameSetup.api.DataList;
-import it.unibo.tankBattle.model.gameSetup.impl.MapData;
-import it.unibo.tankBattle.model.gameSetup.impl.MapDataList;
-import it.unibo.tankBattle.model.gameSetup.impl.TankData;
-import it.unibo.tankBattle.model.gameSetup.impl.TankDataList;
-import it.unibo.tankBattle.model.gameState.api.GameState;
-import it.unibo.tankBattle.model.gameState.impl.GameStateImpl;
-import it.unibo.tankBattle.view.api.View;
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.common.input.api.Command;
+import it.unibo.tankbattle.controller.api.GameEngine;
+import it.unibo.tankbattle.controller.api.ObjectsManager;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.controller.api.WorldEventListener;
+import it.unibo.tankbattle.model.gameSetup.api.Data;
+import it.unibo.tankbattle.model.gameSetup.api.DataList;
+import it.unibo.tankbattle.model.gameSetup.impl.MapData;
+import it.unibo.tankbattle.model.gameSetup.impl.MapDataList;
+import it.unibo.tankbattle.model.gameSetup.impl.TankData;
+import it.unibo.tankbattle.model.gameSetup.impl.TankDataList;
+import it.unibo.tankbattle.model.gameState.api.GameState;
+import it.unibo.tankbattle.model.gameState.impl.GameStateImpl;
+import it.unibo.tankbattle.view.api.View;
 /**
  * javadoc.
  */

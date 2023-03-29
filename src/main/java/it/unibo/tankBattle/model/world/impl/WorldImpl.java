@@ -1,10 +1,11 @@
-package it.unibo.tankBattle.model.world.impl;
+package it.unibo.tankbattle.model.world.impl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.world.api.World;
+
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.world.api.World;
 /**
  * javadock.
  */

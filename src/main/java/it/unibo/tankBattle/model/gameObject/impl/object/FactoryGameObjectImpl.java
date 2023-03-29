@@ -1,21 +1,21 @@
-package it.unibo.tankBattle.model.gameObject.impl.object;
+package it.unibo.tankbattle.model.gameObject.impl.object;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.component.Tank;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.Bullet;
-import it.unibo.tankBattle.model.gameObject.impl.component.CollisionComponent;
-import it.unibo.tankBattle.model.gameObject.impl.component.DamageableImpl;
-import it.unibo.tankBattle.model.gameObject.impl.component.DealDamageOnCollision;
-import it.unibo.tankBattle.model.gameObject.impl.component.DestroyOnCollision;
-import it.unibo.tankBattle.model.gameObject.impl.component.HealthImpl;
-import it.unibo.tankBattle.model.gameObject.impl.component.KnockBack;
-import it.unibo.tankBattle.model.gameObject.impl.component.SimpleMovable;
-import it.unibo.tankBattle.model.gameObject.impl.component.Wall;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameObject.api.component.Tank;
+import it.unibo.tankbattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameObject.impl.component.Bullet;
+import it.unibo.tankbattle.model.gameObject.impl.component.CollisionComponent;
+import it.unibo.tankbattle.model.gameObject.impl.component.DamageableImpl;
+import it.unibo.tankbattle.model.gameObject.impl.component.DealDamageOnCollision;
+import it.unibo.tankbattle.model.gameObject.impl.component.DestroyOnCollision;
+import it.unibo.tankbattle.model.gameObject.impl.component.HealthImpl;
+import it.unibo.tankbattle.model.gameObject.impl.component.KnockBack;
+import it.unibo.tankbattle.model.gameObject.impl.component.SimpleMovable;
+import it.unibo.tankbattle.model.gameObject.impl.component.Wall;
 /**
  * javadoc.
  */

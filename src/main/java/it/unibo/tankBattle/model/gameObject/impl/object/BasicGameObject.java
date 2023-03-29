@@ -1,14 +1,15 @@
-package it.unibo.tankBattle.model.gameObject.impl.object;
+package it.unibo.tankbattle.model.gameObject.impl.object;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.model.gameObject.api.component.Component;
-import it.unibo.tankBattle.model.gameObject.api.component.Movable;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.model.gameObject.api.component.Component;
+import it.unibo.tankbattle.model.gameObject.api.component.Movable;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
 /**
  * javadoc.
  */
@@ -48,7 +49,7 @@ public class BasicGameObject implements GameObject {
     */
     @Override
     public List<Component> getComponents() {
-        return this.components;    
+        return this.components;
     }
     /**
     * {@inheritDoc}

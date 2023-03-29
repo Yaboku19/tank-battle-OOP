@@ -1,29 +1,35 @@
-package it.unibo.tankBattle.common.input.impl;
+package it.unibo.tankbattle.common.input.impl;
 
 
-import it.unibo.tankBattle.common.input.api.Command;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameState.api.CommandListener;
+import it.unibo.tankbattle.common.input.api.Command;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameState.api.CommandListener;
 /**
- * That class manage the movement of the players
+ * That class manage the movement of the players.
  */
-public class Movement implements Command{
+public class Movement implements Command {
 
     private Direction dir;
     private Player player;
     //private GameEngine controller;
-
-    public Movement(final Direction dir, final Player player){//}, final GameEngine controller){
+    /**
+     * javadoc.
+     * @param dir param
+     * @param player param
+     */
+    public Movement(final Direction dir, final Player player) {
         this.dir = dir;
         this.player = player;
         //this.controller = controller;
     }
-
+    /**
+    * {@inheritDoc}
+    */
     @Override
-    public void execute(CommandListener model) {
+    public void execute(final CommandListener model) {
         //player.getTrasform.SetDirection(dir);
         model.setDirection(dir, player);
     }
-    
+
 }

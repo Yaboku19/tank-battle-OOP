@@ -1,6 +1,6 @@
-package it.unibo.tankBattle.common;
+package it.unibo.tankbattle.common;
 
-import it.unibo.tankBattle.common.input.api.Direction;
+import it.unibo.tankbattle.common.input.api.Direction;
 /**
  * javadoc.
  */

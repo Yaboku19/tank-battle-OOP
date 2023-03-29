@@ -1,7 +1,7 @@
-package it.unibo.tankBattle.controller.api;
+package it.unibo.tankbattle.controller.api;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.common.input.api.Command;
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.common.input.api.Command;
 /**
  * javadoc.
  */

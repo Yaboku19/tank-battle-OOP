@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.model.gameObject.impl.object;
+package it.unibo.tankbattle.model.gameObject.impl.object;
 /**
  * javdoc.
  */

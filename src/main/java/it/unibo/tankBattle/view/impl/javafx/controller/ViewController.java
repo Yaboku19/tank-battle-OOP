@@ -1,18 +1,20 @@
-package it.unibo.tankBattle.view.impl.javafx.controller;
+package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.util.stream.Stream;
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.controller.api.GameEngine;
-import it.unibo.tankBattle.controller.impl.BasicGameEngine;
-import it.unibo.tankBattle.view.api.View;
+
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.common.input.impl.Movement;
+import it.unibo.tankbattle.common.input.impl.Shoot;
+import it.unibo.tankbattle.controller.api.GameEngine;
+import it.unibo.tankbattle.controller.impl.BasicGameEngine;
+import it.unibo.tankbattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import java.io.IOException;
 import java.util.stream.Collectors;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.common.input.impl.Movement;
-import it.unibo.tankBattle.common.input.impl.Shoot;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

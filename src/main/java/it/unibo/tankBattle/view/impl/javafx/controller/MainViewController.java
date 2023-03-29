@@ -1,10 +1,10 @@
-package it.unibo.tankBattle.view.impl.javafx.controller;
+package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.view.api.View;
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.view.api.View;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

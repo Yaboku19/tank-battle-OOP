@@ -1,4 +1,4 @@
-package it.unibo.tankBattle;
+package it.unibo.tankbattle;
 
 /**
  * Launcher class.

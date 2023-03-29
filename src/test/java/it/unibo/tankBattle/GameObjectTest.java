@@ -2,15 +2,15 @@ package it.unibo.tankBattle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.component.Health;
-import it.unibo.tankBattle.model.gameObject.api.component.Movable;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.component.CollisionComponent;
-import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameObject.api.component.Health;
+import it.unibo.tankbattle.model.gameObject.api.component.Movable;
+import it.unibo.tankbattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameObject.impl.component.CollisionComponent;
+import it.unibo.tankbattle.model.gameObject.impl.object.FactoryGameObjectImpl;
 
 public class GameObjectTest {
     

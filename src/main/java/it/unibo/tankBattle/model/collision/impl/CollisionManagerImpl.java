@@ -1,14 +1,14 @@
-package it.unibo.tankBattle.model.collision.impl;
+package it.unibo.tankbattle.model.collision.impl;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import it.unibo.tankBattle.common.Pair;
-import it.unibo.tankBattle.model.collision.api.CollisionManager;
-import it.unibo.tankBattle.model.gameObject.api.component.Collidable;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.common.Pair;
+import it.unibo.tankbattle.model.collision.api.CollisionManager;
+import it.unibo.tankbattle.model.gameObject.api.component.Collidable;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
 /**
  * javadoc.
  */

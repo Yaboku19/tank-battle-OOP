@@ -1,38 +1,41 @@
-package it.unibo.tankBattle.model.gameObject.impl.component;
+package it.unibo.tankbattle.model.gameObject.impl.component;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.model.collision.api.CollisionListener;
-import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
-import it.unibo.tankBattle.model.gameObject.api.component.Movable;
-import it.unibo.tankBattle.model.gameObject.api.component.ObservableCollidable;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.model.collision.api.CollisionListener;
+import it.unibo.tankbattle.model.gameObject.api.component.AbstractComponent;
+import it.unibo.tankbattle.model.gameObject.api.component.Movable;
+import it.unibo.tankbattle.model.gameObject.api.component.ObservableCollidable;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+
 /**
  * javadoc.
  */
 public class KnockBack extends AbstractComponent implements CollisionListener {
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void update(final double time) {
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void gameObjectAttached(final GameObject object) {
         requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
+
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public void handleCollision(final GameObject self, final GameObject collidingObject) {
         final P2d offset = computeOffset(collidingObject);
@@ -45,26 +48,26 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
         }
     }
 
-    private void setNewPosition(GameObject object, P2d offset) {
+    private void setNewPosition(final GameObject object, final P2d offset) {
         final P2d newPosition = object.getTransform().getPosition().sum(offset);
         object.setPosition(newPosition);
     }
 
-    private boolean shouldBeKnockedBack(GameObject object) {
-        return object.getComponent(KnockBack.class).isPresent() &&
-            object
-                .getComponent(Movable.class)
-                .map(x -> x.getMovingDirection())
-                .filter(direction -> direction != Direction.NONE)
-                .isPresent();
+    private boolean shouldBeKnockedBack(final GameObject object) {
+        return object.getComponent(KnockBack.class).isPresent()
+                && object
+                        .getComponent(Movable.class)
+                        .map(x -> x.getMovingDirection())
+                        .filter(direction -> direction != Direction.NONE)
+                        .isPresent();
     }
 
     private P2d computeOffset(final GameObject collidingObject) {
         return Arrays.stream(Direction.values())
-            .filter(direction -> direction != Direction.NONE)
-            .map(x -> this.getOffset(collidingObject, x))
-            .min(Comparator.comparing(x -> x.getMagnitude()))
-            .get();
+                .filter(direction -> direction != Direction.NONE)
+                .map(x -> this.getOffset(collidingObject, x))
+                .min(Comparator.comparing(x -> x.getMagnitude()))
+                .get();
     }
 
     private P2d getOffset(final GameObject collidingObject, final Direction direction) {
@@ -81,16 +84,18 @@ public class KnockBack extends AbstractComponent implements CollisionListener {
             default -> (x, y) -> new P2d(0.0, 0.0);
         };
         return offset(
-            self.getPosition(),
-            other.getPosition(),
-            new P2d(self.getLength(), self.getWidth()),
-            new P2d(other.getLength(), other.getWidth()),
-            direction.getVector(),
-            get,
-            set);
+                self.getPosition(),
+                other.getPosition(),
+                new P2d(self.getLength(), self.getWidth()),
+                new P2d(other.getLength(), other.getWidth()),
+                direction.getVector(),
+                get,
+                set);
     }
 
-    private P2d offset(final P2d center1, final P2d center2, final P2d side1, final P2d side2, final P2d dir, final Function<P2d, Double> get, final BiFunction<P2d, Double, P2d> set) {
+    private P2d offset(final P2d center1, final P2d center2,
+            final P2d side1, final P2d side2, final P2d dir,
+            final Function<P2d, Double> get, final BiFunction<P2d, Double, P2d> set) {
         final var lengthSide1 = get.apply(side1);
         final var lengthSide2 = get.apply(side2);
         final var zero = new P2d(0.0, 0.0);

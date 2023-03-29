@@ -1,10 +1,10 @@
-package it.unibo.tankBattle.view.impl.javafx.controller;
+package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.view.api.View;
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +23,7 @@ public class SettingsController implements Initializable {
 
     private Scene prevScene;
     private View viewController;
-    private final String PATH = "images/";
+    private static final String PATH = "images/";
 
     @FXML
     private ResourceBundle resources;

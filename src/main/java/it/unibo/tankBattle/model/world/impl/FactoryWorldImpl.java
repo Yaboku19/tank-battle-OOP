@@ -1,16 +1,16 @@
-package it.unibo.tankBattle.model.world.impl;
+package it.unibo.tankbattle.model.world.impl;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.controller.api.Player;
-import it.unibo.tankBattle.model.gameObject.api.object.FactoryGameObject;
-import it.unibo.tankBattle.model.gameObject.api.object.GameObject;
-import it.unibo.tankBattle.model.gameObject.impl.object.FactoryGameObjectImpl;
-import it.unibo.tankBattle.model.gameSetup.impl.MapData;
-import it.unibo.tankBattle.model.world.api.FactoryWorld;
-import it.unibo.tankBattle.model.world.api.World;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.controller.api.Player;
+import it.unibo.tankbattle.model.gameObject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameObject.api.object.GameObject;
+import it.unibo.tankbattle.model.gameObject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.model.gameSetup.impl.MapData;
+import it.unibo.tankbattle.model.world.api.FactoryWorld;
+import it.unibo.tankbattle.model.world.api.World;
 /**
  * javadock.
  */

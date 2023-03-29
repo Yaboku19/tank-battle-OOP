@@ -1,9 +1,9 @@
-package it.unibo.tankBattle.model.gameObject.impl.component;
+package it.unibo.tankbattle.model.gameObject.impl.component;
 
-import it.unibo.tankBattle.common.P2d;
-import it.unibo.tankBattle.common.input.api.Direction;
-import it.unibo.tankBattle.model.gameObject.api.component.AbstractComponent;
-import it.unibo.tankBattle.model.gameObject.api.component.Movable;
+import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.model.gameObject.api.component.AbstractComponent;
+import it.unibo.tankbattle.model.gameObject.api.component.Movable;
 /**
  * javadoc.
  */

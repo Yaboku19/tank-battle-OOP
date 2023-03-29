@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.controller.impl;
+package it.unibo.tankbattle.controller.impl;
 
 import java.io.File;
 import java.net.URI;
@@ -11,10 +11,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import it.unibo.tankBattle.common.NextAndPrevious;
-import it.unibo.tankBattle.controller.api.ObjectsManager;
-import it.unibo.tankBattle.model.gameSetup.api.Data;
-import it.unibo.tankBattle.model.gameSetup.api.DataList;
+import it.unibo.tankbattle.common.NextAndPrevious;
+import it.unibo.tankbattle.controller.api.ObjectsManager;
+import it.unibo.tankbattle.model.gameSetup.api.Data;
+import it.unibo.tankbattle.model.gameSetup.api.DataList;
 /**
  * javadoc.
  * @param <T> param

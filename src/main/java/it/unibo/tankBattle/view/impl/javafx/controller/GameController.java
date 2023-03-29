@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.view.impl.javafx.controller;
+package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
-import it.unibo.tankBattle.common.Transform;
-import it.unibo.tankBattle.common.input.api.Direction;
+
+import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Direction;
 import javafx.animation.AnimationTimer;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;

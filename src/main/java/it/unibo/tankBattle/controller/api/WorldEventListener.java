@@ -1,4 +1,4 @@
-package it.unibo.tankBattle.controller.api;
+package it.unibo.tankbattle.controller.api;
 /**
  * javadoc.
  */
