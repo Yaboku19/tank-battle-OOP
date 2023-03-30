@@ -2,58 +2,226 @@
 <mapList>
     <map name="DEFAULTMAP">
         <position>
-            <x>12</x>
-            <y>7</y>
+            <x>19.5</x>
+            <y>12.5</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>2</x>
-            <y>2</y>
+            <x>1.5</x>
+            <y>1.5</y>
             <type>tank2</type>
         </position>
         <position>
-            <x>5</x>
-            <y>5</y>
+            <x>7</x>
+            <y>3</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>7</x>
+            <y>7</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>7</x>
+            <y>11</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>10.5</x>
+            <y>3</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>10.5</x>
+            <y>7</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>10.5</x>
+            <y>11</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>14</x>
+            <y>3</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>14</x>
+            <y>7</y>
+            <type>wall</type>
+        </position>
+        <position>
+            <x>14</x>
+            <y>11</y>
             <type>wall</type>
         </position>
         <line>
-            <common>10</common>
-            <notcommon1>5.5</notcommon1>
-            <notcommon2>10.5</notcommon2>
-            <type>row</type>
+            <common>4</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>11</notcommon2>
+            <type>column</type>
+        </line>
+        <line>
+            <common>17</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>11</notcommon2>
+            <type>column</type>
         </line>
         <row>14</row>
         <column>21</column>
         <resource>map1.png</resource>
     </map>
-    <map name="PIPPOMAP">
+
+    <map name="LAVAMAP">
         <position>
-            <x>5</x>
-            <y>1</y>
+            <x>19.5</x>
+            <y>12.5</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>1</x>
-            <y>1</y>
+            <x>1.5</x>
+            <y>1.5</y>
             <type>tank2</type>
         </position>
-        <row>20</row>
-        <column>25</column>
+        <line>
+            <common>3</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>10.5</common>
+            <notcommon1>4</notcommon1>
+            <notcommon2>5</notcommon2>
+            <type>column</type>
+        </line>
+        <line>
+            <common>10.5</common>
+            <notcommon1>9</notcommon1>
+            <notcommon2>10</notcommon2>
+            <type>column</type>
+        </line>
+        <line>
+            <common>11</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>6.5</common>
+            <notcommon1>6</notcommon1>
+            <notcommon2>8</notcommon2>
+            <type>column</type>
+        </line>
+        <line>
+            <common>14.5</common>
+            <notcommon1>6</notcommon1>
+            <notcommon2>8</notcommon2>
+            <type>column</type>
+        </line>
+        <row>14</row>
+        <column>21</column>
         <resource>map2.png</resource>
     </map>
-    <map name="PLUTOMAP">
+
+    <map name="ICEMAP">
         <position>
-            <x>8</x>
-            <y>2</y>
+            <x>19.5</x>
+            <y>12.5</y>
             <type>tank1</type>
         </position>
         <position>
-            <x>5</x>
-            <y>5</y>
+            <x>1.5</x>
+            <y>1.5</y>
             <type>tank2</type>
         </position>
-        <row>11</row>
-        <column>17</column>
+        <line>
+            <common>3</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>4</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>4</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>4</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>10</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>4</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>11</common>
+            <notcommon1>3</notcommon1>
+            <notcommon2>4</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>3</common>
+            <notcommon1>17</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>4</common>
+            <notcommon1>17</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>10</common>
+            <notcommon1>17</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>11</common>
+            <notcommon1>17</notcommon1>
+            <notcommon2>18</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>6</common>
+            <notcommon1>7</notcommon1>
+            <notcommon2>9</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>7</common>
+            <notcommon1>7</notcommon1>
+            <notcommon2>9</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>8</common>
+            <notcommon1>7</notcommon1>
+            <notcommon2>9</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>6</common>
+            <notcommon1>12</notcommon1>
+            <notcommon2>14</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>7</common>
+            <notcommon1>12</notcommon1>
+            <notcommon2>14</notcommon2>
+            <type>row</type>
+        </line>
+        <line>
+            <common>8</common>
+            <notcommon1>12</notcommon1>
+            <notcommon2>14</notcommon2>
+            <type>row</type>
+        </line>
+        <row>14</row>
+        <column>21</column>
         <resource>map3.png</resource>
     </map>
 </mapList>
