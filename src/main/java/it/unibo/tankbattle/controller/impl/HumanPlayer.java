@@ -45,6 +45,6 @@ public class HumanPlayer implements Player {
     */
     @Override
     public TankData getTankData() {
-       return tankData;
+       return tankData.copy();
     }
 }

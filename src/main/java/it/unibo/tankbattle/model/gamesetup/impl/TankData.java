@@ -124,6 +124,20 @@ public class TankData implements Data {
     public void setResource(final String resource) {
         this.resource = resource;
     }
+    /**
+     * javadoc.
+     * @return return
+     */
+    public TankData copy() {
+        final TankData copy = new TankData();
+        copy.name = name;
+        copy.code = code;
+        copy.speed = speed;
+        copy.damage = damage;
+        copy.life = life;
+        copy.resource = resource;
+        return copy;
+    }
 }
 
 

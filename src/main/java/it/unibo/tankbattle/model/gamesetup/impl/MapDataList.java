@@ -19,20 +19,21 @@ import java.util.List;
 public class MapDataList implements DataList<MapData> {
 
     @XmlElement(name = "map")
-    private List<MapData> map = new ArrayList<>();
+    private final List<MapData> map = new ArrayList<>();
     /**
     * {@inheritDoc}
     */
     @Override
     public List<MapData> getData() {
-        return this.map;
+        return new ArrayList<>(map);
     }
     /**
     * {@inheritDoc}
     */
     @Override
     public void setData(final List<MapData> map) {
-        this.map = map;
+        this.map.clear();
+        this.map.addAll(map);
     }
 
 }

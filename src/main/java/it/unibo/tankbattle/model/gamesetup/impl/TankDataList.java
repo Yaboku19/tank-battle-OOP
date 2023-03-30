@@ -19,13 +19,13 @@ import java.util.List;
 public class TankDataList implements DataList<TankData> {
 
     @XmlElement(name = "tank")
-    private List<TankData> tank = new ArrayList<>();
+    private final List<TankData> tank = new ArrayList<>();
     /**
     * {@inheritDoc}
     */
     @Override
     public List<TankData> getData() {
-        return this.tank;
+        return new ArrayList<>(tank);
     }
 
     /**
@@ -33,7 +33,8 @@ public class TankDataList implements DataList<TankData> {
     */
     @Override
     public void setData(final List<TankData> tank) {
-        this.tank = tank;
+        this.tank.clear();
+        this.tank.addAll(tank);
     }
 
 }
