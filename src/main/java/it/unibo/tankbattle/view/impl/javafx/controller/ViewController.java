@@ -118,7 +118,7 @@ public class ViewController implements View {
     @Override
     public void start(final Stage stage) {
         final Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
-        stage.getIcons().add(icon);
+        stage.getIcons().add(icon); 
         this.stage = stage;
         final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main2.fxml"));
         Parent root;
@@ -312,10 +312,10 @@ public class ViewController implements View {
 
     @Override
     public void setPlayerName(final String firstPlayerName, final String secondPlayerName) {
-        if (firstPlayerName != "") {
+        if (!firstPlayerName.isBlank()) {
             this.firstPlayerName = firstPlayerName;
         }
-        if (secondPlayerName != "") {
+        if (!secondPlayerName.isBlank()) {
             this.secondPlayerName = secondPlayerName;
         }
     }

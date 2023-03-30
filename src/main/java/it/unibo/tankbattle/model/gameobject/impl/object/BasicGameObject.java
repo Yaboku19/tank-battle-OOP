@@ -1,5 +1,6 @@
 package it.unibo.tankbattle.model.gameobject.impl.object;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class BasicGameObject implements GameObject {
     */
     @Override
     public List<Component> getComponents() {
-        return this.components;
+        return new ArrayList<>(components);
     }
     /**
     * {@inheritDoc}
