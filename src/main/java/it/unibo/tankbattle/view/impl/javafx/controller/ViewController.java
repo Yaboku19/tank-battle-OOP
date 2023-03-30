@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
+import it.unibo.tankbattle.common.input.api.InputController;
+import it.unibo.tankbattle.common.input.impl.KeyboardInputController;
 import it.unibo.tankbattle.common.input.impl.Movement;
 import it.unibo.tankbattle.common.input.impl.Shoot;
 import it.unibo.tankbattle.controller.api.GameEngine;
@@ -19,6 +21,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
@@ -43,6 +46,8 @@ public class ViewController implements View {
     private String secondPlayerName = "Player 2";
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
+    private InputController firstPlayerController;
+    private InputController secondPlayerController;
 
     private static final double SETTINGS_MIN_HEIGHT = 430;
     private static final double SETTINGS_MIN_WIDTH = 600;
@@ -150,6 +155,8 @@ public class ViewController implements View {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+        firstPlayerController = new KeyboardInputController(KeyCode.UP.getCode(), KeyCode.DOWN.getCode(), KeyCode.LEFT.getCode(), KeyCode.RIGHT.getCode(), KeyCode.SPACE.getCode());
+        secondPlayerController = new KeyboardInputController(KeyCode.W.getCode(), KeyCode.S.getCode(), KeyCode.A.getCode(), KeyCode.D.getCode(), KeyCode.Q.getCode());
     }
     /**
     * {@inheritDoc}

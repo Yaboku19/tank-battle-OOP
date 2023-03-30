@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * This interface represent an InputController that gets notified when an input occours.
  */
-public interface InputController {
+public interface InputController<T> {
     /**
      * javadock.
      * @return return
      */
-    List<Integer> getKeyCodes();
+    List<T> getKeys();
 }
