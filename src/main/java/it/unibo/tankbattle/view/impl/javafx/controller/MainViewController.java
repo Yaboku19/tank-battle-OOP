@@ -23,7 +23,7 @@ public class MainViewController {
 
     private GameController gameController;
     private View viewController;
-    private Scene gameScene;
+    private Scene gameScene = new Scene(null);
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
