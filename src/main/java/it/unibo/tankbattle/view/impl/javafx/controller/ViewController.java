@@ -46,8 +46,8 @@ public class ViewController implements View {
     private String secondPlayerName = "Player 2";
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
-    private InputController firstPlayerController;
-    private InputController secondPlayerController;
+    private InputController<KeyCode> firstPlayerController;
+    private InputController<KeyCode> secondPlayerController;
 
     private static final double SETTINGS_MIN_HEIGHT = 430;
     private static final double SETTINGS_MIN_WIDTH = 600;
@@ -155,8 +155,6 @@ public class ViewController implements View {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
-        firstPlayerController = new KeyboardInputController(KeyCode.UP.getCode(), KeyCode.DOWN.getCode(), KeyCode.LEFT.getCode(), KeyCode.RIGHT.getCode(), KeyCode.SPACE.getCode());
-        secondPlayerController = new KeyboardInputController(KeyCode.W.getCode(), KeyCode.S.getCode(), KeyCode.A.getCode(), KeyCode.D.getCode(), KeyCode.Q.getCode());
     }
     /**
     * {@inheritDoc}
@@ -221,83 +219,28 @@ public class ViewController implements View {
         this.setDiagonalResize();
         setDimension();
         controller.startGame();
+        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
+                KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
+        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
+                KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
     }
     /**
     * {@inheritDoc}
     */
     @Override
     public void addCommand(final KeyEvent e) {
-        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-            final String event = e.getCode().toString() + e.getEventType().toString();
-            if (!lastCommandFirstPlayer.equals(event)) {
-                    switch (e.getCode()) {
-                        case RIGHT:
-                            controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case LEFT:
-                            controller.notifyCommand(new Movement(Direction.LEFT, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case UP:
-                            controller.notifyCommand(new Movement(Direction.UP, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case DOWN:
-                            controller.notifyCommand(new Movement(Direction.DOWN, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case SPACE:
-                            controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
-                            break;
-                        default:
-                    }
-                }
-                if (!lastCommandSecondPlayer.equals(event)) {
-                    switch (e.getCode()) {
-                        case D:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.RIGHT, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case A:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.LEFT, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case W:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.UP, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case S:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.DOWN, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case Z:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
-                            break;
-                        default:
-                    }
-                }
+        if(firstPlayerController.getKeys().contains(e.getCode())) {
+            if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+                controller.notifyCommand(firstPlayerController.startCommand(e.getCode()));
+            } else {
+                controller.notifyCommand(firstPlayerController.stopCommand(e.getCode()));
+            }
         }
-
-        if (e.getEventType().equals(KeyEvent.KEY_RELEASED)) {
-            final String event = e.getCode().toString() + e.getEventType().toString();
-            switch (e.getCode()) {
-                case RIGHT, LEFT, UP, DOWN:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Direction.NONE, controller.getFirstPlayer()));
-                    lastCommandFirstPlayer = event;
-                break;
-                case D, A, W, S:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Direction.NONE, controller.getSecondPlayer()));
-                    lastCommandSecondPlayer = event;
-                break;
-                default:
+        if(secondPlayerController.getKeys().contains(e.getCode())) {
+            if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+                controller.notifyCommand(secondPlayerController.startCommand(e.getCode()));
+            } else {
+                controller.notifyCommand(secondPlayerController.stopCommand(e.getCode()));
             }
         }
     }
