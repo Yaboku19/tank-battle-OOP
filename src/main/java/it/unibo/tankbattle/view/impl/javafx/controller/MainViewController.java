@@ -23,7 +23,6 @@ public class MainViewController {
 
     private GameController gameController;
     private View viewController;
-    private Scene gameScene = new Scene(null);
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
@@ -64,14 +63,14 @@ public class MainViewController {
             gameController = new GameController(tank1Resource, tank2Resource, mapResource);
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
-            gameScene = new Scene(fxmlLoader.load());
+            final Scene gameScene = new Scene(fxmlLoader.load());
             //addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
             //this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
-            this.addKeyListener();
+            this.addKeyListener(gameScene);
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -143,7 +142,7 @@ public class MainViewController {
         this.mapResource = mapResource;
     }
 
-    private void addKeyListener() {
+    private void addKeyListener(final Scene gameScene) {
         final EventHandler<KeyEvent> keyPressListener = e -> {
             viewController.addCommand(e);
         };
