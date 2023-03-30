@@ -8,9 +8,7 @@ import it.unibo.tankbattle.model.gamesetup.api.Data;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,13 +24,16 @@ public class MapData implements Data {
     @XmlAttribute
     private String name;
     @XmlElement(name = "position")
-    private final List<Position> position = new ArrayList<>();
+    private final Set<Position> positions = new HashSet<>();
+    @XmlElement(name = "line")
+    private final Set<Line> lines = new HashSet<>();
     @XmlElement(name = "row")
     private int row;
     @XmlElement(name = "column")
     private int column;
     @XmlElement(name = "resource")
     private String resource;
+
     /**
     * {@inheritDoc}
     */
@@ -48,43 +49,47 @@ public class MapData implements Data {
     public String getResource() {
         return resource;
     }
+
     /**
      * javadock.
      * @return return
      */
     public P2d getPositionFirstTank() {
-        return position
+        return positions
             .stream()
             .filter(p -> "tank1".equals(p.getType()))
             .findFirst()
             .get()
             .getPosition();
     }
+
     /**
      * javadock.
      * @return return
      */
     public P2d getPositionSecondTank() {
-        return position
+        return positions
         .stream()
         .filter(p -> "tank2".equals(p.getType()))
         .findFirst()
         .get()
         .getPosition();
     }
+
     /**
      * javadock.
      * @return return
      */
     public Set<P2d> getWall() {
-        return addBorder(position
+        return addBorder(addLine(positions
             .stream()
             .filter(p -> "wall".equals(p.getType()))
             .map(p -> p.getPosition())
-            .collect(Collectors.toSet()));
+            .collect(Collectors.toSet())));
     }
 
     private Set<P2d> addBorder(final Set<P2d> wall) {
+        System.out.println(wall);
         for (int i = 0; i <= row; i++) {
             wall.add(new P2d(0, i));
             wall.add(new P2d(column, i));
@@ -92,6 +97,13 @@ public class MapData implements Data {
         for (int i = 1; i < column; i++) {
             wall.add(new P2d(i, 0));
             wall.add(new P2d(i, row));
+        }
+        return wall;
+    }
+
+    private Set<P2d> addLine(final Set<P2d> wall) {
+        for (final var line : lines) {
+            wall.addAll(line.getLine());
         }
         return wall;
     }

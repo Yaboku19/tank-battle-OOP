@@ -24,7 +24,7 @@ public class HealthImpl extends AbstractComponent implements Health {
     public boolean isAlive() {
         return this.alive;
     }
-    
+
     /**
     * {@inheritDoc}
     */
