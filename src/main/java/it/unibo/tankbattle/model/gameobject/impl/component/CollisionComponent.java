@@ -38,7 +38,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable,
     public void removeListener(final CollisionListener listener) {
         this.listeners.remove(listener);
     }
-    
+
     /**
     * {@inheritDoc}
     */

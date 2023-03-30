@@ -16,8 +16,14 @@
             <y>5</y>
             <type>wall</type>
         </position>
-        <row>9</row>
-        <column>14</column>
+        <line>
+            <common>10</common>
+            <notcommon1>5.5</notcommon1>
+            <notcommon2>10.5</notcommon2>
+            <type>row</type>
+        </line>
+        <row>14</row>
+        <column>21</column>
         <resource>map1.png</resource>
     </map>
     <map name="PIPPOMAP">

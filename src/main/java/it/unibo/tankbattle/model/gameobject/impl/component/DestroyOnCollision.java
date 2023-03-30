@@ -25,7 +25,7 @@ public class DestroyOnCollision extends AbstractComponent implements CollisionLi
     public void gameObjectAttached(final GameObject object) {
         requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
-    
+
     /**
     * {@inheritDoc}
     */

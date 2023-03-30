@@ -33,7 +33,7 @@ public class DamageableImpl extends AbstractComponent implements Damageable {
     public int getLifePoints() {
         return this.lifePoints; 
     }
-    
+
     /**
     * {@inheritDoc}
     */
