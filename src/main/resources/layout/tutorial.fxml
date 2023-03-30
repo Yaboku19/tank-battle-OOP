@@ -77,29 +77,29 @@
       </VBox>
       <AnchorPane GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-16.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="45.0" layoutX="-16.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/down.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-17.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-17.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/right.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-17.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-17.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/left.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-17.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/spacebar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-16.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="45.0" layoutX="-16.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/up.png" />
                </image>
             </ImageView>
          </children>
@@ -108,27 +108,27 @@
          <children>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-15.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/W.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-15.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/Q.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-15.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/A.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-15.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/D.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="-15.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/a.png" />
+                  <Image url="@../images/tutorial/S.png" />
                </image>
             </ImageView>
          </children>
