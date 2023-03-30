@@ -5,10 +5,12 @@ import java.util.stream.Stream;
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
+
 /**
- * javadoc.
+ * Implements {@link CollisionDetector} interface using {@link Transform} to see if a collision is happening.
  */
 public class CollisionDetectorImpl implements CollisionDetector {
+
     /**
     * {@inheritDoc}
     */

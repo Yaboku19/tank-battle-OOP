@@ -15,9 +15,10 @@ import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
 /**
- * javadoc.
+ * Represents a particular {@link Component} that enables the attached {@link GameObject} to be knocked back after a collision.
  */
 public class KnockBack extends AbstractComponent implements CollisionListener {
+    
     /**
      * {@inheritDoc}
      */

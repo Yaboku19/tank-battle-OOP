@@ -1,18 +1,21 @@
 package it.unibo.tankbattle.model.gameobject.api.component;
 
 import it.unibo.tankbattle.model.collision.api.CollisionListener;
+
 /**
- * javadoc.
+ * Represents a way to register {@link CollisionListener}s to be notified when collisions happen.
  */
 public interface ObservableCollidable extends Component {
+
     /**
-     * javadoc.
-     * @param listener param
+     * Adds a {@link CollisionListener}.
+     * @param listener the {@link CollisionListener} to be added
      */
     void addListener(CollisionListener listener);
+
     /**
-     * javadoc.
-     * @param listener param
+     * Removes a {@link CollisionListener}.
+     * @param listener the {@link CollisionListener} to be removed
      */
     void removeListener(CollisionListener listener);
 }

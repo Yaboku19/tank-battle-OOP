@@ -1,8 +1,9 @@
 package it.unibo.tankbattle.model.gameobject.api.component;
 
 import it.unibo.tankbattle.controller.api.Player;
+
 /**
- * javadoc.
+ * Represents a particular {@link Component} that marks the attached {@link GameObject} as a {@link Tank}.
  */
 public class Tank extends AbstractComponent {
     private final Player player;
@@ -13,9 +14,10 @@ public class Tank extends AbstractComponent {
     private static final double STANDARD_COUNTDOWN = 1000;
     private static final double STANDARD_SPEED = 0.1;
     private static final double SPEED_REDUCER = 100;
+
     /**
-     * javadoc.
-     * @param player param
+     * Initializes a new {@link Tank} given its associated {@link Player}.
+     * @param player the associated {@link Player}
      */
     public Tank(final Player player) {
         this.player = player;
@@ -24,6 +26,7 @@ public class Tank extends AbstractComponent {
         this.shotCountdown = STANDARD_COUNTDOWN + 100 / speed; 
         this.timer = this.shotCountdown;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -31,34 +34,38 @@ public class Tank extends AbstractComponent {
     public void update(final double time) {
         this.timer = this.timer + time;
     }
+
     /**
-     * javadoc.
-     * @return return.
+     * Gets the associated {@link Player}.
+     * @return the associated {@link Player}
      */
     public Player getPlayer() {
         return this.player;
     }
+
     /**
-     * javadoc.
-     * @return return
+     * Returns whether this {@link Tank} can shoot.
+     * @return whether this {@link Tank} can shoot
      */
-    public boolean canShot() {
+    public boolean canShoot() {
         if (this.timer >= shotCountdown) {
             this.timer = 0;
             return true;
         }
         return false;
     }
+
     /**
-     * javadoc.
-     * @return return
+     * Gets the damage of the shooting.
+     * @return the damage
      */
     public int getDamage() {
         return this.damage;
     }
+
     /**
-     * javadoc.
-     * @return return
+     * Gets the speed of this {@link Tank}.
+     * @return the speed of this {@link Tank}
      */
     public double getSpeed() {
         return this.speed;

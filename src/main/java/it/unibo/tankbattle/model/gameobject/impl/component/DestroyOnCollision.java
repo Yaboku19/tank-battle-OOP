@@ -5,16 +5,19 @@ import it.unibo.tankbattle.model.gameobject.api.component.AbstractComponent;
 import it.unibo.tankbattle.model.gameobject.api.component.Health;
 import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
+
 /**
- * javadoc.
+ * Represents a particular {@link Component} that enables the attached {@link GameObject} to be destroyed after a collision.
  */
 public class DestroyOnCollision extends AbstractComponent implements CollisionListener {
+
     /**
     * {@inheritDoc}
     */
     @Override
     public void update(final double time) {
     }
+
     /**
     * {@inheritDoc}
     */
@@ -22,6 +25,7 @@ public class DestroyOnCollision extends AbstractComponent implements CollisionLi
     public void gameObjectAttached(final GameObject object) {
         requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
+    
     /**
     * {@inheritDoc}
     */

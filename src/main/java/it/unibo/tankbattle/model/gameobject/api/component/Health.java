@@ -1,15 +1,18 @@
 package it.unibo.tankbattle.model.gameobject.api.component;
+
 /**
- * javadoc.
+ * Represents a particular {@link Component} that enables the attached {@link GameObject} to be removed from the world.
  */
 public interface Health extends Component {
+
     /**
-     * javadoc.
-     * @return return
+     * Checks if the object is currently alive.
+     * @return whether the object is currently alive
      */
     boolean isAlive();
+
     /**
-     * javadoc.
+     * Makes this object die.
      */
     void die();
 }

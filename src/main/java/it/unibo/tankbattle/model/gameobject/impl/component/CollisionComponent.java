@@ -8,18 +8,21 @@ import it.unibo.tankbattle.model.gameobject.api.component.AbstractComponent;
 import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
 import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
+
 /**
- * javadoc.
+ * Represents an implementation of the {@link Collidable} {@link Component}.
  */
 public class CollisionComponent extends AbstractComponent implements Collidable, ObservableCollidable  {
 
     private final List<CollisionListener> listeners = new LinkedList<>();
+
     /**
     * {@inheritDoc}
     */
     @Override
     public void update(final double time) {
     }
+
     /**
     * {@inheritDoc}
     */
@@ -27,6 +30,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable,
     public void addListener(final CollisionListener listener) {
         this.listeners.add(listener);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -34,6 +38,7 @@ public class CollisionComponent extends AbstractComponent implements Collidable,
     public void removeListener(final CollisionListener listener) {
         this.listeners.remove(listener);
     }
+    
     /**
     * {@inheritDoc}
     */

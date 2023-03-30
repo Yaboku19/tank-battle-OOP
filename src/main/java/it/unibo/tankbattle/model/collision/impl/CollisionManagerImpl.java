@@ -9,19 +9,22 @@ import it.unibo.tankbattle.common.Pair;
 import it.unibo.tankbattle.model.collision.api.CollisionManager;
 import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
+
 /**
- * javadoc.
+ * Implements {@link CollisionManager} interface using the {@link Collidable} component to resolve collisions.
  */
 public class CollisionManagerImpl implements CollisionManager {
 
     private final CollisionDetector detector;
+
     /**
-     * javadoc.
-     * @param detector param
+     * Initializes a new {@link CollisionManagerImpl} given a {@link CollisionDetector}.
+     * @param detector the {@link CollisionDetector}
      */
     public CollisionManagerImpl(final CollisionDetector detector) {
         this.detector = detector;
     }
+
     /**
     * {@inheritDoc}
     */

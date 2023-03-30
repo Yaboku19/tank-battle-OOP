@@ -1,16 +1,19 @@
 package it.unibo.tankbattle.model.gameobject.api.component;
+
 /**
- * javadoc.
+ * Represents a particular {@link Component} that enables the attached {@link GameObject} to take damage.
  */
 public interface Damageable extends Component {
+
     /**
-     * javadoc.
-     * @return return
+     * Gets the current life points of the object.
+     * @return the current life points
      */
     int getLifePoints();
+
     /**
-     * javadoc.
-     * @param damage param
+     * Sets the amount of the taken damage.
+     * @param damage the amount of the damage
      */
     void takeDamage(int damage);
 }

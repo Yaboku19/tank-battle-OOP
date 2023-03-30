@@ -91,7 +91,7 @@ public class GameStateImpl implements GameState {
     */
     @Override
     public void shot(final Player player) {
-        if (getTankFromPlayer(player).getComponent(Tank.class).get().canShot()) {
+        if (getTankFromPlayer(player).getComponent(Tank.class).get().canShoot()) {
             world.addGameObject(factoryGameObject
                 .createSimpleBullet(getTankFromPlayer(player)));
         }
