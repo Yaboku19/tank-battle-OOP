@@ -1,6 +1,7 @@
 package it.unibo.tankbattle.common.input.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import it.unibo.tankbattle.controller.api.Player;
 
@@ -16,7 +17,7 @@ public interface InputController<T> {
     /**
      * javadoc.
      */
-    Command startCommand(T command);
+    Optional<Command> startCommand(T command);
     /**
      * javadoc.
      */

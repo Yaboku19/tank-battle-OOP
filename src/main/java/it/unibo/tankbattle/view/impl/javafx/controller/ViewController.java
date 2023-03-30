@@ -4,11 +4,8 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
-import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.common.input.api.InputController;
 import it.unibo.tankbattle.common.input.impl.KeyboardInputController;
-import it.unibo.tankbattle.common.input.impl.Movement;
-import it.unibo.tankbattle.common.input.impl.Shoot;
 import it.unibo.tankbattle.controller.api.GameEngine;
 import it.unibo.tankbattle.controller.impl.BasicGameEngine;
 import it.unibo.tankbattle.view.api.View;
@@ -36,11 +33,8 @@ public class ViewController implements View {
     private SettingsController settingsController;
     private Scene mainViewScene;
     private MainViewController mainViewController;
-    //private Node node;
     private Stage stage;
     private Scene gameScene;
-    private String lastCommandFirstPlayer = "";
-    private String lastCommandSecondPlayer = "";
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
@@ -228,14 +222,20 @@ public class ViewController implements View {
     public void addCommand(final KeyEvent e) {
         if(firstPlayerController.getKeys().contains(e.getCode())) {
             if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-                controller.notifyCommand(firstPlayerController.startCommand(e.getCode()));
+                var command = firstPlayerController.startCommand(e.getCode());
+                if (command.isPresent()) {
+                    controller.notifyCommand(command.get());
+                }
             } else {
                 controller.notifyCommand(firstPlayerController.stopCommand(e.getCode()));
             }
         }
         if(secondPlayerController.getKeys().contains(e.getCode())) {
             if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-                controller.notifyCommand(secondPlayerController.startCommand(e.getCode()));
+                var command = secondPlayerController.startCommand(e.getCode());
+                if (command.isPresent()) {
+                    controller.notifyCommand(command.get());
+                }
             } else {
                 controller.notifyCommand(secondPlayerController.stopCommand(e.getCode()));
             }
