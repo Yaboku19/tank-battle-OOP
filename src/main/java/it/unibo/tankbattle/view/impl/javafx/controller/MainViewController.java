@@ -91,6 +91,7 @@ public class MainViewController {
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
             settingsController.setPreviousScene(stage.getScene());
+            settingsController.setNameLabel();
             viewController.updateTankPlayer1(NextAndPrevious.NONE);
             viewController.updateTankPlayer2(NextAndPrevious.NONE);
             viewController.updateMap(NextAndPrevious.NONE);
