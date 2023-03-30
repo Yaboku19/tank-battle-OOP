@@ -156,6 +156,13 @@ public class SettingsController implements Initializable {
         this.viewController = viewController;
     }
     /**
+     * javadoc.
+     */
+    public void setNameLabel() {
+        firstPlayerName.setText(viewController.getFirstPlayerName());
+        secondPlayerName.setText(viewController.getSecondPlayerName());
+    }
+    /**
      * javadock.
      * @param prevScene param
      */
