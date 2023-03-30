@@ -219,10 +219,7 @@ public class ViewController implements View {
         this.setDiagonalResize();
         setDimension();
         controller.startGame();
-        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
-                KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
-        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
-                KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
+        inizializeInputController();
     }
     /**
     * {@inheritDoc}
@@ -311,5 +308,12 @@ public class ViewController implements View {
         };
         stage.widthProperty().addListener(widthChangeListener);
         stage.heightProperty().addListener(heightChangeListener);
+    }
+
+    private void inizializeInputController() {
+        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
+                KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
+        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
+                KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
     }
 }
