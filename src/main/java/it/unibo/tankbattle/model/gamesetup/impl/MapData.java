@@ -89,7 +89,6 @@ public class MapData implements Data {
     }
 
     private Set<P2d> addBorder(final Set<P2d> wall) {
-        System.out.println(wall);
         for (int i = 0; i <= row; i++) {
             wall.add(new P2d(0, i));
             wall.add(new P2d(column, i));

@@ -29,7 +29,6 @@ public class Line {
     public Set<P2d> getLine() {
         final Set<P2d> line = new HashSet<>();
         for (double i = notCommon1; i <= notCommon2; i++) {
-            System.out.println(i);
             line.add(generatePosition(i));
         }
         return line;

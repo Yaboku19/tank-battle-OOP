@@ -52,7 +52,13 @@ public class GameOverController {
      */
     @FXML
     void mainMenu(final ActionEvent event) {
+        if (!(event.getSource() instanceof Node)) {
+            throw new AssertionError("Unexpected type: " + event.getSource());
+        }
         final Node node = (Node) event.getSource();
+        if (!(node.getScene().getWindow() instanceof Stage)) {
+            throw new AssertionError("Unexpected type: " + node.getScene().getWindow());
+        }
         final Stage stage = (Stage) node.getScene().getWindow();
         viewController.newStart();
         stage.setScene(mainManuScene);
