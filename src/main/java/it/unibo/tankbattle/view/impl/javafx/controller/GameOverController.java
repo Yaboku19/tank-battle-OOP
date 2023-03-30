@@ -56,6 +56,7 @@ public class GameOverController {
         final Stage stage = (Stage) node.getScene().getWindow();
         viewController.newStart();
         stage.setScene(mainManuScene);
+        stage.sizeToScene();
     }
     /**
      * javadoc.
@@ -77,28 +78,32 @@ public class GameOverController {
         stage.setScene(gameScene);
     }
     /**
-     * javadock.
+     * javadoc.
      * @param viewController param
      */
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
     /**
-     * javadock.
+     * javadoc.
      * @param gameScene param
      */
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
     /**
-     * javadock.
+     * javadoc.
      * @param mainManuScene param
      */
     public void setMenuScene(final Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
 
-    public void setWinLabel(String playerName) {
+    /**
+     * javadoc.
+     * @param playerName param
+     */
+    public void setWinLabel(final String playerName) {
         winLabel.setText(playerName + " wins");
     }
 }

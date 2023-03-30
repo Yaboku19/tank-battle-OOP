@@ -29,7 +29,7 @@ import it.unibo.tankbattle.view.api.View;
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
 
-    private final static long PERIOD = 20;
+    private static final long PERIOD = 20;
     private final View view;
     private final GameState model;
     private final Queue<Command> commandQueue = new LinkedList<>();
@@ -232,8 +232,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         thread = new Thread(this);
     }
 
-    private Player findWinner (final Player deadPlayer) {
-        if(deadPlayer == firstPlayer) {
+    private Player findWinner(final Player deadPlayer) {
+        if (deadPlayer == firstPlayer) {
             return secondPlayer;
         } else {
             return firstPlayer;

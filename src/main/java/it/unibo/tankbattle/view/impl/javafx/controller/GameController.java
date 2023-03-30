@@ -43,7 +43,7 @@ public class GameController {
     private Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
-    
+
 
     private static final double RIGHT_ANGLE = 90;
     private static final double STRAIGHT_ANGLE = 180;
@@ -78,7 +78,7 @@ public class GameController {
     */
     @FXML
     void initialize() {
-        
+
         mainPane.setBackground(new Background(new BackgroundImage(backImage, 
             BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
@@ -120,9 +120,9 @@ public class GameController {
         firstTankLife.setTranslateX(getWidth());
         firstTankLife.setTranslateY(getHeight());
     }
-    
+
     /**
-     * javadock.
+     * javadoc.
      * @param t param
      */
     public void renderSecondTank(final Transform t) {
@@ -218,12 +218,16 @@ public class GameController {
         mainPane.getChildren().add(firstTankLife);
         mainPane.getChildren().add(secondTankLife);
     }
-        /**
-     * javadock.
-     * @param firstTank param
-     * @param secondTank param
+
+    /**
+     * javadoc.
+     * @param firstPlayerName first player name
+     * @param secondPlayerName second player name
+     * @param firstPlayerScore first player score
+     * @param secondPlayerScore second player score
      */
-    public void drawLabel(final String firstPlayerName, final String secondPlayerName, final int firstPlayerScore, final int secondPlayerScore) {
+    public void drawLabel(final String firstPlayerName, final String secondPlayerName, 
+            final int firstPlayerScore, final int secondPlayerScore) {
         player1Label.setText(firstPlayerName);
         player2Label.setText(secondPlayerName);
         scoreLabel.setText(Integer.toString(secondPlayerScore) + " - " + Integer.toString(firstPlayerScore));
@@ -288,7 +292,7 @@ public class GameController {
             @Override
             public void handle(final long now) {
                 long elapsedTime = now - startTime;
-                if(elapsedTime > GameController.ANIMATION_TIME) {
+                if (elapsedTime > GameController.ANIMATION_TIME) {
                     spriteSet.remove(spriteImage);
                     this.stop();
                 }
@@ -296,9 +300,4 @@ public class GameController {
         };
         animation.start();
     }
-
-    /*@Override
-    public void run() {
-        mediaPlayer.play();
-    }*/
 }

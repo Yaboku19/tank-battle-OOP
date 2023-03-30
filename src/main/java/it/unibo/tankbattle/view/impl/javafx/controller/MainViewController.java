@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.view.api.View;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,9 +30,6 @@ public class MainViewController {
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
-    private ChangeListener<? super Number> widthChangeListener;
-    private ChangeListener<? super Number> heightChangeListener;
-    private boolean isDiagonalResize;
 
     @FXML
     private ResourceBundle resources;
@@ -75,11 +71,11 @@ public class MainViewController {
             //addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
-            this.setDiagonalResize();
+            //this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
             this.addKeyListener();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
@@ -104,6 +100,7 @@ public class MainViewController {
             viewController.updateMap(NextAndPrevious.NONE);
             stage.setResizable(false);
             stage.setScene(settings);
+            stage.sizeToScene();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -123,6 +120,9 @@ public class MainViewController {
             final TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
             tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
+            //stage.setHeight(stage.getHeight()-0.01);
+            //stage.setHeight(stage.getHeight()-0.01);
+            stage.sizeToScene();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
@@ -158,17 +158,4 @@ public class MainViewController {
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
     }
 
-    private void setDiagonalResize() {
-        if (!isDiagonalResize) {
-            isDiagonalResize = true;
-            widthChangeListener = (observable, oldValue, newValue) -> {
-                stage.setHeight(newValue.doubleValue() * 2.0 / 3.0);
-            };
-            heightChangeListener = (observable, oldValue, newValue) -> {
-                stage.setWidth(newValue.doubleValue() * 3.0 / 2.0);
-            };
-            stage.widthProperty().addListener(widthChangeListener);
-            stage.heightProperty().addListener(heightChangeListener);
-        }
-    }
 }
