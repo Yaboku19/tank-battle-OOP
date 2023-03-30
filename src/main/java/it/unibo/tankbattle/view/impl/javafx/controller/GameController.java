@@ -34,13 +34,13 @@ public class GameController {
     private final ImageView player1;
     private final ImageView player2;
     private final Image backImage;
-    private Set<ImageView> wallSet = new HashSet<>();
+    private final Set<ImageView> wallSet = new HashSet<>();
     private double standardHeight = 1;
     private double standardWidth = 1;
     private boolean isProportionSet;
     private Set<Transform> activeBullet;
     private final Image shotSprite;
-    private Set<ImageView> spriteSet = new HashSet<>();
+    private final Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
 
@@ -94,8 +94,8 @@ public class GameController {
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
         bulletImage = new Image(ClassLoader.getSystemResource("images/cannonBall1.png").toExternalForm());
         wallImage = new Image(ClassLoader.getSystemResource("images/box.png").toExternalForm());
-        backImage = new Image((ClassLoader.getSystemResource("images/map/" + map).toExternalForm()));
-        shotSprite = new Image((ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm()));
+        backImage = new Image(ClassLoader.getSystemResource("images/map/" + map).toExternalForm());
+        shotSprite = new Image(ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm());
         this.activeBullet = new HashSet<>();
         loadAudioResource();
     }
@@ -177,8 +177,8 @@ public class GameController {
     }
 
     private Set<Transform> findBullet(final Set<Transform> newBullet, final Set<Transform> oldBullet) {
-        Set<Double> bulletX = new HashSet<>();
-        Set<Double> bulletY = new HashSet<>();
+        final Set<Double> bulletX = new HashSet<>();
+        final Set<Double> bulletY = new HashSet<>();
         oldBullet.forEach(bull -> {
             bulletX.add(bull.getUpperLeftPosition().getX());
             bulletY.add(bull.getUpperLeftPosition().getY());
@@ -291,7 +291,7 @@ public class GameController {
 
             @Override
             public void handle(final long now) {
-                long elapsedTime = now - startTime;
+                final long elapsedTime = now - startTime;
                 if (elapsedTime > GameController.ANIMATION_TIME) {
                     spriteSet.remove(spriteImage);
                     this.stop();

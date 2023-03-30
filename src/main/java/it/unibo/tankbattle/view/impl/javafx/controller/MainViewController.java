@@ -22,11 +22,8 @@ import javafx.stage.Stage;
 public class MainViewController {
 
     private GameController gameController;
-    //private GameOverController gameOverController;
     private View viewController;
-    private Stage stage;
     private Scene gameScene;
-    //private Scene mainMenuScene;
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
@@ -60,7 +57,7 @@ public class MainViewController {
     @FXML
     void play(final ActionEvent event) {
         final Node node = (Node) event.getSource();
-        stage = (Stage) node.getScene().getWindow();
+        final Stage stage = (Stage) node.getScene().getWindow();
         try {
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             viewController.setViewResources();
@@ -75,7 +72,7 @@ public class MainViewController {
             stage.setResizable(true);
             viewController.startGame();
             this.addKeyListener();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
     }

@@ -142,7 +142,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      */
     @Override
     public void endGame(final Player player) {
-        Player winner = findWinner(player);
+        final Player winner = findWinner(player);
         winner.incScore();
         view.setWinner(winner.getName());
         this.isOver = true;
@@ -233,7 +233,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     }
 
     private Player findWinner(final Player deadPlayer) {
-        if (deadPlayer == firstPlayer) {
+        if (deadPlayer.equals(firstPlayer)) {
             return secondPlayer;
         } else {
             return firstPlayer;
