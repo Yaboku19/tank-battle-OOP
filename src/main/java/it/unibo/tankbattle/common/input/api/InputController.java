@@ -8,16 +8,17 @@ import java.util.Optional;
  */
 public interface InputController<T> {
     /**
-     * javadock.
-     * @return return
+     * @return List<T> with keys of the controller.
      */
     List<T> getKeys();
     /**
-     * javadoc.
+     * @param command start command
+     * @return Optional of the new command created
      */
     Optional<Command> startCommand(T command);
     /**
-     * javadoc.
+     * @param command stop command
+     * @return Optional of the new command created
      */
     Optional<Command> stopCommand(T command);
 }
