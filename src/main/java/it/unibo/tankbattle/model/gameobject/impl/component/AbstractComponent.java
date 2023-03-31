@@ -1,7 +1,8 @@
-package it.unibo.tankbattle.model.gameobject.api.component;
+package it.unibo.tankbattle.model.gameobject.impl.component;
 
 import java.util.Optional;
 
+import it.unibo.tankbattle.model.gameobject.api.component.Component;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
 /**

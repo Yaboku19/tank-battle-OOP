@@ -1,7 +1,6 @@
 package it.unibo.tankbattle.model.gameobject.impl.component;
 
 import it.unibo.tankbattle.model.collision.api.CollisionListener;
-import it.unibo.tankbattle.model.gameobject.api.component.AbstractComponent;
 import it.unibo.tankbattle.model.gameobject.api.component.Health;
 import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
