@@ -1,6 +1,5 @@
 package it.unibo.tankbattle.common.input.impl;
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +50,9 @@ public class KeyboardInputController<T> implements InputController<T> {
     @Override
     public Optional<Command> startCommand(T command) {
         if (!lastCommand.equals(Optional.of(command))) {
+            if (command.equals(shoot)) {
+                return Optional.of(new Shoot(player));
+            }
             lastCommand = Optional.of(command);
             if (command.equals(moveRight)) {
                 return Optional.of(new Movement(Direction.RIGHT, player));
@@ -64,9 +66,6 @@ public class KeyboardInputController<T> implements InputController<T> {
             if (command.equals(moveDown)) {
                 return Optional.of(new Movement(Direction.DOWN, player));
             }
-            if (command.equals(shoot)) {
-                return Optional.of(new Shoot(player));
-            }
         }
         return Optional.empty();
     }
@@ -74,8 +73,11 @@ public class KeyboardInputController<T> implements InputController<T> {
     * {@inheritDoc}
     */
     @Override
-    public Command stopCommand(T command) {
+    public Optional<Command> stopCommand(T command) {
+        if (!lastCommand.equals(Optional.of(command)) || command.equals(shoot)) {
+            return Optional.empty();
+        }
         lastCommand = Optional.empty();
-        return new Movement(Direction.NONE, player);
+        return Optional.of(new Movement(Direction.NONE, player));
     }
 }

@@ -21,5 +21,5 @@ public interface InputController<T> {
     /**
      * javadoc.
      */
-    Command stopCommand(T command);
+    Optional<Command> stopCommand(T command);
 }
