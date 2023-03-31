@@ -20,12 +20,11 @@ public class KeyboardInputController<T> implements InputController<T> {
     private final Player player;
     private Optional<T> lastCommand = Optional.empty();
     /**
-     * javadoc.
-     * @param moveUp param
-     * @param moveDown param
-     * @param moveLeft param
-     * @param moveRight param
-     * @param shoot param
+     * @param moveUp param move up key.
+     * @param moveDown param move down key.
+     * @param moveLeft param move left key.
+     * @param moveRight param move right key.
+     * @param shoot param shoot key.
      */
     public KeyboardInputController(final T moveUp, final T moveDown, final T moveLeft,
         final T moveRight, final T shoot, final Player player) {

@@ -7,8 +7,7 @@ import it.unibo.tankbattle.model.gamestate.api.CommandListener;
  */
 public interface Command {
     /**
-     * javadoc.
-     * @param model param
+     * @param model model command listener.
      */
     void execute(CommandListener model);
 }

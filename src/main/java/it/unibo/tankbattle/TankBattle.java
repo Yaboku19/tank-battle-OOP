@@ -9,7 +9,7 @@ public final class TankBattle {
     }
 
     /**
-     * javadoc.
+     * Main of the application.
      * @param args
      */
     public static void main(final String[] args) {

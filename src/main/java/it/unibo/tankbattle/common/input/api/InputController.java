@@ -10,22 +10,20 @@ import java.util.Optional;
 public interface InputController<T> {
 
     /**
-     * javadoc.
-     * @return return
-     * @param <T> param
+     * @return List<T> with keys of the controller.
      */
     List<T> getKeys();
 
     /**
-     * javadoc.
-     * @param <Command> param
+     * @param command start command
+     * @return Optional of the new command created
      */
 
     Optional<Command> startCommand(T command);
 
     /**
-     * javadoc.
-     * @param <Command> param
+     * @param command stop command
+     * @return Optional of the new command created
      */
     Optional<Command> stopCommand(T command);
 }
