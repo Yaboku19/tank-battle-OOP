@@ -93,7 +93,7 @@ public class GameController {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
         bulletImage = new Image(ClassLoader.getSystemResource("images/cannonBall1.png").toExternalForm());
-        wallImage = new Image(ClassLoader.getSystemResource("images/box.png").toExternalForm());
+        wallImage = new Image(ClassLoader.getSystemResource("images/obstacles/" + map).toExternalForm());
         backImage = new Image(ClassLoader.getSystemResource("images/map/" + map).toExternalForm());
         shotSprite = new Image(ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm());
         this.activeBullet = new HashSet<>();
