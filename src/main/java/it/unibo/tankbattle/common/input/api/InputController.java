@@ -3,23 +3,22 @@ package it.unibo.tankbattle.common.input.api;
 import java.util.List;
 import java.util.Optional;
 
-import it.unibo.tankbattle.controller.api.Player;
-
 /**
  * This interface represent an InputController that gets notified when an input occours.
  */
 public interface InputController<T> {
     /**
-     * javadock.
-     * @return return
+     * @return List<T> with keys of the controller.
      */
     List<T> getKeys();
     /**
-     * javadoc.
+     * @param command start command
+     * @return Optional of the new command created
      */
     Optional<Command> startCommand(T command);
     /**
-     * javadoc.
+     * @param command stop command
+     * @return Optional of the new command created
      */
     Optional<Command> stopCommand(T command);
 }

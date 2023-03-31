@@ -10,8 +10,7 @@ public class Shoot implements Command {
 
     private final Player player;
     /**
-     * javadoc.
-     * @param player player
+     * @param player player want to shoot.
      */
     public Shoot(final Player player) {
         this.player = player;
@@ -22,7 +21,6 @@ public class Shoot implements Command {
     @Override
     public void execute(final CommandListener model) {
         model.shot(player);
-        System.out.println(player.getName());
     }
 
 }

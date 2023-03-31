@@ -7,53 +7,49 @@ import it.unibo.tankbattle.common.P2d;
  */
 public enum Direction {
     /**
-     * javadoc.
+     * Up direction.
      */
     UP(0, -1),
     /**
-     * javadoc.
+     * Right direction.
      */ 
     RIGHT(1, 0),
     /**
-     * javadoc.
+     * Down direction.
      */
     DOWN(0, 1),
     /**
-     * javadoc.
+     * Left direction.
      */
     LEFT(-1, 0),
     /**
-     * javadoc.
+     * Stop direction.
      */
     NONE(0, 0);
 
     private double x;
     private double y;
     /**
-     * javadoc.
-     * @return return
+     * @return return x value.
      */
     public double getX() {
         return x;
     }
     /**
-     * javadoc.
-     * @return return
+     * @return return y value.
      */
     public double getY() {
         return y;
     }
     /**
-     * javadoc.
-     * @return return
+     * @return return vector create by x and y.
      */
     public P2d getVector() {
         return new P2d(this.x, this.y);
     }
     /**
-     * javadoc.
-     * @param x param
-     * @param y param
+     * @param x x value.
+     * @param y y value.
      */
     Direction(final double x, final double y) {
         this.x = x;
