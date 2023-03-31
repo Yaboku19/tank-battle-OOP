@@ -8,7 +8,6 @@ import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -136,8 +135,7 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void back(final ActionEvent event) {
-        final Node node = (Node) event.getSource();
-        final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = MainViewController.converterFromEvent(event);
         stage.setResizable(true);
         stage.setScene(prevScene);
         stage.sizeToScene();
