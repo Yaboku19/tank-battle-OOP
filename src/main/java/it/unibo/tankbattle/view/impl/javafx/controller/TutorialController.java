@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class TutorialController {
 
     private Scene prevScene;
-    private View viewController;
+    private View viewController = null;
 
     @FXML
     private Label firstPlayer;

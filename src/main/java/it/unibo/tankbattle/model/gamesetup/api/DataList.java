@@ -8,7 +8,7 @@ import java.util.List;
 public interface DataList<T> {
     /**
      * javadoc.
-     * @return return
+     * @return param
      */
     List<T> getData();
     /**

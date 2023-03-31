@@ -145,12 +145,16 @@ public class ViewController implements View {
             stage.setMinWidth(SETTINGS_MIN_WIDTH);
             stage.setOnCloseRequest(e -> {
                 Platform.exit();
-                System.exit(0);
+                exit();
             });
             stage.show();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+    }
+
+    private void exit() {
+        System.exit(0);
     }
     /**
     * {@inheritDoc}
