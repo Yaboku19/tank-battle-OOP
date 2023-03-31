@@ -4,21 +4,23 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
-import it.unibo.tankbattle.common.input.api.Direction;
-import it.unibo.tankbattle.common.input.impl.Movement;
-import it.unibo.tankbattle.common.input.impl.Shoot;
+import it.unibo.tankbattle.common.input.api.Command;
+import it.unibo.tankbattle.common.input.api.InputController;
+import it.unibo.tankbattle.common.input.impl.KeyboardInputController;
 import it.unibo.tankbattle.controller.api.GameEngine;
 import it.unibo.tankbattle.controller.impl.BasicGameEngine;
 import it.unibo.tankbattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
@@ -33,16 +35,15 @@ public class ViewController implements View {
     private SettingsController settingsController;
     private Scene mainViewScene;
     private MainViewController mainViewController;
-    //private Node node;
     private Stage stage;
     private Scene gameScene;
-    private String lastCommandFirstPlayer = "";
-    private String lastCommandSecondPlayer = "";
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
     private ChangeListener<? super Number> widthChangeListener;
     private ChangeListener<? super Number> heightChangeListener;
+    private InputController<KeyCode> firstPlayerController;
+    private InputController<KeyCode> secondPlayerController;
 
     private static final double SETTINGS_MIN_HEIGHT = 430;
     private static final double SETTINGS_MIN_WIDTH = 600;
@@ -214,84 +215,30 @@ public class ViewController implements View {
         this.setDiagonalResize();
         setDimension();
         controller.startGame();
+        inizializeInputController();
     }
     /**
     * {@inheritDoc}
     */
     @Override
     public void addCommand(final KeyEvent e) {
-        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-            final String event = e.getCode().toString() + e.getEventType().toString();
-            if (!lastCommandFirstPlayer.equals(event)) {
-                    switch (e.getCode()) {
-                        case RIGHT:
-                            controller.notifyCommand(new Movement(Direction.RIGHT, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case LEFT:
-                            controller.notifyCommand(new Movement(Direction.LEFT, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case UP:
-                            controller.notifyCommand(new Movement(Direction.UP, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case DOWN:
-                            controller.notifyCommand(new Movement(Direction.DOWN, controller.getFirstPlayer()));
-                            lastCommandFirstPlayer = event;
-                            break;
-                        case SPACE:
-                            controller.notifyCommand(new Shoot(controller.getFirstPlayer()));
-                            break;
-                        default:
-                    }
-                }
-                if (!lastCommandSecondPlayer.equals(event)) {
-                    switch (e.getCode()) {
-                        case D:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.RIGHT, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case A:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.LEFT, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case W:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.UP, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case S:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Movement(Direction.DOWN, controller.getSecondPlayer()));
-                            lastCommandSecondPlayer = event;
-                            break;
-                        case Z:
-                            System.out.println(e.getCode());
-                            controller.notifyCommand(new Shoot(controller.getSecondPlayer()));
-                            break;
-                        default:
-                    }
-                }
+        if(firstPlayerController.getKeys().contains(e.getCode())) {
+            notifyCommand(firstPlayerController, e);
         }
+        if(secondPlayerController.getKeys().contains(e.getCode())) {
+            notifyCommand(secondPlayerController, e);
+        }
+    }
 
-        if (e.getEventType().equals(KeyEvent.KEY_RELEASED)) {
-            final String event = e.getCode().toString() + e.getEventType().toString();
-            switch (e.getCode()) {
-                case RIGHT, LEFT, UP, DOWN:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Direction.NONE, controller.getFirstPlayer()));
-                    lastCommandFirstPlayer = event;
-                break;
-                case D, A, W, S:
-                    System.out.println(e.getCode());
-                    controller.notifyCommand(new Movement(Direction.NONE, controller.getSecondPlayer()));
-                    lastCommandSecondPlayer = event;
-                break;
-                default:
-            }
+    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
+        Optional<Command> command;
+        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+            command = playerController.startCommand(e.getCode());
+        } else {
+            command = playerController.stopCommand(e.getCode());
+        }
+        if (command.isPresent()) {
+            controller.notifyCommand(command.get());
         }
     }
     /**
@@ -361,5 +308,12 @@ public class ViewController implements View {
         };
         stage.widthProperty().addListener(widthChangeListener);
         stage.heightProperty().addListener(heightChangeListener);
+    }
+
+    private void inizializeInputController() {
+        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
+                KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
+        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
+                KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
     }
 }

@@ -115,6 +115,8 @@ public class MainViewController {
             final Scene tutorial = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
             final TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
+            tutorialController.setViewController(viewController);
+            tutorialController.setNameLabel();
             tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
             //stage.setHeight(stage.getHeight()-0.01);
