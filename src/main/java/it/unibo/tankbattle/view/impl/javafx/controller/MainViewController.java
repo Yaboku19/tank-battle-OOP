@@ -55,8 +55,7 @@ public class MainViewController {
      */
     @FXML
     void play(final ActionEvent event) {
-        final Node node = (Node) event.getSource();
-        final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = converterFromEvent(event);
         try {
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/game.fxml"));
             viewController.setViewResources();
@@ -82,8 +81,7 @@ public class MainViewController {
     @FXML
     void settings(final ActionEvent event) {
         try {
-            final Node node = (Node) event.getSource();
-            final Stage stage = (Stage) node.getScene().getWindow();
+            final Stage stage = converterFromEvent(event);
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
             final Scene settings = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
@@ -109,8 +107,7 @@ public class MainViewController {
     @FXML
     void tutorial(final ActionEvent event) {
         try {
-            final Node node = (Node) event.getSource();
-            final Stage stage = (Stage) node.getScene().getWindow();
+            final Stage stage = converterFromEvent(event);
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
             final Scene tutorial = new Scene(fxmlLoader.load());
             //controller = fxmlLoader.getController();
@@ -157,4 +154,12 @@ public class MainViewController {
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, keyReleasedListener);
     }
 
+    static Stage converterFromEvent(final ActionEvent event) {
+        final Node node = (Node) event.getSource();
+        final var converter = node.getScene().getWindow();
+        if (!(converter instanceof Stage)) {
+            throw new AssertionError("Unexpected type: " + converter);
+        }
+        return (Stage) converter;
+    }
 }

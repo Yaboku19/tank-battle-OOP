@@ -7,7 +7,6 @@ import it.unibo.tankbattle.view.api.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,8 +51,7 @@ public class GameOverController {
      */
     @FXML
     void mainMenu(final ActionEvent event) {
-        final Node node = (Node) event.getSource();
-        final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = MainViewController.converterFromEvent(event);
         viewController.newStart();
         stage.setScene(mainManuScene);
         stage.sizeToScene();
@@ -72,8 +70,7 @@ public class GameOverController {
      */
     @FXML
     void restart(final ActionEvent event) {
-        final Node node = (Node) event.getSource();
-        final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = MainViewController.converterFromEvent(event);
         viewController.restart();
         stage.setScene(gameScene);
     }

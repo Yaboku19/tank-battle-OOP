@@ -15,10 +15,11 @@ import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.controller.api.ObjectsManager;
 import it.unibo.tankbattle.model.gamesetup.api.Data;
 import it.unibo.tankbattle.model.gamesetup.api.DataList;
+
 /**
- * javadoc.
- * @param <T> param
- * @param <C> param
+ * an implementation of ObjectsManger {@link ObjectsManager}.
+ * @param <T> data type
+ * @param <C> dataList type
  */
 public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implements ObjectsManager<T, C> {
     private final File config;
@@ -27,21 +28,16 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
     private int index;
 
     /**
-     * javadoc.
-     * @param path param
-     * @param clas prama
-     * @throws JAXBException throws
+     * the costructor of ObjectManagerImpl.
+     * @param path the path for the xml file
+     * @param clas the type for the read
+     * @throws JAXBException 
      */
     public ObjectsManagerImpl(final URI path, final Class<C> clas) throws JAXBException {
         config = new File(path);
         read(clas);
     }
 
-    /**
-     * javadoc.
-     * @param c param
-     * @throws JAXBException throws
-     */
     @SuppressWarnings("unchecked")
     private void read(final Class<C> c) throws JAXBException {
         final JAXBContext jaxbContext = JAXBContext.newInstance(c);
@@ -52,6 +48,7 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
             keyOrder.add(dataList.getData().get(i).getName());
         }
     }
+
     /**
     * {@inheritDoc}
     */
@@ -59,6 +56,7 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
     public T getActual() {
         return dataMap.get(keyOrder.get(index));
     }
+
     /**
     * {@inheritDoc}
     */

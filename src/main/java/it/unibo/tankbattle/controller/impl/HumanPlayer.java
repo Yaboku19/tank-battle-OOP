@@ -2,23 +2,26 @@ package it.unibo.tankbattle.controller.impl;
 
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamesetup.impl.TankData;
+
 /**
- * javadoc.
+ * an implementation of Player {@link Player}.
  */
 public class HumanPlayer implements Player {
     private int score;
     private final String name;
     private final TankData tankData;
+
     /**
-     * javadoc.
-     * @param name param
-     * @param tankData param
+     * the constructor of HumanPLayer with two arguments.
+     * @param name the name of the player
+     * @param tankData the data of the tank
      */
     HumanPlayer(final String name, final TankData tankData) {
         this.score = 0;
         this.name = name;
         this.tankData = tankData;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -26,6 +29,7 @@ public class HumanPlayer implements Player {
     public int getScore() {
         return score;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -33,6 +37,7 @@ public class HumanPlayer implements Player {
     public void incScore() {
         score++;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -40,6 +45,7 @@ public class HumanPlayer implements Player {
     public String getName() {
         return name;
     }
+
     /**
     * {@inheritDoc}
     */

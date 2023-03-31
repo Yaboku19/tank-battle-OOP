@@ -1,45 +1,51 @@
 package it.unibo.tankbattle.model.gamestate.api;
 
 import java.util.stream.Stream;
-
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
+
 /**
- * javadock.
+ * rappresent the interface of the model.
  */
 public interface GameState extends CommandListener {
+
     /**
-     * javadock.
-     * @param firstPlayer param
-     * @param secondPlayer param
-     * @param dataList param
+     * create a World with the following paramether.
+     * @param firstPlayer the first player
+     * @param secondPlayer the second player
+     * @param dataList the data for the map
      */
     void createWorld(Player firstPlayer, Player secondPlayer, MapData dataList);
+
     /**
-     * javadock.
-     * @param time param
+     * give the GameObject to update.
+     * @param time indicates how much the GameObject have to be updated
      */
     void update(Double time);
+
     /**
-     * javadock.
-     * @return param
+     * 
+     * @return return a Stream {@link Stream} of Trasform {@link Tranform} of Bullets
      */
     Stream<Transform> getBulletsTrasform();
+
     /**
-     * javsdock.
-     * @return param
+     * 
+     * @return return a Stream {@link Stream} of Trasform {@link Tranform} of Walls
      */
     Stream<Transform> getWallsTrasform();
+
     /**
-     * javadock.
-     * @param player param
-     * @return return
+     * 
+     * @param player used to identify the tank
+     * @return return the {@link Trasform} of a tank
      */
     Transform getTankTrasform(Player player);
+
     /**
-     * javadock.
-     * @param player param
+     * return the life of a tank.
+     * @param player used to identify the tank
      * @return return
      */
     int getTankLife(Player player);

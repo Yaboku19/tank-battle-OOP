@@ -1,19 +1,22 @@
 package it.unibo.tankbattle.model.gamesetup.api;
 
 import java.util.List;
+
 /**
- * javadock.
+ * rappresent a generci list of Data that need to be read for xml files.
  * @param <T> param
  */
 public interface DataList<T> {
+
     /**
-     * javadoc.
-     * @return return
+     * 
+     * @return get the List of Data
      */
     List<T> getData();
+
     /**
-     * javadoc.
-     * @param data param
+     * Set the List of data.
+     * @param data 
      */
     void setData(List<T> data);
 }

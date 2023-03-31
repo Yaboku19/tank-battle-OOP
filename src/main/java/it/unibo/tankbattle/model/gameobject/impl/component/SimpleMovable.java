@@ -2,7 +2,6 @@ package it.unibo.tankbattle.model.gameobject.impl.component;
 
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.input.api.Direction;
-import it.unibo.tankbattle.model.gameobject.api.component.AbstractComponent;
 import it.unibo.tankbattle.model.gameobject.api.component.Movable;
 
 /**

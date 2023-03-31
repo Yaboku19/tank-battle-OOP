@@ -1,16 +1,14 @@
 package it.unibo.tankbattle.model.gamesetup.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import it.unibo.tankbattle.model.gamesetup.api.Data;
-
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
 /**
- * javadock.
+ * an implementation of {@link Data} for the tank.
  */
 @XmlRootElement (name = "tank")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -125,8 +123,8 @@ public class TankData implements Data {
         this.resource = resource;
     }
     /**
-     * javadoc.
-     * @return return
+     * create a copy of the Object.
+     * @return the copy
      */
     public TankData copy() {
         final TankData copy = new TankData();
@@ -139,5 +137,3 @@ public class TankData implements Data {
         return copy;
     }
 }
-
-

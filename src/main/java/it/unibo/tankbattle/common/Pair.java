@@ -1,18 +1,18 @@
 package it.unibo.tankbattle.common;
 
 /**
- * javadoc.
- * @param <X> param
- * @param <Y> param
+ * This generic class represent a pair of two objects.
+ * This class is powered by M. Viroli.
+ * @param <X> first object
+ * @param <Y> second object
  */
  public class Pair<X, Y> {
 
     private final X x;
     private final Y y;
     /**
-     * javadoc.
-     * @param x param
-     * @param y param
+     * @param x first object.
+     * @param y second object.
      */
     public Pair(final X x, final Y y) {
         super();
@@ -20,15 +20,13 @@ package it.unibo.tankbattle.common;
         this.y = y;
     }
     /**
-     * javadoc.
-     * @return return
+     * @return first object.
      */
     public X getX() {
         return x;
     }
     /**
-     * javadoc.
-     * @return return
+     * @return second object.
      */
     public Y getY() {
         return y;

@@ -4,6 +4,7 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
+import it.unibo.tankbattle.common.input.api.Command;
 import it.unibo.tankbattle.common.input.api.InputController;
 import it.unibo.tankbattle.common.input.impl.KeyboardInputController;
 import it.unibo.tankbattle.controller.api.GameEngine;
@@ -12,6 +13,7 @@ import it.unibo.tankbattle.view.api.View;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
@@ -62,13 +64,6 @@ public class ViewController implements View {
             gameController.updateLifeLabel(lifeFirstTank, lifeSecondTank);
             gameController.drawLabel(firstPlayerName, secondPlayerName, firstPlayerScore, secondPlayerScore);
         });
-    }
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void setController(final GameEngine controller) {
-        this.controller = controller;
     }
     /**
     * {@inheritDoc}
@@ -143,12 +138,16 @@ public class ViewController implements View {
             stage.setMinWidth(SETTINGS_MIN_WIDTH);
             stage.setOnCloseRequest(e -> {
                 Platform.exit();
-                System.exit(0);
+                exit();
             });
             stage.show();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+    }
+
+    private void exit() {
+        System.exit(0);
     }
     /**
     * {@inheritDoc}
@@ -220,25 +219,23 @@ public class ViewController implements View {
     */
     @Override
     public void addCommand(final KeyEvent e) {
-        if(firstPlayerController.getKeys().contains(e.getCode())) {
-            if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-                var command = firstPlayerController.startCommand(e.getCode());
-                if (command.isPresent()) {
-                    controller.notifyCommand(command.get());
-                }
-            } else {
-                controller.notifyCommand(firstPlayerController.stopCommand(e.getCode()));
-            }
+        if (firstPlayerController.getKeys().contains(e.getCode())) {
+            notifyCommand(firstPlayerController, e);
         }
-        if(secondPlayerController.getKeys().contains(e.getCode())) {
-            if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-                var command = secondPlayerController.startCommand(e.getCode());
-                if (command.isPresent()) {
-                    controller.notifyCommand(command.get());
-                }
-            } else {
-                controller.notifyCommand(secondPlayerController.stopCommand(e.getCode()));
-            }
+        if (secondPlayerController.getKeys().contains(e.getCode())) {
+            notifyCommand(secondPlayerController, e);
+        }
+    }
+
+    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
+        Optional<Command> command;
+        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+            command = playerController.startCommand(e.getCode());
+        } else {
+            command = playerController.stopCommand(e.getCode());
+        }
+        if (command.isPresent()) {
+            controller.notifyCommand(command.get());
         }
     }
     /**
@@ -311,9 +308,9 @@ public class ViewController implements View {
     }
 
     private void inizializeInputController() {
-        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
+        firstPlayerController = new KeyboardInputController<>(KeyCode.UP, KeyCode.DOWN,
                 KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
-        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
+        secondPlayerController = new KeyboardInputController<>(KeyCode.W, KeyCode.S,
                 KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
     }
 }

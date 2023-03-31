@@ -2,7 +2,6 @@ package it.unibo.tankbattle.model.world.impl;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gameobject.api.object.FactoryGameObject;
@@ -11,19 +10,22 @@ import it.unibo.tankbattle.model.gameobject.impl.object.FactoryGameObjectImpl;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
 import it.unibo.tankbattle.model.world.api.FactoryWorld;
 import it.unibo.tankbattle.model.world.api.World;
+
 /**
- * javadock.
+ * a Implementention of FactoryWorld {@link FactoryWorld}.
  */
 public class FactoryWorldImpl implements FactoryWorld {
     private final FactoryGameObject factoryGO;
     private final double size;
+
     /**
-     * javadock.
+     * The constructor of FActoryWorld with zero Arguments.
      */
     public FactoryWorldImpl() {
         factoryGO = new FactoryGameObjectImpl();
         this.size = factoryGO.getWallLength();
     }
+
     /**
     * {@inheritDoc}
     */

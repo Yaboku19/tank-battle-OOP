@@ -3,7 +3,6 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 public class TutorialController {
 
     private Scene prevScene;
-    private View viewController;
+    private View viewController = null;
 
     @FXML
     private Label firstPlayer;
@@ -27,8 +26,7 @@ public class TutorialController {
 
     @FXML
     private void back(final ActionEvent event) {
-            final Node node = (Node) event.getSource();
-            final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = MainViewController.converterFromEvent(event);
             stage.setScene(prevScene);
             //stage.setHeight(stage.getHeight()-0.01);
             //stage.setWidth(stage.getWidth()-0.01);
@@ -43,7 +41,6 @@ public class TutorialController {
     }
     /**
      * javadock.
-     * @param prevScene param
      */
     public void setNameLabel() {
         firstPlayer.setText(viewController.getFirstPlayerName());

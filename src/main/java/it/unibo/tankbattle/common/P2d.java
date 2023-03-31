@@ -1,53 +1,47 @@
 package it.unibo.tankbattle.common;
 
 /**
- * javadoc.
+ * This class represents a point 2D.
  */
 public class P2d {
 
     private final double x;
     private final double y;
     /**
-     * javadoc.
-     * @param x param
-     * @param y param
+     * @param x x element.
+     * @param y y element.
      */
     public P2d(final double x, final double y) {
         this.x = x;
         this.y = y;
     }
     /**
-     * javadoc.
-     * @param v param
-     * @return return
+     * @param v a point 2D.
+     * @return point 2D summed with v.
      */
     public P2d sum(final P2d v) {
         return new P2d(x + v.getX(), y + v.getY());
     }
     /**
-     * javadoc.
-     * @param multiplier param
-     * @return return
+     * @param multiplier a scalar number.
+     * @return point 2D multiplied by multiplier.
      */
     public P2d multiply(final double multiplier) {
         return new P2d(x * multiplier, y * multiplier);
     }
     /**
-     * javadoc.
-     * @return return
+     * @return x coordinate
      */
     public double getX() {
         return this.x;
     }
     /**
-     * javadoc.
-     * @return return
+     * @return y coordinate
      */
     public double getY() {
         return this.y;
     }
     /**
-     * javadoc.
      * @return return
      */
     public double getMagnitude() {

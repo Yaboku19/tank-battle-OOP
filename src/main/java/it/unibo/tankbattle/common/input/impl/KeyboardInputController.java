@@ -1,6 +1,5 @@
 package it.unibo.tankbattle.common.input.impl;
 
-import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +9,7 @@ import it.unibo.tankbattle.common.input.api.InputController;
 import it.unibo.tankbattle.controller.api.Player;
 /**
  * javadoc.
+ * @param <T> param
  */
 public class KeyboardInputController<T> implements InputController<T> {
 
@@ -21,12 +21,12 @@ public class KeyboardInputController<T> implements InputController<T> {
     private final Player player;
     private Optional<T> lastCommand = Optional.empty();
     /**
-     * javadoc.
-     * @param moveUp param
-     * @param moveDown param
-     * @param moveLeft param
-     * @param moveRight param
-     * @param shoot param
+     * @param moveUp param move up key.
+     * @param moveDown param move down key.
+     * @param moveLeft param move left key.
+     * @param moveRight param move right key.
+     * @param shoot param shoot key.
+     * @param player param wich player.
      */
     public KeyboardInputController(final T moveUp, final T moveDown, final T moveLeft,
         final T moveRight, final T shoot, final Player player) {
@@ -49,8 +49,11 @@ public class KeyboardInputController<T> implements InputController<T> {
     * {@inheritDoc}
     */
     @Override
-    public Optional<Command> startCommand(T command) {
+    public Optional<Command> startCommand(final T command) {
         if (!lastCommand.equals(Optional.of(command))) {
+            if (command.equals(shoot)) {
+                return Optional.of(new Shoot(player));
+            }
             lastCommand = Optional.of(command);
             if (command.equals(moveRight)) {
                 return Optional.of(new Movement(Direction.RIGHT, player));
@@ -64,9 +67,6 @@ public class KeyboardInputController<T> implements InputController<T> {
             if (command.equals(moveDown)) {
                 return Optional.of(new Movement(Direction.DOWN, player));
             }
-            if (command.equals(shoot)) {
-                return Optional.of(new Shoot(player));
-            }
         }
         return Optional.empty();
     }
@@ -74,8 +74,11 @@ public class KeyboardInputController<T> implements InputController<T> {
     * {@inheritDoc}
     */
     @Override
-    public Command stopCommand(T command) {
+    public Optional<Command> stopCommand(final T command) {
+        if (!lastCommand.equals(Optional.of(command)) || command.equals(shoot)) {
+            return Optional.empty();
+        }
         lastCommand = Optional.empty();
-        return new Movement(Direction.NONE, player);
+        return Optional.of(new Movement(Direction.NONE, player));
     }
 }

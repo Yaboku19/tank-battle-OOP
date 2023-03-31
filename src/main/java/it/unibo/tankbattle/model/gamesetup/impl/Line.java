@@ -7,8 +7,9 @@ import it.unibo.tankbattle.common.P2d;
 import java.util.HashSet;
 import java.util.Set;
 import javax.xml.bind.annotation.XmlAccessType;
+
 /**
- * javadock.
+ * rappresent the format of a line of wall in xml files.
  */
 @XmlRootElement (name = "line")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -23,13 +24,12 @@ public class Line {
     private String type;
 
     /**
-     * javadoc.
-     * @return return
+     * 
+     * @return return the line of wall
      */
     public Set<P2d> getLine() {
         final Set<P2d> line = new HashSet<>();
         for (double i = notCommon1; i <= notCommon2; i++) {
-            System.out.println(i);
             line.add(generatePosition(i));
         }
         return line;
