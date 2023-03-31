@@ -9,6 +9,7 @@ import it.unibo.tankbattle.common.input.api.InputController;
 import it.unibo.tankbattle.controller.api.Player;
 /**
  * javadoc.
+ * @param <T> param
  */
 public class KeyboardInputController<T> implements InputController<T> {
 
@@ -25,6 +26,7 @@ public class KeyboardInputController<T> implements InputController<T> {
      * @param moveLeft param move left key.
      * @param moveRight param move right key.
      * @param shoot param shoot key.
+     * @param player param wich player.
      */
     public KeyboardInputController(final T moveUp, final T moveDown, final T moveLeft,
         final T moveRight, final T shoot, final Player player) {
@@ -47,7 +49,7 @@ public class KeyboardInputController<T> implements InputController<T> {
     * {@inheritDoc}
     */
     @Override
-    public Optional<Command> startCommand(T command) {
+    public Optional<Command> startCommand(final T command) {
         if (!lastCommand.equals(Optional.of(command))) {
             if (command.equals(shoot)) {
                 return Optional.of(new Shoot(player));
@@ -72,7 +74,7 @@ public class KeyboardInputController<T> implements InputController<T> {
     * {@inheritDoc}
     */
     @Override
-    public Optional<Command> stopCommand(T command) {
+    public Optional<Command> stopCommand(final T command) {
         if (!lastCommand.equals(Optional.of(command)) || command.equals(shoot)) {
             return Optional.empty();
         }

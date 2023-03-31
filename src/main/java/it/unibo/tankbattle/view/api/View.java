@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
-import it.unibo.tankbattle.controller.api.GameEngine;
 import it.unibo.tankbattle.view.impl.javafx.controller.GameController;
 import it.unibo.tankbattle.view.impl.javafx.controller.SettingsController;
 import javafx.scene.Scene;

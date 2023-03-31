@@ -1,7 +1,7 @@
 package it.unibo.tankbattle.common;
 
 /**
- * This class represents a point 2D
+ * This class represents a point 2D.
  */
 public class P2d {
 

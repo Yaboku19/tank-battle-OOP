@@ -219,10 +219,10 @@ public class ViewController implements View {
     */
     @Override
     public void addCommand(final KeyEvent e) {
-        if(firstPlayerController.getKeys().contains(e.getCode())) {
+        if (firstPlayerController.getKeys().contains(e.getCode())) {
             notifyCommand(firstPlayerController, e);
         }
-        if(secondPlayerController.getKeys().contains(e.getCode())) {
+        if (secondPlayerController.getKeys().contains(e.getCode())) {
             notifyCommand(secondPlayerController, e);
         }
     }
@@ -308,9 +308,9 @@ public class ViewController implements View {
     }
 
     private void inizializeInputController() {
-        firstPlayerController = new KeyboardInputController<KeyCode>(KeyCode.UP, KeyCode.DOWN,
+        firstPlayerController = new KeyboardInputController<>(KeyCode.UP, KeyCode.DOWN,
                 KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
-        secondPlayerController = new KeyboardInputController<KeyCode>(KeyCode.W, KeyCode.S,
+        secondPlayerController = new KeyboardInputController<>(KeyCode.W, KeyCode.S,
                 KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
     }
 }

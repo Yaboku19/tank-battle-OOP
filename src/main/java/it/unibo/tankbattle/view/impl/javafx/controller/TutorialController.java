@@ -41,7 +41,6 @@ public class TutorialController {
     }
     /**
      * javadock.
-     * @param prevScene param
      */
     public void setNameLabel() {
         firstPlayer.setText(viewController.getFirstPlayerName());
