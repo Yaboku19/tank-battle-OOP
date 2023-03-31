@@ -1,11 +1,13 @@
 package it.unibo.tankbattle.controller.api;
+
 /**
- * javadoc.
+ * the listener for the model.
  */
 public interface WorldEventListener {
+
     /**
-     * javadoc.
-     * @param player param
+     * it is called when the game is over.
+     * @param player the player how lose
      */
     void endGame(Player player);
 }

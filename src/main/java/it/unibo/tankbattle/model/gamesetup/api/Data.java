@@ -1,11 +1,13 @@
 package it.unibo.tankbattle.model.gamesetup.api;
+
 /**
- * javadoc.
+ * Rappresent a generic type of data that need to be read from Xml files.
  */
 public interface Data {
+
     /**
-     * javadoc.
-     * @return return
+     * 
+     * @return get name of the Data
      */
     String getName();
 }

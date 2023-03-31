@@ -1,21 +1,18 @@
 package it.unibo.tankbattle.model.gamesetup.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.model.gamesetup.api.Data;
-
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javax.xml.bind.annotation.XmlAccessType;
 
 /**
- *
+ * an implementation of {@link Data} for the map.
  */
 @XmlRootElement (name = "map")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -51,8 +48,8 @@ public class MapData implements Data {
     }
 
     /**
-     * javadock.
-     * @return return
+     * 
+     * @return get the position  {@link P2d} of the first tank
      */
     public P2d getPositionFirstTank() {
         return positions
@@ -64,8 +61,8 @@ public class MapData implements Data {
     }
 
     /**
-     * javadock.
-     * @return return
+     * 
+     * @return get the position {@link P2d} of the second tank
      */
     public P2d getPositionSecondTank() {
         return positions
@@ -77,8 +74,8 @@ public class MapData implements Data {
     }
 
     /**
-     * javadock.
-     * @return return
+     * 
+     * @return get a Set of position {@link P2d} of all the wall
      */
     public Set<P2d> getWall() {
         return addBorder(addLine(positions
@@ -107,6 +104,3 @@ public class MapData implements Data {
         return wall;
     }
 }
-
-
-

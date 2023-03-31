@@ -1,7 +1,6 @@
 package it.unibo.tankbattle.model.gamestate.impl;
 
 import java.util.stream.Stream;
-
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
@@ -22,8 +21,9 @@ import it.unibo.tankbattle.model.gamestate.api.GameState;
 import it.unibo.tankbattle.model.world.api.FactoryWorld;
 import it.unibo.tankbattle.model.world.api.World;
 import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
+
 /**
- * javadock.
+ * an implementation of {@link GameState}.
  */
 public class GameStateImpl implements GameState {
 
@@ -32,9 +32,10 @@ public class GameStateImpl implements GameState {
     private final WorldEventListener listener;
     private final FactoryGameObject factoryGameObject;
     private final CollisionManager collisionManager;
+
     /**
-     * javadock.
-     * @param listener param
+     * the constructor of GameStateImpl.
+     * @param listener a listener from the controller
      */
     public GameStateImpl(final WorldEventListener listener) {
         factoryWorld = new FactoryWorldImpl();
@@ -42,6 +43,7 @@ public class GameStateImpl implements GameState {
         factoryGameObject = new FactoryGameObjectImpl();
         collisionManager = new CollisionManagerImpl(new CollisionDetectorImpl());
     }
+
     /**
     * {@inheritDoc}
     */
@@ -49,6 +51,7 @@ public class GameStateImpl implements GameState {
     public void createWorld(final Player firstPlayer, final Player secondPlayer, final MapData dataList) {
         world = factoryWorld.simpleWorld(firstPlayer, secondPlayer, dataList);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -86,6 +89,7 @@ public class GameStateImpl implements GameState {
         return world.getEntities()
             .filter(g -> g.getComponent(Wall.class).isPresent());
     }
+
     /**
     * {@inheritDoc}
     */
@@ -96,6 +100,7 @@ public class GameStateImpl implements GameState {
                 .createSimpleBullet(getTankFromPlayer(player)));
         }
     }
+
     /**
     * {@inheritDoc}
     */
@@ -114,6 +119,7 @@ public class GameStateImpl implements GameState {
     private Stream<GameObject> getTanks() {
         return world.getEntities().filter(g -> g.getComponent(Tank.class).isPresent());
     }
+
     /**
     * {@inheritDoc}
     */
@@ -121,15 +127,16 @@ public class GameStateImpl implements GameState {
     public Stream<Transform> getBulletsTrasform() {
         return getBullets().map(b -> b.getTransform());
     }
+
     /**
     * {@inheritDoc}
     */
     @Override
     public Stream<Transform> getWallsTrasform() {
-        /*return world.getEntities().filter(g -> g.getComponent(Wall.class).isPresent());*/
         return getWalls()
                 .map(w -> w.getTransform());
     }
+
     /**
     * {@inheritDoc}
     */
@@ -137,6 +144,7 @@ public class GameStateImpl implements GameState {
     public Transform getTankTrasform(final Player player) {
         return getTankFromPlayer(player).getTransform();
     }
+
     /**
     * {@inheritDoc}
     */

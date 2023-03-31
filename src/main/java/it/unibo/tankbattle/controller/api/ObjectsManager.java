@@ -4,18 +4,20 @@ import it.unibo.tankbattle.common.NextAndPrevious;
 
 /**
  * Control the virus data.
- * @param <T> param
- * @param <C> param 
+ * @param <T> Data type
+ * @param <C> DataList type
  */
 public interface ObjectsManager<T, C> {
+
     /**
-     * javadoc.
-     * @return return
+     * 
+     * @return return the actual
      */
     T getActual();
+
     /**
-     * javadoc.
-     * @param delta param
+     * update the actual.
+     * @param delta how the update has to be done
      */
     void update(NextAndPrevious delta);
 }

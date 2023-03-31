@@ -24,8 +24,7 @@ import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
 import it.unibo.tankbattle.view.api.View;
 
 /**
- * javadoc.
- * 
+ * the implementation of GameEngine {@link GameEngine} and WorldEventListener {@link WorldEventListener}.
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
 
@@ -42,8 +41,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<MapData, MapDataList> mapManager;
 
     /**
-     * javadoc.
-     * @param view
+     * the costructor of BasicGameEngine.
+     * @param view the reference of the view
      */
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
@@ -79,10 +78,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         secondPlayer = new HumanPlayer(view.getSecondPlayerName(), tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
-        //initGame();
-        /*
-         * new instance of model
-         */
     }
 
     private void loop() {
