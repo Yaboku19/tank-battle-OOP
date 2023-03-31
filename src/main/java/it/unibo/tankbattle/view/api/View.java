@@ -28,12 +28,6 @@ public interface View {
     void startGame();
 
     /**
-     * Use that method to add mvc controller reference to view.
-     * @param controller controller mvc.
-     */
-    void setController(GameEngine controller);
-
-    /**
      * Use that method to render game elements.
      * @param firstTank first tank Transform
      * @param secondTank second tank Transform

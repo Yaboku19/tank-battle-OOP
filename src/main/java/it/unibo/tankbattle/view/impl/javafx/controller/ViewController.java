@@ -69,13 +69,6 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void setController(final GameEngine controller) {
-        this.controller = controller;
-    }
-    /**
-    * {@inheritDoc}
-    */
-    @Override
     public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP1(speed, damage, life, resource);
     }

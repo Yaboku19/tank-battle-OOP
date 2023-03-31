@@ -48,7 +48,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
         this.view = view;
-        view.setController(this);
         model = new GameStateImpl(this);
         try {
             tankFirstManager = generateObjectManager(
