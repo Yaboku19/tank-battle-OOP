@@ -12,17 +12,29 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
- * javadoc.
+ * This interface represents a javafx main controller.
  */
 public interface View {
 
     /**
-     * javadoc.
+     * Use that method to start the application.
+     * @param stage is the first stage.
      */
-    void gameOver();
+    void start(Stage stage);
 
     /**
-     * javadoc.
+     * Use that method to start the game.
+     */
+    void startGame();
+
+    /**
+     * Use that method to add mvc controller reference to view.
+     * @param controller controller mvc.
+     */
+    void setController(GameEngine controller);
+
+    /**
+     * Use that method to render game elements.
      * @param firstTank first tank Transform
      * @param secondTank second tank Transform
      * @param wall walls' Transform set
@@ -37,50 +49,49 @@ public interface View {
             int firstPlayerScore, int secondPlayerScore);
 
     /**
-     * javadoc.
-     * @param controller
+     * Use that method to manage game over.
      */
-    void setController(GameEngine controller);
+    void gameOver();
 
     /**
-     * javadoc.
-     * @param delta
+     * Use that method to ask to controller next Tank for player 1.
+     * @param delta next
      */
     void updateTankPlayer1(NextAndPrevious delta);
 
     /**
-     * javadoc.
-     * @param delta
+     * Use that method to ask to controller next Tank for player 2.
+     * @param delta next
      */
     void updateTankPlayer2(NextAndPrevious delta);
 
     /**
-     * javadoc.
-     * @param delta
+     * Use that method to ask to controller new map.
+     * @param delta next or previous
      */
     void updateMap(NextAndPrevious delta);
 
     /**
-     * javadoc.
-     * @param speed
-     * @param damage
-     * @param life
-     * @param resource
+     * Use that method to update view settings for player 1.
+     * @param speed tank speed
+     * @param damage tank damage
+     * @param life tank life
+     * @param resource tank resource
      */
     void viewUpdateP1(int speed, int damage, int life, String resource);
 
     /**
-     * javadoc.
-     * @param speed
-     * @param damage
-     * @param life
-     * @param resource
+     * Use that method to update view settings for player 2.
+     * @param speed tank speed
+     * @param damage tank damage
+     * @param life tank life
+     * @param resource tank resource
      */
     void viewUpdateP2(int speed, int damage, int life, String resource);
 
     /**
-     * javadoc.
-     * @param resource
+     * Use that method to update map image.
+     * @param resource path of map resource
      */
     void viewUpdateMap(String resource);
 
@@ -93,78 +104,66 @@ public interface View {
     void setResource(String tank1, String tank2, String mapResource);
 
     /**
-     * javadoc.
-     * @param stage
-     */
-    void start(Stage stage);
-
-    /**
-     * javadoc.
+     * Use that method to restart the game.
      */
     void restart();
 
     /**
-     * javadoc.
+     * Use that method to do a new start og the game.
      */
     void newStart();
 
     /**
-     * javadoc.
+     * Use that method to tell the controller to set view resources. 
      */
     void setViewResources();
 
     /**
-     * javadoc.
-     */
-    void startGame();
-
-    /**
-     * javadoc.
-     * @param e
+     * Use that method to manage new user command.
+     * @param e event made by user.
      */
     void addCommand(KeyEvent e);
 
     /**
-     * javadoc.
-     * @param gameController
+     * Use that method to set the game view controller.
+     * @param gameController game view controller.
      */
     void setGameController(GameController gameController);
 
     /**
-     * javadoc.
-     * @param gameScene
+     * Use that method to set game scene.
+     * @param gameScene game scene.
      */
     void setGameScene(Scene gameScene);
 
     /**
-     * javadoc.
-     * @param code
+     * Use that method to set the winner.
+     * @param name name of the winner.
      */
-    void setWinner(String code);
+    void setWinner(String name);
 
     /**
-     * javadoc.
-     * @param settingsController
+     * Use that method to set settings view controller.
+     * @param settingsController settings view controller.
      */
     void setSettingsController(SettingsController settingsController);
 
     /**
-     * javadoc.
-     * @param firstPlayerName
-     * @param secondPlayerName
+     * Use that method to set players names.
+     * @param firstPlayerName first player name.
+     * @param secondPlayerName second player name.
      */
     void setPlayerName(String firstPlayerName, String secondPlayerName);
 
     /**
-     * javadoc.
-     * @return first player's name
+     * Use this method to get the first player name.
+     * @return first player name
      */
     String getFirstPlayerName();
 
     /**
-     * javadoc.
+     * Use this method to get the second player name.
      * @return second player's name
      */
     String getSecondPlayerName();
-
 }
