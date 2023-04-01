@@ -20,14 +20,14 @@
       <Label layoutX="390.0" layoutY="33.0" prefHeight="17.0" prefWidth="38.0" text="MAP" />
       <Button layoutX="306.0" layoutY="304.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
       <Label layoutX="189.0" layoutY="48.0" text="Speed:" />
-      <Label fx:id="speedP2" layoutX="241.0" layoutY="243.0" prefHeight="17.0" prefWidth="22.0" />
-      <Label fx:id="damageP1" layoutX="241.0" layoutY="108.0" prefHeight="17.0" prefWidth="22.0" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="106.0" />
-      <Label fx:id="lifeP1" layoutX="241.0" layoutY="76.0" prefHeight="17.0" prefWidth="22.0" />
-      <Label fx:id="speedP1" layoutX="241.0" layoutY="48.0" prefHeight="17.0" prefWidth="22.0" />
-      <Label layoutX="189.0" layoutY="106.0" text="Damage:" AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="106.0" />
+      <Label fx:id="speedP2" layoutX="241.0" layoutY="243.0" />
+      <Label fx:id="damageP1" layoutX="241.0" layoutY="108.0" />
+      <Label fx:id="lifeP1" layoutX="241.0" layoutY="76.0" />
+      <Label fx:id="speedP1" layoutX="241.0" layoutY="48.0" />
+      <Label layoutX="189.0" layoutY="106.0" text="Damage:" />
       <Label layoutX="189.0" layoutY="76.0" text="Life:" />
-      <Label fx:id="damageP2" layoutX="241.0" layoutY="302.0" prefHeight="17.0" prefWidth="22.0" />
-      <Label fx:id="lifeP2" layoutX="241.0" layoutY="273.0" prefHeight="17.0" prefWidth="22.0" />
+      <Label fx:id="damageP2" layoutX="241.0" layoutY="302.0" />
+      <Label fx:id="lifeP2" layoutX="241.0" layoutY="273.0" />
       <Label layoutX="189.0" layoutY="243.0" text="Speed:" />
       <Label layoutX="189.0" layoutY="302.0" text="Damage:" />
       <Label layoutX="189.0" layoutY="273.0" text="Life:" />
