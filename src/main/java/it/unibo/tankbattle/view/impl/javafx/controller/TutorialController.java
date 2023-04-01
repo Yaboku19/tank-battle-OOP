@@ -43,8 +43,12 @@ public class TutorialController {
      * javadock.
      */
     public void setNameLabel() {
-        firstPlayer.setText(viewController.getFirstPlayerName());
-        secondPlayer.setText(viewController.getSecondPlayerName()); 
+        if (viewController == null) {
+            throw new IllegalStateException();
+        } else {
+            firstPlayer.setText(viewController.getFirstPlayerName());
+            secondPlayer.setText(viewController.getSecondPlayerName());
+        } 
     }
     /**
      * javadock.
