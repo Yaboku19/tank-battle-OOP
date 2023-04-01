@@ -2,6 +2,7 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.util.stream.Stream;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Command;
@@ -119,9 +120,13 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is imppossibile to create a copy"
+    )
     public void start(final Stage stage) {
         final Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
-        stage.getIcons().add(icon); 
+        stage.getIcons().add(icon);
         this.stage = stage;
         final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
         Parent root;
@@ -242,6 +247,10 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
@@ -255,6 +264,10 @@ public class ViewController implements View {
     /**
     * {@inheritDoc}
     */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     @Override
     public void setSettingsController(final SettingsController settingsController) {
         this.settingsController = settingsController;

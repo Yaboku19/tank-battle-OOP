@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
@@ -63,10 +64,8 @@ public class MainViewController {
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             final Scene gameScene = new Scene(fxmlLoader.load());
-            //addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
-            //this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
             this.addKeyListener(gameScene);
@@ -127,6 +126,10 @@ public class MainViewController {
      * javadock.
      * @param viewController param
      */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }

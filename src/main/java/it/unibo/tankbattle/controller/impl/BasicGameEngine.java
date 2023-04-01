@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import javax.xml.bind.JAXBException;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.input.api.Command;
 import it.unibo.tankbattle.controller.api.GameEngine;
@@ -44,6 +45,10 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      * the costructor of BasicGameEngine.
      * @param view the reference of the view
      */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public BasicGameEngine(final View view) {
         thread = new Thread(this);
         this.view = view;

@@ -3,6 +3,7 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.view.api.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -78,6 +79,10 @@ public class GameOverController {
      * javadoc.
      * @param viewController param
      */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
