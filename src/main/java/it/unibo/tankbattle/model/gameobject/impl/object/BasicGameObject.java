@@ -12,7 +12,7 @@ import it.unibo.tankbattle.model.gameobject.api.component.Component;
 import it.unibo.tankbattle.model.gameobject.api.component.Movable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 /**
- * javadoc.
+ * Besic implementation of the {@link GameObject}.
  */
 public class BasicGameObject implements GameObject {
 
@@ -23,8 +23,8 @@ public class BasicGameObject implements GameObject {
     private final List<Component> components = new LinkedList<>();
 
     /**
-     * javadoc.
-     * @param transform param
+     * Sets each {@link Tranform} values of this {@link GameObject}.
+     * @param transform the Transform
      */
     public BasicGameObject(final Transform transform) {
         this.position = transform.getPosition();
@@ -37,12 +37,6 @@ public class BasicGameObject implements GameObject {
     */
     @Override
     public void update(final double time) {
-        /*if(this.getComponent(Movable.class).isPresent()) {
-            this.getComponent(Movable.class).get().update(time);
-        }
-        if(this.getComponent(Tank.class).isPresent()) {
-            this.getComponent(Tank.class).get().update(time);
-        }*/
         this.getComponents().forEach(comp -> comp.update(time));
     }
     /**
