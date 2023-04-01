@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 /**
- * javadock.
+ * Represents the Controller of the game over {@link Scene}.
  */
 public class GameOverController {
 
@@ -39,7 +39,7 @@ public class GameOverController {
     @FXML
     private Label winLabel;
     /**
-     * javadoc.
+     * Initialize buttons.
      */
     @FXML
     void initialize() {
@@ -47,8 +47,8 @@ public class GameOverController {
         assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
     }
     /**
-     * javadoc.
-     * @param event param
+     * Sets the scene to main menu.
+     * @param event the button click
      */
     @FXML
     void mainMenu(final ActionEvent event) {
@@ -58,16 +58,16 @@ public class GameOverController {
         stage.sizeToScene();
     }
     /**
-     * javadoc.
-     * @param event param
+     * Close the applications.
+     * @param event the button click
      */
     @FXML
     void quit(final ActionEvent event) {
         Platform.exit();
     }
     /**
-     * javadoc.
-     * @param event param
+     * Starts a new game with the same tanks and map chosen.
+     * @param event the button click
      */
     @FXML
     void restart(final ActionEvent event) {
@@ -76,8 +76,8 @@ public class GameOverController {
         stage.setScene(gameScene);
     }
     /**
-     * javadoc.
-     * @param viewController param
+     * Sets the {@link View} controller.
+     * @param viewController the {@link View} controller
      */
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 
@@ -87,23 +87,23 @@ public class GameOverController {
         this.viewController = viewController;
     }
     /**
-     * javadoc.
-     * @param gameScene param
+     * Sets the game {@link Scene}.
+     * @param gameScene the game {@link Scene}
      */
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
     /**
-     * javadoc.
-     * @param mainManuScene param
+     * Sets the menu {@link Scene}.
+     * @param mainManuScene the menu {@link Scene}
      */
     public void setMenuScene(final Scene mainManuScene) {
         this.mainManuScene = mainManuScene;
     }
 
     /**
-     * javadoc.
-     * @param playerName param
+     * Sets the menu {@link Label}.
+     * @param playerName the winner player's name
      */
     public void setWinLabel(final String playerName) {
         winLabel.setText(playerName + " wins");

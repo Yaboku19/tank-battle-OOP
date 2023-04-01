@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * javadock.
+ * Represent the Controller of the tutorial {@link Scene}.
  */
 public class TutorialController {
 
@@ -33,14 +33,14 @@ public class TutorialController {
             stage.sizeToScene();
     }
     /**
-     * javadock.
-     * @param prevScene param
+     * Sets the previous {@link Scene} to the given scene.
+     * @param prevScene previous scene
      */
     public void setPreviousScene(final Scene prevScene) {
         this.prevScene = prevScene;
     }
     /**
-     * javadock.
+     * Sets the players label name to the actual name.
      */
     public void setNameLabel() {
         if (viewController == null) {
@@ -51,8 +51,8 @@ public class TutorialController {
         } 
     }
     /**
-     * javadock.
-     * @param viewController param
+     * Sets the {@link View} controller.
+     * @param viewController the {@link View} controller
      */
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 

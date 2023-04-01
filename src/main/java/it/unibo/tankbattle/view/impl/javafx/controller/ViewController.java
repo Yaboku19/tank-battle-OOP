@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 
 /**
- * javadock.
+ * Represents the {@link View} controller.
  */
 public class ViewController implements View {
 
@@ -67,6 +67,7 @@ public class ViewController implements View {
             gameController.drawLabel(firstPlayerName, secondPlayerName, firstPlayerScore, secondPlayerScore);
         });
     }
+
     /**
     * {@inheritDoc}
     */
@@ -74,6 +75,7 @@ public class ViewController implements View {
     public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP1(speed, damage, life, resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -81,6 +83,7 @@ public class ViewController implements View {
     public void viewUpdateP2(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP2(speed, damage, life, resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -88,6 +91,7 @@ public class ViewController implements View {
     public void viewUpdateMap(final String resource) {
         settingsController.updateMap(resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -95,6 +99,7 @@ public class ViewController implements View {
     public void updateTankPlayer1(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -102,6 +107,7 @@ public class ViewController implements View {
     public void updateTankPlayer2(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -109,6 +115,7 @@ public class ViewController implements View {
     public void updateMap(final NextAndPrevious delta) {
         controller.updateMap(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -117,6 +124,7 @@ public class ViewController implements View {
             final String mapResource) {
         mainViewController.setResource("blue" + tank1Resource, "green" + tank2Resource, mapResource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -155,6 +163,7 @@ public class ViewController implements View {
     private void exit() {
         System.exit(0);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -178,6 +187,7 @@ public class ViewController implements View {
             LOGGER.log(Level.SEVERE, "load of GameOver scene gone wrong");
         }
     }
+
     /**
     * {@inheritDoc}
     */
@@ -187,13 +197,12 @@ public class ViewController implements View {
         this.setDiagonalResize();
         controller.restart();
     }
+
     /**
     * {@inheritDoc}
     */
     @Override
     public void newStart() {
-        //stage.setHeight(mainViewScene.getHeight());
-        //stage.setWidth(mainViewScene.getWidth());
         controller.newStart();
     }
 
@@ -201,6 +210,7 @@ public class ViewController implements View {
         stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
         stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -208,6 +218,7 @@ public class ViewController implements View {
     public void setViewResources() {
         controller.setViewResources();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -218,6 +229,7 @@ public class ViewController implements View {
         controller.startGame();
         inizializeInputController();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -253,6 +265,7 @@ public class ViewController implements View {
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -260,6 +273,7 @@ public class ViewController implements View {
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -271,6 +285,7 @@ public class ViewController implements View {
     public void setSettingsController(final SettingsController settingsController) {
         this.settingsController = settingsController;
     }
+
     /**
     * {@inheritDoc}
     */

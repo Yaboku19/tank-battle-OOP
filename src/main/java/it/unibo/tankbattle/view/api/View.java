@@ -89,10 +89,10 @@ public interface View {
     void viewUpdateMap(String resource);
 
     /**
-     * javadoc.
-     * @param tank1
-     * @param tank2
-     * @param mapResource
+     * Sets the game objects resources.
+     * @param tank1 first tank resource
+     * @param tank2 second tank resource
+     * @param mapResource map resource
      */
     void setResource(String tank1, String tank2, String mapResource);
 
