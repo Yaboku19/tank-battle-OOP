@@ -1,4 +1,4 @@
-package it.unibo.tankBattle;
+package it.unibo.tankbattle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

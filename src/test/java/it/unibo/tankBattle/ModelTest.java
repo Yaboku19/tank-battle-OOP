@@ -1,6 +1,7 @@
-package it.unibo.tankBattle;
+package it.unibo.tankbattle;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
