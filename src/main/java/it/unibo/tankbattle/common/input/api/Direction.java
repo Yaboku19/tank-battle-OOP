@@ -3,7 +3,7 @@ package it.unibo.tankbattle.common.input.api;
 import it.unibo.tankbattle.common.P2d;
 
 /**
- * Directions that can be used by the player.
+ * Directions that can be used.
  */
 public enum Direction {
     /**

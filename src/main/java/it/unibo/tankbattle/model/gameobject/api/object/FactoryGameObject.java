@@ -3,31 +3,31 @@ package it.unibo.tankbattle.model.gameobject.api.object;
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.controller.api.Player;
 /**
- * javadoc.
+ * Represents the factory that creates all the differents {@link GameObject}. 
  */
 public interface FactoryGameObject {
     /**
-     * javadoc.
-     * @param pos param
-     * @param player param
-     * @return return
+     * Create a new tank, recognizable by the {@link Component} {@link Tank}.
+     * @param pos start {@link P2d} of the {@link GameObject}
+     * @param player the associated {@link Player}
+     * @return a new Tank {@link GameObject}
      */
     GameObject createSimpleTank(P2d pos, Player player);
     /**
-     * javadoc.
-     * @param tank param
-     * @return return
+     * Create a new bullet, recognizable by the {@link Component} {@link Bullet}.
+     * @param tank the {@link GameObject} that shoot the bullet
+     * @return a new Bullet {@link GameObject}
      */
     GameObject createSimpleBullet(GameObject tank);
     /**
-     * javadoc.
-     * @param pos param
-     * @return return
+     * Create a new wall, recognizable by the {@link Component} {@link Wall}.
+     * @param pos the static {@link P2d} of the wall
+     * @return a new Wall {@link GameObject}
      */
     GameObject createSimpleWall(P2d pos);
     /**
-     * javadoc.
-     * @return return
+     * Get's the wall standard Length. 
+     * @return the standard wall length
      */
     double getWallLength();
 

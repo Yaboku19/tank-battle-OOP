@@ -2,7 +2,7 @@ package it.unibo.tankbattle.common;
 
 import it.unibo.tankbattle.common.input.api.Direction;
 /**
- * javadoc.
+ * This class represent the values that every {@link GameObject} has.
  */
 public class Transform {
 
@@ -12,11 +12,11 @@ public class Transform {
     private final double width;
 
     /**
-     * javadoc.
-     * @param position param
-     * @param direction param
-     * @param length param
-     * @param width param
+     * Create a new Transform with the given values.
+     * @param position start position
+     * @param direction start {@link Direction}
+     * @param length the object length
+     * @param width the object width
      */
     public Transform(final P2d position, final Direction direction, final double length, final double width) {
         this.position = position;
@@ -25,36 +25,36 @@ public class Transform {
         this.width = width;
     }
     /**
-     * javadoc.
-     * @return return
+     * Gets the center position.
+     * @return the actual P2d
      */
     public P2d getPosition() {
         return this.position;
     }
     /**
-     * javadoc.
-     * @return return
+     * Gets the actual {@link Direction}.
+     * @return the actual {@link Direction}
      */
     public Direction getDirection() {
         return this.direction;
     }
     /**
-     * javadoc.
-     * @return return
+     * Gets the object length.
+     * @return the object length
      */
     public double getLength() {
         return this.length;
     }
     /**
-     * javadoc.
-     * @return return
+     * Gets the object width.
+     * @return the object width
      */
     public double getWidth() {
         return this.width;
     }
     /**
-     * javadoc.
-     * @return return
+     * Gets the upper-left position of the object.
+     * @return the upper-left position of the object
      */
     public P2d getUpperLeftPosition() {
         return new P2d(this.position.getX() - length / 2, this.position.getY() - width / 2);
