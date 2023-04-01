@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.xml.bind.JAXBException;
 import it.unibo.tankbattle.common.P2d;
 import it.unibo.tankbattle.common.input.api.Direction;
