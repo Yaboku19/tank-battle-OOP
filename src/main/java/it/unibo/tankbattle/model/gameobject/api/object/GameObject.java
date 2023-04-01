@@ -11,7 +11,7 @@ import it.unibo.tankbattle.model.gameobject.api.component.Component;
  * Represent a standard GameObject.
  */
 public interface GameObject {
-    
+
     /**
      * Update each {@link Component} of the {@link GameObject}.
      * @param time time passed after last update
@@ -37,7 +37,7 @@ public interface GameObject {
      */
     GameObject addComponent(Component component);
     /**
-     * Gets the {@link Transform} associated to this {@link GameObject}
+     * Gets the {@link Transform} associated to this {@link GameObject}.
      * @return the {@link Transform} assciated
      */
     Transform getTransform();
