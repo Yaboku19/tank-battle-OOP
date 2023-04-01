@@ -4,6 +4,9 @@ package it.unibo.tankbattle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.xml.bind.JAXBException;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
@@ -20,19 +23,20 @@ import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 /**
  * javadoc.
  */
-public class ModelTest {
+class ModelTest {
     private GameStateImpl model;
     private Player firstPlayer;
     private Player secondPlayer;
     private FactoryWorld factoryWorld;
-    private ObjectsManager<TankData, TankDataList> tankFirstManager;
-    private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
+    private static Logger logger = Logger.getLogger("ModelTestLog");
     /**
      * javadoc.
      */
     @org.junit.jupiter.api.BeforeEach
-    public void initFactory() {
+    void initFactory() {
+        ObjectsManager<TankData, TankDataList> tankFirstManager = null;
+        ObjectsManager<TankData, TankDataList> tankSecondManager = null;
         model = new GameStateImpl(null);
         try {
             tankFirstManager = new ObjectsManagerImpl<>(
@@ -42,7 +46,7 @@ public class ModelTest {
             mapManager = new ObjectsManagerImpl<>(
             ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
         } catch (JAXBException | URISyntaxException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "error");
         }
         firstPlayer = createPlayer(tankFirstManager);
         secondPlayer = createPlayer(tankSecondManager);
@@ -78,8 +82,8 @@ public class ModelTest {
      * javadoc.
      */
     @org.junit.jupiter.api.Test
-    public void getTest() {
-        var allEntities = new ArrayList<Transform>();
+    void getterTest() {
+        final var allEntities = new ArrayList<Transform>();
         allEntities.addAll(model.getBulletsTrasform().toList());
         allEntities.addAll(model.getWallsTrasform().toList());
         allEntities.add(model.getTankTrasform(firstPlayer));
@@ -91,7 +95,7 @@ public class ModelTest {
      * javadoc.
      */
     @org.junit.jupiter.api.Test
-    public void shotTest() {
+    void shotTest() {
         assertEquals(0, model.getBulletsTrasform().count());
         model.shot(firstPlayer);
         assertEquals(1, model.getBulletsTrasform().count());
@@ -102,7 +106,7 @@ public class ModelTest {
      * javadoc.
      */
     @org.junit.jupiter.api.Test
-    public void changeDirectionTest() {
+    void changeDirectionTest() {
         //assertEquals(Directions.NONE, tank.getTransform().getDirection());
         model.setDirection(Direction.DOWN, firstPlayer);
         assertEquals(Direction.DOWN, model.getTankTrasform(firstPlayer).getDirection());
