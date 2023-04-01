@@ -20,6 +20,7 @@ import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
 import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
 import it.unibo.tankbattle.model.world.api.FactoryWorld;
 import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
+
 /**
  * javadoc.
  */
@@ -29,7 +30,8 @@ class ModelTest {
     private Player secondPlayer;
     private FactoryWorld factoryWorld;
     private ObjectsManager<MapData, MapDataList> mapManager;
-    private static Logger logger = Logger.getLogger("ModelTestLog");
+    private static final Logger LOGGER = Logger.getLogger("ModelTestLog");
+
     /**
      * javadoc.
      */
@@ -37,6 +39,7 @@ class ModelTest {
     void initFactory() {
         ObjectsManager<TankData, TankDataList> tankFirstManager = null;
         ObjectsManager<TankData, TankDataList> tankSecondManager = null;
+        mapManager = null;
         model = new GameStateImpl(null);
         try {
             tankFirstManager = new ObjectsManagerImpl<>(
@@ -46,7 +49,7 @@ class ModelTest {
             mapManager = new ObjectsManagerImpl<>(
             ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
         } catch (JAXBException | URISyntaxException e) {
-            logger.log(Level.WARNING, "error");
+            LOGGER.log(Level.WARNING, "error");
         }
         firstPlayer = createPlayer(tankFirstManager);
         secondPlayer = createPlayer(tankSecondManager);
@@ -78,88 +81,53 @@ class ModelTest {
 
         };
     }
+
     /**
      * javadoc.
      */
     @org.junit.jupiter.api.Test
     void getterTest() {
-        final var allEntities = new ArrayList<Transform>();
-        allEntities.addAll(model.getBulletsTrasform().toList());
-        allEntities.addAll(model.getWallsTrasform().toList());
-        allEntities.add(model.getTankTrasform(firstPlayer));
-        allEntities.add(model.getTankTrasform(secondPlayer));
-        assertEquals(factoryWorld.simpleWorld(firstPlayer, secondPlayer, mapManager.getActual()).getEntities().toList().size(),
-            allEntities.size());
+        if (mapManager == null || factoryWorld == null || model == null) {
+            throw new IllegalStateException();
+        } else {
+            final var allEntities = new ArrayList<Transform>();
+            allEntities.addAll(model.getBulletsTrasform().toList());
+            allEntities.addAll(model.getWallsTrasform().toList());
+            allEntities.add(model.getTankTrasform(firstPlayer));
+            allEntities.add(model.getTankTrasform(secondPlayer));
+            assertEquals(factoryWorld.simpleWorld(firstPlayer, secondPlayer, mapManager.getActual())
+                .getEntities()
+                .toList().size(),
+                allEntities.size());
+        }
     }
+
     /**
      * javadoc.
      */
     @org.junit.jupiter.api.Test
     void shotTest() {
-        assertEquals(0, model.getBulletsTrasform().count());
-        model.shot(firstPlayer);
-        assertEquals(1, model.getBulletsTrasform().count());
-        model.shot(secondPlayer);
-        assertEquals(2, model.getBulletsTrasform().count());
+        if (model == null) {
+            throw new IllegalStateException();
+        } else {
+            assertEquals(0, model.getBulletsTrasform().count());
+            model.shot(firstPlayer);
+            assertEquals(1, model.getBulletsTrasform().count());
+            model.shot(secondPlayer);
+            assertEquals(2, model.getBulletsTrasform().count());
+        }
     }
+
     /**
      * javadoc.
      */
     @org.junit.jupiter.api.Test
     void changeDirectionTest() {
-        //assertEquals(Directions.NONE, tank.getTransform().getDirection());
-        model.setDirection(Direction.DOWN, firstPlayer);
-        assertEquals(Direction.DOWN, model.getTankTrasform(firstPlayer).getDirection());
+        if (model == null) {
+            throw new IllegalStateException();
+        } else {
+            model.setDirection(Direction.DOWN, firstPlayer);
+            assertEquals(Direction.DOWN, model.getTankTrasform(firstPlayer).getDirection());
+        }
     }
-
-   /* @org.junit.jupiter.api.Test
-    public void collisionTest() {
-        world.setDirection(Directions.LEFT, gameState.getFirstPlayer());
-        world.update();
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size / 2 - 1, size + size / 2)));
-
-        var wall = world.getWalls()
-            .stream()
-            .filter(w -> w.getPosition().equals(new P2d(size / 2, size + size / 2)))
-            .toList()
-            .get(0);
-
-        world.collision(wall.getPosition(), new P2d(size + size / 2 - 1, size + size / 2));
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size / 2, size + size / 2)));
-
-    }
-
-    @org.junit.jupiter.api.Test
-    public void removeTest() {
-        world.setDirection(Directions.RIGHT, gameState.getFirstPlayer());
-        world.shot(gameState.getFirstPlayer());
-        world.update();
-
-        assertTrue(world
-            .getTank(gameState.getFirstPlayer())
-            .getPosition()
-            .equals(new P2d(size + size / 2 + 1, size + size / 2)));
-
-        var bullet = world.getBullets()
-            .stream()
-            .toList()
-            .get(0);
-
-        int life = world.getTank(gameState.getFirstPlayer())
-            .getLifePoints();
-
-        world.collision(new P2d(size + size / 2 + 1, size + size / 2), bullet.getPosition());
-        world.update();
-        assertEquals(0, world.getBullets().size());
-        assertEquals(life - bullet.getDamage(), world.getTank(gameState.getFirstPlayer()).getLifePoints());
-        }*/
 }
-

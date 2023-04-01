@@ -1,7 +1,6 @@
 package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.util.stream.Stream;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
@@ -16,7 +15,8 @@ import javafx.scene.image.Image;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +46,7 @@ public class ViewController implements View {
     private InputController<KeyCode> firstPlayerController;
     private InputController<KeyCode> secondPlayerController;
 
+    private static final Logger LOGGER = Logger.getLogger("ViewControllerLog");
     private static final double SETTINGS_MIN_HEIGHT = 430;
     private static final double SETTINGS_MIN_WIDTH = 600;
 
@@ -147,7 +148,7 @@ public class ViewController implements View {
             });
             stage.show();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "root loader gone wrong during the start");
         }
     }
 
@@ -170,13 +171,11 @@ public class ViewController implements View {
             Platform.runLater(() -> {
                 stage.widthProperty().removeListener(widthChangeListener);
                 stage.heightProperty().removeListener(heightChangeListener);
-                //stage.setHeight(gameScene.getHeight());
-                //stage.setWidth(gameScene.getWidth());
                 stage.setScene(gameOver);
                 stage.sizeToScene();
             });
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of GameOver scene gone wrong");
         }
     }
     /**

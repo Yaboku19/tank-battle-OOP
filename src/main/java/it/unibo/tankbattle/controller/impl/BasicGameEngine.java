@@ -4,9 +4,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import javax.xml.bind.JAXBException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.input.api.Command;
@@ -40,6 +40,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
     private ObjectsManager<TankData, TankDataList> tankSecondManager;
     private ObjectsManager<MapData, MapDataList> mapManager;
+    private static final Logger LOGGER = Logger.getLogger("ControllerLog");
 
     /**
      * the costructor of BasicGameEngine.
@@ -64,7 +65,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
                 ClassLoader.getSystemResource("config/mapConfig.xml").toURI(),
                 MapDataList.class);
         } catch (URISyntaxException | JAXBException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "read for xml gone wrong");
         }
     }
 
@@ -105,8 +106,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         if (dt < PERIOD) {
             try {
                 Thread.sleep(PERIOD - dt);
-            } catch (InterruptedException ex) {
-                System.out.println(ex.toString());
+            } catch (InterruptedException e) {
+                LOGGER.log(Level.SEVERE, "sleep gone wrong");
             }
         }
     }

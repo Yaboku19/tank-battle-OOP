@@ -8,13 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 /**
  * javadock.
  */
 public class TutorialController {
 
     private Scene prevScene;
-    private View viewController = null;
+    private View viewController;
 
     @FXML
     private Label firstPlayer;
@@ -26,11 +27,9 @@ public class TutorialController {
     private Button backButton;
 
     @FXML
-    private void back(final ActionEvent event) {
+    private void back(final ActionEvent event) {    // NOPMD it is used by Javafx
         final Stage stage = MainViewController.converterFromEvent(event);
             stage.setScene(prevScene);
-            //stage.setHeight(stage.getHeight()-0.01);
-            //stage.setWidth(stage.getWidth()-0.01);
             stage.sizeToScene();
     }
     /**

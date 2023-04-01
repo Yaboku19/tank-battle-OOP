@@ -34,7 +34,7 @@ class GameObjectTest {
     private GameObject tank;
     private GameObject bullet;
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
-    private static Logger logger = Logger.getLogger("GameObjectTestLog");
+    private static final Logger LOGGER = Logger.getLogger("GameObjectTestLog");
 
     private static final double STANDARD_TANK_POS = 10;
     private static final double STANDARD_TANK_DIM = 50;
@@ -55,7 +55,7 @@ class GameObjectTest {
             tankFirstManager = new ObjectsManagerImpl<>(
                 ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
         } catch (JAXBException | URISyntaxException e) {
-            logger.log(Level.WARNING, "error");
+            LOGGER.log(Level.WARNING, "error");
         }
         this.factory = new FactoryGameObjectImpl();
         this.tank = this.factory.createSimpleTank(new P2d(STANDARD_TANK_POS, STANDARD_TANK_POS), createPlayer(tankFirstManager));
@@ -187,7 +187,8 @@ class GameObjectTest {
     @org.junit.jupiter.api.Test
     void testAll() {
         tank.setDirection(Direction.RIGHT);
-        final var tank2 = this.factory.createSimpleTank(new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS), 
+        final var tank2 = this.factory.createSimpleTank(
+                new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS), 
                 createPlayer(tankFirstManager));
         tank.getComponent(CollisionComponent.class).get().resolveCollision(tank2);
         tank2.getComponent(CollisionComponent.class).get().resolveCollision(tank);

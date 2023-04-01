@@ -3,7 +3,8 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.view.api.View;
@@ -27,6 +28,7 @@ public class MainViewController {
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
+    private static final Logger LOGGER = Logger.getLogger("MainViewControllerLog");
 
     @FXML
     private ResourceBundle resources;
@@ -70,7 +72,7 @@ public class MainViewController {
             viewController.startGame();
             this.addKeyListener(gameScene);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of play scene gone wrong");
         }
     }
     /**
@@ -96,7 +98,7 @@ public class MainViewController {
             stage.setScene(settings);
             stage.sizeToScene();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of settings scene gone wrong");
         }
     }
     /**
@@ -119,7 +121,7 @@ public class MainViewController {
             //stage.setHeight(stage.getHeight()-0.01);
             stage.sizeToScene();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of tutorial scene gone wrong");
         }
     }
     /**

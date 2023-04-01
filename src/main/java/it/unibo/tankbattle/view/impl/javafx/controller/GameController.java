@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import javafx.animation.AnimationTimer;
@@ -21,7 +20,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 /**
@@ -43,6 +43,7 @@ public class GameController {
     private final Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
+    private static final Logger LOGGER = Logger.getLogger("GameControllerLog");
 
 
     private static final double RIGHT_ANGLE = 90;
@@ -170,8 +171,8 @@ public class GameController {
     private void loadAudioResource() {
         try {
             shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
-        } catch (URISyntaxException e1) {
-            e1.printStackTrace();
+        } catch (URISyntaxException e) {
+            LOGGER.log(Level.SEVERE, "load of audio gone wrong");
         }
 
     }
