@@ -1,4 +1,4 @@
-package it.unibo.tankbattle;
+package it.unibo.tankbattle.model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +24,7 @@ import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 /**
  * javadoc.
  */
-class ModelTest {
+class GameStateTest {
     private GameStateImpl model;
     private Player firstPlayer;
     private Player secondPlayer;
