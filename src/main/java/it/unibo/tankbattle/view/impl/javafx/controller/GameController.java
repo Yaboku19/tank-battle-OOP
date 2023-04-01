@@ -164,7 +164,7 @@ public class GameController {
         newBullets.forEach(pos -> renderBulletSprite(pos));
         findBullet(this.activeBullet, bullets).forEach(pos -> renderBulletSprite(pos));
         mainPane.getChildren().addAll(spriteSet);
-        this.activeBullet = bullets;
+        this.activeBullet = new HashSet<>(bullets);
     }
 
     private void loadAudioResource() {
