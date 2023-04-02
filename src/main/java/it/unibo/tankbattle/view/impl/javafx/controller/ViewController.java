@@ -165,8 +165,6 @@ public class ViewController implements View {
             Platform.runLater(() -> {
                 stage.widthProperty().removeListener(widthChangeListener);
                 stage.heightProperty().removeListener(heightChangeListener);
-                //stage.setHeight(gameScene.getHeight());
-                //stage.setWidth(gameScene.getWidth());
                 stage.setScene(gameOver);
                 stage.sizeToScene();
             });
