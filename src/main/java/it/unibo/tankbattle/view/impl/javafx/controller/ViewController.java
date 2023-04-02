@@ -188,8 +188,6 @@ public class ViewController implements View {
     */
     @Override
     public void newStart() {
-        //stage.setHeight(mainViewScene.getHeight());
-        //stage.setWidth(mainViewScene.getWidth());
         controller.newStart();
     }
 
