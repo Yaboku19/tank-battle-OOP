@@ -91,10 +91,10 @@ public class MainViewController {
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
             settingsController.setPreviousScene(stage.getScene());
-            settingsController.setNameLabel();
-            viewController.updateTankPlayer1(NextAndPrevious.NONE);
-            viewController.updateTankPlayer2(NextAndPrevious.NONE);
-            viewController.updateMap(NextAndPrevious.NONE);
+            settingsController.setPlayerNameLabel();
+            viewController.askTankPlayer1Settings(NextAndPrevious.NONE);
+            viewController.askTankPlayer2Settings(NextAndPrevious.NONE);
+            viewController.askMapSettings(NextAndPrevious.NONE);
             stage.setResizable(false);
             stage.setScene(settings);
             stage.sizeToScene();
