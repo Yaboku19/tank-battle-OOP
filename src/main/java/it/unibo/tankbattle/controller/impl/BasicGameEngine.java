@@ -184,7 +184,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateTankPlayer1(final NextAndPrevious delta) {
         tankFirstManager.update(delta);
         final var toReturn = tankFirstManager.getActual();
-        view.viewUpdateP1(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.updatePlayer1SettingsView(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
 
     /**
@@ -194,7 +194,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateTankPlayer2(final NextAndPrevious delta) {
         tankSecondManager.update(delta);
         final var toReturn = tankSecondManager.getActual();
-        view.viewUpdateP2(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.updatePlayer2SettingsView(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
 
     /**
@@ -204,7 +204,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateMap(final NextAndPrevious delta) {
         mapManager.update(delta);
         final var toReturn = mapManager.getActual();
-        view.viewUpdateMap(toReturn.getResource());
+        view.updateMapSettingsView(toReturn.getResource(), toReturn.getName());
     }
 
     /**

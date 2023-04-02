@@ -57,6 +57,9 @@ public class SettingsController implements Initializable {
     private Label speedP2;
 
     @FXML
+    private Label mapLabel;
+
+    @FXML
     private ImageView mapImage;
 
     @FXML
@@ -84,69 +87,62 @@ public class SettingsController implements Initializable {
     private Button prevTankPlayer2;
 
     /**
-     * Sets the first player Tank to the next, back 
-     * to the first if it's the last one.
+     * Sets the first player Tank to the next.
      * @param event button click
      */
     @FXML
     void nextTankPlayer1(final ActionEvent event) {
-        viewController.updateTankPlayer1(NextAndPrevious.NEXT);
+        viewController.askTankPlayer1Settings(NextAndPrevious.NEXT);
     }
 
     /**
-     * Sets the first player Tank to the next, back to 
-     * the last one if it's the first one.
-     * @param event param
+     * Sets the first player Tank to the previous.
+     * @param event button click.
      */
     @FXML
     void prevTankPlayer1(final ActionEvent event) {
-        viewController.updateTankPlayer1(NextAndPrevious.PREVIOUS);
+        viewController.askTankPlayer1Settings(NextAndPrevious.PREVIOUS);
     }
 
     /**
-     * Sets the second player Tank to the next, back to
-     * the first if it's the last one.
-     * @param event param
+     * Sets the second player Tank to the next.
+     * @param event button click.
      */
     @FXML
     void nextTankPlayer2(final ActionEvent event) {
-        viewController.updateTankPlayer2(NextAndPrevious.NEXT);
+        viewController.askTankPlayer2Settings(NextAndPrevious.NEXT);
     }
 
     /**
-     * Sets the second player Tank to the next, back to
-     * the last if it's the first one.
-     * @param event param
+     * Sets the second player Tank to the next.
+     * @param event button click.
      */
     @FXML
     void prevTankPlayer2(final ActionEvent event) {
-        viewController.updateTankPlayer2(NextAndPrevious.PREVIOUS);
+        viewController.askTankPlayer2Settings(NextAndPrevious.PREVIOUS);
     }
 
     /**
-     * Sets the map to the next, back to
-     * the first if it's the last one.
-     * @param event param
+     * Sets the map to the next.
+     * @param event button click.
      */
     @FXML
     void nextMap(final ActionEvent event) {
-        viewController.updateMap(NextAndPrevious.NEXT);
+        viewController.askMapSettings(NextAndPrevious.NEXT);
     }
 
     /**
-     * Sets the map to the next, back to
-     * the last if it's the first one.
-     * @param event param
+     * Sets the map to the previous.
+     * @param event button click.
      */
     @FXML
     void prevMap(final ActionEvent event) {
-        viewController.updateMap(NextAndPrevious.PREVIOUS);
+        viewController.askMapSettings(NextAndPrevious.PREVIOUS);
     }
 
     /**
-     * Sets the {@link Scene} to the main menu scene and
-     * save the chosen settings.
-     * @param event button click
+     * Set previous {@link Scene} to {@link Stage} 
+     * @param event button click.
      */
     @FXML
     void back(final ActionEvent event) {
@@ -178,15 +174,15 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Set the names {@link Label}.
+     * Sets player names in {@link Label}.
      */
-    public void setNameLabel() {
+    public void setPlayerNameLabel() {
         firstPlayerName.setText(viewController.getFirstPlayerName());
         secondPlayerName.setText(viewController.getSecondPlayerName());
     }
 
     /**
-     * Sets the previous {@link Scene} to the main menu scene.
+     * Sets previous {@link Scene}.
      * @param prevScene the main menu scene
      */
     public void setPreviousScene(final Scene prevScene) {
@@ -194,13 +190,13 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Sets the first player tank stats and resource to the current tank.
+     * Sets first player tank stats and resource to view.
      * @param speed tank speed
      * @param damage tank speed
      * @param life tank life
      * @param resource tank resource
      */
-    public void updateP1(final int speed, final int damage, final int life, final String resource) {
+    public void updatePlayer1SettingsLabel(final int speed, final int damage, final int life, final String resource) {
         speedP1.setText(Integer.toString(speed));
         damageP1.setText(Integer.toString(damage));
         lifeP1.setText(Integer.toString(life));
@@ -208,24 +204,26 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Sets the second player tank stats and resource to the current tank.
+     * Sets second player tank stats and resource to view.
      * @param speed tank speed
      * @param damage tank damage
      * @param life tank life
      * @param resource tank resource
      */
-    public void updateP2(final int speed, final int damage, final int life, final String resource) {
+    public void updatePlayer2SettingsLabel(final int speed, final int damage, final int life, final String resource) {
         speedP2.setText(Integer.toString(speed));
         damageP2.setText(Integer.toString(damage));
         lifeP2.setText(Integer.toString(life));
         player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/green" + resource).toExternalForm()));
     }
     /**
-     * Sets the map image to the current map choosen.
-     * @param resource map resource
+     * Sets map name and resource to view.
+     * @param resource
+     * @param mapName
      */
-    public void updateMap(final String resource) {
+    public void updateMapSettingsLabels(final String resource, final String mapName) {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));
+        mapLabel.setText(mapName);
     }
 
 }

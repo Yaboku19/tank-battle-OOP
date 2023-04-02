@@ -72,31 +72,31 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
-        settingsController.updateP1(speed, damage, life, resource);
+    public void updatePlayer1SettingsView(final int speed, final int damage, final int life, final String resource) {
+        settingsController.updatePlayer1SettingsLabel(speed, damage, life, resource);
     }
 
     /**
     * {@inheritDoc}
     */
     @Override
-    public void viewUpdateP2(final int speed, final int damage, final int life, final String resource) {
-        settingsController.updateP2(speed, damage, life, resource);
+    public void updatePlayer2SettingsView(final int speed, final int damage, final int life, final String resource) {
+        settingsController.updatePlayer2SettingsLabel(speed, damage, life, resource);
     }
 
     /**
     * {@inheritDoc}
     */
     @Override
-    public void viewUpdateMap(final String resource) {
-        settingsController.updateMap(resource);
+    public void updateMapSettingsView(final String resource, final String mapName) {
+        settingsController.updateMapSettingsLabels(resource, mapName);
     }
 
     /**
     * {@inheritDoc}
     */
     @Override
-    public void updateTankPlayer1(final NextAndPrevious delta) {
+    public void askTankPlayer1Settings(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
 
@@ -104,7 +104,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updateTankPlayer2(final NextAndPrevious delta) {
+    public void askTankPlayer2Settings(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
 
@@ -112,7 +112,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updateMap(final NextAndPrevious delta) {
+    public void askMapSettings(final NextAndPrevious delta) {
         controller.updateMap(delta);
     }
 

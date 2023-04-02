@@ -50,19 +50,19 @@ public interface View {
      * Use that method to ask to controller next Tank for player 1.
      * @param delta next
      */
-    void updateTankPlayer1(NextAndPrevious delta);
+    void askTankPlayer1Settings(NextAndPrevious delta);
 
     /**
      * Use that method to ask to controller next Tank for player 2.
      * @param delta next
      */
-    void updateTankPlayer2(NextAndPrevious delta);
+    void askTankPlayer2Settings(NextAndPrevious delta);
 
     /**
      * Use that method to ask to controller new map.
      * @param delta next or previous
      */
-    void updateMap(NextAndPrevious delta);
+    void askMapSettings(NextAndPrevious delta);
 
     /**
      * Use that method to update view settings for player 1.
@@ -71,7 +71,7 @@ public interface View {
      * @param life tank life
      * @param resource tank resource
      */
-    void viewUpdateP1(int speed, int damage, int life, String resource);
+    void updatePlayer1SettingsView(int speed, int damage, int life, String resource);
 
     /**
      * Use that method to update view settings for player 2.
@@ -80,13 +80,15 @@ public interface View {
      * @param life tank life
      * @param resource tank resource
      */
-    void viewUpdateP2(int speed, int damage, int life, String resource);
+    void updatePlayer2SettingsView(int speed, int damage, int life, String resource);
+
 
     /**
      * Use that method to update map image.
      * @param resource path of map resource
+     * @param mapName name of the map
      */
-    void viewUpdateMap(String resource);
+    void updateMapSettingsView(String resource, String mapName);
 
     /**
      * Sets the game objects resources.

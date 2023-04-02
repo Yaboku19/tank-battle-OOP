@@ -17,7 +17,7 @@
       <ImageView fx:id="player1Image" fitHeight="81.0" fitWidth="92.0" layoutX="70.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="mapImage" fitHeight="121.0" fitWidth="168.0" layoutX="334.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player2Image" fitHeight="81.0" fitWidth="92.0" layoutX="70.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="390.0" layoutY="33.0" prefHeight="17.0" prefWidth="38.0" text="MAP" />
+      <Label fx:id="mapLabel" alignment="CENTER" layoutX="334.0" layoutY="31.0" prefHeight="17.0" prefWidth="168.0" text="MAP" />
       <Button layoutX="306.0" layoutY="304.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
       <Label layoutX="189.0" layoutY="48.0" text="Speed:" />
       <Label fx:id="speedP2" layoutX="241.0" layoutY="243.0" />

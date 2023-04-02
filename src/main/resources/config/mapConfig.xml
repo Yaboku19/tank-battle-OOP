@@ -73,7 +73,7 @@
         <resource>map1.png</resource>
     </map>
 
-    <map name="LAVAMAP">
+    <map name="LAVA MAP">
         <position>
             <x>19.5</x>
             <y>12.5</y>
@@ -125,7 +125,7 @@
         <resource>map2.png</resource>
     </map>
 
-    <map name="ICEMAP">
+    <map name="ICE MAP">
         <position>
             <x>19.5</x>
             <y>12.5</y>
