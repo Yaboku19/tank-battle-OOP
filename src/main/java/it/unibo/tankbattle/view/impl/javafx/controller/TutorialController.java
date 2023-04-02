@@ -29,8 +29,8 @@ public class TutorialController {
     @FXML
     private void back(final ActionEvent event) {    // NOPMD it is used by Javafx
         final Stage stage = MainViewController.converterFromEvent(event);
-            stage.setScene(prevScene);
-            stage.sizeToScene();
+        stage.setScene(prevScene);
+        stage.sizeToScene();
     }
     /**
      * Sets the previous {@link Scene} to the given scene.
