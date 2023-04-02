@@ -1,7 +1,7 @@
 package it.unibo.tankbattle.view.impl.javafx.controller;
 
 import java.util.stream.Stream;
-
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Command;
@@ -15,7 +15,8 @@ import javafx.scene.image.Image;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 
 /**
- * javadock.
+ * Represents the {@link View} controller.
  */
 public class ViewController implements View {
 
@@ -45,6 +46,7 @@ public class ViewController implements View {
     private InputController<KeyCode> firstPlayerController;
     private InputController<KeyCode> secondPlayerController;
 
+    private static final Logger LOGGER = Logger.getLogger("ViewControllerLog");
     private static final double SETTINGS_MIN_HEIGHT = 430;
     private static final double SETTINGS_MIN_WIDTH = 600;
 
@@ -65,6 +67,7 @@ public class ViewController implements View {
             gameController.drawLabel(firstPlayerName, secondPlayerName, firstPlayerScore, secondPlayerScore);
         });
     }
+
     /**
     * {@inheritDoc}
     */
@@ -72,6 +75,7 @@ public class ViewController implements View {
     public void viewUpdateP1(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP1(speed, damage, life, resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -79,6 +83,7 @@ public class ViewController implements View {
     public void viewUpdateP2(final int speed, final int damage, final int life, final String resource) {
         settingsController.updateP2(speed, damage, life, resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -86,6 +91,7 @@ public class ViewController implements View {
     public void viewUpdateMap(final String resource) {
         settingsController.updateMap(resource);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -93,6 +99,7 @@ public class ViewController implements View {
     public void updateTankPlayer1(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -100,6 +107,7 @@ public class ViewController implements View {
     public void updateTankPlayer2(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -107,6 +115,7 @@ public class ViewController implements View {
     public void updateMap(final NextAndPrevious delta) {
         controller.updateMap(delta);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -115,13 +124,18 @@ public class ViewController implements View {
             final String mapResource) {
         mainViewController.setResource("blue" + tank1Resource, "green" + tank2Resource, mapResource);
     }
+
     /**
     * {@inheritDoc}
     */
     @Override
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is imppossibile to create a copy"
+    )
     public void start(final Stage stage) {
         final Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
-        stage.getIcons().add(icon); 
+        stage.getIcons().add(icon);
         this.stage = stage;
         final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
         Parent root;
@@ -142,13 +156,14 @@ public class ViewController implements View {
             });
             stage.show();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "root loader gone wrong during the start");
         }
     }
 
     private void exit() {
         System.exit(0);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -169,9 +184,10 @@ public class ViewController implements View {
                 stage.sizeToScene();
             });
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of GameOver scene gone wrong");
         }
     }
+
     /**
     * {@inheritDoc}
     */
@@ -181,6 +197,7 @@ public class ViewController implements View {
         this.setDiagonalResize();
         controller.restart();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -193,6 +210,7 @@ public class ViewController implements View {
         stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
         stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -200,6 +218,7 @@ public class ViewController implements View {
     public void setViewResources() {
         controller.setViewResources();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -210,6 +229,7 @@ public class ViewController implements View {
         controller.startGame();
         inizializeInputController();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -238,9 +258,14 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -248,13 +273,19 @@ public class ViewController implements View {
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
     }
+
     /**
     * {@inheritDoc}
     */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     @Override
     public void setSettingsController(final SettingsController settingsController) {
         this.settingsController = settingsController;
     }
+
     /**
     * {@inheritDoc}
     */

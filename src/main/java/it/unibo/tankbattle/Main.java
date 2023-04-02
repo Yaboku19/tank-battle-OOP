@@ -18,6 +18,7 @@ public class Main extends Application {
     public static void main(final String[] args) {
         launch(args);
     }
+
     /**
     * {@inheritDoc}
     */

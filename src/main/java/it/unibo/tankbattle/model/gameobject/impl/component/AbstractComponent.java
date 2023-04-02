@@ -2,6 +2,7 @@ package it.unibo.tankbattle.model.gameobject.impl.component;
 
 import java.util.Optional;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.model.gameobject.api.component.Component;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
@@ -15,6 +16,10 @@ public abstract class AbstractComponent implements Component {
     /**
     * {@inheritDoc}
     */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     @Override
     public final void attachGameObject(final GameObject object) {
         this.attached = object;
@@ -31,6 +36,10 @@ public abstract class AbstractComponent implements Component {
     /**
     * {@inheritDoc}
     */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP"}, 
+        justification = "It is needed the object not its copy"
+    )
     @Override
     public GameObject getGameObject() {
         return this.attached;

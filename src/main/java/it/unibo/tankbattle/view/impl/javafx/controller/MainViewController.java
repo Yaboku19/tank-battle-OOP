@@ -3,7 +3,9 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
@@ -17,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
- * javadock.
+ * Represents the main menu {@link Scene} controller.
  */
 public class MainViewController {
 
@@ -26,6 +28,7 @@ public class MainViewController {
     private String tank1Resource;
     private String tank2Resource;
     private String mapResource;
+    private static final Logger LOGGER = Logger.getLogger("MainViewControllerLog");
 
     @FXML
     private ResourceBundle resources;
@@ -50,8 +53,9 @@ public class MainViewController {
 
     }
     /**
-     * javadoc.
-     * @param event param
+     * Start a new game with the chosen settings, 
+     * standard settings if not chosen.
+     * @param event button click
      */
     @FXML
     void play(final ActionEvent event) {
@@ -63,20 +67,18 @@ public class MainViewController {
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             final Scene gameScene = new Scene(fxmlLoader.load());
-            //addKeyListener();
             viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
-            //this.setDiagonalResize();
             stage.setResizable(true);
             viewController.startGame();
             this.addKeyListener(gameScene);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of play scene gone wrong");
         }
     }
     /**
-     * javadoc.
-     * @param event param
+     * Sets the {@link Scene} to the Settings scene.
+     * @param event button click
      */
     @FXML
     void settings(final ActionEvent event) {
@@ -97,12 +99,12 @@ public class MainViewController {
             stage.setScene(settings);
             stage.sizeToScene();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of settings scene gone wrong");
         }
     }
     /**
-     * javadoc.
-     * @param event param
+     * Sets the {@link Scene} to the tutorial scene.
+     * @param event button click
      */
     @FXML
     void tutorial(final ActionEvent event) {
@@ -110,31 +112,32 @@ public class MainViewController {
             final Stage stage = converterFromEvent(event);
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/tutorial.fxml"));
             final Scene tutorial = new Scene(fxmlLoader.load());
-            //controller = fxmlLoader.getController();
             final TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
             tutorialController.setViewController(viewController);
             tutorialController.setNameLabel();
             tutorialController.setPreviousScene(stage.getScene());
             stage.setScene(tutorial);
-            //stage.setHeight(stage.getHeight()-0.01);
-            //stage.setHeight(stage.getHeight()-0.01);
             stage.sizeToScene();
         } catch (IOException e) {
-            System.out.println(e.toString());
+            LOGGER.log(Level.SEVERE, "load of tutorial scene gone wrong");
         }
     }
     /**
-     * javadock.
-     * @param viewController param
+     * Sets the {@link View} controller.
+     * @param viewController the {@link View} controller
      */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
     /**
-     * javadock.
-     * @param tank1Resource param
-     * @param tank2Resource param
-     * @param mapResource param
+     * Sets the tanks and map resources.
+     * @param tank1Resource first tank resource
+     * @param tank2Resource second tank resource
+     * @param mapResource map resource
      */
     public void setResource(final String tank1Resource, final String tank2Resource, final String mapResource) {
         this.tank1Resource = tank1Resource;

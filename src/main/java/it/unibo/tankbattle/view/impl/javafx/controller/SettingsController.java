@@ -3,6 +3,7 @@ package it.unibo.tankbattle.view.impl.javafx.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.view.api.View;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * javadock.
+ * Represent the Controller of the Settings {@link Scene}.
  */
 public class SettingsController implements Initializable {
 
@@ -81,57 +82,71 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Button prevTankPlayer2;
+
     /**
-     * javadoc.
-     * @param event param
+     * Sets the first player Tank to the next, back 
+     * to the first if it's the last one.
+     * @param event button click
      */
     @FXML
     void nextTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.NEXT);
     }
+
     /**
-     * javadoc.
+     * Sets the first player Tank to the next, back to 
+     * the last one if it's the first one.
      * @param event param
      */
     @FXML
     void prevTankPlayer1(final ActionEvent event) {
         viewController.updateTankPlayer1(NextAndPrevious.PREVIOUS);
     }
+
     /**
-     * javadoc.
+     * Sets the second player Tank to the next, back to
+     * the first if it's the last one.
      * @param event param
      */
     @FXML
     void nextTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.NEXT);
     }
+
     /**
-     * javadoc.
+     * Sets the second player Tank to the next, back to
+     * the last if it's the first one.
      * @param event param
      */
     @FXML
     void prevTankPlayer2(final ActionEvent event) {
         viewController.updateTankPlayer2(NextAndPrevious.PREVIOUS);
     }
+
     /**
-     * javadoc.
+     * Sets the map to the next, back to
+     * the first if it's the last one.
      * @param event param
      */
     @FXML
     void nextMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.NEXT);
     }
+
     /**
-     * javadoc.
+     * Sets the map to the next, back to
+     * the last if it's the first one.
      * @param event param
      */
     @FXML
     void prevMap(final ActionEvent event) {
         viewController.updateMap(NextAndPrevious.PREVIOUS);
     }
+
     /**
-     * javadoc.
-     * @param event param
+     * Sets the {@link Scene} to the main menu scene and
+     * save the chosen settings.
+     * @param event button click
      */
     @FXML
     void back(final ActionEvent event) {
@@ -142,37 +157,48 @@ public class SettingsController implements Initializable {
         viewController.setPlayerName(firstPlayerName.getText(), secondPlayerName.getText());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
 
     }
+
     /**
-     * javadock.
-     * @param viewController param
+     * Sets the {@link View} controller.
+     * @param viewController the {@link View} controller.
      */
+    @SuppressFBWarnings(
+        value = {"EI_EXPOSE_REP2"}, 
+        justification = "It is needed the object not its copy"
+    )
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
+
     /**
-     * javadoc.
+     * Set the names {@link Label}.
      */
     public void setNameLabel() {
         firstPlayerName.setText(viewController.getFirstPlayerName());
         secondPlayerName.setText(viewController.getSecondPlayerName());
     }
+
     /**
-     * javadock.
-     * @param prevScene param
+     * Sets the previous {@link Scene} to the main menu scene.
+     * @param prevScene the main menu scene
      */
     public void setPreviousScene(final Scene prevScene) {
         this.prevScene = prevScene;
     }
+
     /**
-     * javadock.
-     * @param speed param
-     * @param damage param
-     * @param life param
-     * @param resource param
+     * Sets the first player tank stats and resource to the current tank.
+     * @param speed tank speed
+     * @param damage tank speed
+     * @param life tank life
+     * @param resource tank resource
      */
     public void updateP1(final int speed, final int damage, final int life, final String resource) {
         speedP1.setText(Integer.toString(speed));
@@ -180,12 +206,13 @@ public class SettingsController implements Initializable {
         lifeP1.setText(Integer.toString(life));
         player1Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/blue" + resource).toExternalForm()));
     }
+
     /**
-     * javadock.
-     * @param speed param
-     * @param damage param
-     * @param life param
-     * @param resource param
+     * Sets the second player tank stats and resource to the current tank.
+     * @param speed tank speed
+     * @param damage tank damage
+     * @param life tank life
+     * @param resource tank resource
      */
     public void updateP2(final int speed, final int damage, final int life, final String resource) {
         speedP2.setText(Integer.toString(speed));
@@ -194,8 +221,8 @@ public class SettingsController implements Initializable {
         player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/green" + resource).toExternalForm()));
     }
     /**
-     * javadock.
-     * @param resource param
+     * Sets the map image to the current map choosen.
+     * @param resource map resource
      */
     public void updateMap(final String resource) {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));

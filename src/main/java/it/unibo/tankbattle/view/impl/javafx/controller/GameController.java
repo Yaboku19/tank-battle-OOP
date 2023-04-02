@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import javafx.animation.AnimationTimer;
@@ -21,11 +20,12 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 /**
- * javadock.
+ * This represents the contoller of the game Scene.
  */
 public class GameController {
 
@@ -43,6 +43,7 @@ public class GameController {
     private final Set<ImageView> spriteSet = new HashSet<>();
     private MediaPlayer mediaPlayer;
     private Media shoot;
+    private static final Logger LOGGER = Logger.getLogger("GameControllerLog");
 
 
     private static final double RIGHT_ANGLE = 90;
@@ -74,7 +75,7 @@ public class GameController {
     private Label scoreLabel;
 
     /**
-    * javadoc.
+    * Initialize the GameController.
     */
     @FXML
     void initialize() {
@@ -84,31 +85,32 @@ public class GameController {
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
     }
     /**
-     * javadock.
-     * @param tank1 param
-     * @param tank2 param
-     * @param map param
+     * Create a new GameController, with the specified resources.
+     * @param tank1 the first tank resources
+     * @param tank2 the second tank resources
+     * @param map the map resources
      */
     public GameController(final String tank1, final String tank2, final String map) {
         player1 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank1).toExternalForm()));
         player2 = new ImageView(new Image(ClassLoader.getSystemResource("images/tank/" + tank2).toExternalForm()));
         bulletImage = new Image(ClassLoader.getSystemResource("images/cannonBall1.png").toExternalForm());
-        wallImage = new Image(ClassLoader.getSystemResource("images/box.png").toExternalForm());
-        backImage = new Image(ClassLoader.getSystemResource("images/map/" + map).toExternalForm());
+        wallImage = new Image(ClassLoader.getSystemResource("images/obstacles/obstacle" + map).toExternalForm());
+        backImage = new Image(ClassLoader.getSystemResource("images/map/background" + map).toExternalForm());
         shotSprite = new Image(ClassLoader.getSystemResource("images/spriteShot.gif").toExternalForm());
         this.activeBullet = new HashSet<>();
         loadAudioResource();
     }
     /**
-     * javadock.
+     * Remove all the children from the mainPane, it's called 
+     * each frane.
      */
     public void clear() {
         mainPane.getChildren().removeAll(mainPane.getChildren());
     }
 
     /**
-     * javadock.
-     * @param t param
+     * Render the first tank.
+     * @param t the first tank {@link Tranform}
      */
     public void renderFirstTank(final Transform t) {
         player1.setX(t.getUpperLeftPosition().getX() * getWidth());
@@ -122,8 +124,8 @@ public class GameController {
     }
 
     /**
-     * javadoc.
-     * @param t param
+     * Render the second tank.
+     * @param t the second tank {@link Tranform}
      */
     public void renderSecondTank(final Transform t) {
         player2.setX(t.getUpperLeftPosition().getX() * getWidth());
@@ -134,8 +136,8 @@ public class GameController {
         mainPane.getChildren().add(player2);
     }
     /**
-     * javadock.
-     * @param bullets param
+     * Render all the bullets presents.
+     * @param bullets the bullets {@link Set} of {@link Transform}
      */
     public void renderBullet(final Set<Transform> bullets) {
         for (final Transform b : bullets) {
@@ -164,14 +166,14 @@ public class GameController {
         newBullets.forEach(pos -> renderBulletSprite(pos));
         findBullet(this.activeBullet, bullets).forEach(pos -> renderBulletSprite(pos));
         mainPane.getChildren().addAll(spriteSet);
-        this.activeBullet = bullets;
+        this.activeBullet = new HashSet<>(bullets);
     }
 
     private void loadAudioResource() {
         try {
             shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
-        } catch (URISyntaxException e1) {
-            e1.printStackTrace();
+        } catch (URISyntaxException e) {
+            LOGGER.log(Level.SEVERE, "load of audio gone wrong");
         }
 
     }
@@ -190,8 +192,8 @@ public class GameController {
     }
 
     /**
-     * javadock.
-     * @param walls param
+     * Render all the walls presents.
+     * @param walls the walls {@link Set} of {@link Transform}
      */
     public void renderWall(final Set<Transform> walls) {
         wallSet.clear();
@@ -208,9 +210,9 @@ public class GameController {
         mainPane.getChildren().addAll(wallSet);
     }
     /**
-     * javadock.
-     * @param firstTank param
-     * @param secondTank param
+     * This method render lifes label in the scene.
+     * @param firstTank first tank's life
+     * @param secondTank second tank's life
      */
     public void updateLifeLabel(final int firstTank, final int secondTank) {
         firstTankLife.setText(Integer.toString(firstTank));
@@ -220,7 +222,7 @@ public class GameController {
     }
 
     /**
-     * javadoc.
+     * This method render players names and scores in the scene.
      * @param firstPlayerName first player name
      * @param secondPlayerName second player name
      * @param firstPlayerScore first player score
@@ -267,8 +269,10 @@ public class GameController {
         }
     }
     /**
-     * javadock.
-     * @param shotPoint param
+     * This method start an {@link AnimationTimer} of the explosion bullet 
+     * with data of the given {@link Transform}.
+     * @param shotPoint {@link Transform} with the dimension and position of the 
+     * {@link AnimationTimer}
      */
     public void renderBulletSprite(final Transform shotPoint) {
         final AnimationTimer animation = new AnimationTimer() {

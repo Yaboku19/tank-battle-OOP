@@ -8,50 +8,48 @@ import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.model.gameobject.api.component.Component;
 /**
- * javadoc.
+ * Represent a standard GameObject.
  */
 public interface GameObject {
+
     /**
-     * javadoc.
-     * @param time param
+     * Update each {@link Component} of the {@link GameObject}.
+     * @param time time passed after last update
      */
     void update(double time);
+
     /**
-     * javadoc.
-     * @return return
+     * Gets all the {@link Component} attached to the {@link GameObject}.
+     * @return the List of {@link Component}
      */
     List<Component> getComponents();
     /**
-     * javadoc.
-     * @param <T> param
-     * @param component param
-     * @return return
+     * Gets the specified {@link Component}, if present.
+     * @param <T> any type of behaviour extending {@link Component}
+     * @param component the {@link Class} of {@link T}
+     * @return an Optional of the Component 
      */
     <T extends Component> Optional<T> getComponent(Class<T> component);
     /**
-     * javadoc.
-     * @param component param
-     * @return return
+     * Add the {@link Component} to this {@link GameObject}.
+     * @param component the component that will be add
+     * @return this {@link GameObject}, if present
      */
     GameObject addComponent(Component component);
     /**
-     * javadoc.
-     * @return return
+     * Gets the {@link Transform} associated to this {@link GameObject}.
+     * @return the {@link Transform} assciated
      */
     Transform getTransform();
 
-
-
-
-    //public void setTransform(Transform transform);
     /**
-     * javadoc.
-     * @param pos param
+     * Change the position of this {@link GameObject}.
+     * @param pos the new {@link P2d}
      */
     void setPosition(P2d pos);
     /**
-     * javadoc.
-     * @param pos param
+     * Change the direction of this {@link GameObject}.
+     * @param pos the new {@link Direction}
      */
     void setDirection(Direction pos);
 }
