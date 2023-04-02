@@ -73,7 +73,7 @@ public class MainViewController {
             viewController.startGame();
             this.addKeyListener(gameScene);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "load of play scene gone wrong");
+            LOGGER.log(Level.SEVERE, "Game scene load error.");
         }
     }
     /**
@@ -99,7 +99,7 @@ public class MainViewController {
             stage.setScene(settings);
             stage.sizeToScene();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "load of settings scene gone wrong");
+            LOGGER.log(Level.SEVERE, "Settings scene load error.");
         }
     }
     /**
@@ -119,7 +119,7 @@ public class MainViewController {
             stage.setScene(tutorial);
             stage.sizeToScene();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "load of tutorial scene gone wrong");
+            LOGGER.log(Level.SEVERE, "Tutorial scene load error.");
         }
     }
     /**
@@ -128,7 +128,7 @@ public class MainViewController {
      */
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 
-        justification = "It is needed the object not its copy"
+        justification = "I need that istance of the object not its copy"
     )
     public void setViewController(final View viewController) {
         this.viewController = viewController;

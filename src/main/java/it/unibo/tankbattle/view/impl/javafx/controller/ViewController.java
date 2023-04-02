@@ -131,7 +131,7 @@ public class ViewController implements View {
     @Override
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 
-        justification = "It is imppossibile to create a copy"
+        justification = "I need that istance of the object not its copy"
     )
     public void start(final Stage stage) {
         final Image icon = new Image(ClassLoader.getSystemResource("icon/icon.gif").toExternalForm());
@@ -156,7 +156,7 @@ public class ViewController implements View {
             });
             stage.show();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "root loader gone wrong during the start");
+            LOGGER.log(Level.SEVERE, "Main scene load error during start.");
         }
     }
 
@@ -184,7 +184,7 @@ public class ViewController implements View {
                 stage.sizeToScene();
             });
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "load of GameOver scene gone wrong");
+            LOGGER.log(Level.SEVERE, "GameOver scene load error.");
         }
     }
 
@@ -260,7 +260,7 @@ public class ViewController implements View {
     @Override
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 
-        justification = "It is needed the object not its copy"
+        justification = "I need that istance of the object not its copy"
     )
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
@@ -279,7 +279,7 @@ public class ViewController implements View {
     */
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 
-        justification = "It is needed the object not its copy"
+        justification = "I need that istance of the object not its copy"
     )
     @Override
     public void setSettingsController(final SettingsController settingsController) {
