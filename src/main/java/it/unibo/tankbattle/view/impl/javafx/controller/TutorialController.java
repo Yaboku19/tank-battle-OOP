@@ -33,11 +33,11 @@ public class TutorialController {
         stage.sizeToScene();
     }
     /**
-     * Sets the previous {@link Scene} to the given scene.
-     * @param prevScene previous scene
+     * Sets actual {@link Scene}.
+     * @param event event.
      */
-    public void setPreviousScene(final Scene prevScene) {
-        this.prevScene = prevScene;
+    public void setPreviousScene(final ActionEvent event) {
+        this.prevScene = MainViewController.converterFromEvent(event).getScene();
     }
     /**
      * Sets the players label name to the actual name.

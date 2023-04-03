@@ -34,10 +34,9 @@ public class ViewController implements View {
     private GameEngine controller;
     private GameController gameController;
     private SettingsController settingsController;
-    private Scene mainViewScene;
     private MainViewController mainViewController;
     private Stage stage;
-    private Scene gameScene;
+    private Parent root;
     private String winner;
     private String firstPlayerName = "Player 1";
     private String secondPlayerName = "Player 2";
@@ -138,14 +137,13 @@ public class ViewController implements View {
         stage.getIcons().add(icon);
         this.stage = stage;
         final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("layout/main.fxml"));
-        Parent root;
         try {
             root = loader.load();
             mainViewController = loader.getController();
             controller = new BasicGameEngine(this);
             controller.setViewResources();
             mainViewController.setViewController(this);
-            mainViewScene = new Scene(root);
+            final Scene mainViewScene = new Scene(root);
             stage.setTitle("Tank-Battle");
             stage.setScene(mainViewScene);
             stage.setMinHeight(SETTINGS_MIN_HEIGHT);
@@ -171,11 +169,13 @@ public class ViewController implements View {
     public void gameOver() {
         try {
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
+            //final GameOverController gameOverController = (GameOverController) fxmlLoader.getController();
+            final GameOverController gameOverController = new GameOverController(root, stage);
+            fxmlLoader.setControllerFactory(controller -> gameOverController);
             final Scene gameOver = new Scene(fxmlLoader.load());
-            final GameOverController gameOverController = (GameOverController) fxmlLoader.getController();
-            gameOverController.setMenuScene(mainViewScene);
             gameOverController.setViewController(this);
-            gameOverController.setGameScene(gameScene);
+            /*gameOverController.setMenuScene(mainViewScene);
+            gameOverController.setGameScene(stage);*/
             gameOverController.setWinLabel(winner);
             Platform.runLater(() -> {
                 stage.widthProperty().removeListener(widthChangeListener);
@@ -269,10 +269,10 @@ public class ViewController implements View {
     /**
     * {@inheritDoc}
     */
-    @Override
+    /*@Override
     public void setGameScene(final Scene gameScene) {
         this.gameScene = gameScene;
-    }
+    }*/
 
     /**
     * {@inheritDoc}
