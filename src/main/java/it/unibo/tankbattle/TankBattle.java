@@ -10,7 +10,7 @@ public final class TankBattle {
 
     /**
      * Main of the application.
-     * @param args
+     * @param args args of the main
      */
     public static void main(final String[] args) {
         Main.main(args);

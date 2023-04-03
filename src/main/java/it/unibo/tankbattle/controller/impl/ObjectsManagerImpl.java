@@ -31,7 +31,7 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
      * the costructor of ObjectManagerImpl.
      * @param path the path for the xml file
      * @param clas the type for the read
-     * @throws JAXBException 
+     * @throws JAXBException when the JAXBContext has some error
      */
     public ObjectsManagerImpl(final URI path, final Class<C> clas) throws JAXBException {
         config = new File(path);

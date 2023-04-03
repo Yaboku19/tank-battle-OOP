@@ -5,7 +5,8 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.model.gameobject.api.component.Movable;
 
 /**
- * Represents an implementation of the {@link Movable} {@link Component}.
+ * Represents an implementation of the {@link Movable}
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
  */
 public class SimpleMovable extends AbstractComponent implements Movable {
 
@@ -13,7 +14,8 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     private Direction movingDirection;
 
     /**
-     * Initializes a {@link SimpleMovable} given its speed and with a {@value Direction#NONE} direction.
+     * Initializes a {@link SimpleMovable} given its speed and with a
+     * {@link Direction#NONE} direction.
      * @param speed the speed of the object
      */
     public SimpleMovable(final double speed) {

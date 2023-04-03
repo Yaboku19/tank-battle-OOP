@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface InputController<T> {
 
     /**
-     * @return List<T> with keys of the controller.
+     * @return a List with keys of the controller.
      */
     List<T> getKeys();
 

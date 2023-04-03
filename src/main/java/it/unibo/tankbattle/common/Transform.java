@@ -2,7 +2,7 @@ package it.unibo.tankbattle.common;
 
 import it.unibo.tankbattle.common.input.api.Direction;
 /**
- * This class represent the values that every {@link GameObject} has.
+ * This class represent the values that every {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject} has.
  */
 public class Transform {
 

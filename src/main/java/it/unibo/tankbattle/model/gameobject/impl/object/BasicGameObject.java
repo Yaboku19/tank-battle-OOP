@@ -23,7 +23,7 @@ public class BasicGameObject implements GameObject {
     private final List<Component> components = new LinkedList<>();
 
     /**
-     * Sets each {@link Tranform} values of this {@link GameObject}.
+     * Sets each {@link Transform} values of this {@link GameObject}.
      * @param transform the Transform
      */
     public BasicGameObject(final Transform transform) {

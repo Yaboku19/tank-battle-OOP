@@ -210,8 +210,8 @@ public class SettingsController implements Initializable {
     }
     /**
      * Sets map name and resource to view.
-     * @param resource
-     * @param mapName
+     * @param resource the resource
+     * @param mapName the name
      */
     public void updateMapSettingsLabels(final String resource, final String mapName) {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));

@@ -63,7 +63,7 @@ public abstract class AbstractComponent implements Component {
      * @param <T> any type of behaviour extending {@link Component}
      * @param component the {@link Class} of {@link T}
      * @return the {@link Component}, if present
-     * @exception IllegalArgumentException
+     * @exception IllegalArgumentException if the component is not present
      */
     protected <T extends Component> T requireSiblingComponent(final Class<T> component) {
         return getSiblingComponent(component)

@@ -25,8 +25,7 @@ import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
 import it.unibo.tankbattle.view.api.View;
 
 /**
- * javadoc.
- * 
+ * an implementation of {@link GameEngine} and {@link WorldEventListener}.
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
 
@@ -44,8 +43,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private static final Logger LOGGER = Logger.getLogger("ControllerLog");
 
     /**
-     * javadoc.
-     * @param view
+     * costructor with one argument.
+     * @param view the view of the game
      */
     @SuppressFBWarnings(
         value = {"EI_EXPOSE_REP2"}, 

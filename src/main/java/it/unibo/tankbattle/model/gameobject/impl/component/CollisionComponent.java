@@ -9,7 +9,8 @@ import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
 /**
- * Represents an implementation of the {@link Collidable} {@link Component}.
+ * Represents an implementation of the {@link Collidable}
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
  */
 public class CollisionComponent extends AbstractComponent implements Collidable, ObservableCollidable  {
 

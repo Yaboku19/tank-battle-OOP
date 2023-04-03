@@ -4,7 +4,7 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
 
 /**
- * Rappresent the Obser of {@link Command}.
+ * Rappresent the Obser of {@link it.unibo.tankbattle.common.input.api.Command}.
  */
 public interface CommandListener {
 

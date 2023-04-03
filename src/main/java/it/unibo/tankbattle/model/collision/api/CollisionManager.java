@@ -9,7 +9,8 @@ import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 public interface CollisionManager {
 
     /**
-     * Checks all the objects in a Stream and calls the {@link Collidable#resolveCollision(GameObject) resolveCollision}
+     * Checks all the objects in a Stream and calls the 
+     * {@link it.unibo.tankbattle.model.gameobject.api.component.Collidable#resolveCollision(GameObject) resolveCollision}
      * method on the ones who are colliding.
      * @param objects stream of all the colliding objects
      */

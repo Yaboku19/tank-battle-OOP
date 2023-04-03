@@ -3,7 +3,8 @@ package it.unibo.tankbattle.model.gameobject.api.component;
 import it.unibo.tankbattle.common.input.api.Direction;
 
 /**
- * Represents a particular {@link Component} that enables the attached {@link GameObject} to move.
+ * Represents a particular {@link Component} that enables the attached
+ * {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject} to move.
  */
 public interface Movable extends Component {
 
@@ -15,7 +16,7 @@ public interface Movable extends Component {
 
     /**
      * Gets the direction where the object is moving.
-     * @return the direction, or {@value Direction#NONE} if it is not moving
+     * @return the direction, or {@link Direction#NONE} if it is not moving
      */
     Direction getMovingDirection();
 

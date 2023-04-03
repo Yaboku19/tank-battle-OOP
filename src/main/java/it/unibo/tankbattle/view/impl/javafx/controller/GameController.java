@@ -110,7 +110,7 @@ public class GameController {
 
     /**
      * Render the first tank.
-     * @param t the first tank {@link Tranform}
+     * @param t the first tank {@link Transform}
      */
     public void renderFirstTank(final Transform t) {
         player1.setX(t.getUpperLeftPosition().getX() * getWidth());
@@ -125,7 +125,7 @@ public class GameController {
 
     /**
      * Render the second tank.
-     * @param t the second tank {@link Tranform}
+     * @param t the second tank {@link Transform}
      */
     public void renderSecondTank(final Transform t) {
         player2.setX(t.getUpperLeftPosition().getX() * getWidth());

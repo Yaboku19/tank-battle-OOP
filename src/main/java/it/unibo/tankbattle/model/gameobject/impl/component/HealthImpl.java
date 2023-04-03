@@ -3,7 +3,8 @@ package it.unibo.tankbattle.model.gameobject.impl.component;
 import it.unibo.tankbattle.model.gameobject.api.component.Health;
 
 /**
- * Represents an implementation of the {@link Health} {@link Component}.
+ * Represents an implementation of the {@link Health}
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
  */
 public class HealthImpl extends AbstractComponent implements Health {
 

@@ -16,7 +16,7 @@ public interface DataList<T> {
 
     /**
      * Set the List of data.
-     * @param data 
+     * @param data the list to be set
      */
     void setData(List<T> data);
 }

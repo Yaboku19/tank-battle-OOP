@@ -26,20 +26,20 @@ public interface GameState extends CommandListener {
 
     /**
      * 
-     * @return return a Stream {@link Stream} of Trasform {@link Tranform} of Bullets
+     * @return return a Stream {@link Stream} of Trasform {@link Transform} of Bullets
      */
     Stream<Transform> getBulletsTrasform();
 
     /**
      * 
-     * @return return a Stream {@link Stream} of Trasform {@link Tranform} of Walls
+     * @return return a Stream {@link Stream} of Trasform {@link Transform} of Walls
      */
     Stream<Transform> getWallsTrasform();
 
     /**
      * 
      * @param player used to identify the tank
-     * @return return the {@link Trasform} of a tank
+     * @return return the {@link Transform} of a tank
      */
     Transform getTankTrasform(Player player);
 
