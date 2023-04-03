@@ -22,7 +22,7 @@ import it.unibo.tankbattle.model.world.api.FactoryWorld;
 import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
 
 /**
- * javadoc.
+ * rappresent a test for the model {@link GameStateImpl}.
  */
 class GameStateTest {
     private GameStateImpl model;
@@ -32,9 +32,6 @@ class GameStateTest {
     private ObjectsManager<MapData, MapDataList> mapManager;
     private static final Logger LOGGER = Logger.getLogger("ModelTestLog");
 
-    /**
-     * javadoc.
-     */
     @org.junit.jupiter.api.BeforeEach
     void initFactory() {
         ObjectsManager<TankData, TankDataList> tankFirstManager = null;
@@ -83,7 +80,7 @@ class GameStateTest {
     }
 
     /**
-     * javadoc.
+     * it tests the getter of GameStateImpl.
      */
     @org.junit.jupiter.api.Test
     void getterTest() {
@@ -103,7 +100,7 @@ class GameStateTest {
     }
 
     /**
-     * javadoc.
+     * It tests how the bullets are created.
      */
     @org.junit.jupiter.api.Test
     void shotTest() {
@@ -119,7 +116,7 @@ class GameStateTest {
     }
 
     /**
-     * javadoc.
+     * it tests how the direction of the object is setted.
      */
     @org.junit.jupiter.api.Test
     void changeDirectionTest() {

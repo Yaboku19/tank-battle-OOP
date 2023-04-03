@@ -44,10 +44,6 @@ class GameObjectTest {
     private static final double BULLET_SHOT_MINUS = 45;
     private static final double TANK_MOVEMENT_POS = 11.8;
 
-
-    /**
-     * Init factory test.
-     */
     @org.junit.jupiter.api.BeforeEach
     void initFactory() {
         try {

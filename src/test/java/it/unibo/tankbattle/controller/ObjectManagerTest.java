@@ -15,18 +15,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * javdoc.
+ * rappresent a test for {@link ObjectsManager}.
  */
-class ObjectManagerTest {
+class ObjectsManagerTest {
     private ObjectsManager<TankData, TankDataList> tankManager;
     private static final int NUMTANK = 3;
     private static final int NUMMAP = 3;
     private ObjectsManager<TankData, TankDataList> mapManager;
     private static final Logger LOGGER = Logger.getLogger("ObjectManagerTestLog");
 
-    /**
-     * Init factory test.
-     */
     @org.junit.jupiter.api.BeforeEach
     void initFactory() {
         try {
@@ -40,7 +37,7 @@ class ObjectManagerTest {
     }
 
     /**
-     * javadoc.
+     * It tests the tankManager.
      */
     @org.junit.jupiter.api.Test
     void testTankManager() {
@@ -48,7 +45,7 @@ class ObjectManagerTest {
     }
 
     /**
-     * javadoc.
+     * It tests the mapManager.
      */
     @org.junit.jupiter.api.Test
     void testMapManager() {
