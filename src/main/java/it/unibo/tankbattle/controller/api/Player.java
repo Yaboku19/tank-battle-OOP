@@ -9,17 +9,6 @@ public interface Player {
 
     /**
      * 
-     * @return return the score
-     */
-    int getScore();
-
-    /**
-     * increment the score of the player.
-     */
-    void incScore();
-
-    /**
-     * 
      * @return return the name of the player
      */
     String getName();

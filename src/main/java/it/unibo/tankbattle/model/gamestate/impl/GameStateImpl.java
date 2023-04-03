@@ -32,6 +32,10 @@ public class GameStateImpl implements GameState {
     private final WorldEventListener listener;
     private final FactoryGameObject factoryGameObject;
     private final CollisionManager collisionManager;
+    private Player playerOne;
+    private Player playerTwo;
+    private int playerOneScore = 0;
+    private int playerTwoScore = 0;
 
     /**
      * the constructor of GameStateImpl.
@@ -50,6 +54,8 @@ public class GameStateImpl implements GameState {
     @Override
     public void createWorld(final Player firstPlayer, final Player secondPlayer, final MapData dataList) {
         world = factoryWorld.simpleWorld(firstPlayer, secondPlayer, dataList);
+        this.playerOne = firstPlayer;
+        this.playerTwo = secondPlayer;
     }
 
     /**
@@ -74,7 +80,13 @@ public class GameStateImpl implements GameState {
         if (getBullets().toList().contains(gameObject) || getWalls().toList().contains(gameObject)) {
             world.removeGameObject(gameObject);
         } else if (getTanks().toList().contains(gameObject)) {
-            listener.endGame(gameObject.getComponent(Tank.class).get().getPlayer());
+            Player deadPlayer = gameObject.getComponent(Tank.class).get().getPlayer();
+            listener.endGame(deadPlayer);
+            if (deadPlayer.equals(this.playerOne)) {
+                this.playerTwoScore++;
+            } else if (deadPlayer.equals(this.playerTwo)) {
+                this.playerOneScore++;
+            }
         } else {
             throw new IllegalStateException();
         }
@@ -154,5 +166,19 @@ public class GameStateImpl implements GameState {
                 .getComponent(Damageable.class)
                 .get()
                 .getLifePoints();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getScore(Player player) {
+        if (player.equals(this.playerOne)) {
+            return this.playerOneScore;
+        } else if (player.equals(this.playerTwo)) {
+            return this.playerTwoScore;
+        } else {
+            throw new IllegalArgumentException("No player found");
+        }
     }
 }

@@ -49,4 +49,11 @@ public interface GameState extends CommandListener {
      * @return return
      */
     int getTankLife(Player player);
+
+    /**
+     * returns the score of the given player.
+     * @param player the player
+     * @return the score
+     */
+    int getScore(Player player);
 }

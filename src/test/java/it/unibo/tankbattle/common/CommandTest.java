@@ -31,15 +31,6 @@ class CommandTest {
         return new Player() {
 
             @Override
-            public int getScore() {
-                return 1;
-            }
-
-            @Override
-            public void incScore() {
-            }
-
-            @Override
             public String getName() {
                 return "0";
             }
