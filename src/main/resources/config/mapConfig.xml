@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mapList>
-    <map name="DEFAULTMAP">
+    <map name="STANDARD MAP">
         <position>
             <x>19.5</x>
             <y>12.5</y>
@@ -73,7 +73,7 @@
         <resource>map1.png</resource>
     </map>
 
-    <map name="LAVA MAP">
+    <map name="DESERT MAP">
         <position>
             <x>19.5</x>
             <y>12.5</y>
