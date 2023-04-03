@@ -141,7 +141,7 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Set previous {@link Scene} to {@link Stage} 
+     * Set previous {@link Scene} to {@link Stage}.
      * @param event button click.
      */
     @FXML
