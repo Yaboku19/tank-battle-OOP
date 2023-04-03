@@ -7,12 +7,12 @@
 
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankbattle.view.impl.javafx.controller.GameOverController">
    <children>
-      <Button fx:id="restartButton" layoutX="215.0" layoutY="193.0" mnemonicParsing="false" onAction="#restart" prefHeight="46.0" prefWidth="152.0" text="RESTART" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="233.0">
+      <Button fx:id="restartButton" layoutX="215.0" layoutY="193.0" mnemonicParsing="false" onAction="#restart" prefHeight="46.0" prefWidth="152.0" text="RESTART" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="224.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" alignment="CENTER" layoutX="117.0" layoutY="62.0" prefHeight="84.0" prefWidth="348.0" style="-fx-background-color: BLUE;" textAlignment="CENTER" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="62.0">
+      <Label fx:id="winLabel" alignment="CENTER" layoutX="117.0" layoutY="62.0" prefHeight="84.0" prefWidth="348.0" style="-fx-background-color: E4E4E4;" textAlignment="CENTER" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="62.0">
          <font>
             <Font size="50.0" />
          </font></Label>
@@ -21,7 +21,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="mainMenuButton" layoutX="215.0" layoutY="274.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="46.0" prefWidth="152.0" text="MAIN MENU" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="233.0">
+      <Button fx:id="mainMenuButton" layoutX="215.0" layoutY="274.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="46.0" prefWidth="152.0" text="MAIN MENU" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="224.0">
          <font>
             <Font size="20.0" />
          </font>
