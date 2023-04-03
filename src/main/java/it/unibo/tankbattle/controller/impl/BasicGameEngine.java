@@ -94,6 +94,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private void loop() {
         this.isOver = false;
         long previousCycleStartTime = System.currentTimeMillis();
+        commandQueue.clear();
         while (!isOver) {
             final long currentCycleStartTime = System.currentTimeMillis();
             final long elapsed = currentCycleStartTime - previousCycleStartTime;
@@ -222,7 +223,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      */
     @Override
     public void restart() {
-        thread.interrupt();
         thread = new Thread(this);
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
@@ -233,7 +233,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      */
     @Override
     public void newStart() {
-        thread.interrupt();
         thread = new Thread(this);
     }
 
