@@ -8,6 +8,7 @@ import it.unibo.tankbattle.view.api.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 public class GameOverController {
 
     private View viewController;
-    private Scene mainManuScene;
+    private final Scene mainManuScene;
     private Scene gameScene;
 
     @FXML
@@ -45,6 +46,15 @@ public class GameOverController {
     void initialize() {
         assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
         assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
+    }
+    /**
+     * Create new GameOverController object.
+     * @param parent main menu parent
+     * @param stage game stage
+     */
+    public GameOverController(final Parent parent, final Stage stage) {
+        this.mainManuScene = parent.getScene();
+        this.gameScene = stage.getScene();
     }
     /**
      * Sets the scene to main menu.
@@ -87,20 +97,12 @@ public class GameOverController {
         this.viewController = viewController;
     }
     /**
-     * Sets the game {@link Scene}.
-     * @param gameScene the game {@link Scene}
+     * Sets gameScene {@link Scene}.
+     * @param stage main stage
      */
-    public void setGameScene(final Scene gameScene) {
-        this.gameScene = gameScene;
+    public void setGameScene(final Stage stage) {
+        this.gameScene = stage.getScene();
     }
-    /**
-     * Sets the menu {@link Scene}.
-     * @param mainManuScene the menu {@link Scene}
-     */
-    public void setMenuScene(final Scene mainManuScene) {
-        this.mainManuScene = mainManuScene;
-    }
-
     /**
      * Sets the menu {@link Label}.
      * @param playerName the winner player's name

@@ -141,7 +141,7 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Set previous {@link Scene} to {@link Stage} 
+     * Set previous {@link Scene} to {@link Stage}. 
      * @param event button click.
      */
     @FXML
@@ -182,14 +182,6 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Sets previous {@link Scene}.
-     * @param prevScene the main menu scene
-     */
-    public void setPreviousScene(final Scene prevScene) {
-        this.prevScene = prevScene;
-    }
-
-    /**
      * Sets first player tank stats and resource to view.
      * @param speed tank speed
      * @param damage tank speed
@@ -224,6 +216,13 @@ public class SettingsController implements Initializable {
     public void updateMapSettingsLabels(final String resource, final String mapName) {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));
         mapLabel.setText(mapName);
+    }
+    /**
+     * Sets actual {@link Scene}.
+     * @param event event.
+     */
+    public void setPreviousScene(final ActionEvent event) {
+        this.prevScene = MainViewController.converterFromEvent(event).getScene();
     }
 
 }

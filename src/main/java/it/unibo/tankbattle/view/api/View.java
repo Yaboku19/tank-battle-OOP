@@ -6,7 +6,6 @@ import it.unibo.tankbattle.common.NextAndPrevious;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.view.impl.javafx.controller.GameController;
 import it.unibo.tankbattle.view.impl.javafx.controller.SettingsController;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -129,7 +128,7 @@ public interface View {
      * Use that method to set game scene.
      * @param gameScene game scene.
      */
-    void setGameScene(Scene gameScene);
+    //void setGameScene(Scene gameScene);
 
     /**
      * Use that method to set the winner.

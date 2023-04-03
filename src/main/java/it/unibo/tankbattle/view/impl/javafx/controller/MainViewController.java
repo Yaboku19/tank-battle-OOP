@@ -67,7 +67,7 @@ public class MainViewController {
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             final Scene gameScene = new Scene(fxmlLoader.load());
-            viewController.setGameScene(gameScene);
+            //viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
             stage.setResizable(true);
             viewController.startGame();
@@ -90,8 +90,9 @@ public class MainViewController {
             final SettingsController settingsController = (SettingsController) fxmlLoader.getController();
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
-            settingsController.setPreviousScene(stage.getScene());
+            //settingsController.setPreviousScene(stage.getScene());
             settingsController.setPlayerNameLabel();
+            settingsController.setPreviousScene(event);
             viewController.askTankPlayer1Settings(NextAndPrevious.NONE);
             viewController.askTankPlayer2Settings(NextAndPrevious.NONE);
             viewController.askMapSettings(NextAndPrevious.NONE);
@@ -115,7 +116,7 @@ public class MainViewController {
             final TutorialController tutorialController = (TutorialController) fxmlLoader.getController();
             tutorialController.setViewController(viewController);
             tutorialController.setNameLabel();
-            tutorialController.setPreviousScene(stage.getScene());
+            tutorialController.setPreviousScene(event);
             stage.setScene(tutorial);
             stage.sizeToScene();
         } catch (IOException e) {
