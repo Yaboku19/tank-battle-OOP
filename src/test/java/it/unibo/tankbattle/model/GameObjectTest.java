@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
@@ -48,8 +47,8 @@ class GameObjectTest {
     void initFactory() {
         try {
             tankFirstManager = new ObjectsManagerImpl<>(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
-        } catch (JAXBException | URISyntaxException e) {
+                ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
+        } catch (JAXBException e) {
             LOGGER.log(Level.WARNING, "error");
         }
         this.factory = new GameObjectFactoryImpl();

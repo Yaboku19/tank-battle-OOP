@@ -3,7 +3,6 @@ package it.unibo.tankbattle.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.net.URISyntaxException;
 import javax.xml.bind.JAXBException;
 
 import it.unibo.tankbattle.common.NextAndPrevious;
@@ -28,10 +27,10 @@ class ObjectsManagerTest {
     void initFactory() {
         try {
             tankManager = new ObjectsManagerImpl<>(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
             mapManager = new ObjectsManagerImpl<>(
-                    ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
-        } catch (JAXBException | URISyntaxException e) {
+                    ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
+        } catch (JAXBException e) {
             LOGGER.log(Level.WARNING, "error");
         }
     }

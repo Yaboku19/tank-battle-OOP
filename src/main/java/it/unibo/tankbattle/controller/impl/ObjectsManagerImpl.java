@@ -1,7 +1,6 @@
 package it.unibo.tankbattle.controller.impl;
 
-import java.io.File;
-import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,19 +21,19 @@ import it.unibo.tankbattle.model.gamesetup.api.DataList;
  * @param <C> dataList type
  */
 public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implements ObjectsManager<T, C> {
-    private final File config;
+    private final URL config;
     private final Map<String, T> dataMap = new HashMap<>();
     private final List<String> keyOrder = new ArrayList<>();
     private int index;
 
     /**
      * The costructor of ObjectManagerImpl.
-     * @param path the path for the xml file
+     * @param url the path for the xml file
      * @param clas the type for the read
      * @throws JAXBException when the JAXBContext has some error
      */
-    public ObjectsManagerImpl(final URI path, final Class<C> clas) throws JAXBException {
-        config = new File(path);
+    public ObjectsManagerImpl(final URL url, final Class<C> clas) throws JAXBException {
+        config = url;
         read(clas);
     }
 

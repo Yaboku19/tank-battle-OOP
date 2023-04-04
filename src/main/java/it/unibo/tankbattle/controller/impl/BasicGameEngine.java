@@ -1,7 +1,6 @@
 package it.unibo.tankbattle.controller.impl;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.Queue;
 import javax.xml.bind.JAXBException;
@@ -56,23 +55,23 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         model = new GameStateImpl(this);
         try {
             tankFirstManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), 
+                ClassLoader.getSystemResource("config/tankConfig.xml"), 
                 TankDataList.class);
             tankSecondManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), 
+                ClassLoader.getSystemResource("config/tankConfig.xml"), 
                 TankDataList.class);
             mapManager = generateObjectManager(
-                ClassLoader.getSystemResource("config/mapConfig.xml").toURI(),
+                ClassLoader.getSystemResource("config/mapConfig.xml"),
                 MapDataList.class);
-        } catch (URISyntaxException | JAXBException e) {
+        } catch (JAXBException e) {
             LOGGER.log(Level.SEVERE, "read for xml gone wrong");
         }
     }
 
     private <T extends Data, C extends DataList<T>> ObjectsManager<T, C> generateObjectManager(
-            final URI path, 
+            final URL url, 
             final Class<C> clas) throws JAXBException {
-        return new ObjectsManagerImpl<T, C>(path, clas);
+        return new ObjectsManagerImpl<T, C>(url, clas);
     }
 
     /**

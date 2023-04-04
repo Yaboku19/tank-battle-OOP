@@ -2,7 +2,6 @@ package it.unibo.tankbattle.common;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,11 +59,11 @@ class CommandTest {
         Player player;
         try {
             firstTankManager = new ObjectsManagerImpl<>(
-                ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+                ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
             player = createPlayer(firstTankManager);
             inputController = new KeyboardInputController<>(KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT,
                 KeyCode.RIGHT, KeyCode.SPACE, player);
-        } catch (JAXBException | URISyntaxException e) {
+        } catch (JAXBException e) {
             LOGGER.log(Level.WARNING, "error");
         }
     }

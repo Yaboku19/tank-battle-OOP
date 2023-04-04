@@ -2,7 +2,6 @@ package it.unibo.tankbattle.model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,12 +39,12 @@ class GameStateTest {
         model = new GameStateImpl(null);
         try {
             tankFirstManager = new ObjectsManagerImpl<>(
-            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+            ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
             tankSecondManager = new ObjectsManagerImpl<>(
-            ClassLoader.getSystemResource("config/tankConfig.xml").toURI(), TankDataList.class);
+            ClassLoader.getSystemResource("config/tankConfig.xml"), TankDataList.class);
             mapManager = new ObjectsManagerImpl<>(
-            ClassLoader.getSystemResource("config/mapConfig.xml").toURI(), MapDataList.class);
-        } catch (JAXBException | URISyntaxException e) {
+            ClassLoader.getSystemResource("config/mapConfig.xml"), MapDataList.class);
+        } catch (JAXBException e) {
             LOGGER.log(Level.WARNING, "error");
         }
         firstPlayer = createPlayer(tankFirstManager);
