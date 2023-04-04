@@ -207,7 +207,8 @@ public class ViewController implements View {
     }
 
     private void setDimension() {
-        stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
+        stage.setWidth(Math.min(Screen.getPrimary().getBounds().getWidth(),
+                Screen.getPrimary().getBounds().getHeight()));
         stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
 
