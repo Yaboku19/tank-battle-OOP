@@ -3,7 +3,7 @@ package it.unibo.tankbattle.model.gameobject.api.object;
 import java.util.List;
 import java.util.Optional;
 
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.model.gameobject.api.component.Component;
@@ -44,9 +44,9 @@ public interface GameObject {
 
     /**
      * Change the position of this {@link GameObject}.
-     * @param pos the new {@link P2d}
+     * @param pos the new {@link Point2d}
      */
-    void setPosition(P2d pos);
+    void setPosition(Point2d pos);
     /**
      * Change the direction of this {@link GameObject}.
      * @param pos the new {@link Direction}

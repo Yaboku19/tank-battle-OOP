@@ -25,7 +25,7 @@ import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
 import it.unibo.tankbattle.view.api.View;
 
 /**
- * an implementation of {@link GameEngine} and {@link WorldEventListener}.
+ * An implementation of {@link GameEngine} and {@link WorldEventListener}.
  */
 public class BasicGameEngine implements GameEngine, WorldEventListener {
 
@@ -43,7 +43,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     private static final Logger LOGGER = Logger.getLogger("ControllerLog");
 
     /**
-     * costructor with one argument.
+     * Costructor with one argument.
      * @param view the view of the game
      */
     @SuppressFBWarnings(
@@ -84,10 +84,6 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
         secondPlayer = new HumanPlayer(view.getSecondPlayerName(), tankSecondManager.getActual());
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
-        //initGame();
-        /*
-         * new instance of model
-         */
     }
 
     private void loop() {
@@ -184,7 +180,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateTankPlayer1(final NextAndPrevious delta) {
         tankFirstManager.update(delta);
         final var toReturn = tankFirstManager.getActual();
-        view.updatePlayer1SettingsView(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.updateFirstPlayerSettingsView(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
     }
 
     /**
@@ -194,7 +190,8 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateTankPlayer2(final NextAndPrevious delta) {
         tankSecondManager.update(delta);
         final var toReturn = tankSecondManager.getActual();
-        view.updatePlayer2SettingsView(toReturn.getSpeed(), toReturn.getDamage(), toReturn.getLife(), toReturn.getResource());
+        view.updateSecondPlayerSettingsView(toReturn.getSpeed(), toReturn.getDamage(),
+            toReturn.getLife(), toReturn.getResource());
     }
 
     /**
@@ -204,7 +201,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
     public void updateMap(final NextAndPrevious delta) {
         mapManager.update(delta);
         final var toReturn = mapManager.getActual();
-        view.updateMapSettingsView(toReturn.getResource(), toReturn.getName());
+        view.updateMapSettings(toReturn.getResource(), toReturn.getName());
     }
 
     /**
@@ -221,7 +218,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      * {@inheritDoc}
      */
     @Override
-    public void restart() {
+    public void restartGame() {
         thread = new Thread(this);
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
         thread.start();
@@ -231,7 +228,7 @@ public class BasicGameEngine implements GameEngine, WorldEventListener {
      * {@inheritDoc}
      */
     @Override
-    public void newStart() {
+    public void restartApplication() {
         thread = new Thread(this);
     }
 

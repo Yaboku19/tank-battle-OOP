@@ -6,7 +6,7 @@ import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
 /**
- * Represents a particular {@link it.unibo.tankbattle.model.gameobject.api.component.Component}
+ * Represents a particular {@link it.unibo.tankbattle.model.gameobject.api.component.Component Component}
  * that enables the attached {@link GameObject} to be destroyed after a collision.
  */
 public class DestroyOnCollision extends AbstractComponent implements CollisionListener {

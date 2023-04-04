@@ -17,7 +17,7 @@ import it.unibo.tankbattle.model.gamesetup.api.Data;
 import it.unibo.tankbattle.model.gamesetup.api.DataList;
 
 /**
- * an implementation of ObjectsManger {@link ObjectsManager}.
+ * An implementation of ObjectsManger {@link ObjectsManager}.
  * @param <T> data type
  * @param <C> dataList type
  */
@@ -28,7 +28,7 @@ public class ObjectsManagerImpl<T extends Data, C extends DataList<T>> implement
     private int index;
 
     /**
-     * the costructor of ObjectManagerImpl.
+     * The costructor of ObjectManagerImpl.
      * @param path the path for the xml file
      * @param clas the type for the read
      * @throws JAXBException when the JAXBContext has some error

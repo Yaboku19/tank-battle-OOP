@@ -2,7 +2,7 @@ package it.unibo.tankbattle.model.collision.impl;
 
 import java.util.stream.Stream;
 
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
 
@@ -25,19 +25,19 @@ public class CollisionDetectorImpl implements CollisionDetector {
         return corners(transform2).anyMatch(corner -> containsCorner(transform1, corner));
     }
 
-    private boolean containsCorner(final Transform transform, final P2d corner) {
+    private boolean containsCorner(final Transform transform, final Point2d corner) {
         return corner.getX() >= transform.getPosition().getX() - transform.getLength() / 2
             && corner.getX() <= transform.getPosition().getX() + transform.getLength() / 2
             && corner.getY() >= transform.getPosition().getY() - transform.getWidth() / 2
             && corner.getY() <= transform.getPosition().getY() + transform.getWidth() / 2;
     }
 
-    private Stream<P2d> corners(final Transform transform) {
-        final Stream<P2d> offsets = Stream.of(
-            new P2d(transform.getLength() / 2, transform.getWidth() / 2),
-            new P2d(-transform.getLength() / 2, transform.getWidth() / 2),
-            new P2d(transform.getLength() / 2, -transform.getWidth() / 2),
-            new P2d(-transform.getLength() / 2, -transform.getWidth() / 2)
+    private Stream<Point2d> corners(final Transform transform) {
+        final Stream<Point2d> offsets = Stream.of(
+            new Point2d(transform.getLength() / 2, transform.getWidth() / 2),
+            new Point2d(-transform.getLength() / 2, transform.getWidth() / 2),
+            new Point2d(transform.getLength() / 2, -transform.getWidth() / 2),
+            new Point2d(-transform.getLength() / 2, -transform.getWidth() / 2)
         );
         return offsets.map(transform.getPosition()::sum);
     }

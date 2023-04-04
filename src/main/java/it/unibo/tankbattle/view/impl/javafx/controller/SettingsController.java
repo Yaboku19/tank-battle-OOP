@@ -92,7 +92,7 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void nextTankPlayer1(final ActionEvent event) {
-        viewController.askTankPlayer1Settings(NextAndPrevious.NEXT);
+        viewController.askTankFirstPlayerSettings(NextAndPrevious.NEXT);
     }
 
     /**
@@ -101,7 +101,7 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void prevTankPlayer1(final ActionEvent event) {
-        viewController.askTankPlayer1Settings(NextAndPrevious.PREVIOUS);
+        viewController.askTankFirstPlayerSettings(NextAndPrevious.PREVIOUS);
     }
 
     /**
@@ -110,7 +110,7 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void nextTankPlayer2(final ActionEvent event) {
-        viewController.askTankPlayer2Settings(NextAndPrevious.NEXT);
+        viewController.askTankSecondPlayerSettings(NextAndPrevious.NEXT);
     }
 
     /**
@@ -119,7 +119,7 @@ public class SettingsController implements Initializable {
      */
     @FXML
     void prevTankPlayer2(final ActionEvent event) {
-        viewController.askTankPlayer2Settings(NextAndPrevious.PREVIOUS);
+        viewController.askTankSecondPlayerSettings(NextAndPrevious.PREVIOUS);
     }
 
     /**
@@ -208,6 +208,7 @@ public class SettingsController implements Initializable {
         lifeP2.setText(Integer.toString(life));
         player2Image.setImage(new Image(ClassLoader.getSystemResource(PATH + "tank/green" + resource).toExternalForm()));
     }
+
     /**
      * Sets map name and resource to view.
      * @param resource the resource
@@ -217,6 +218,7 @@ public class SettingsController implements Initializable {
         mapImage.setImage(new Image(ClassLoader.getSystemResource(PATH + "map/" + resource).toExternalForm()));
         mapLabel.setText(mapName);
     }
+
     /**
      * Sets actual {@link Scene}.
      * @param event event.

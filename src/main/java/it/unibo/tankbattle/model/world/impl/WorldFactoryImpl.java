@@ -2,27 +2,27 @@ package it.unibo.tankbattle.model.world.impl;
 
 import java.util.HashSet;
 import java.util.Set;
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.controller.api.Player;
-import it.unibo.tankbattle.model.gameobject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObjectFactory;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
-import it.unibo.tankbattle.model.gameobject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.model.gameobject.impl.object.GameObjectFactoryImpl;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
-import it.unibo.tankbattle.model.world.api.FactoryWorld;
+import it.unibo.tankbattle.model.world.api.WorldFactory;
 import it.unibo.tankbattle.model.world.api.World;
 
 /**
- * a Implementention of FactoryWorld {@link FactoryWorld}.
+ * An implementention of {@link WorldFactory}.
  */
-public class FactoryWorldImpl implements FactoryWorld {
-    private final FactoryGameObject factoryGO;
+public class WorldFactoryImpl implements WorldFactory {
+    private final GameObjectFactory factoryGO;
     private final double size;
 
     /**
-     * The constructor of FActoryWorld with zero Arguments.
+     * The constructor of {@link WorldFactory} with no arguments.
      */
-    public FactoryWorldImpl() {
-        factoryGO = new FactoryGameObjectImpl();
+    public WorldFactoryImpl() {
+        factoryGO = new GameObjectFactoryImpl();
         this.size = factoryGO.getWallLength();
     }
 
@@ -41,7 +41,7 @@ public class FactoryWorldImpl implements FactoryWorld {
         return new WorldImpl(entities.stream());
     }
 
-    private Set<GameObject> getWall(final Set<P2d> wall) {
+    private Set<GameObject> getWall(final Set<Point2d> wall) {
         final Set<GameObject> border = new HashSet<>();
         for (final var pos : wall) {
             border.add(factoryGO.createSimpleWall(position(pos.getX(), pos.getY())));
@@ -49,7 +49,7 @@ public class FactoryWorldImpl implements FactoryWorld {
         return border;
     }
 
-    private P2d position(final double multiplier1, final double multiplier2) {
-        return new P2d(multiplier1 * size + size / 2, multiplier2 * size + size / 2);
+    private Point2d position(final double multiplier1, final double multiplier2) {
+        return new Point2d(multiplier1 * size + size / 2, multiplier2 * size + size / 2);
     }
 }

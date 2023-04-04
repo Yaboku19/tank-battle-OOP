@@ -4,7 +4,7 @@ import it.unibo.tankbattle.model.gameobject.api.component.Health;
 
 /**
  * Represents an implementation of the {@link Health}
- * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component Component}.
  */
 public class HealthImpl extends AbstractComponent implements Health {
 

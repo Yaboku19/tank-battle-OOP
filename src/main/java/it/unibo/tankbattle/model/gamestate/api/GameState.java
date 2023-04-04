@@ -6,12 +6,12 @@ import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
 
 /**
- * rappresent the interface of the model.
+ * Represent the interface of the MVC model.
  */
 public interface GameState extends CommandListener {
 
     /**
-     * create a World with the following paramether.
+     * Creates a World with the following parameters.
      * @param firstPlayer the first player
      * @param secondPlayer the second player
      * @param dataList the data for the map
@@ -19,34 +19,34 @@ public interface GameState extends CommandListener {
     void createWorld(Player firstPlayer, Player secondPlayer, MapData dataList);
 
     /**
-     * give the GameObject to update.
-     * @param time indicates how much the GameObject have to be updated
+     * Update the GameObject.
+     * @param time indicates the time passed after last update
      */
     void update(Double time);
 
     /**
-     * 
-     * @return return a Stream {@link Stream} of Trasform {@link Transform} of Bullets
+     * Gets all the bullets {@link Transform}.
+     * @return a {@link Stream} of {@link Transform} of Bullets
      */
     Stream<Transform> getBulletsTrasform();
 
     /**
-     * 
-     * @return return a Stream {@link Stream} of Trasform {@link Transform} of Walls
+     * Gets all the walls {@link Transform}.
+     * @return a {@link Stream} of {@link Transform} of Walls
      */
     Stream<Transform> getWallsTrasform();
 
     /**
-     * 
+     * Gets tank {@link Transform} from the given {@link Player}.
      * @param player used to identify the tank
-     * @return return the {@link Transform} of a tank
+     * @return return the {@link Transform} of the tank
      */
     Transform getTankTrasform(Player player);
 
     /**
-     * return the life of a tank.
+     * Return the life of the given {@link Player}.
      * @param player used to identify the tank
-     * @return return
+     * @return life points
      */
     int getTankLife(Player player);
 }

@@ -7,13 +7,15 @@ import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 import it.unibo.tankbattle.model.world.api.World;
 
 /**
- * an implementation of World {@link World}.
+ * An implementation of {@link World}.
  */
 public class WorldImpl implements World {
+
     private final Set<GameObject> setGameObject;
+
     /**
-     * The constructor of WorldImpl.
-     * @param streamGameObject a Stream of GameObject 
+     * The constructor of {@link WorldImpl}.
+     * @param streamGameObject a Stream of {@link GameObject}
      */
     protected WorldImpl(final Stream<GameObject> streamGameObject) {
         setGameObject = streamGameObject.collect(Collectors.toSet());

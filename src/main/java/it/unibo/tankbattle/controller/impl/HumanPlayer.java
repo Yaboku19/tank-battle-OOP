@@ -4,7 +4,7 @@ import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamesetup.impl.TankData;
 
 /**
- * an implementation of Player {@link Player}.
+ * An implementation of Player {@link Player}.
  */
 public class HumanPlayer implements Player {
     private int score;
@@ -12,7 +12,7 @@ public class HumanPlayer implements Player {
     private final TankData tankData;
 
     /**
-     * the constructor of HumanPLayer with two arguments.
+     * The constructor of HumanPLayer with two arguments.
      * @param name the name of the player
      * @param tankData the data of the tank
      */

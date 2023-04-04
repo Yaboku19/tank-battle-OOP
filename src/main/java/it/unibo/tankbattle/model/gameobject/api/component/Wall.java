@@ -4,7 +4,7 @@ import it.unibo.tankbattle.model.gameobject.impl.component.AbstractComponent;
 
 /**
  * Represents a particular {@link Component} that marks the attached
- * {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject} as a {@link Wall}.
+ * {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject GameObject} as a {@link Wall}.
  */
 public class Wall extends AbstractComponent {
 

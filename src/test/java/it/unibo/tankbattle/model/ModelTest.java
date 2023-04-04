@@ -18,8 +18,8 @@ import it.unibo.tankbattle.model.gamesetup.impl.MapDataList;
 import it.unibo.tankbattle.model.gamesetup.impl.TankData;
 import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
 import it.unibo.tankbattle.model.gamestate.impl.GameStateImpl;
-import it.unibo.tankbattle.model.world.api.FactoryWorld;
-import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
+import it.unibo.tankbattle.model.world.api.WorldFactory;
+import it.unibo.tankbattle.model.world.impl.WorldFactoryImpl;
 
 /**
  * rappresent a test for the model {@link GameStateImpl}.
@@ -28,7 +28,7 @@ class GameStateTest {
     private GameStateImpl model;
     private Player firstPlayer;
     private Player secondPlayer;
-    private FactoryWorld factoryWorld;
+    private WorldFactory factoryWorld;
     private ObjectsManager<MapData, MapDataList> mapManager;
     private static final Logger LOGGER = Logger.getLogger("ModelTestLog");
 
@@ -51,7 +51,7 @@ class GameStateTest {
         firstPlayer = createPlayer(tankFirstManager);
         secondPlayer = createPlayer(tankSecondManager);
         model.createWorld(firstPlayer, secondPlayer, mapManager.getActual());
-        factoryWorld = new FactoryWorldImpl();
+        factoryWorld = new WorldFactoryImpl();
     }
 
     private Player createPlayer(final ObjectsManager<TankData, TankDataList> manObj) {
@@ -108,9 +108,9 @@ class GameStateTest {
             throw new IllegalStateException();
         } else {
             assertEquals(0, model.getBulletsTrasform().count());
-            model.shot(firstPlayer);
+            model.shoot(firstPlayer);
             assertEquals(1, model.getBulletsTrasform().count());
-            model.shot(secondPlayer);
+            model.shoot(secondPlayer);
             assertEquals(2, model.getBulletsTrasform().count());
         }
     }

@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.ObjectsManager;
 import it.unibo.tankbattle.controller.api.Player;
@@ -17,10 +17,10 @@ import it.unibo.tankbattle.controller.impl.ObjectsManagerImpl;
 import it.unibo.tankbattle.model.gameobject.api.component.Damageable;
 import it.unibo.tankbattle.model.gameobject.api.component.Health;
 import it.unibo.tankbattle.model.gameobject.api.component.Movable;
-import it.unibo.tankbattle.model.gameobject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObjectFactory;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 import it.unibo.tankbattle.model.gameobject.impl.component.CollisionComponent;
-import it.unibo.tankbattle.model.gameobject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.model.gameobject.impl.object.GameObjectFactoryImpl;
 import it.unibo.tankbattle.model.gamesetup.impl.TankData;
 import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
 
@@ -29,7 +29,7 @@ import it.unibo.tankbattle.model.gamesetup.impl.TankDataList;
  */
 class GameObjectTest {
 
-    private FactoryGameObject factory;
+    private GameObjectFactory factory;
     private GameObject tank;
     private GameObject bullet;
     private ObjectsManager<TankData, TankDataList> tankFirstManager;
@@ -52,8 +52,9 @@ class GameObjectTest {
         } catch (JAXBException | URISyntaxException e) {
             LOGGER.log(Level.WARNING, "error");
         }
-        this.factory = new FactoryGameObjectImpl();
-        this.tank = this.factory.createSimpleTank(new P2d(STANDARD_TANK_POS, STANDARD_TANK_POS), createPlayer(tankFirstManager));
+        this.factory = new GameObjectFactoryImpl();
+        this.tank = this.factory.createSimpleTank(new Point2d(STANDARD_TANK_POS, STANDARD_TANK_POS),
+            createPlayer(tankFirstManager));
         this.bullet = this.factory.createSimpleBullet(this.tank);
     }
 
@@ -117,73 +118,73 @@ class GameObjectTest {
     }
 
     /**
-     * test update.
+     * Test update.
      */
     @org.junit.jupiter.api.Test
     void testUpdate() {
-        assertEquals(new P2d(GameObjectTest.STANDARD_TANK_POS, 
+        assertEquals(new Point2d(GameObjectTest.STANDARD_TANK_POS, 
                 GameObjectTest.STANDARD_TANK_POS), tank.getTransform().getPosition());
         tank.setDirection(Direction.RIGHT);
         tank.update(GameObjectTest.UPDATE_TIME);
-        assertEquals(new P2d(GameObjectTest.TANK_MOVEMENT_POS, GameObjectTest.STANDARD_TANK_POS),
+        assertEquals(new Point2d(GameObjectTest.TANK_MOVEMENT_POS, GameObjectTest.STANDARD_TANK_POS),
         tank.getTransform().getPosition());
         tank.setDirection(Direction.NONE);
         tank.update(UPDATE_TIME);
-        assertEquals(new P2d(GameObjectTest.TANK_MOVEMENT_POS, GameObjectTest.STANDARD_TANK_POS),
+        assertEquals(new Point2d(GameObjectTest.TANK_MOVEMENT_POS, GameObjectTest.STANDARD_TANK_POS),
         tank.getTransform().getPosition());
         assertEquals(Direction.RIGHT, tank.getTransform().getDirection());
     }
 
     /**
-     * 
+     * Test bullet creation.
      */
     @org.junit.jupiter.api.Test
     void testBulletCreation() {
         assertEquals(Direction.UP, bullet.getTransform().getDirection());
         tank.setDirection(Direction.RIGHT);
-        assertEquals(new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS),
+        assertEquals(new Point2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS),
             tank.getTransform().getPosition());
         assertEquals(GameObjectTest.STANDARD_TANK_DIM, tank.getTransform().getLength());
         assertEquals(GameObjectTest.STANDARD_TANK_DIM, tank.getTransform().getWidth());
         final var bullet1 = factory.createSimpleBullet(tank);
-        assertEquals(new P2d(GameObjectTest.BULLET_SHOT_MINUS, GameObjectTest.STANDARD_TANK_POS),
+        assertEquals(new Point2d(GameObjectTest.BULLET_SHOT_MINUS, GameObjectTest.STANDARD_TANK_POS),
             bullet1.getTransform().getPosition());
         assertEquals(Direction.RIGHT, bullet1.getTransform().getDirection());
 
         tank.setDirection(Direction.LEFT);
         final var bullet2 = factory.createSimpleBullet(tank);
-        assertEquals(new P2d(GameObjectTest.BULLET_SHOT_PLUS, GameObjectTest.STANDARD_TANK_POS),
+        assertEquals(new Point2d(GameObjectTest.BULLET_SHOT_PLUS, GameObjectTest.STANDARD_TANK_POS),
             bullet2.getTransform().getPosition());
         assertEquals(Direction.LEFT, bullet2.getTransform().getDirection());
 
         tank.setDirection(Direction.UP);
         final var bullet3 = factory.createSimpleBullet(tank);
-        assertEquals(new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_PLUS),
+        assertEquals(new Point2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_PLUS),
             bullet3.getTransform().getPosition());
         assertEquals(Direction.UP, bullet3.getTransform().getDirection());
 
         tank.setDirection(Direction.DOWN);
         final var bullet4 = factory.createSimpleBullet(tank);
-        assertEquals(new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_MINUS),
+        assertEquals(new Point2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_MINUS),
             bullet4.getTransform().getPosition());
         assertEquals(Direction.DOWN, bullet4.getTransform().getDirection());
 
         tank.setDirection(Direction.NONE);
         final var bullet5 = factory.createSimpleBullet(tank);
-        assertEquals(new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_MINUS),
+        assertEquals(new Point2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.BULLET_SHOT_MINUS),
             bullet5.getTransform().getPosition());
         assertEquals(Direction.DOWN, bullet5.getTransform().getDirection());
 
     }
 
     /**
-     * 
+     * Test all functions.
      */
     @org.junit.jupiter.api.Test
     void testAll() {
         tank.setDirection(Direction.RIGHT);
         final var tank2 = this.factory.createSimpleTank(
-                new P2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS), 
+                new Point2d(GameObjectTest.STANDARD_TANK_POS, GameObjectTest.STANDARD_TANK_POS), 
                 createPlayer(tankFirstManager));
         tank.getComponent(CollisionComponent.class).get().resolveCollision(tank2);
         tank2.getComponent(CollisionComponent.class).get().resolveCollision(tank);
@@ -201,7 +202,7 @@ class GameObjectTest {
     }
 
     /**
-     * 
+     * Test directions.
      */
     @org.junit.jupiter.api.Test
     void testDirection() {

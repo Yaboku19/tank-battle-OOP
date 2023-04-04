@@ -4,12 +4,12 @@ import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
 
 /**
- * rappresent the factory of {@link World} .
+ * Represents the factory of {@link World}.
  */
-public interface FactoryWorld {
+public interface WorldFactory {
 
     /**
-     * create a new World.
+     * Create a new World.
      * @param firstPlayer player for the first tank
      * @param secondPlayer player for the second tank
      * @param mapData data for the settings of the map

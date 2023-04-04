@@ -13,34 +13,34 @@ import it.unibo.tankbattle.model.gameobject.api.component.Damageable;
 import it.unibo.tankbattle.model.gameobject.api.component.Health;
 import it.unibo.tankbattle.model.gameobject.api.component.Tank;
 import it.unibo.tankbattle.model.gameobject.api.component.Wall;
-import it.unibo.tankbattle.model.gameobject.api.object.FactoryGameObject;
+import it.unibo.tankbattle.model.gameobject.api.object.GameObjectFactory;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
-import it.unibo.tankbattle.model.gameobject.impl.object.FactoryGameObjectImpl;
+import it.unibo.tankbattle.model.gameobject.impl.object.GameObjectFactoryImpl;
 import it.unibo.tankbattle.model.gamesetup.impl.MapData;
 import it.unibo.tankbattle.model.gamestate.api.GameState;
-import it.unibo.tankbattle.model.world.api.FactoryWorld;
+import it.unibo.tankbattle.model.world.api.WorldFactory;
 import it.unibo.tankbattle.model.world.api.World;
-import it.unibo.tankbattle.model.world.impl.FactoryWorldImpl;
+import it.unibo.tankbattle.model.world.impl.WorldFactoryImpl;
 
 /**
- * an implementation of {@link GameState}.
+ * An implementation of {@link GameState}.
  */
 public class GameStateImpl implements GameState {
 
-    private final FactoryWorld factoryWorld;
+    private final WorldFactory factoryWorld;
     private World world;
     private final WorldEventListener listener;
-    private final FactoryGameObject factoryGameObject;
+    private final GameObjectFactory factoryGameObject;
     private final CollisionManager collisionManager;
 
     /**
-     * the constructor of GameStateImpl.
+     * The constructor of GameStateImpl.
      * @param listener a listener from the controller
      */
     public GameStateImpl(final WorldEventListener listener) {
-        factoryWorld = new FactoryWorldImpl();
+        factoryWorld = new WorldFactoryImpl();
         this.listener = listener;
-        factoryGameObject = new FactoryGameObjectImpl();
+        factoryGameObject = new GameObjectFactoryImpl();
         collisionManager = new CollisionManagerImpl(new CollisionDetectorImpl());
     }
 
@@ -94,7 +94,7 @@ public class GameStateImpl implements GameState {
     * {@inheritDoc}
     */
     @Override
-    public void shot(final Player player) {
+    public void shoot(final Player player) {
         if (getTankFromPlayer(player).getComponent(Tank.class).get().canShoot()) {
             world.addGameObject(factoryGameObject
                 .createSimpleBullet(getTankFromPlayer(player)));

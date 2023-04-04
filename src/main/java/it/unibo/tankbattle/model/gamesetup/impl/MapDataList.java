@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * an Implementation of {@link DataList} for the map.
+ * An Implementation of {@link DataList} for the map.
  */
 @XmlRootElement(name = "mapList")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -17,6 +17,7 @@ public class MapDataList implements DataList<MapData> {
 
     @XmlElement(name = "map")
     private final List<MapData> map = new ArrayList<>();
+
     /**
     * {@inheritDoc}
     */
@@ -24,13 +25,4 @@ public class MapDataList implements DataList<MapData> {
     public List<MapData> getData() {
         return new ArrayList<>(map);
     }
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void setData(final List<MapData> map) {
-        this.map.clear();
-        this.map.addAll(map);
-    }
-
 }

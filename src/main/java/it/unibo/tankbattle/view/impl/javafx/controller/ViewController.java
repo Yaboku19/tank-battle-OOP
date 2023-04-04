@@ -71,7 +71,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updatePlayer1SettingsView(final int speed, final int damage, final int life, final String resource) {
+    public void updateFirstPlayerSettingsView(final int speed, final int damage, final int life, final String resource) {
         settingsController.updatePlayer1SettingsLabel(speed, damage, life, resource);
     }
 
@@ -79,7 +79,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updatePlayer2SettingsView(final int speed, final int damage, final int life, final String resource) {
+    public void updateSecondPlayerSettingsView(final int speed, final int damage, final int life, final String resource) {
         settingsController.updatePlayer2SettingsLabel(speed, damage, life, resource);
     }
 
@@ -87,7 +87,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updateMapSettingsView(final String resource, final String mapName) {
+    public void updateMapSettings(final String resource, final String mapName) {
         settingsController.updateMapSettingsLabels(resource, mapName);
     }
 
@@ -95,7 +95,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void askTankPlayer1Settings(final NextAndPrevious delta) {
+    public void askTankFirstPlayerSettings(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
 
@@ -103,7 +103,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void askTankPlayer2Settings(final NextAndPrevious delta) {
+    public void askTankSecondPlayerSettings(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
 
@@ -169,13 +169,10 @@ public class ViewController implements View {
     public void gameOver() {
         try {
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
-            //final GameOverController gameOverController = (GameOverController) fxmlLoader.getController();
             final GameOverController gameOverController = new GameOverController(root, stage);
             fxmlLoader.setControllerFactory(controller -> gameOverController);
             final Scene gameOver = new Scene(fxmlLoader.load());
             gameOverController.setViewController(this);
-            /*gameOverController.setMenuScene(mainViewScene);
-            gameOverController.setGameScene(stage);*/
             gameOverController.setWinLabel(winner);
             Platform.runLater(() -> {
                 stage.widthProperty().removeListener(widthChangeListener);
@@ -192,18 +189,18 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void restart() {
+    public void restartGame() {
         this.setDimension();
         this.setDiagonalResize();
-        controller.restart();
+        controller.restartGame();
     }
 
     /**
     * {@inheritDoc}
     */
     @Override
-    public void newStart() {
-        controller.newStart();
+    public void backToMenu() {
+        controller.restartApplication();
     }
 
     private void setDimension() {
@@ -244,17 +241,6 @@ public class ViewController implements View {
         }
     }
 
-    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
-        Optional<Command> command;
-        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-            command = playerController.startCommand(e.getCode());
-        } else {
-            command = playerController.stopCommand(e.getCode());
-        }
-        if (command.isPresent()) {
-            controller.notifyCommand(command.get());
-        }
-    }
     /**
     * {@inheritDoc}
     */
@@ -266,14 +252,6 @@ public class ViewController implements View {
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
-
-    /**
-    * {@inheritDoc}
-    */
-    /*@Override
-    public void setGameScene(final Scene gameScene) {
-        this.gameScene = gameScene;
-    }*/
 
     /**
     * {@inheritDoc}
@@ -340,5 +318,17 @@ public class ViewController implements View {
                 KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
         secondPlayerController = new KeyboardInputController<>(KeyCode.W, KeyCode.S,
                 KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
+    }
+
+    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
+        Optional<Command> command;
+        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+            command = playerController.startCommand(e.getCode());
+        } else {
+            command = playerController.stopCommand(e.getCode());
+        }
+        if (command.isPresent()) {
+            controller.notifyCommand(command.get());
+        }
     }
 }

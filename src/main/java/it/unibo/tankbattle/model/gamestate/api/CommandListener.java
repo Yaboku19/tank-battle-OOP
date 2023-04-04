@@ -4,20 +4,20 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
 
 /**
- * Rappresent the Obser of {@link it.unibo.tankbattle.common.input.api.Command}.
+ * Represents the Observer of {@link it.unibo.tankbattle.common.input.api.Command Command}.
  */
 public interface CommandListener {
 
     /**
-     * give the input to a player to shot.
-     * @param player the player 
+     * Gives signal to shoot.
+     * @param player the player who shot 
      */
-    void shot(Player player);
+    void shoot(Player player);
 
     /**
-     * give the input to a player to change direction.
-     * @param direction the direction
-     * @param player the player
+     * Gives signal to change direction.
+     * @param direction the new direction
+     * @param player the player who changed direction
      */
     void setDirection(Direction direction, Player player);
 }

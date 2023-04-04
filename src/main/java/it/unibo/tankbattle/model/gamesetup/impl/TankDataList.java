@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * an Implementation of {@link DataList} for the tank.
+ * An Implementation of {@link DataList} for the tank.
  */
 @XmlRootElement(name = "tankList")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -17,6 +17,7 @@ public class TankDataList implements DataList<TankData> {
 
     @XmlElement(name = "tank")
     private final List<TankData> tank = new ArrayList<>();
+
     /**
     * {@inheritDoc}
     */
@@ -24,14 +25,4 @@ public class TankDataList implements DataList<TankData> {
     public List<TankData> getData() {
         return new ArrayList<>(tank);
     }
-
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void setData(final List<TankData> tank) {
-        this.tank.clear();
-        this.tank.addAll(tank);
-    }
-
 }
