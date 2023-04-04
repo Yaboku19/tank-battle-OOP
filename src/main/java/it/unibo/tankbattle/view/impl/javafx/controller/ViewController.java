@@ -169,13 +169,10 @@ public class ViewController implements View {
     public void gameOver() {
         try {
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/gameOver.fxml"));
-            //final GameOverController gameOverController = (GameOverController) fxmlLoader.getController();
             final GameOverController gameOverController = new GameOverController(root, stage);
             fxmlLoader.setControllerFactory(controller -> gameOverController);
             final Scene gameOver = new Scene(fxmlLoader.load());
             gameOverController.setViewController(this);
-            /*gameOverController.setMenuScene(mainViewScene);
-            gameOverController.setGameScene(stage);*/
             gameOverController.setWinLabel(winner);
             Platform.runLater(() -> {
                 stage.widthProperty().removeListener(widthChangeListener);
@@ -265,14 +262,6 @@ public class ViewController implements View {
     public void setGameController(final GameController gameController) {
         this.gameController = gameController;
     }
-
-    /**
-    * {@inheritDoc}
-    */
-    /*@Override
-    public void setGameScene(final Scene gameScene) {
-        this.gameScene = gameScene;
-    }*/
 
     /**
     * {@inheritDoc}
