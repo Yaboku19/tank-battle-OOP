@@ -5,7 +5,7 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamestate.api.CommandListener;
 /**
- * That class manage the movement of the players.
+ * That class manage the player movement.
  */
 public class Movement implements Command {
 

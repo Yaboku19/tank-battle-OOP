@@ -67,7 +67,6 @@ public class MainViewController {
             viewController.setGameController(gameController);
             fxmlLoader.setControllerFactory(controller -> gameController);
             final Scene gameScene = new Scene(fxmlLoader.load());
-            //viewController.setGameScene(gameScene);
             stage.setScene(gameScene);
             stage.setResizable(true);
             viewController.startGame();
@@ -86,11 +85,9 @@ public class MainViewController {
             final Stage stage = converterFromEvent(event);
             final FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemResource("layout/settings.fxml"));
             final Scene settings = new Scene(fxmlLoader.load());
-            //controller = fxmlLoader.getController();
             final SettingsController settingsController = (SettingsController) fxmlLoader.getController();
             viewController.setSettingsController(settingsController);
             settingsController.setViewController(viewController);
-            //settingsController.setPreviousScene(stage.getScene());
             settingsController.setPlayerNameLabel();
             settingsController.setPreviousScene(event);
             viewController.askTankPlayer1Settings(NextAndPrevious.NONE);

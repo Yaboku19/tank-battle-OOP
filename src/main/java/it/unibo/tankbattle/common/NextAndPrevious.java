@@ -4,11 +4,11 @@ package it.unibo.tankbattle.common;
  */
 public enum NextAndPrevious {
     /**
-     * Next selection (+1).
+     * Next (+1).
      */
     NEXT(1),
     /**
-     *Previous selection (-1).
+     *Previous (-1).
      */
     PREVIOUS(-1),
     /**
