@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
 /**
  * This represents the contoller of the game Scene.
  */
@@ -41,7 +42,6 @@ public class GameController {
     private Set<Transform> activeBullet;
     private final Image shotSprite;
     private final Set<ImageView> spriteSet = new HashSet<>();
-    private MediaPlayer mediaPlayer;
     private Media shoot;
     private static final Logger LOGGER = Logger.getLogger("GameControllerLog");
 
@@ -84,6 +84,7 @@ public class GameController {
             BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
     }
+
     /**
      * Create a new GameController, with the specified resources.
      * @param tank1 the first tank resources
@@ -100,9 +101,9 @@ public class GameController {
         this.activeBullet = new HashSet<>();
         loadAudioResource();
     }
+
     /**
-     * Remove all the children from the mainPane, it's called 
-     * each frane.
+     * Remove all the children from the mainPane, it's called each frame.
      */
     public void clear() {
         mainPane.getChildren().removeAll(mainPane.getChildren());
@@ -110,14 +111,14 @@ public class GameController {
 
     /**
      * Render the first tank.
-     * @param t the first tank {@link Transform}
+     * @param transform the first tank {@link Transform}
      */
-    public void renderFirstTank(final Transform t) {
-        player1.setX(t.getUpperLeftPosition().getX() * getWidth());
-        player1.setY(t.getUpperLeftPosition().getY() * getHeight());
-        player1.setFitWidth(t.getWidth() * getWidth());
-        player1.setFitHeight(t.getLength() * getHeight());
-        player1.setRotate(getRotation(t.getDirection()));
+    public void renderFirstTank(final Transform transform) {
+        player1.setX(transform.getUpperLeftPosition().getX() * getWidth());
+        player1.setY(transform.getUpperLeftPosition().getY() * getHeight());
+        player1.setFitWidth(transform.getWidth() * getWidth());
+        player1.setFitHeight(transform.getLength() * getHeight());
+        player1.setRotate(getRotation(transform.getDirection()));
         mainPane.getChildren().add(player1);
         firstTankLife.setTranslateX(getWidth());
         firstTankLife.setTranslateY(getHeight());
@@ -125,16 +126,17 @@ public class GameController {
 
     /**
      * Render the second tank.
-     * @param t the second tank {@link Transform}
+     * @param transform the second tank {@link Transform}
      */
-    public void renderSecondTank(final Transform t) {
-        player2.setX(t.getUpperLeftPosition().getX() * getWidth());
-        player2.setY(t.getUpperLeftPosition().getY() * getHeight());
-        player2.setFitWidth(t.getWidth() * getWidth());
-        player2.setFitHeight(t.getLength() * getHeight());
-        player2.setRotate(getRotation(t.getDirection()));
+    public void renderSecondTank(final Transform transform) {
+        player2.setX(transform.getUpperLeftPosition().getX() * getWidth());
+        player2.setY(transform.getUpperLeftPosition().getY() * getHeight());
+        player2.setFitWidth(transform.getWidth() * getWidth());
+        player2.setFitHeight(transform.getLength() * getHeight());
+        player2.setRotate(getRotation(transform.getDirection()));
         mainPane.getChildren().add(player2);
     }
+
     /**
      * Render all the bullets presents.
      * @param bullets the bullets {@link Set} of {@link Transform}
@@ -151,46 +153,13 @@ public class GameController {
         }
         final var newBullets = findBullet(bullets, this.activeBullet);
         if (!newBullets.isEmpty()) {
-            final Task<Void> audioTask = new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-
-                   mediaPlayer = new MediaPlayer(shoot);
-                   mediaPlayer.play();
-
-                   return null;
-                }
-             };
-             new Thread(audioTask).start();
+            playShootAudio();
         }
         newBullets.forEach(pos -> renderBulletSprite(pos));
         findBullet(this.activeBullet, bullets).forEach(pos -> renderBulletSprite(pos));
         mainPane.getChildren().addAll(spriteSet);
         this.activeBullet = new HashSet<>(bullets);
     }
-
-    private void loadAudioResource() {
-        try {
-            shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
-        } catch (URISyntaxException e) {
-            LOGGER.log(Level.SEVERE, "load of audio gone wrong");
-        }
-
-    }
-
-    private Set<Transform> findBullet(final Set<Transform> newBullet, final Set<Transform> oldBullet) {
-        final Set<Double> bulletX = new HashSet<>();
-        final Set<Double> bulletY = new HashSet<>();
-        oldBullet.forEach(bull -> {
-            bulletX.add(bull.getUpperLeftPosition().getX());
-            bulletY.add(bull.getUpperLeftPosition().getY());
-        });
-        return newBullet.stream()
-                .filter(pos -> !bulletX.contains(pos.getUpperLeftPosition().getX()))
-                .filter(pos -> !bulletY.contains(pos.getUpperLeftPosition().getY()))
-                .collect(Collectors.toSet());
-    }
-
     /**
      * Render all the walls presents.
      * @param walls the walls {@link Set} of {@link Transform}
@@ -209,6 +178,7 @@ public class GameController {
         }
         mainPane.getChildren().addAll(wallSet);
     }
+
     /**
      * This method render lifes label in the scene.
      * @param firstTank first tank's life
@@ -238,36 +208,6 @@ public class GameController {
         mainPane.getChildren().add(scoreLabel);
     }
 
-    private double getRotation(final Direction dir) {
-        return switch (dir) {
-            case RIGHT -> GameController.RIGHT_ANGLE;
-            case DOWN -> GameController.STRAIGHT_ANGLE;
-            case LEFT -> GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE;
-            default -> 0;
-        };
-    }
-
-    private double getWidth() {
-        return mainPane.getWidth() / standardWidth;
-    }
-
-    private double getHeight() {
-        return mainPane.getHeight() / standardHeight;
-    }
-
-    private void setProportion(final Set<Transform> walls) {
-        if (!isProportionSet) {
-            this.isProportionSet = true;
-            double maxX = 0.0;
-            double maxY = 0.0;
-            for (final Transform transform : walls) {
-                maxX = Math.max(maxX, transform.getUpperLeftPosition().getX());
-                maxY = Math.max(maxY, transform.getUpperLeftPosition().getY());
-            }
-            this.standardWidth = maxX + walls.iterator().next().getWidth();
-            this.standardHeight = maxY + walls.iterator().next().getLength();
-        }
-    }
     /**
      * This method start an {@link AnimationTimer} of the explosion bullet 
      * with data of the given {@link Transform}.
@@ -303,5 +243,72 @@ public class GameController {
             }
         };
         animation.start();
+    }
+
+    private double getRotation(final Direction dir) {
+        return switch (dir) {
+            case RIGHT -> GameController.RIGHT_ANGLE;
+            case DOWN -> GameController.STRAIGHT_ANGLE;
+            case LEFT -> GameController.RIGHT_ANGLE + GameController.STRAIGHT_ANGLE;
+            default -> 0;
+        };
+    }
+
+    private double getWidth() {
+        return mainPane.getWidth() / standardWidth;
+    }
+
+    private double getHeight() {
+        return mainPane.getHeight() / standardHeight;
+    }
+
+    private void setProportion(final Set<Transform> walls) {
+        if (!isProportionSet) {
+            this.isProportionSet = true;
+            double maxX = 0.0;
+            double maxY = 0.0;
+            for (final Transform transform : walls) {
+                maxX = Math.max(maxX, transform.getUpperLeftPosition().getX());
+                maxY = Math.max(maxY, transform.getUpperLeftPosition().getY());
+            }
+            this.standardWidth = maxX + walls.iterator().next().getWidth();
+            this.standardHeight = maxY + walls.iterator().next().getLength();
+        }
+    }
+
+    private void playShootAudio() {
+        final Task<Void> audioTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+
+               final MediaPlayer mediaPlayer = new MediaPlayer(shoot);
+               mediaPlayer.play();
+
+               return null;
+            }
+         };
+         new Thread(audioTask).start();
+    }
+
+    private void loadAudioResource() {
+        try {
+            shoot = new Media(ClassLoader.getSystemResource("audio/shoot.mp3").toURI().toString());
+        } catch (URISyntaxException e) {
+            LOGGER.log(Level.SEVERE, "load of audio gone wrong");
+        }
+
+    }
+
+    private Set<Transform> findBullet(final Set<Transform> newBullet, final Set<Transform> oldBullet) {
+        final Set<Double> bulletX = new HashSet<>();
+        final Set<Double> bulletY = new HashSet<>();
+        oldBullet.forEach(bull -> {
+            bulletX.add(bull.getUpperLeftPosition().getX());
+            bulletY.add(bull.getUpperLeftPosition().getY());
+        });
+        return newBullet.stream()
+                .filter(pos -> !bulletX.contains(pos.getUpperLeftPosition().getX()))
+                .filter(pos -> !bulletY.contains(pos.getUpperLeftPosition().getY()))
+                .collect(Collectors.toSet());
     }
 }

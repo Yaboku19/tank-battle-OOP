@@ -5,12 +5,13 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.controller.api.Player;
 import it.unibo.tankbattle.model.gamestate.api.CommandListener;
 /**
- * That class manage the player movement.
+ * That class manage {@link Command} movement of the player.
  */
 public class Movement implements Command {
 
     private final Direction dir;
     private final Player player;
+
     /**
      * @param dir new direction to set
      * @param player player to set new direction
@@ -19,6 +20,7 @@ public class Movement implements Command {
         this.dir = dir;
         this.player = player;
     }
+
     /**
     * {@inheritDoc}
     */

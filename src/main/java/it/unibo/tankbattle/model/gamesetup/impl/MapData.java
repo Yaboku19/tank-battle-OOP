@@ -1,7 +1,7 @@
 package it.unibo.tankbattle.model.gamesetup.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.model.gamesetup.api.Data;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import javax.xml.bind.annotation.XmlAccessType;
 
 /**
- * an implementation of {@link Data} for the map.
+ * An implementation of {@link Data} for the map.
  */
 @XmlRootElement (name = "map")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -48,10 +48,10 @@ public class MapData implements Data {
     }
 
     /**
-     * 
-     * @return get the position  {@link P2d} of the first tank
+     * Gets position of the first tank.
+     * @return get the position  {@link Point2d} of the first tank
      */
-    public P2d getPositionFirstTank() {
+    public Point2d getPositionFirstTank() {
         return positions
             .stream()
             .filter(p -> "tank1".equals(p.getType()))
@@ -61,10 +61,10 @@ public class MapData implements Data {
     }
 
     /**
-     * 
-     * @return get the position {@link P2d} of the second tank
+     * Gets position of the second tank.
+     * @return get the position {@link Point2d} of the second tank
      */
-    public P2d getPositionSecondTank() {
+    public Point2d getPositionSecondTank() {
         return positions
         .stream()
         .filter(p -> "tank2".equals(p.getType()))
@@ -74,10 +74,10 @@ public class MapData implements Data {
     }
 
     /**
-     * 
-     * @return get a Set of position {@link P2d} of all the wall
+     * Gets position of walls.
+     * @return get a Set of position {@link Point2d} of all the walls
      */
-    public Set<P2d> getWall() {
+    public Set<Point2d> getWall() {
         return addBorder(addLine(positions
             .stream()
             .filter(p -> "wall".equals(p.getType()))
@@ -85,19 +85,19 @@ public class MapData implements Data {
             .collect(Collectors.toSet())));
     }
 
-    private Set<P2d> addBorder(final Set<P2d> wall) {
+    private Set<Point2d> addBorder(final Set<Point2d> wall) {
         for (int i = 0; i <= row; i++) {
-            wall.add(new P2d(0, i));
-            wall.add(new P2d(column, i));
+            wall.add(new Point2d(0, i));
+            wall.add(new Point2d(column, i));
         }
         for (int i = 1; i < column; i++) {
-            wall.add(new P2d(i, 0));
-            wall.add(new P2d(i, row));
+            wall.add(new Point2d(i, 0));
+            wall.add(new Point2d(i, row));
         }
         return wall;
     }
 
-    private Set<P2d> addLine(final Set<P2d> wall) {
+    private Set<Point2d> addLine(final Set<Point2d> wall) {
         for (final var line : lines) {
             wall.addAll(line.getLine());
         }

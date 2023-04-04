@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * Represents the main menu {@link Scene} controller.
  */
@@ -52,9 +53,9 @@ public class MainViewController {
     void initialize() {
 
     }
+
     /**
-     * Start a new game with the chosen settings, 
-     * standard settings if not chosen.
+     * Start a new game with the chosen settings, standard settings if not chosen.
      * @param event button click
      */
     @FXML
@@ -75,6 +76,7 @@ public class MainViewController {
             LOGGER.log(Level.SEVERE, "Game scene load error.");
         }
     }
+
     /**
      * Sets the {@link Scene} to the Settings scene.
      * @param event button click
@@ -90,8 +92,8 @@ public class MainViewController {
             settingsController.setViewController(viewController);
             settingsController.setPlayerNameLabel();
             settingsController.setPreviousScene(event);
-            viewController.askTankPlayer1Settings(NextAndPrevious.NONE);
-            viewController.askTankPlayer2Settings(NextAndPrevious.NONE);
+            viewController.askTankFirstPlayerSettings(NextAndPrevious.NONE);
+            viewController.askTankSecondPlayerSettings(NextAndPrevious.NONE);
             viewController.askMapSettings(NextAndPrevious.NONE);
             stage.setResizable(false);
             stage.setScene(settings);
@@ -100,6 +102,7 @@ public class MainViewController {
             LOGGER.log(Level.SEVERE, "Settings scene load error.");
         }
     }
+
     /**
      * Sets the {@link Scene} to the tutorial scene.
      * @param event button click
@@ -120,6 +123,7 @@ public class MainViewController {
             LOGGER.log(Level.SEVERE, "Tutorial scene load error.");
         }
     }
+
     /**
      * Sets the {@link View} controller.
      * @param viewController the {@link View} controller
@@ -131,6 +135,7 @@ public class MainViewController {
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
+
     /**
      * Sets the tanks and map resources.
      * @param tank1Resource first tank resource

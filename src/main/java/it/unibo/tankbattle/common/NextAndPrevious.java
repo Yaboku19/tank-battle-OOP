@@ -3,14 +3,17 @@ package it.unibo.tankbattle.common;
  * This enum represent simple next and previous selection.
  */
 public enum NextAndPrevious {
+
     /**
      * Next (+1).
      */
     NEXT(1),
+
     /**
      *Previous (-1).
      */
     PREVIOUS(-1),
+
     /**
      *Nothing to change (0).
      */
@@ -24,6 +27,7 @@ public enum NextAndPrevious {
     NextAndPrevious(final int delta) {
         this.delta = delta;
     }
+
     /**
      * @return delta changing.
      */

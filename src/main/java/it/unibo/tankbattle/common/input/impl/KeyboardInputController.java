@@ -8,8 +8,8 @@ import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.common.input.api.InputController;
 import it.unibo.tankbattle.controller.api.Player;
 /**
- * javadoc.
- * @param <T> param
+ * An implementation of {@link InputController}.
+ * @param <T> controller keys type
  */
 public class KeyboardInputController<T> implements InputController<T> {
 
@@ -20,13 +20,14 @@ public class KeyboardInputController<T> implements InputController<T> {
     private final T shoot;
     private final Player player;
     private Optional<T> lastCommand = Optional.empty();
+
     /**
      * @param moveUp param move up key.
      * @param moveDown param move down key.
      * @param moveLeft param move left key.
      * @param moveRight param move right key.
      * @param shoot param shoot key.
-     * @param player param wich player.
+     * @param player param player.
      */
     public KeyboardInputController(final T moveUp, final T moveDown, final T moveLeft,
         final T moveRight, final T shoot, final Player player) {
@@ -38,6 +39,7 @@ public class KeyboardInputController<T> implements InputController<T> {
                 this.shoot = shoot;
                 this.player = player;
     }
+
     /**
     * {@inheritDoc}
     */
@@ -45,6 +47,7 @@ public class KeyboardInputController<T> implements InputController<T> {
     public List<T> getKeys() {
         return List.of(moveUp, moveDown, moveLeft, moveRight, shoot);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -70,6 +73,7 @@ public class KeyboardInputController<T> implements InputController<T> {
         }
         return Optional.empty();
     }
+
     /**
     * {@inheritDoc}
     */

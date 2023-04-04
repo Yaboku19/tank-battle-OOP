@@ -3,21 +3,20 @@ package it.unibo.tankbattle.controller.api;
 import it.unibo.tankbattle.common.NextAndPrevious;
 
 /**
- * Control the virus data.
+ * Manage object data from file.
  * @param <T> Data type
  * @param <C> DataList type
  */
 public interface ObjectsManager<T, C> {
 
     /**
-     * 
      * @return return the actual
      */
     T getActual();
 
     /**
-     * update the actual.
-     * @param delta how the update has to be done
+     * Update the actual.
+     * @param delta udpate parameter
      */
     void update(NextAndPrevious delta);
 }

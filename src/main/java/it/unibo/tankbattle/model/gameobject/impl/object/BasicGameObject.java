@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.Transform;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.model.gameobject.api.component.Component;
@@ -16,7 +16,7 @@ import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
  */
 public class BasicGameObject implements GameObject {
 
-    private P2d position;
+    private Point2d position;
     private Direction direction;
     private final double length;
     private final double width;
@@ -32,6 +32,7 @@ public class BasicGameObject implements GameObject {
         this.length = transform.getLength();
         this.width = transform.getWidth();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -39,6 +40,7 @@ public class BasicGameObject implements GameObject {
     public void update(final double time) {
         this.getComponents().forEach(comp -> comp.update(time));
     }
+
     /**
     * {@inheritDoc}
     */
@@ -46,6 +48,7 @@ public class BasicGameObject implements GameObject {
     public List<Component> getComponents() {
         return new ArrayList<>(components);
     }
+
     /**
     * {@inheritDoc}
     */
@@ -56,6 +59,7 @@ public class BasicGameObject implements GameObject {
                 .map(comp -> component.cast(comp))
                 .findFirst();
     }
+
     /**
     * {@inheritDoc}
     */
@@ -65,6 +69,7 @@ public class BasicGameObject implements GameObject {
         component.attachGameObject(this);
         return this; 
     }
+
     /**
     * {@inheritDoc}
     */
@@ -72,13 +77,15 @@ public class BasicGameObject implements GameObject {
     public Transform getTransform() {
         return new Transform(position, direction, length, width);
     }
+
     /**
     * {@inheritDoc}
     */
     @Override
-    public void setPosition(final P2d pos) {
+    public void setPosition(final Point2d pos) {
         this.position = pos;
     }
+
     /**
     * {@inheritDoc}
     */

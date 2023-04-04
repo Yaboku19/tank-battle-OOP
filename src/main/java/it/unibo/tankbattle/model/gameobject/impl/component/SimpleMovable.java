@@ -1,12 +1,12 @@
 package it.unibo.tankbattle.model.gameobject.impl.component;
 
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.input.api.Direction;
 import it.unibo.tankbattle.model.gameobject.api.component.Movable;
 
 /**
  * Represents an implementation of the {@link Movable}
- * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component Component}.
  */
 public class SimpleMovable extends AbstractComponent implements Movable {
 
@@ -40,7 +40,7 @@ public class SimpleMovable extends AbstractComponent implements Movable {
     public void update(final double time) {
         final var actualPos = this.getGameObject().getTransform().getPosition(); 
         this.getGameObject()
-                .setPosition(new P2d(time * speed * movingDirection.getX() + actualPos.getX(), 
+                .setPosition(new Point2d(time * speed * movingDirection.getX() + actualPos.getX(), 
                 time * speed * movingDirection.getY() + actualPos.getY()));
     }
 

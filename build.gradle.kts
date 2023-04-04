@@ -54,9 +54,6 @@ dependencies {
     //READ and WRITE XML file
     implementation ("javax.xml.bind:jaxb-api:2.3.1")
     implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
-    //implementation ("org.openjfx:javafx-media:17")
-    /*annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
-	testAnnotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")*/
 }
 
 tasks.withType<Test> {

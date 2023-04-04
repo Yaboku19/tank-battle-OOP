@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
 /**
- * an implementation of {@link Data} for the tank.
+ * An implementation of {@link Data} for the tank in xml file.
  */
 @XmlRootElement (name = "tank")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -33,14 +33,6 @@ public class TankData implements Data {
     @Override
     public String getName() {
         return name;
-    }
-
-    /**
-     * Gets the tank code.
-     * @return the code
-     */
-    public int getCode() {
-        return code;
     }
 
     /**
@@ -76,54 +68,7 @@ public class TankData implements Data {
     }
 
     /**
-     * sets the tank name.
-     * @param name the name to set
-     */
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    /**
-     * sets the tank code.
-     * @param code the code to set
-     */
-    public void setCode(final int code) {
-        this.code = code;
-    }
-
-    /**
-     * sets the tank speed.
-     * @param speed the speed to set
-     */
-    public void setSpeed(final int speed) {
-        this.speed = speed;
-    }
-
-    /**
-     * sets the tank life.
-     * @param life the life to set
-     */
-    public void setLife(final int life) {
-        this.life = life;
-    }
-
-    /**
-     * sets the tank demage.
-     * @param damage the demage to set
-     */
-    public void setDamage(final int damage) {
-        this.damage = damage;
-    }
-
-    /**
-     * sets the tank resource.
-     * @param resource the resource to set
-     */
-    public void setResource(final String resource) {
-        this.resource = resource;
-    }
-    /**
-     * create a copy of the Object.
+     * Create a copy of the Object.
      * @return the copy
      */
     public TankData copy() {

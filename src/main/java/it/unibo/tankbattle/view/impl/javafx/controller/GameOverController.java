@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 /**
  * Represents the Controller of the game over {@link Scene}.
  */
@@ -39,6 +40,7 @@ public class GameOverController {
 
     @FXML
     private Label winLabel;
+
     /**
      * Initialize buttons.
      */
@@ -47,6 +49,7 @@ public class GameOverController {
         assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
         assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
     }
+
     /**
      * Create new GameOverController object.
      * @param parent main menu parent
@@ -56,6 +59,7 @@ public class GameOverController {
         this.mainManuScene = parent.getScene();
         this.gameScene = stage.getScene();
     }
+
     /**
      * Sets the scene to main menu.
      * @param event the button click
@@ -63,10 +67,11 @@ public class GameOverController {
     @FXML
     void mainMenu(final ActionEvent event) {
         final Stage stage = MainViewController.converterFromEvent(event);
-        viewController.newStart();
+        viewController.backToMenu();
         stage.setScene(mainManuScene);
         stage.sizeToScene();
     }
+
     /**
      * Close the applications.
      * @param event the button click
@@ -75,6 +80,7 @@ public class GameOverController {
     void quit(final ActionEvent event) {
         Platform.exit();
     }
+
     /**
      * Starts a new game with the same tanks and map chosen.
      * @param event the button click
@@ -82,9 +88,10 @@ public class GameOverController {
     @FXML
     void restart(final ActionEvent event) {
         final Stage stage = MainViewController.converterFromEvent(event);
-        viewController.restart();
+        viewController.restartGame();
         stage.setScene(gameScene);
     }
+
     /**
      * Sets the {@link View} controller.
      * @param viewController the {@link View} controller
@@ -96,6 +103,7 @@ public class GameOverController {
     public void setViewController(final View viewController) {
         this.viewController = viewController;
     }
+
     /**
      * Sets gameScene {@link Scene}.
      * @param stage main stage
@@ -103,8 +111,9 @@ public class GameOverController {
     public void setGameScene(final Stage stage) {
         this.gameScene = stage.getScene();
     }
+
     /**
-     * Sets the menu {@link Label}.
+     * Sets the winner {@link Label}.
      * @param playerName the winner player's name
      */
     public void setWinLabel(final String playerName) {

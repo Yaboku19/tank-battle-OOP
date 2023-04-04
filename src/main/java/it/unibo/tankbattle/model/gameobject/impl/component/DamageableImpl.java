@@ -5,7 +5,7 @@ import it.unibo.tankbattle.model.gameobject.api.component.Health;
 
 /**
  * Represents an implementation of the {@link Damageable}
- * {@link it.unibo.tankbattle.model.gameobject.api.component.Component}.
+ * {@link it.unibo.tankbattle.model.gameobject.api.component.Component Component}.
  */
 public class DamageableImpl extends AbstractComponent implements Damageable {
 

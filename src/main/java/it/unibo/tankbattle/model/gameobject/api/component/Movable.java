@@ -4,7 +4,7 @@ import it.unibo.tankbattle.common.input.api.Direction;
 
 /**
  * Represents a particular {@link Component} that enables the attached
- * {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject} to move.
+ * {@link it.unibo.tankbattle.model.gameobject.api.object.GameObject GameObject} to move.
  */
 public interface Movable extends Component {
 

@@ -71,7 +71,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updatePlayer1SettingsView(final int speed, final int damage, final int life, final String resource) {
+    public void updateFirstPlayerSettingsView(final int speed, final int damage, final int life, final String resource) {
         settingsController.updatePlayer1SettingsLabel(speed, damage, life, resource);
     }
 
@@ -79,7 +79,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updatePlayer2SettingsView(final int speed, final int damage, final int life, final String resource) {
+    public void updateSecondPlayerSettingsView(final int speed, final int damage, final int life, final String resource) {
         settingsController.updatePlayer2SettingsLabel(speed, damage, life, resource);
     }
 
@@ -87,7 +87,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void updateMapSettingsView(final String resource, final String mapName) {
+    public void updateMapSettings(final String resource, final String mapName) {
         settingsController.updateMapSettingsLabels(resource, mapName);
     }
 
@@ -95,7 +95,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void askTankPlayer1Settings(final NextAndPrevious delta) {
+    public void askTankFirstPlayerSettings(final NextAndPrevious delta) {
         controller.updateTankPlayer1(delta);
     }
 
@@ -103,7 +103,7 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void askTankPlayer2Settings(final NextAndPrevious delta) {
+    public void askTankSecondPlayerSettings(final NextAndPrevious delta) {
         controller.updateTankPlayer2(delta);
     }
 
@@ -189,22 +189,23 @@ public class ViewController implements View {
     * {@inheritDoc}
     */
     @Override
-    public void restart() {
+    public void restartGame() {
         this.setDimension();
         this.setDiagonalResize();
-        controller.restart();
+        controller.restartGame();
     }
 
     /**
     * {@inheritDoc}
     */
     @Override
-    public void newStart() {
-        controller.newStart();
+    public void backToMenu() {
+        controller.restartApplication();
     }
 
     private void setDimension() {
-        stage.setWidth(Screen.getPrimary().getBounds().getWidth() / 2);
+        stage.setWidth(Math.min(Screen.getPrimary().getBounds().getWidth(),
+                Screen.getPrimary().getBounds().getHeight()));
         stage.setHeight(stage.getWidth() * 2.0 / 3.0 + 1.0);
     }
 
@@ -240,17 +241,6 @@ public class ViewController implements View {
         }
     }
 
-    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
-        Optional<Command> command;
-        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
-            command = playerController.startCommand(e.getCode());
-        } else {
-            command = playerController.stopCommand(e.getCode());
-        }
-        if (command.isPresent()) {
-            controller.notifyCommand(command.get());
-        }
-    }
     /**
     * {@inheritDoc}
     */
@@ -328,5 +318,17 @@ public class ViewController implements View {
                 KeyCode.LEFT, KeyCode.RIGHT, KeyCode.SPACE, controller.getFirstPlayer());
         secondPlayerController = new KeyboardInputController<>(KeyCode.W, KeyCode.S,
                 KeyCode.A, KeyCode.D, KeyCode.Q, controller.getSecondPlayer());
+    }
+
+    private void notifyCommand(final InputController<KeyCode> playerController, final KeyEvent e) {
+        Optional<Command> command;
+        if (e.getEventType().equals(KeyEvent.KEY_PRESSED)) {
+            command = playerController.startCommand(e.getCode());
+        } else {
+            command = playerController.stopCommand(e.getCode());
+        }
+        if (command.isPresent()) {
+            controller.notifyCommand(command.get());
+        }
     }
 }

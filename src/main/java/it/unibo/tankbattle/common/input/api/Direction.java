@@ -1,6 +1,6 @@
 package it.unibo.tankbattle.common.input.api;
 
-import it.unibo.tankbattle.common.P2d;
+import it.unibo.tankbattle.common.Point2d;
 
 /**
  * Directions that can be used.
@@ -44,8 +44,8 @@ public enum Direction {
     /**
      * @return return vector create by x and y.
      */
-    public P2d getVector() {
-        return new P2d(this.x, this.y);
+    public Point2d getVector() {
+        return new Point2d(this.x, this.y);
     }
     /**
      * @param x x value.

@@ -32,6 +32,7 @@ public class TutorialController {
         stage.setScene(prevScene);
         stage.sizeToScene();
     }
+
     /**
      * Sets actual {@link Scene}.
      * @param event event.
@@ -39,6 +40,7 @@ public class TutorialController {
     public void setPreviousScene(final ActionEvent event) {
         this.prevScene = MainViewController.converterFromEvent(event).getScene();
     }
+
     /**
      * Sets the players label name to the actual name.
      */
@@ -50,6 +52,7 @@ public class TutorialController {
             secondPlayer.setText(viewController.getSecondPlayerName());
         } 
     }
+
     /**
      * Sets the {@link View} controller.
      * @param viewController the {@link View} controller
