@@ -108,27 +108,27 @@
          <children>
             <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-15.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/W.png" />
+                  <Image url="@../images/tutorial/w.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-15.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/Q.png" />
+                  <Image url="@../images/tutorial/q.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-15.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/A.png" />
+                  <Image url="@../images/tutorial/a.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="-15.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/D.png" />
+                  <Image url="@../images/tutorial/d.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="38.0" fitWidth="45.0" layoutX="-15.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/tutorial/S.png" />
+                  <Image url="@../images/tutorial/s.png" />
                </image>
             </ImageView>
          </children>
