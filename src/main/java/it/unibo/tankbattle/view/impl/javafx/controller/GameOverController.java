@@ -46,8 +46,9 @@ public class GameOverController {
      */
     @FXML
     void initialize() {
-        assert quitButton != null : "fx:id=\"quitButton\" was not injected: check your FXML file 'gameOver.fxml'.";
-        assert restartButton != null : "fx:id=\"restartButton\" was not injected: check your FXML file 'gameOver.fxml'.";
+        restartButton.setFocusTraversable(false); 
+        quitButton.setFocusTraversable(false);
+        mainMenuButton.setFocusTraversable(false);
     }
 
     /**
