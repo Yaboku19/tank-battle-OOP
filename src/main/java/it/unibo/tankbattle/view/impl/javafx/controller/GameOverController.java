@@ -59,6 +59,7 @@ public class GameOverController {
     public GameOverController(final Parent parent, final Stage stage) {
         this.mainManuScene = parent.getScene();
         this.gameScene = stage.getScene();
+        this.viewController = new ViewController();
     }
 
     /**
