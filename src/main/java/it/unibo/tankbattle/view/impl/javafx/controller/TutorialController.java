@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Represent the Controller of the tutorial {@link Scene}.
+ * Represents the Controller of the tutorial {@link Scene}.
  */
 public class TutorialController {
 

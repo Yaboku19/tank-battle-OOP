@@ -26,7 +26,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 /**
- * This represents the contoller of the game Scene.
+ * Represents the contoller of the game Scene.
  */
 public class GameController {
 

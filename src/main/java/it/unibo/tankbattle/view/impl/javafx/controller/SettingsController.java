@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * Represent the Controller of the Settings {@link Scene}.
+ * Represents the Controller of the Settings {@link Scene}.
  */
 public class SettingsController implements Initializable {
 
