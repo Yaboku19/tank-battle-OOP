@@ -21,7 +21,7 @@ import it.unibo.tankbattle.model.world.api.WorldFactory;
 import it.unibo.tankbattle.model.world.impl.WorldFactoryImpl;
 
 /**
- * rappresent a test for the model {@link GameStateImpl}.
+ * Class to test MVC Model {@link GameStateImpl}.
  */
 class GameStateTest {
     private GameStateImpl model;
@@ -79,7 +79,7 @@ class GameStateTest {
     }
 
     /**
-     * it tests the getter of GameStateImpl.
+     * GameStateImpl getter test.
      */
     @org.junit.jupiter.api.Test
     void getterTest() {
@@ -99,7 +99,7 @@ class GameStateTest {
     }
 
     /**
-     * It tests how the bullets are created.
+     * Bullets creation test.
      */
     @org.junit.jupiter.api.Test
     void shotTest() {
@@ -115,7 +115,7 @@ class GameStateTest {
     }
 
     /**
-     * it tests how the direction of the object is setted.
+     * SetDirection test.
      */
     @org.junit.jupiter.api.Test
     void changeDirectionTest() {

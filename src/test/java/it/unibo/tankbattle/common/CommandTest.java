@@ -50,8 +50,9 @@ class CommandTest {
 
         };
     }
+
     /**
-     * Initialize objects for test.
+     * Initialize objects.
      */
     @org.junit.jupiter.api.BeforeEach
     void initFactory() {
@@ -69,7 +70,7 @@ class CommandTest {
     }
 
     /**
-     * Test start command.
+     * Start command test.
      */
     @org.junit.jupiter.api.Test
     void testStartCommand() {
@@ -86,7 +87,7 @@ class CommandTest {
     }
 
     /**
-     * Test stop command.
+     * Stop command test.
      */
     @org.junit.jupiter.api.Test
     void testStopCommand() {

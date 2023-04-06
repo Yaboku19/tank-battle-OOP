@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * rappresent a test for {@link ObjectsManager}.
+ * Class to test {@link ObjectsManager}.
  */
 class ObjectsManagerTest {
     private ObjectsManager<TankData, TankDataList> tankManager;
@@ -36,7 +36,7 @@ class ObjectsManagerTest {
     }
 
     /**
-     * It tests the tankManager.
+     * TankManager test.
      */
     @org.junit.jupiter.api.Test
     void testTankManager() {
@@ -44,7 +44,7 @@ class ObjectsManagerTest {
     }
 
     /**
-     * It tests the mapManager.
+     * MapManager test.
      */
     @org.junit.jupiter.api.Test
     void testMapManager() {
