@@ -1,15 +1,13 @@
 package it.unibo.tankbattle.model.gameobject.impl.component;
 
-import it.unibo.tankbattle.model.collision.api.CollisionListener;
 import it.unibo.tankbattle.model.gameobject.api.component.Damageable;
-import it.unibo.tankbattle.model.gameobject.api.component.ObservableCollidable;
 import it.unibo.tankbattle.model.gameobject.api.object.GameObject;
 
 /**
  * Represents a particular {@link it.unibo.tankbattle.model.gameobject.api.component.Component Component}
  * that enables the attached {@link GameObject} to deal the received damage after a collision.
  */
-public class DealDamageOnCollision extends AbstractComponent implements CollisionListener {
+public class DealDamageOnCollision extends CollisionHandlingComponent {
 
     private final int damage;
 
@@ -19,21 +17,6 @@ public class DealDamageOnCollision extends AbstractComponent implements Collisio
      */
     public DealDamageOnCollision(final int damage) {
         this.damage = damage;
-    }
-
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void update(final double time) {
-    }
-
-    /**
-    * {@inheritDoc}
-    */
-    @Override
-    public void gameObjectAttached(final GameObject object) {
-        requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
 
     /**
