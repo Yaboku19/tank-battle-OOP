@@ -21,7 +21,7 @@ public abstract class CollisionHandlingComponent extends AbstractComponent imple
      * {@inheritDoc}
      */
     @Override
-    public void gameObjectAttached(final GameObject object) {
+    protected void gameObjectAttached(final GameObject object) {
         requireSiblingComponent(ObservableCollidable.class).addListener(this);
     }
 }
