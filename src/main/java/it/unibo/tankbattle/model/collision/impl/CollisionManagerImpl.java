@@ -53,6 +53,9 @@ public class CollisionManagerImpl implements CollisionManager {
                 .stream()
                 .skip(index + 1)
                 .map(object -> new Pair<>(collidablesList.get(index), object)))
-            .filter(pair -> this.detector.detect(pair.getX(), pair.getY()));
+            .filter(pair -> this.detector.detect(
+                pair.getX().getGameObject().getTransform(), 
+                pair.getY().getGameObject().getTransform())
+            );
     }
 }

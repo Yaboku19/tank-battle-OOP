@@ -68,6 +68,6 @@ public abstract class AbstractComponent implements Component {
     protected <T extends Component> T requireSiblingComponent(final Class<T> component) {
         return getSiblingComponent(component)
             .orElseThrow(() -> new IllegalArgumentException("The required Component " 
-            + component.getSimpleName() + " is not present"));
+                + component.getSimpleName() + " is not present"));
     }
 }

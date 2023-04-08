@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import it.unibo.tankbattle.common.Point2d;
 import it.unibo.tankbattle.common.Transform;
-import it.unibo.tankbattle.model.gameobject.api.component.Collidable;
 
 /**
  * Implements {@link CollisionDetector} interface using {@link Transform} to see if a collision is happening.
@@ -15,10 +14,8 @@ public class CollisionDetectorImpl implements CollisionDetector {
     * {@inheritDoc}
     */
     @Override
-    public boolean detect(final Collidable object1, final Collidable object2) {
-        final Transform transform1 = object1.getGameObject().getTransform();
-        final Transform transform2 = object2.getGameObject().getTransform();
-        return containsAnyCorner(transform1, transform2) || containsAnyCorner(transform2, transform1);
+    public boolean detect(final Transform object1, final Transform object2) {
+        return containsAnyCorner(object1, object2) || containsAnyCorner(object2, object1);
     }
 
     private boolean containsAnyCorner(final Transform transform1, final Transform transform2) {
