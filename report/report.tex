@@ -26,7 +26,7 @@
 \chapter{Analisi}
 
 \section{Requisiti}
-Il progetto si pone l’obiettivo di creare un videogioco dual player. I giocatori rappresentati da due carri armati si sfideranno cercando di abbattersi a vicenda. Il carro armato che rimane in vita vince. Per aumentare le possibilità di sfida, sarà possibile combattere con carri armati aventi diverse caratteristiche (velocità, potenza del colpo e vita) su mappe differenti.
+Il progetto si pone l’obiettivo di creare un videogioco dual player. I giocatori rappresentati da due carri armati si sfideranno cercando di abbattersi a vicenda. Il carro armato che rimane in vita vince. Per aumentare la varietà delle sfide, sarà possibile combattere con carri armati aventi diverse caratteristiche (velocità, potenza del colpo e vita) su mappe differenti.
 
 \subsection*{Requisiti funzionali}
 Il gioco dovrà occuparsi di gestire la partita degli utenti all’interno delle mappe di Tank-Battle. In particolare:
@@ -38,11 +38,11 @@ Il gioco dovrà occuparsi di gestire la partita degli utenti all’interno delle
     \end{itemize}
 \subsection*{Requisiti non funzionali}
 \begin{itemize}
-	\item Il gioco deve mantenere un profilo di prestazioni fluido e costante al variare dello stato e degli eventi di gioco.
+	\item Il gioco dovrà mantenere un profilo di prestazioni fluido e costante al variare dello stato e degli eventi di gioco.
 \end{itemize}
 \newpage
 \section{Analisi e modello del dominio}
-Una volta fatta partire l’applicazione verrà presentato un menu nel quale si potrà scegliere tra:
+Una volta fatta partire l’applicazione, verrà presentato un menu nel quale si potrà scegliere tra:
 \begin{itemize}
 	\item iniziare una partita con la configurazione di default;
 	\item entrare nella sezione tutorial;
@@ -54,9 +54,9 @@ Nella sezione settings si potrà personalizzare la configurazione di gioco (scel
 Durante una partita i giocatori avranno la possibilità di muoversi all’interno della mappa e di sparare dei proiettili per cercare di abbattere l’avversario.
 La mappa sarà composta da entità non attraversabili dai carri armati.
 Ostacoli distruttibili saranno oggetto di studio per un’implementazione futura.
-Quando il carro armato verrà colpito da un colpo la sua vita dovrà diminuire e quando sarà nulla la partita dovrà terminare.
-Terminata una partita, Tank-Battle offrirà la possibilità di giocarne un’altra con la stessa configurazione, la possibilità di tornare al menù iniziale o di chiudere l’applicazione. 
-L’implementazione di questo gioco presenta tra le altre le seguenti difficoltà:
+Quando il carro armato verrà colpito da un proiettile la sua vita dovrà diminuire e quando questa sarà nulla la partita dovrà terminare.
+Conclusosi il gioco, Tank-Battle offrirà la possibilità di giocare un’altra partita con la stessa configurazione, di tornare al menu iniziale o di chiudere l’applicazione.
+Prevediamo che l’implementazione di questo gioco presenterà, tra le altre, le seguenti difficoltà:
 \begin{itemize}
 	\item gestione delle collisioni tra le entità del gioco (muri, carri armati, proiettili);
 	\item gestione della grafica in modo da rendere il gioco fluido e utilizzabile;
@@ -66,17 +66,17 @@ L’implementazione di questo gioco presenta tra le altre le seguenti difficolt�
 \chapter{Design}
 \section{Architettura}
 Tank-Battle è stato sviluppato utilizzando il pattern architetturale Model-View-Controller contaminato dal pattern Component in modo da sfruttare i vantaggi di entrambi.\\
-Il pattern Component permette a una singola entità di estendersi su domini multipli senza accorparli in un’unica classe. Applicandolo al dominio dell’applicazione (Model), avremo che ogni elemento del gioco risulta essere un gameObject. Ad ogni gameObject verranno aggiunti dei componenti, ognuno dei quali appartiene a un dominio specifico (moovement, collidable, ...). Ogni componente avrà un modo per aggiornarsi a seconda degli eventi generati dal mondo o dall’utente. L'utilità del pattern component sta nel poter costruire gameObject complessi utilizzando dei componenti semplici.\\
+Il pattern Component permette a una singola entità di estendersi su domini multipli senza accorparli in un’unica classe. Applicandolo al Model, abbiamo che ogni elemento del gioco risulta essere un gameObject. Ad ogni gameObject vengono aggiunti dei componenti, ognuno dei quali appartiene a un dominio specifico (moovement, collidable, ...). Ogni componente si aggiorna a seconda degli eventi generati dal mondo o dall’utente. L'utilità del pattern component sta nel poter costruire gameObject complessi utilizzando dei componenti semplici.\\
 Dal punto di vista del pattern architetturale Model-View-Controller, i tre moduli sono descritti come segue: 
 \begin{itemize}
 	\item \textbf{Model}:
 	il ruolo del ”Model” viene affidato all’insieme delle classi che sono contenute nel package model. In particolare da GameObject, World e GameState.
 	\item \textbf{Controller}:
-	il ruolo di “Controller” viene affidato all’insieme delle classi contenute nel package controller. In particolare dall'interfaccia GameEngine che ha il compito di gestire l’avanzamento del gioco: aggiornando i componenti dei GameObject ed effettuando il render sulla View.
-	\item  \textbf{View}:
-	Il ruolo di "View" viene affidato all’insieme delle classi contenute nel package view. In particolare all’interfaccia View la quale descrive il concetto di controller di gestione dell'intefaccia grafica.
+	il ruolo di “Controller” viene affidato all’insieme delle classi contenute nel package controller, in particolare all'interfaccia GameEngine che gestisce l’avanzamento del gioco aggiornando i componenti dei GameObject ed effettuando il render sulla View.
+	\item \textbf{View}:
+	Il ruolo di "View" viene affidato all’insieme delle classi contenute nel package view, in particolare all’interfaccia View, la quale descrive il concetto di controller di gestione dell'intefaccia grafica.
 \end{itemize}
-\newpage Con queste divisioni viene rispettata la modularità del pattern MVC perciò se ne possono sfruttare i vantaggi. Se per esempio si desiderasse cambiare libreria grafica, si dovrebbero sostituire soltanto le implementazioni all’interno del package view.
+\newpage Con queste divisioni viene rispettata la modularità del pattern MVC potendone sfruttare i vantaggi. Se per esempio si desiderasse cambiare libreria grafica, si dovrebbero sostituire soltanto le implementazioni all’interno del package view.
 	
 \begin{figure}[H]
 \centering{}
@@ -98,7 +98,7 @@ Dal punto di vista del pattern architetturale Model-View-Controller, i tre modul
 	\end{figure}
 %
 \paragraph*{Problema} Prevedere la possibilità che l’input possa provenire non soltanto dalla tastiera del pc.
-\paragraph*{Soluzione} Viene gestita un’interfaccia generica InputController che in base alla sorgente di input che si vorrà utilizzare avrà il compito di gestire i comandi dati dall’utente gestendo il concetto di inizio e fine di un comando. Nel nostro caso viene implementata la classe KeyboardInputController che eredita la struttura da InputController. L’utilizzo di un’interfaccia generica ci consente inoltre di poter cambiare libreria grafica senza dover modificare il concetto generale espresso dall’interfaccia.
+\paragraph*{Soluzione} Viene gestita un’interfaccia generica InputController che in base alla sorgente di input utilizzata avrà il compito di coordinare i comandi dati dall’utente, gestendo il concetto di inizio e fine di un comando. Nel nostro caso, viene implementata la classe KeyboardInputController. L’utilizzo di un’interfaccia generica ci consente inoltre di poter cambiare libreria grafica senza dover modificare il concetto generale espresso dall’interfaccia.
 %
 \newpage
 \subsubsection*{Gestione dei comandi di gioco}
@@ -110,9 +110,9 @@ Dal punto di vista del pattern architetturale Model-View-Controller, i tre modul
 	\label{img:strategy}
 	\end{figure}
 %	
-\paragraph*{Problema} Scorporare il compito di intercettare il comando da quello di esecuzione.
+\paragraph*{Problema} Scorporare l'intercettazione del comando dalla sua esecuzione.
 %
-\paragraph*{Soluzione} Utilizzo del Command pattern. Una volta che l’evento scaturito dalla pressione di un tasto viene intercettato dalla view, si notifica al contoller la presenza di un nuovo comando. Il controller si occuperà di chiamare l’esecuzione senza però avere dettagli implementativi del comando. I comandi infatti sono incapsulati tramite l’apposita interfaccia Command. Nel nostro gioco si gestiscono due tipi di comandi tramite ereditarietà: moovement e shoot che servono per far muovere il player e per consentirgli di sparare.
+\paragraph*{Soluzione} Utilizzo del Command pattern. Una volta che l’evento scaturito dalla pressione di un tasto viene intercettato dalla view, si notifica al contoller la presenza di un nuovo comando. Il controller si occuperà di chiamare l’esecuzione, senza però avere dettagli implementativi del comando. I comandi, infatti, sono incapsulati tramite l’apposita interfaccia Command. Nel nostro gioco si gestiscono due tipi di comandi tramite ereditarietà: moovement e shoot, entrambi utilizzati per far muovere il player e per consentirgli di sparare.
 La struttura del Command pattern è composta da:
 \begin{itemize}
 	\item \textbf{Command}:
@@ -120,18 +120,18 @@ La struttura del Command pattern è composta da:
 	\item \textbf{Concrete Command}:
 	classe che implementa l’interfaccia Command e specifica la logica di esecuzione per una determinata richiesta. In questo caso rappresentato da Moovement e Shoot;
 	\item \textbf{Receiver}:
-	classe che contiene la logica vera e propria. I comandi gestiscono solo i dettagli di come una richiesta viene passata al receiver, infatti il receiver che esegue il comando. In questo caso rappresentato dai diversi Component del GameObject;
+	classe che contiene la logica vera e propria. I comandi gestiscono solo i dettagli di come una richiesta viene passata al receiver: infatti è il receiver che esegue il comando. Il reciever in questo caso è rappresentato dai diversi Component del GameObject;
 	\item \textbf{Invoker}:
 	classe che inizializza la richiesta. In questo caso rappresentato dalla view.
 \end{itemize}
 L’utilizzo del Command pattern facilita l’inserimento di nuovi comandi e la modifica di quelli esistenti.
 %
-\\ \\ \\
+\\ \\
 \subsubsection*{Gestione del gameLoop}
 %
 \paragraph*{Problema} Gestire l'avanzamento del gioco.
 %
-\paragraph*{Soluzione} Tutta la logica del gioco è fondata su un ciclo perenne dal quale si esce soltanto se uno dei due carri armati viene distrutto. Ad ogni ciclo vengono richiamate tutte le funzionalità del gioco nel seguente ordine:
+\paragraph*{Soluzione} Tutta la logica del gioco è fondata su un ciclo perenne dal quale si esce soltanto se uno dei due carri armati viene distrutto. Ad ogni iterazione, vengono richiamate tutte le funzionalità del gioco nel seguente ordine:
 \begin{itemize}
 	\item \textbf{processInput}:
 	si processano i vari comandi inseriti dagli utenti;
@@ -142,7 +142,7 @@ L’utilizzo del Command pattern facilita l’inserimento di nuovi comandi e la 
 	\item \textbf{waitForNextFrame}:
 	si mette in attesa il loop se l’esecuzione degli step precedenti è stata più rapida del periodo impostato.
 \end{itemize}
-Questo metodo ci da la possibilità di descrivere in semplici passaggi tutto ciò che l’applicazione deve svolgere. Inoltre permette un’iterazione fluida con l’utente.
+Questo metodo ci dà la possibilità di descrivere in semplici passaggi tutto ciò che l’applicazione deve svolgere. Inoltre permette un’interazione fluida con l’utente.
 Tale metodologia è quella che ci ha illustrato il Prof. A. Ricci ed è anche presente nel libro “Game programming patterns” di Robert Nystrom che abbiamo utilizzato come riferimento.
 %
 \newpage
@@ -366,10 +366,10 @@ Per effettuare i test abbiamo utilizzato JUnit 5.
 Non sono stati eseguiti test sulle funzionalità grafiche perchè il render dei GameObject dipende dal corretto funzionamento dei singoli componenti che abbiamo testato come sopra descritto. Il miglior test che si può sfruttare è l'esecuzione dell'applicazione.
 \newpage
 \section{Metodologia di lavoro}
-La prima fase del nostro lavoro è stata quella di progettazione discutendo l'architettura generale del gioco. Fra le varie possibilità la scelta è ricaduta sul pattern MVC visto in classe.
-Insieme abbiamo creato lo scheletro dell'applicazione e in seguito, in base alle suddivisioni, ognuno di noi ha pensato più nel dettaglio a come poter gestire la propria parte. Di conseguenza abbiamo svolto un briefing per esporre le idee e raccoglierne di nuove.\\
-Durante lo sviluppo del codice siamo riusciti a lavorare in parallelo utilizzando il DVCS come visto in classe. Ognuno di noi ha fatto un clone del repository, creato il proprio branch e lo ha tenuto aggiornato tramite pull e push.\\
-Al termine dell’implementazione di ogni parte del gioco ci siamo ritrovati per decidere come accorparla alla struttura principale. Infine abbiamo riguardato il codice tutti insieme per sistemare gli ultimi dettagli.
+La prima fase del nostro lavoro è stata quella di progettazione discutendo l'architettura generale del gioco. Fra le varie possibilità. la scelta è ricaduta sul pattern MVC visto in classe.
+Abbiamo creato lo scheletro dell'applicazione e in seguito, in base alle suddivisioni, ognuno di noi ha pensato più nel dettaglio a come poter gestire la propria parte. Di conseguenza abbiamo svolto un briefing per esporre le idee e raccoglierne di nuove.\\
+Durante lo sviluppo del codice siamo riusciti a lavorare in parallelo, utilizzando il DVCS come visto in classe. Ognuno di noi ha fatto un clone del repository, creato il proprio branch e lo ha tenuto aggiornato tramite pull e push.\\
+Al termine dell’implementazione di ogni parte del gioco, ci siamo ritrovati per decidere come accorparla alla struttura principale. Infine abbiamo riguardato tutto il codice per sistemare gli ultimi dettagli.
 %
 \\ \\ 
 \subsection*{Tomas Ventrucci}
