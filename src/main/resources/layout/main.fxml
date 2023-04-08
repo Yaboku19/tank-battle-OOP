@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankbattle.view.impl.javafx.controller.MainViewController">
+   <center>
+      <VBox fx:id="buttonBox" alignment="CENTER" prefHeight="400.0" prefWidth="479.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="playButton" maxWidth="1.7976931348623157E308" minWidth="130.0" mnemonicParsing="false" onAction="#play" prefHeight="66.0" prefWidth="200.0" text="PLAY">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="tutorialButton" maxWidth="1.7976931348623157E308" minWidth="130.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="66.0" prefWidth="200.0" text="TUTORIAL">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="settingButton" maxWidth="1.7976931348623157E308" minWidth="130.0" mnemonicParsing="false" onAction="#settings" prefHeight="66.0" prefWidth="200.0" text="SETTINGS">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="50.0" top="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

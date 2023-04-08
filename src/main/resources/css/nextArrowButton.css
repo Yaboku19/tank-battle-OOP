@@ -1,0 +1,8 @@
+.my-button {
+    -fx-background-image: url('../images/settings/nextArrow.png');
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-border-style: none;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.tankbattle.view.impl.javafx.controller.SettingsController">
+   <children>
+      <Button fx:id="prevTankPlayer1" layoutX="48.0" layoutY="143.0" mnemonicParsing="false" onAction="#prevTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextTankPlayer1" layoutX="147.0" layoutY="143.0" mnemonicParsing="false" onAction="#nextTankPlayer1" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <Button fx:id="prevMap" layoutX="309.0" layoutY="229.0" mnemonicParsing="false" onAction="#prevMap" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextTankPlayer2" layoutX="147.0" layoutY="338.0" mnemonicParsing="false" onAction="#nextTankPlayer2" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <Button fx:id="prevTankPlayer2" layoutX="48.0" layoutY="338.0" mnemonicParsing="false" onAction="#prevTankPlayer2" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/prevArrowButton.css" />
+      <Button fx:id="nextMap" layoutX="512.0" layoutY="228.0" mnemonicParsing="false" onAction="#nextMap" prefHeight="38.0" prefWidth="38.0" styleClass="my-button" stylesheets="@../css/nextArrowButton.css" />
+      <ImageView fx:id="player1Image" fitHeight="81.0" fitWidth="92.0" layoutX="70.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="mapImage" fitHeight="155.0" fitWidth="260.0" layoutX="309.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="player2Image" fitHeight="81.0" fitWidth="92.0" layoutX="70.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="mapLabel" alignment="CENTER" layoutX="309.0" layoutY="31.0" prefHeight="17.0" prefWidth="244.0" text="MAP" />
+      <Button layoutX="306.0" layoutY="304.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="244.0" text="BACK" />
+      <Label layoutX="189.0" layoutY="48.0" text="Speed:" />
+      <Label fx:id="speedP2" layoutX="241.0" layoutY="243.0" />
+      <Label fx:id="damageP1" layoutX="241.0" layoutY="108.0" />
+      <Label fx:id="lifeP1" layoutX="241.0" layoutY="76.0" />
+      <Label fx:id="speedP1" layoutX="241.0" layoutY="48.0" />
+      <Label layoutX="189.0" layoutY="106.0" text="Damage:" />
+      <Label layoutX="189.0" layoutY="76.0" text="Life:" />
+      <Label fx:id="damageP2" layoutX="241.0" layoutY="302.0" />
+      <Label fx:id="lifeP2" layoutX="241.0" layoutY="273.0" />
+      <Label layoutX="189.0" layoutY="243.0" text="Speed:" />
+      <Label layoutX="189.0" layoutY="302.0" text="Damage:" />
+      <Label layoutX="189.0" layoutY="273.0" text="Life:" />
+      <TextField fx:id="firstPlayerName" layoutX="44.0" layoutY="14.0" prefHeight="25.0" prefWidth="145.0" promptText="Player 1" />
+      <TextField fx:id="secondPlayerName" layoutX="44.0" layoutY="210.0" prefHeight="25.0" prefWidth="145.0" promptText="Player 2" />
+   </children>
+</AnchorPane>

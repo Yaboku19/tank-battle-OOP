@@ -24,7 +24,8 @@ val javaFXModules = listOf(
     "controls",
     "fxml",
     "swing",
-    "graphics"
+    "graphics",
+    "media"
 )
 
 val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
@@ -37,7 +38,8 @@ dependencies {
     // implementation("com.google.guava:guava:28.1-jre")
 
     // JavaFX: comment out if you do not need them
-    val javaFxVersion = 15
+    val javaFxVersion = 19
+
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
@@ -48,6 +50,10 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    //READ and WRITE XML file
+    implementation ("javax.xml.bind:jaxb-api:2.3.1")
+    implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
 }
 
 tasks.withType<Test> {
@@ -57,5 +63,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("it.unibo.tankBattle.TankBattle")
+    mainClass.set("it.unibo.tankbattle.TankBattle")
 }
