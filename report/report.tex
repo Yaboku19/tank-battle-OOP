@@ -40,7 +40,6 @@ Il gioco dovrà occuparsi di gestire la partita degli utenti all’interno delle
 \begin{itemize}
 	\item Il gioco dovrà mantenere un profilo di prestazioni fluido e costante al variare dello stato e degli eventi di gioco.
 \end{itemize}
-\newpage
 \section{Analisi e modello del dominio}
 Una volta fatta partire l’applicazione, verrà presentato un menu nel quale si potrà scegliere tra:
 \begin{itemize}
@@ -51,7 +50,7 @@ Una volta fatta partire l’applicazione, verrà presentato un menu nel quale si
 La configurazione di default darà modo di svolgere una partita in cui i giocatori avranno lo stesso tipo di carro armato. Nella sezione tutorial sarà possibile visualizzare i comandi di gioco per entrambi i player e tornare al menu principale.
 Nella sezione settings si potrà personalizzare la configurazione di gioco (scelta del tank per ogni giocatore e scelta della mappa).\\
 Durante una partita i giocatori avranno la possibilità di muoversi all’interno della mappa e di sparare dei proiettili per cercare di abbattere l’avversario.
-La mappa sarà composta da entità non attraversabili dai carri armati.
+\paragraph{} La mappa sarà composta da entità non attraversabili dai carri armati.
 Ostacoli distruttibili saranno oggetto di studio per un’implementazione futura.
 Quando il carro armato verrà colpito da un proiettile la sua vita dovrà diminuire e quando questa sarà nulla la partita dovrà terminare.
 Conclusosi il gioco, Tank-Battle offrirà la possibilità di giocare un’altra partita con la stessa configurazione, di tornare al menu iniziale o di chiudere l’applicazione.
@@ -61,6 +60,13 @@ Prevediamo che l’implementazione di questo gioco presenterà, tra le altre, le
 	\item gestione della grafica in modo da rendere il gioco fluido e utilizzabile;
 	\item gestione di mappe e carri armati differenti.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering{}
+	\includegraphics[scale=0.5]{img/model.jpg}
+	\caption{Rappresentazione UML delle entità del gioco.}
+	\end{figure}
+
 %
 \chapter{Design}
 \section{Architettura}
